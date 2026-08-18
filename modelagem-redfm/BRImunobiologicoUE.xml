@@ -1,0 +1,49 @@
+<ValueSet xmlns="http://hl7.org/fhir">
+    <meta>
+        <lastUpdated value="2020-03-26T13:20:24.501+00:00"/>
+    </meta>
+    <language value="pt-BR"/>
+    <url value="http://www.saude.gov.br/fhir/r4/ValueSet/BRImunobiologicoUE"/>
+    <version value="01.00"/>
+    <name value="Imunobiológicos - UE"/>
+    <status value="active"/>
+    <experimental value="false"/>
+    <date value="2020-03-26T13:20:23.3537413+00:00"/>
+    <publisher value="Ministério da Saúde do Brasil"/>
+    <description value="Define os códigos de Imunobiológicos mapeados para os códigos da União Européia (UE)."/>
+    <immutable value="false"/>
+    <compose>
+        <include>
+            <system value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+            <version value="*"/>
+            <concept>
+                <code value="85"/>
+                <display value="COVID-19 ASTRAZENECA/FIOCRUZ - COVISHIELD"/>
+            </concept>
+            <concept>
+                <code value="86"/>
+                <display value="COVID-19 SINOVAC/BUTANTAN - CORONAVAC"/>
+            </concept>
+            <concept>
+                <code value="87"/>
+                <display value="COVID-19 PFIZER - COMIRNATY"/>
+            </concept>
+            <concept>
+                <code value="88"/>
+                <display value="COVID-19 JANSSEN - Ad26.COV2.S"/>
+            </concept>
+            <concept>
+                <code value="89"/>
+                <display value="COVID-19 ASTRAZENECA - ChAdOx1-S"/>
+            </concept>
+            <concept>
+                <code value="98"/>
+                <display value="COVID-19 SINOVAC - CORONAVAC"/>
+            </concept>
+            <concept>
+                <code value="99"/>
+                <display value="COVID-19 PEDIÁTRICA - PFIZER COMIRNATY"/>
+            </concept>
+        </include>
+    </compose>
+</ValueSet>

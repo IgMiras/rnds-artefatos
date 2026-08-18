@@ -1,0 +1,368 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "br.gov.saude.br-core.fhir",
+  "url": "https://br-core.saude.gov.br/fhir/ImplementationGuide/br.gov.saude.br-core.fhir",
+  "version": "0.1.1",
+  "name": "IPSBrasil",
+  "title": "Guia de implementação do Core do Brasil: Release 1 - BR Realm | STU1",
+  "status": "active",
+  "date": "2023-05-08",
+  "publisher": "Ministério do Saúde do Brasil",
+  "contact": [
+    {
+      "name": "Ministério do Saúde do Brasil",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://gov.br/saude"
+        },
+        {
+          "system": "email",
+          "value": "contato@gointerop.com"
+        }
+      ]
+    },
+    {
+      "name": "Italo Macedo",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "italo@gointerop.com",
+          "use": "work"
+        }
+      ]
+    }
+  ],
+  "description": "Guia de Implementação Core de Interoperabilidade em Saúde Digital do Brasil.",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "code": "BR",
+          "system": "urn:iso:std:iso:3166",
+          "display": "Brazil"
+        }
+      ]
+    }
+  ],
+  "packageId": "br.gov.saude.br-core.fhir",
+  "license": "CC0-1.0",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "dependsOn": [
+    {
+      "packageId": "br.gov.saude.terminologia.fhir",
+      "version": "0.1.5",
+      "uri": "http://fhir.org/packages/br.gov.saude.terminologia.fhir/ImplementationGuide/br.gov.saude.terminologia.fhir",
+      "id": "br_gov_saude_terminologia_fhir"
+    },
+    {
+      "id": "brcore",
+      "packageId": "br.gov.saude.ips.fhir",
+      "uri": "https://ips-brasil.web.app/ImplementationGuide/br.gov.saude.ips.fhir",
+      "version": "0.1.3"
+    }
+  ],
+  "definition": {
+    "resource": [
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-allergyintolerance"
+        },
+        "name": "br-core-allergyintolerance",
+        "description": "Este perfil define as características mínimas para o recurso [br-core-allergyintolerance](https://saude.gov.br/fhir/StructureDefinition/br-core-%20allergyintolerance.html) registrar, pesquisar e buscar alergias/reações adversas associadas a um paciente. O perfil especifica quais elementos principais, extensões, vocabulários e conjuntos de valores **DEVEM** estar presentes e restringe como os elementos são usados. Além disso, fornece a base para o desenvolvimento de padrões para casos de uso específicos promove a interoperabilidade e a adoção. ",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-appointment"
+        },
+        "name": "br-core-appointment",
+        "description": "Uma reserva de um evento de saúde entre paciente(s), profissional(es), pessoa(s) relacionada(s) e/ou dispositivo(s) para uma data/hora específica. Isso pode resultar em um ou mais Encontro(s)",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-capacidadefuncional"
+        },
+        "name": "br-core-capacidadefuncional",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-careplan"
+        },
+        "name": "br-core-careplan",
+        "description": "Descreve a intenção de como um ou mais profissionais pretendem prestar cuidados a um determinado paciente, grupo ou comunidade por um período de tempo, possivelmente limitado ao cuidado de uma condição específica ou conjunto de condições.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-composition"
+        },
+        "name": "br-core-composition",
+        "description": "Este perfil representa as restrições aplicadas ao recurso br-core-composition",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-condition"
+        },
+        "name": "br-core-condition",
+        "description": "Este perfil representa as restrições aplicadas ao recurso FHIR R4 [Condition](http://hl7.org/fhir/R4/condition.html).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-diagnosticreport"
+        },
+        "name": "br-core-diagnosticreport",
+        "description": "Este perfil ",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-encounter"
+        },
+        "name": "br-core-encounter",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-healthcareservice"
+        },
+        "name": "br-core-healthcareservice",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-humanname"
+        },
+        "name": "br-core-humanname",
+        "description": "Este perfil ",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-immunization"
+        },
+        "name": "br-core-immunization",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-immunizationrecommendation"
+        },
+        "name": "br-core-immunizationrecommendation",
+        "description": "Este perfil ",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-location"
+        },
+        "name": "br-core-location",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-medication"
+        },
+        "name": "br-core-medication",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-medicationadministration"
+        },
+        "name": "br-core-medication",
+        "description": "Este perfil representa a medicação administrada",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-medicationdispense"
+        },
+        "name": "br-core-medication-dispense",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-medicationrequest"
+        },
+        "name": "br-core-medicationrequest",
+        "description": "Este perfil restringe a representação de uma requisição de medicamento relacionada ao paciente",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-medicationstatement"
+        },
+        "name": "br-core-medicationstatement",
+        "description": "Contém os dados relacionados à medicação tomada por um paciente",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-observation"
+        },
+        "name": "br-core-observation",
+        "description": "O recurso [br-core-Observation](https://saude.gov.br/fhir/StructureDefinition/br-core-observation.html) herda do recurso FHIR R4 [observation](https://hl7.org/fhir/R4B/observation.html) e registra medidas e afirmações simples feitas sobre um paciente, dispositivo ou outro assunto.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-organization"
+        },
+        "name": "br-core-organization",
+        "description": "Este perfil representa um agrupamento formal ou informal reconhecido de pessoas ou organizações com o propósito de alcançar alguma forma de ação coletiva. Inclui empresas, instituições, corporações, departamentos, grupos comunitários, grupos de práticas de saúde, planos de saúde, empresas fabricantes de produtos medicinais, entre outros.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-patient"
+        },
+        "name": "br-core-patient",
+        "description": "Este perfil representa o perfil [br-core-patient](https://saude.gov.br/fhir/StructureDefinition/br-core-patient.html) com todas as informações demográficas e administrativas necessárias para descrever um paciente no Brasil, com as respectivas legislações dos elementos e domínios obrigatórios conforme abaixo. O perfil [br-core-patient](https://saude.gov.br/fhir/StructureDefinition/br-core-patient.html) herda do recurso FHIR R4 [Patient](https://hl7.org/fhir/R4B/patient.html) para definições de escopo e uso. Este perfil define expectativas mínimas para o recurso [br-core-patient](https://saude.gov.br/fhir/StructureDefinition/br-core-patient.html) registrar, pesquisar e buscar dados demográficos básicos e outras informações administrativas sobre um paciente individual. Ele especifica quais elementos principais, extensões, vocabulários e conjuntos de valores DEVEM estar presentes e restringe como os elementos são usados.  \r\n\r\nPara contemplar uma descrição do paciente com maior equidade, conforme recomendações da portaria GM/MS Nº 230, de 7 de março de 2023, foram adicionados atributos adicionais para expressar o sexo do paciente, além do sexo administrativo: sexo ao nascer descritos no ValueSet [BRSexoNascimento](https://terminologia.saude.gov.br/fhir/ValueSet/BRSexoNascimento) e identidade de gênero descrita no ValueSet [BRIdentidadeGenero](https://terminologia.saude.gov.br/fhir/ValueSet/BRIdentidadeGenero). Com relação a orientação sexual, este é um dado que pode mudar durante a vida do paciente, portanto, recomenda-se que ele seja coletado em cada evento assistencial",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-practitioner"
+        },
+        "name": "br-core-practitioner",
+        "description": "O Profissional é uma pessoa que está direta ou indiretamente envolvida na prestação de cuidados de saúde ou serviços relacionados ao paciente.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-practitionerrole"
+        },
+        "name": "br-core-practitionerrole",
+        "description": "Este perfil restringe o recurso [PractitionerRole](hl7.org/fhir/R4/practitionerrole.html) que representa um conjunto específico de funções/locais/especialidades/serviços que um profissional pode desempenhar em uma organização por um período de tempo.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-procedure"
+        },
+        "name": "br-core-procedure",
+        "description": "Este perfil representa as restrições aplicadas ao recurso Procedimento pelo projeto IPS, que especifica uma entrada do Histórico do Procedimento para o resumo internacional do paciente com base no padrão FHIR R4.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-relatedperson"
+        },
+        "name": "br-core-relatedperson",
+        "description": "O recurso [br-core-relatedperson](https://saude.gov.br/fhir/StructureDefinition/br-core-relatedperson.html) contém as informações sobre uma pessoa envolvida no cuidado de um paciente, mas que não é alvo de cuidados de saúde nem tem responsabilidade formal no processo de cuidado. \n\nA pessoa representada pelo recurso [br-core-relatedperson](https://saude.gov.br/fhir/StructureDefinition/br-core-relatedperson.html) normalmente tem um relacionamento profissional pessoal ou não específico de cuidado em saúde com o paciente. O recurso [br-core-relatedperson](https://saude.gov.br/fhir/StructureDefinition/br-core-relatedperson.html) é usado principalmente para atribuição de informações, já que geralmente é uma fonte de informações sobre o paciente. Para manter informações sobre pessoas para fins de contato para um paciente, use um elemento br-core-patien.contact. Alguns indivíduos podem ser representados simultaneamente como  um patient.contact e [br-core-relatedperson](https://saude.gov.br/fhir/StructureDefinition/br-core-relatedperson.html).\n\nExemplos de pessoas que podem ser um [br-core-relatedperson](https://saude.gov.br/fhir/StructureDefinition/br-core-relatedperson.html):\n-\tEsposa ou marido de um paciente\n-\tParentes ou amigos de um paciente\n-\tUm vizinho que leva um paciente para o hospital\n-\tO dono ou treinador de um cavalo\n-\tUm advogado ou tutor do paciente\n-\tUm cão-guia\n",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-servicerequest"
+        },
+        "name": "br-core-servicerequest",
+        "description": "Este perfil ",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-specimen"
+        },
+        "name": "br-core-specimen",
+        "description": "Este perfil restringe o recurso Specimen para representar as características de amostras biológicas no contexto de resultados laboratoriais integrados a um resumo do paciente. O recurso Specimen descreve uma amostra utilizada para análise laboratorial.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-sumarioalta"
+        },
+        "name": "br-core-sumarioalta",
+        "description": "Este perfil representa as restrições aplicadas ao recurso br-core-sumarioalta",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-vitalsigns"
+        },
+        "name": "br-core-vitalsigns",
+        "description": "Este perfil é baseado no perfil [VitalSigns](http://hl7.org/fhir/R4/observation-vitalsigns.html) e define restrições adicionais no recurso Observation para representar Observation de sinais vitais. Ele especifica quais elementos principais, extensões, vocabulários e conjuntos de valores **DEVEM** estar presentes no recurso e restringe como os elementos são usados. ",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-populacao-tradicional"
+        },
+        "name": "Extensão de populacao tradicional do Core do Brasil",
+        "description": "Este perfil de extensão representa um populacao tradicional com a qual uma pessoa se associa",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/br-core-povo-itinerante"
+        },
+        "name": "Extensão de povo itinerante do Core do Brasil",
+        "description": "Este perfil de extensão representa um povo itinerante com a qual uma pessoa se associa",
+        "exampleBoolean": false
+      }
+    ],
+    "page": {
+      "nameUrl": "toc.html",
+      "title": "Table of Contents",
+      "generation": "html",
+      "page": [
+        {
+          "nameUrl": "index.html",
+          "title": "Início",
+          "generation": "html"
+        },
+        {
+          "nameUrl": "changes.html",
+          "title": "Histórico de mudanças",
+          "generation": "html"
+        },
+        {
+          "nameUrl": "downloads.html",
+          "title": "Baixar",
+          "generation": "html"
+        },
+        {
+          "nameUrl": "premissas.html",
+          "title": "Princípios, Premissas",
+          "generation": "html"
+        },
+        {
+          "nameUrl": "design.html",
+          "title": "Convenções de design",
+          "generation": "html"
+        },
+        {
+          "nameUrl": "estrutura.html",
+          "title": "Estrutura",
+          "generation": "html"
+        },
+        {
+          "nameUrl": "modelos.html",
+          "title": "Especificação",
+          "generation": "html"
+        }
+      ]
+    },
+    "parameter": [
+      {
+        "code": "copyrightyear",
+        "value": "2023+"
+      },
+      {
+        "code": "releaselabel",
+        "value": "STU1"
+      },
+      {
+        "code": "produce-jekyll-data",
+        "value": "true"
+      }
+    ]
+  }
+}

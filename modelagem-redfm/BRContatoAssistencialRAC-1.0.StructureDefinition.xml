@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="b7c1fd90-9e4c-45ab-b610-aabbf9f8c439" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2020-09-20T22:01:08.864+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/StructureDefinition/BRContatoAssistencialRAC-1.0" />
+  <version value="1.0" />
+  <name value="BRContatoAssistencialRAC" />
+  <title value="Contato Assistencial (Registro de Atendimento Clínico)" />
+  <status value="draft" />
+  <date value="2020-09-20T00:00:00-03:00" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Encounter" />
+  <baseDefinition value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRContatoAssistencial-1.0" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Encounter">
+      <path value="Encounter" />
+      <alias value="Atendimento Clínico" />
+    </element>
+    <element id="Encounter.class">
+      <path value="Encounter.class" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRModalidadeAssistencialRAC-1.0" />
+      </binding>
+    </element>
+    <element id="Encounter.priority">
+      <path value="Encounter.priority" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRCaraterAtendimentoDocumentos-1.0" />
+      </binding>
+    </element>
+    <element id="Encounter.subject.extension">
+      <path value="Encounter.subject.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Encounter.subject.extension:unidentifiedPatient">
+      <path value="Encounter.subject.extension" />
+      <sliceName value="unidentifiedPatient" />
+      <max value="0" />
+    </element>
+    <element id="Encounter.subject.identifier">
+      <path value="Encounter.subject.identifier" />
+      <min value="1" />
+    </element>
+    <element id="Encounter.participant">
+      <path value="Encounter.participant" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="type.coding.system" />
+        </discriminator>
+        <discriminator>
+          <type value="value" />
+          <path value="type.coding.code" />
+        </discriminator>
+        <discriminator>
+          <type value="value" />
+          <path value="individual.identifier.system" />
+        </discriminator>
+        <discriminator>
+          <type value="value" />
+          <path value="individual.identifier.value" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+    </element>
+    <element id="Encounter.participant:responsavelAtendimento">
+      <path value="Encounter.participant" />
+      <sliceName value="responsavelAtendimento" />
+      <short value="Profissional Responsável pelo Atendimento" />
+    </element>
+    <element id="Encounter.participant:responsavelAtendimento.type.coding.system">
+      <path value="Encounter.participant.type.coding.system" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType" />
+    </element>
+    <element id="Encounter.participant:responsavelAtendimento.type.coding.code">
+      <path value="Encounter.participant.type.coding.code" />
+      <fixedCode value="ATND" />
+    </element>
+    <element id="Encounter.participant:outroParticipante">
+      <path value="Encounter.participant" />
+      <sliceName value="outroParticipante" />
+      <short value="Outro Profissional Não Responsável pelo Atendimento" />
+    </element>
+    <element id="Encounter.participant:outroParticipante.type.coding.system">
+      <path value="Encounter.participant.type.coding.system" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType" />
+    </element>
+    <element id="Encounter.participant:outroParticipante.type.coding.code">
+      <path value="Encounter.participant.type.coding.code" />
+      <fixedCode value="PART" />
+    </element>
+    <element id="Encounter.reasonReference:primaryDiagnosis">
+      <path value="Encounter.reasonReference" />
+      <sliceName value="primaryDiagnosis" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCID10AvaliadoSAeRAC-1.0" />
+      </type>
+    </element>
+    <element id="Encounter.reasonReference:reasonCoded">
+      <path value="Encounter.reasonReference" />
+      <sliceName value="reasonCoded" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCIAP2AvaliadoSAeRAC-1.0" />
+      </type>
+    </element>
+    <element id="Encounter.reasonReference:reasonText">
+      <path value="Encounter.reasonReference" />
+      <sliceName value="reasonText" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRDeclaracaoSubjetivaIndividuoAtendimento-1.0" />
+      </type>
+    </element>
+    <element id="Encounter.diagnosis">
+      <path value="Encounter.diagnosis" />
+      <constraint>
+        <key value="anyDiag-1" />
+        <severity value="error" />
+        <human value="Ao menos um diagnóstico ou problema é obrigatório" />
+        <expression value="condition.exists($this is Condition)" />
+      </constraint>
+      <mustSupport value="true" />
+    </element>
+    <element id="Encounter.diagnosis:diagnosis">
+      <path value="Encounter.diagnosis" />
+      <sliceName value="diagnosis" />
+    </element>
+    <element id="Encounter.diagnosis:diagnosis.condition">
+      <path value="Encounter.diagnosis.condition" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCID10AvaliadoSAeRAC-1.0" />
+      </type>
+    </element>
+    <element id="Encounter.diagnosis:problem">
+      <path value="Encounter.diagnosis" />
+      <sliceName value="problem" />
+    </element>
+    <element id="Encounter.diagnosis:problem.condition">
+      <path value="Encounter.diagnosis.condition" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCIAP2AvaliadoSAeRAC-1.0" />
+      </type>
+    </element>
+    <element id="Encounter.hospitalization.admitSource">
+      <path value="Encounter.hospitalization.admitSource" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRProcedenciaDocumentos-1.0" />
+      </binding>
+    </element>
+    <element id="Encounter.hospitalization.dischargeDisposition">
+      <path value="Encounter.hospitalization.dischargeDisposition" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRMotivoDesfechoDocumentos-1.0" />
+      </binding>
+    </element>
+    <element id="Encounter.location">
+      <path value="Encounter.location" />
+      <min value="1" />
+    </element>
+  </differential>
+</StructureDefinition>

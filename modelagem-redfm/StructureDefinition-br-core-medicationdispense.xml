@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="br-core-medicationdispense" />
+  <url value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationdispense" />
+  <name value="BRCoreMedicationDispense" />
+  <title value="br-core-medication-dispense" />
+  <status value="active" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="MedicationDispense" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/MedicationDispense" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="MedicationDispense.identifier">
+      <path value="MedicationDispense.identifier" />
+      <short value="Identificadores externos para este recurso" />
+      <definition value="Identificadores externos para este recurso" />
+    </element>
+    <element id="MedicationDispense.partOf">
+      <path value="MedicationDispense.partOf" />
+      <short value="Evento que a dispensação faz parte de" />
+      <definition value="Evento que a dispensação faz parte de" />
+    </element>
+    <element id="MedicationDispense.status">
+      <path value="MedicationDispense.status" />
+      <short value="Códigos de status da dispensação de medicamentos" />
+      <definition value="preparation | in-progress | cancelled | on-hold | completed | entered-in-error | stopped | declined | unknown" />
+    </element>
+    <element id="MedicationDispense.statusReason[x]">
+      <path value="MedicationDispense.statusReason[x]" />
+      <short value="Por que uma dispensação não foi realizada" />
+      <definition value="Por que uma dispensação não foi realizada" />
+    </element>
+    <element id="MedicationDispense.category">
+      <path value="MedicationDispense.category" />
+      <short value="Tipo de dispensação de medicamentos" />
+      <definition value="Tipo de dispensação de medicamentos" />
+    </element>
+    <element id="MedicationDispense.medication[x]">
+      <path value="MedicationDispense.medication[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <ordered value="false" />
+        <rules value="open" />
+      </slicing>
+      <short value="Que medicamento foi fornecido" />
+      <definition value="Que medicamento foi fornecido" />
+    </element>
+    <element id="MedicationDispense.medication[x]:medicationReference">
+      <path value="MedicationDispense.medication[x]" />
+      <sliceName value="medicationReference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medication" />
+      </type>
+    </element>
+    <element id="MedicationDispense.subject">
+      <path value="MedicationDispense.subject" />
+      <short value="Para quem é a dispensação" />
+      <definition value="Para quem é a dispensação" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+      </type>
+    </element>
+    <element id="MedicationDispense.context">
+      <path value="MedicationDispense.context" />
+      <short value="Encounter / Episode associado a este evento" />
+      <definition value="Encounter / Episode associado a este evento" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter" />
+      </type>
+    </element>
+    <element id="MedicationDispense.supportingInformation">
+      <path value="MedicationDispense.supportingInformation" />
+      <short value="Informações que subsidiam a dispensação do medicamento" />
+      <definition value="Informações que subsidiam a dispensação do medicamento" />
+    </element>
+    <element id="MedicationDispense.performer">
+      <path value="MedicationDispense.performer" />
+      <short value="Quem realizou o evento" />
+      <definition value="Quem realizou o evento" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.performer.function">
+      <path value="MedicationDispense.performer.function" />
+      <short value="Quem realizou a dispensação e o que eles fizeram" />
+      <definition value="Quem realizou a dispensação e o que eles fizeram" />
+    </element>
+    <element id="MedicationDispense.performer.actor">
+      <path value="MedicationDispense.performer.actor" />
+      <short value="Indivíduo que estava realizando" />
+      <definition value="Indivíduo que estava realizando" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+      </type>
+    </element>
+    <element id="MedicationDispense.location">
+      <path value="MedicationDispense.location" />
+      <short value="Onde ocorreu a dispensação" />
+      <definition value="Onde ocorreu a dispensação" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location" />
+      </type>
+    </element>
+    <element id="MedicationDispense.authorizingPrescription">
+      <path value="MedicationDispense.authorizingPrescription" />
+      <short value="Ordem de medicação que autoriza a dispensação" />
+      <definition value="Ordem de medicação que autoriza a dispensação" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest" />
+      </type>
+    </element>
+    <element id="MedicationDispense.type">
+      <path value="MedicationDispense.type" />
+      <short value="Preenchimento de teste, preenchimento parcial, preenchimento de emergência, etc." />
+      <definition value="Preenchimento de teste, preenchimento parcial, preenchimento de emergência, etc." />
+    </element>
+    <element id="MedicationDispense.quantity">
+      <path value="MedicationDispense.quantity" />
+      <short value="Quantidade dispensada" />
+      <definition value="Quantidade dispensada" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.daysSupply">
+      <path value="MedicationDispense.daysSupply" />
+      <short value="Quantidade de medicamento expressa como uma quantidade de tempo" />
+      <definition value="Quantidade de medicamento expressa como uma quantidade de tempo" />
+    </element>
+    <element id="MedicationDispense.whenPrepared">
+      <path value="MedicationDispense.whenPrepared" />
+      <short value="Quando o produto foi embalado e revisado" />
+      <definition value="Quando o produto foi embalado e revisado" />
+    </element>
+    <element id="MedicationDispense.whenHandedOver">
+      <path value="MedicationDispense.whenHandedOver" />
+      <short value="Quando o produto foi distribuído" />
+      <definition value="Quando o produto foi distribuído" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.destination">
+      <path value="MedicationDispense.destination" />
+      <short value="Para onde o medicamento foi enviado" />
+      <definition value="Para onde o medicamento foi enviado" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location" />
+      </type>
+    </element>
+    <element id="MedicationDispense.receiver">
+      <path value="MedicationDispense.receiver" />
+      <short value="Quem coletou a medicação" />
+      <definition value="Quem coletou a medicação" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+      </type>
+    </element>
+    <element id="MedicationDispense.note">
+      <path value="MedicationDispense.note" />
+      <short value="Informações sobre a dispensação" />
+      <definition value="Informações sobre a dispensação" />
+    </element>
+    <element id="MedicationDispense.dosageInstruction">
+      <path value="MedicationDispense.dosageInstruction" />
+      <short value="Como o medicamento deve ser usado pelo paciente ou administrado pelo cuidador" />
+      <definition value="Como o medicamento deve ser usado pelo paciente ou administrado pelo cuidador" />
+    </element>
+    <element id="MedicationDispense.substitution">
+      <path value="MedicationDispense.substitution" />
+      <short value="Se uma substituição foi realizada na dispensação" />
+      <definition value="Se uma substituição foi realizada na dispensação" />
+    </element>
+    <element id="MedicationDispense.substitution.wasSubstituted">
+      <path value="MedicationDispense.substitution.wasSubstituted" />
+      <short value="Se uma substituição foi ou não realizada na dispensação" />
+      <definition value="Se uma substituição foi ou não realizada na dispensação" />
+    </element>
+    <element id="MedicationDispense.substitution.type">
+      <path value="MedicationDispense.substitution.type" />
+      <short value="Código que indica se um medicamento diferente do prescrito foi dispensado" />
+      <definition value="Código que indica se um medicamento diferente do prescrito foi dispensado" />
+    </element>
+    <element id="MedicationDispense.substitution.reason">
+      <path value="MedicationDispense.substitution.reason" />
+      <short value="Por que a substituição foi feita" />
+      <definition value="Por que a substituição foi feita" />
+    </element>
+    <element id="MedicationDispense.substitution.responsibleParty">
+      <path value="MedicationDispense.substitution.responsibleParty" />
+      <short value="Quem é responsável pela substituição" />
+      <definition value="Quem é responsável pela substituição" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole" />
+      </type>
+    </element>
+    <element id="MedicationDispense.detectedIssue">
+      <path value="MedicationDispense.detectedIssue" />
+      <short value="Problema clínico com ação" />
+      <definition value="Problema clínico com ação" />
+    </element>
+    <element id="MedicationDispense.eventHistory">
+      <path value="MedicationDispense.eventHistory" />
+      <short value="Uma lista de eventos relevantes do ciclo de vida" />
+      <definition value="Uma lista de eventos relevantes do ciclo de vida" />
+    </element>
+  </differential>
+</StructureDefinition>

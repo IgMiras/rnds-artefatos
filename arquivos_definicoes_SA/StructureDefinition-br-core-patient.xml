@@ -1,0 +1,999 @@
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="br-core-patient" />
+  <url value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+  <version value="1.0.0" />
+  <name value="BRCorePatient" />
+  <status value="active" />
+  <description value="Este perfil representa o perfil [br-core-patient](https://saude.gov.br/fhir/StructureDefinition/br-core-patient.html) com todas as informações demográficas e administrativas necessárias para descrever um paciente no Brasil, com as respectivas legislações dos elementos e domínios obrigatórios conforme abaixo. O perfil [br-core-patient](https://saude.gov.br/fhir/StructureDefinition/br-core-patient.html) herda do recurso FHIR R4 [Patient](https://hl7.org/fhir/R4B/patient.html) para definições de escopo e uso. Este perfil define expectativas mínimas para o recurso [br-core-patient](https://saude.gov.br/fhir/StructureDefinition/br-core-patient.html) registrar, pesquisar e buscar dados demográficos básicos e outras informações administrativas sobre um paciente individual. Ele especifica quais elementos principais, extensões, vocabulários e conjuntos de valores DEVEM estar presentes e restringe como os elementos são usados.  &#xD;&#xA;&#xD;&#xA;Para contemplar uma descrição do paciente com maior equidade, conforme recomendações da portaria GM/MS Nº 230, de 7 de março de 2023, foram adicionados atributos adicionais para expressar o sexo do paciente, além do sexo administrativo: sexo ao nascer descritos no ValueSet [BRSexoNascimento](https://terminologia.saude.gov.br/fhir/ValueSet/BRSexoNascimento) e identidade de gênero descrita no ValueSet [BRIdentidadeGenero](https://terminologia.saude.gov.br/fhir/ValueSet/BRIdentidadeGenero). Com relação a orientação sexual, este é um dado que pode mudar durante a vida do paciente, portanto, recomenda-se que ele seja coletado em cada evento assistencial" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Patient" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Patient" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Patient.id">
+      <path value="Patient.id" />
+      <short value="Identificador literal deste recurso" />
+      <definition value="Identificação unívoca para o recurso em um sistema" />
+    </element>
+    <element id="Patient.meta">
+      <path value="Patient.meta" />
+      <short value="Metadados sobre o recurso" />
+      <definition value="Metadados adicionais sobre o recurso" />
+    </element>
+    <element id="Patient.implicitRules">
+      <path value="Patient.implicitRules" />
+      <short value="URI(s) sob as quais este recurso é conhecido" />
+      <definition value="Um ou mais códigos que servem para identificar o tipo de recurso" />
+    </element>
+    <element id="Patient.language">
+      <path value="Patient.language" />
+      <short value="Linguagem do recurso" />
+      <definition value="A linguagem humana natural do recurso" />
+    </element>
+    <element id="Patient.text">
+      <path value="Patient.text" />
+      <short value="Texto narrativo, 72 caracteres para resumo" />
+      <definition value="Um texto narrativo resumindo as informações do recurso" />
+    </element>
+    <element id="Patient.contained">
+      <path value="Patient.contained" />
+      <short value="Recursos contidos" />
+      <definition value="Recursos contidos no recurso" />
+    </element>
+    <element id="Patient.extension">
+      <path value="Patient.extension" />
+      <slicing>
+        <ordered value="false" />
+        <rules value="open" />
+      </slicing>
+      <short value="Extensões adicionais" />
+      <definition value="Extensões adicionais que não fazem parte do modelo base" />
+    </element>
+    <element id="Patient.extension:localNascimento">
+      <path value="Patient.extension" />
+      <sliceName value="localNascimento" />
+      <short value="Local de nascimento do paciente" />
+      <definition value="Local de nascimento do paciente" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/patient-birthPlace" />
+      </type>
+    </element>
+    <element id="Patient.extension:identidadeGenero">
+      <path value="Patient.extension" />
+      <sliceName value="identidadeGenero" />
+      <short value="Identidade de gênero do paciente" />
+      <definition value="Identidade de gênero do paciente" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/patient-genderIdentity" />
+      </type>
+    </element>
+    <element id="Patient.extension:povoTradicional">
+      <path value="Patient.extension" />
+      <sliceName value="povoTradicional" />
+      <short value="Extensão de populacao tradicional do Core do Brasil" />
+      <definition value="Extensão de populacao tradicional do Core do Brasil" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-populacao-tradicional" />
+      </type>
+    </element>
+    <element id="Patient.extension:povoItinerante">
+      <path value="Patient.extension" />
+      <sliceName value="povoItinerante" />
+      <short value="Extensão de povo intinerante do Core do Brasil" />
+      <definition value="Extensão de povo intinerante do Core do Brasil" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://br-core.saude.gov.br/StructureDefinition/br-core-povo-itinerante" />
+      </type>
+    </element>
+    <element id="Patient.modifierExtension">
+      <path value="Patient.modifierExtension" />
+      <short value="Extensões adicionais" />
+      <definition value="Extensões adicionais que não fazem parte do modelo base" />
+    </element>
+    <element id="Patient.identifier">
+      <path value="Patient.identifier" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="system" />
+        </discriminator>
+        <description value="Identificadores nacionais do paciente" />
+        <rules value="open" />
+      </slicing>
+      <short value="Identificadores nacionais do paciente" />
+      <definition value="Identificadores nacionais do paciente" />
+      <min value="1" />
+    </element>
+    <element id="Patient.identifier:cns">
+      <path value="Patient.identifier" />
+      <sliceName value="cns" />
+      <short value="Identificador do paciente" />
+      <definition value="Identificador do paciente" />
+      <max value="1" />
+    </element>
+    <element id="Patient.identifier:cns.id">
+      <path value="Patient.identifier.id" />
+      <short value="Id lógico do identificador do paciente" />
+      <definition value="Id lógico do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cns.extension">
+      <path value="Patient.identifier.extension" />
+      <short value="Extensões do identificador do paciente" />
+      <definition value="Extensões incluídas no identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cns.use">
+      <path value="Patient.identifier.use" />
+      <short value="Uso do identificador do paciente" />
+      <definition value="usual: identificador usual do paciente. official: identificador oficial do paciente. temp: identificador temporário do paciente. secondary: identificador secundário do paciente." />
+      <min value="1" />
+      <fixedCode value="official" />
+    </element>
+    <element id="Patient.identifier:cns.type">
+      <path value="Patient.identifier.type" />
+      <short value="Tipo do identificador do paciente" />
+      <definition value="Código que representa o tipo do identificador do paciente" />
+      <min value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="https://terminologia.saude.gov.br/fhir/ValueSet-BRTipoIdentificadorIndividuo" />
+      </binding>
+    </element>
+    <element id="Patient.identifier:cns.type.id">
+      <path value="Patient.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do paciente" />
+      <definition value="Id lógico do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cns.type.extension">
+      <path value="Patient.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do paciente" />
+      <definition value="Extensões incluídas no tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cns.type.coding">
+      <path value="Patient.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do paciente" />
+      <definition value="Codificação que representa o tipo do identificador do paciente" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Patient.identifier:cns.type.coding.id">
+      <path value="Patient.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do paciente" />
+      <definition value="Id lógico da codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cns.type.coding.extension">
+      <path value="Patient.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do paciente" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cns.type.coding.system">
+      <path value="Patient.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do paciente" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do paciente" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Patient.identifier:cns.type.coding.version">
+      <path value="Patient.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do paciente" />
+      <definition value="Versão da codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cns.type.coding.code">
+      <path value="Patient.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do paciente" />
+      <definition value="Código que representa a codificação do tipo do identificador do paciente" />
+      <min value="1" />
+      <fixedCode value="HC" />
+    </element>
+    <element id="Patient.identifier:cns.type.coding.display">
+      <path value="Patient.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do paciente" />
+      <definition value="Texto que representa a codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cns.type.coding.userSelected">
+      <path value="Patient.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do paciente" />
+      <definition value="Indica se a codificação do tipo do identificador do paciente foi selecionada pelo usuário" />
+    </element>
+    <element id="Patient.identifier:cns.type.text">
+      <path value="Patient.identifier.type.text" />
+      <short value="Texto do tipo do identificador do paciente" />
+      <definition value="Texto que representa o tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cns.system">
+      <path value="Patient.identifier.system" />
+      <short value="Sistema do identificador do paciente" />
+      <definition value="Sistema que identifica o tipo do identificador do paciente" />
+      <min value="1" />
+      <fixedUri value="https://saude.gov.br/sid/cns" />
+    </element>
+    <element id="Patient.identifier:cns.value">
+      <path value="Patient.identifier.value" />
+      <short value="Valor do identificador do paciente" />
+      <definition value="Valor do identificador do paciente" />
+      <min value="1" />
+    </element>
+    <element id="Patient.identifier:cns.period">
+      <path value="Patient.identifier.period" />
+      <short value="Período de uso do identificador do paciente" />
+      <definition value="Período de tempo durante o qual o identificador do paciente foi utilizado" />
+    </element>
+    <element id="Patient.identifier:cns.assigner">
+      <path value="Patient.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do paciente" />
+      <definition value="Entidade que atribuiu o identificador do paciente" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Patient.identifier:cns.assigner.display">
+      <path value="Patient.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cpf">
+      <path value="Patient.identifier" />
+      <sliceName value="cpf" />
+      <short value="Identificador do paciente" />
+      <definition value="Identificador do paciente" />
+      <max value="1" />
+    </element>
+    <element id="Patient.identifier:cpf.id">
+      <path value="Patient.identifier.id" />
+      <short value="Id lógico do identificador do paciente" />
+      <definition value="Id lógico do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cpf.extension">
+      <path value="Patient.identifier.extension" />
+      <short value="Extensões do identificador do paciente" />
+      <definition value="Extensões incluídas no identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cpf.use">
+      <path value="Patient.identifier.use" />
+      <short value="Uso do identificador do paciente" />
+      <definition value="usual: identificador usual do paciente. official: identificador oficial do paciente. temp: identificador temporário do paciente. secondary: identificador secundário do paciente." />
+      <min value="1" />
+      <fixedCode value="official" />
+    </element>
+    <element id="Patient.identifier:cpf.type">
+      <path value="Patient.identifier.type" />
+      <short value="Tipo do identificador do paciente" />
+      <definition value="Código que representa o tipo do identificador do paciente" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="https://terminologia.saude.gov.br/fhir/ValueSet-BRTipoIdentificadorIndividuo" />
+      </binding>
+    </element>
+    <element id="Patient.identifier:cpf.type.id">
+      <path value="Patient.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do paciente" />
+      <definition value="Id lógico do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cpf.type.extension">
+      <path value="Patient.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do paciente" />
+      <definition value="Extensões incluídas no tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cpf.type.coding">
+      <path value="Patient.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do paciente" />
+      <definition value="Codificação que representa o tipo do identificador do paciente" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Patient.identifier:cpf.type.coding.id">
+      <path value="Patient.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do paciente" />
+      <definition value="Id lógico da codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cpf.type.coding.extension">
+      <path value="Patient.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do paciente" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cpf.type.coding.system">
+      <path value="Patient.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do paciente" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do paciente" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Patient.identifier:cpf.type.coding.version">
+      <path value="Patient.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do paciente" />
+      <definition value="Versão da codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cpf.type.coding.code">
+      <path value="Patient.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do paciente" />
+      <definition value="Código que representa a codificação do tipo do identificador do paciente" />
+      <min value="1" />
+      <fixedCode value="TAX" />
+    </element>
+    <element id="Patient.identifier:cpf.type.coding.display">
+      <path value="Patient.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do paciente" />
+      <definition value="Texto que representa a codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cpf.type.coding.userSelected">
+      <path value="Patient.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do paciente" />
+      <definition value="Indica se a codificação do tipo do identificador do paciente foi selecionada pelo usuário" />
+    </element>
+    <element id="Patient.identifier:cpf.type.text">
+      <path value="Patient.identifier.type.text" />
+      <short value="Texto do tipo do identificador do paciente" />
+      <definition value="Texto que representa o tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:cpf.system">
+      <path value="Patient.identifier.system" />
+      <short value="Sistema do identificador do paciente" />
+      <definition value="Sistema que identifica o tipo do identificador do paciente" />
+      <min value="1" />
+      <fixedUri value="https://saude.gov.br/sid/cpf" />
+    </element>
+    <element id="Patient.identifier:cpf.value">
+      <path value="Patient.identifier.value" />
+      <short value="Valor do identificador do paciente" />
+      <definition value="Valor do identificador do paciente" />
+      <min value="1" />
+    </element>
+    <element id="Patient.identifier:cpf.period">
+      <path value="Patient.identifier.period" />
+      <short value="Período de uso do identificador do paciente" />
+      <definition value="Período de tempo durante o qual o identificador do paciente foi utilizado" />
+    </element>
+    <element id="Patient.identifier:cpf.assigner">
+      <path value="Patient.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do paciente" />
+      <definition value="Entidade que atribuiu o identificador do paciente" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Patient.identifier:cpf.assigner.display">
+      <path value="Patient.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro">
+      <path value="Patient.identifier" />
+      <sliceName value="registroEstrangeiro" />
+      <short value="Identificador do paciente" />
+      <definition value="Identificador do paciente" />
+      <max value="1" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.id">
+      <path value="Patient.identifier.id" />
+      <short value="Id lógico do identificador do paciente" />
+      <definition value="Id lógico do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.extension">
+      <path value="Patient.identifier.extension" />
+      <short value="Extensões do identificador do paciente" />
+      <definition value="Extensões incluídas no identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.use">
+      <path value="Patient.identifier.use" />
+      <short value="Uso do identificador do paciente" />
+      <definition value="usual: identificador usual do paciente. official: identificador oficial do paciente. temp: identificador temporário do paciente. secondary: identificador secundário do paciente." />
+      <fixedCode value="official" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.type">
+      <path value="Patient.identifier.type" />
+      <short value="Tipo do identificador do paciente" />
+      <definition value="Código que representa o tipo do identificador do paciente" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="https://terminologia.saude.gov.br/fhir/ValueSet-BRTipoIdentificadorIndividuo" />
+      </binding>
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.type.id">
+      <path value="Patient.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do paciente" />
+      <definition value="Id lógico do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.type.extension">
+      <path value="Patient.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do paciente" />
+      <definition value="Extensões incluídas no tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.type.coding">
+      <path value="Patient.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do paciente" />
+      <definition value="Codificação que representa o tipo do identificador do paciente" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.type.coding.id">
+      <path value="Patient.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do paciente" />
+      <definition value="Id lógico da codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.type.coding.extension">
+      <path value="Patient.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do paciente" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.type.coding.system">
+      <path value="Patient.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do paciente" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do paciente" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.type.coding.version">
+      <path value="Patient.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do paciente" />
+      <definition value="Versão da codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.type.coding.code">
+      <path value="Patient.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do paciente" />
+      <definition value="Código que representa a codificação do tipo do identificador do paciente" />
+      <min value="1" />
+      <fixedCode value="RNE" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.type.coding.display">
+      <path value="Patient.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do paciente" />
+      <definition value="Texto que representa a codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.type.coding.userSelected">
+      <path value="Patient.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do paciente" />
+      <definition value="Indica se a codificação do tipo do identificador do paciente foi selecionada pelo usuário" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.type.text">
+      <path value="Patient.identifier.type.text" />
+      <short value="Texto do tipo do identificador do paciente" />
+      <definition value="Texto que representa o tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.system">
+      <path value="Patient.identifier.system" />
+      <short value="Sistema do identificador do paciente" />
+      <definition value="Sistema que identifica o tipo do identificador do paciente" />
+      <min value="1" />
+      <fixedUri value="https://saude.gov.br/sid/rne" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.value">
+      <path value="Patient.identifier.value" />
+      <short value="Valor do identificador do paciente" />
+      <definition value="Valor do identificador do paciente" />
+      <min value="1" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.period">
+      <path value="Patient.identifier.period" />
+      <short value="Período de uso do identificador do paciente" />
+      <definition value="Período de tempo durante o qual o identificador do paciente foi utilizado" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.assigner">
+      <path value="Patient.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do paciente" />
+      <definition value="Entidade que atribuiu o identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:registroEstrangeiro.assigner.display">
+      <path value="Patient.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:passaporte">
+      <path value="Patient.identifier" />
+      <sliceName value="passaporte" />
+      <short value="Identificador do paciente" />
+      <definition value="Identificador do paciente" />
+      <max value="1" />
+    </element>
+    <element id="Patient.identifier:passaporte.id">
+      <path value="Patient.identifier.id" />
+      <short value="Id lógico do identificador do paciente" />
+      <definition value="Id lógico do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:passaporte.extension">
+      <path value="Patient.identifier.extension" />
+      <short value="Extensões do identificador do paciente" />
+      <definition value="Extensões incluídas no identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:passaporte.use">
+      <path value="Patient.identifier.use" />
+      <short value="Uso do identificador do paciente" />
+      <definition value="usual: identificador usual do paciente. official: identificador oficial do paciente. temp: identificador temporário do paciente. secondary: identificador secundário do paciente." />
+      <fixedCode value="official" />
+    </element>
+    <element id="Patient.identifier:passaporte.type">
+      <path value="Patient.identifier.type" />
+      <short value="Tipo do identificador do paciente" />
+      <definition value="Código que representa o tipo do identificador do paciente" />
+      <binding>
+        <strength value="required" />
+        <description value="Tipo do identificador do paciente" />
+        <valueSet value="https://terminologia.saude.gov.br/fhir/ValueSet-BRTipoIdentificadorIndividuo" />
+      </binding>
+    </element>
+    <element id="Patient.identifier:passaporte.type.id">
+      <path value="Patient.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do paciente" />
+      <definition value="Id lógico do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:passaporte.type.extension">
+      <path value="Patient.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do paciente" />
+      <definition value="Extensões incluídas no tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:passaporte.type.coding">
+      <path value="Patient.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do paciente" />
+      <definition value="Codificação que representa o tipo do identificador do paciente" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Patient.identifier:passaporte.type.coding.id">
+      <path value="Patient.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do paciente" />
+      <definition value="Id lógico da codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:passaporte.type.coding.extension">
+      <path value="Patient.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do paciente" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:passaporte.type.coding.system">
+      <path value="Patient.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do paciente" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do paciente" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Patient.identifier:passaporte.type.coding.version">
+      <path value="Patient.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do paciente" />
+      <definition value="Versão da codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:passaporte.type.coding.code">
+      <path value="Patient.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do paciente" />
+      <definition value="Código que representa a codificação do tipo do identificador do paciente" />
+      <min value="1" />
+      <fixedCode value="PPN" />
+    </element>
+    <element id="Patient.identifier:passaporte.type.coding.display">
+      <path value="Patient.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do paciente" />
+      <definition value="Texto que representa a codificação do tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:passaporte.type.coding.userSelected">
+      <path value="Patient.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do paciente" />
+      <definition value="Indica se a codificação do tipo do identificador do paciente foi selecionada pelo usuário" />
+    </element>
+    <element id="Patient.identifier:passaporte.type.text">
+      <path value="Patient.identifier.type.text" />
+      <short value="Texto do tipo do identificador do paciente" />
+      <definition value="Texto que representa o tipo do identificador do paciente" />
+    </element>
+    <element id="Patient.identifier:passaporte.system">
+      <path value="Patient.identifier.system" />
+      <short value="Sistema do identificador do paciente" />
+      <definition value="Sistema que identifica o tipo do identificador do paciente" />
+      <min value="1" />
+      <fixedUri value="http://hl7.org/fhir/sid/passport-BRA" />
+    </element>
+    <element id="Patient.identifier:passaporte.value">
+      <path value="Patient.identifier.value" />
+      <short value="Valor do identificador do paciente" />
+      <definition value="Valor do identificador do paciente" />
+      <min value="1" />
+    </element>
+    <element id="Patient.identifier:passaporte.period">
+      <path value="Patient.identifier.period" />
+      <short value="Período de uso do identificador do paciente" />
+      <definition value="Período de tempo durante o qual o identificador do paciente foi utilizado" />
+    </element>
+    <element id="Patient.identifier:passaporte.assigner">
+      <path value="Patient.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do paciente" />
+      <definition value="Entidade que atribuiu o identificador do paciente" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Patient.identifier:passaporte.assigner.display">
+      <path value="Patient.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do paciente" />
+    </element>
+    <element id="Patient.active">
+      <path value="Patient.active" />
+      <short value="Indica se o paciente está ativo" />
+      <definition value="Indica se o paciente está ativo" />
+    </element>
+    <element id="Patient.name">
+      <path value="Patient.name" />
+      <short value="Nome do paciente" />
+      <definition value="Nome do paciente" />
+      <constraint>
+        <key value="br-core-pat-1" />
+        <severity value="error" />
+        <human value="Patient.name.given, Patient.name.family, Patient.name.text or Patient.name.extension SHALL be present" />
+        <expression value="(family.exists() or given.exists() or text.exists()) xor extension.where(url='http://hl7.org/fhir/StructureDefinition/data-absent-reason').exists()" />
+        <xpath value="(/f:extension/@url='http://hl7.org/fhir/StructureDefinition/data-absent-reason' and not(/f:family or /f:given or /f:text)) or (not(/f:extension/@url='http://hl7.org/fhir/StructureDefinition/data-absent-reason') and (/f:family or /f:given or /f:text))" />
+      </constraint>
+    </element>
+    <element id="Patient.name.id">
+      <path value="Patient.name.id" />
+      <short value="Identificador primário deste recurso" />
+      <definition value="Identificação unívoca para o recurso em um sistema" />
+    </element>
+    <element id="Patient.name.extension">
+      <path value="Patient.name.extension" />
+      <short value="Extensões adicionais" />
+      <definition value="Extensões adicionais que não fazem parte do modelo base" />
+    </element>
+    <element id="Patient.name.use">
+      <path value="Patient.name.use" />
+      <short value="Uso do nome" />
+      <definition value="O uso do nome" />
+    </element>
+    <element id="Patient.name.text">
+      <path value="Patient.name.text" />
+      <short value="Representação textual do nome completo do paciente" />
+      <definition value="Representação textual do nome completo do paciente" />
+    </element>
+    <element id="Patient.name.family">
+      <path value="Patient.name.family" />
+      <short value="Sobrenome" />
+      <definition value="Sobrenome do paciente" />
+    </element>
+    <element id="Patient.name.given">
+      <path value="Patient.name.given" />
+      <short value="Nome completo do paciente" />
+      <definition value="Nome completo do paciente" />
+    </element>
+    <element id="Patient.name.prefix">
+      <path value="Patient.name.prefix" />
+      <short value="Prefixo do nome" />
+      <definition value="Prefixo do nome do paciente" />
+    </element>
+    <element id="Patient.name.suffix">
+      <path value="Patient.name.suffix" />
+      <short value="Sufixo do nome" />
+      <definition value="Sufixo do nome do paciente" />
+    </element>
+    <element id="Patient.name.period">
+      <path value="Patient.name.period" />
+      <short value="Período de tempo em que o nome foi usado" />
+      <definition value="Período de tempo em que o nome foi usado" />
+    </element>
+    <element id="Patient.telecom">
+      <path value="Patient.telecom" />
+      <short value="Contatos de telecomunicação do paciente" />
+      <definition value="Contatos de telecomunicação do paciente" />
+    </element>
+    <element id="Patient.telecom.id">
+      <path value="Patient.telecom.id" />
+      <short value="Identificador primário deste recurso" />
+      <definition value="Identificação unívoca para o recurso em um sistema" />
+    </element>
+    <element id="Patient.telecom.extension">
+      <path value="Patient.telecom.extension" />
+      <short value="Extensões adicionais" />
+      <definition value="Extensões adicionais que não fazem parte do modelo base" />
+    </element>
+    <element id="Patient.telecom.system">
+      <path value="Patient.telecom.system" />
+      <short value="Sistema de telecomunicação usado para o contato" />
+      <definition value="O sistema de telecomunicação usado para o contato" />
+    </element>
+    <element id="Patient.telecom.value">
+      <path value="Patient.telecom.value" />
+      <short value="Número ou  do contato" />
+      <definition value="O número de telefone ou fax usado para o contato" />
+    </element>
+    <element id="Patient.telecom.use">
+      <path value="Patient.telecom.use" />
+      <short value="Uso do contato" />
+      <definition value="home | work | temp | old | mobile - propósito do contato" />
+    </element>
+    <element id="Patient.telecom.rank">
+      <path value="Patient.telecom.rank" />
+      <short value="Indica a ordem de preferência do contato" />
+      <definition value="Indica a ordem de preferência do contato" />
+    </element>
+    <element id="Patient.telecom.period">
+      <path value="Patient.telecom.period" />
+      <short value="Período de tempo em que o contato foi usado" />
+      <definition value="Período em que o meio de contato foi utilizado pelo paciente" />
+    </element>
+    <element id="Patient.gender">
+      <path value="Patient.gender" />
+      <short value="Sexo" />
+      <definition value="male | female | other | unknown" />
+    </element>
+    <element id="Patient.birthDate">
+      <path value="Patient.birthDate" />
+      <short value="Data de nascimento do paciente" />
+      <definition value="Data de nascimento do paciente" />
+    </element>
+    <element id="Patient.deceased[x]">
+      <path value="Patient.deceased[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <ordered value="false" />
+        <rules value="open" />
+      </slicing>
+      <short value="Indica se o paciente é falecido" />
+      <definition value="Indica se o paciente é falecido" />
+    </element>
+    <element id="Patient.deceased[x]:deceasedBoolean">
+      <path value="Patient.deceased[x]" />
+      <sliceName value="deceasedBoolean" />
+      <type>
+        <code value="boolean" />
+      </type>
+    </element>
+    <element id="Patient.deceased[x]:deceasedDateTime">
+      <path value="Patient.deceased[x]" />
+      <sliceName value="deceasedDateTime" />
+      <short value="Data e hora do falecimento do paciente" />
+      <definition value="Data e hora do falecimento do paciente" />
+      <type>
+        <code value="dateTime" />
+      </type>
+    </element>
+    <element id="Patient.address">
+      <path value="Patient.address" />
+      <short value="Endereço do paciente" />
+      <definition value="Endereço do paciente" />
+    </element>
+    <element id="Patient.address.id">
+      <path value="Patient.address.id" />
+      <short value="Identificador primário deste recurso" />
+      <definition value="Identificação unívoca para o recurso em um sistema" />
+    </element>
+    <element id="Patient.address.extension">
+      <path value="Patient.address.extension" />
+      <short value="Extensões adicionais" />
+      <definition value="Extensões adicionais que não fazem parte do modelo base" />
+    </element>
+    <element id="Patient.address.use">
+      <path value="Patient.address.use" />
+      <short value="Uso do endereço" />
+      <definition value="home | work | temp | old - propósito do endereço" />
+    </element>
+    <element id="Patient.address.type">
+      <path value="Patient.address.type" />
+      <short value="Tipo de endereço" />
+      <definition value="postal | physical | both" />
+    </element>
+    <element id="Patient.address.text">
+      <path value="Patient.address.text" />
+      <short value="Representação textual do endereço" />
+      <definition value="Representação textual do endereço" />
+    </element>
+    <element id="Patient.address.line">
+      <path value="Patient.address.line" />
+      <short value="Endereço do paciente" />
+      <definition value="Endereço do paciente" />
+    </element>
+    <element id="Patient.address.city">
+      <path value="Patient.address.city" />
+      <short value="Cidade do endereço" />
+      <definition value="Cidade do endereço" />
+    </element>
+    <element id="Patient.address.district">
+      <path value="Patient.address.district" />
+      <short value="Distrito do endereço" />
+      <definition value="Distrito do endereço" />
+    </element>
+    <element id="Patient.address.state">
+      <path value="Patient.address.state" />
+      <short value="Unidade Federativa" />
+      <definition value="Unidade Federativa" />
+    </element>
+    <element id="Patient.address.postalCode">
+      <path value="Patient.address.postalCode" />
+      <short value="CEP do endereço" />
+      <definition value="CEP do endereço" />
+    </element>
+    <element id="Patient.address.country">
+      <path value="Patient.address.country" />
+      <short value="País do endereço" />
+      <definition value="País do endereço" />
+    </element>
+    <element id="Patient.address.period">
+      <path value="Patient.address.period" />
+      <short value="Período de tempo em que o endereço foi usado" />
+      <definition value="Período de tempo em que o endereço foi usado" />
+    </element>
+    <element id="Patient.maritalStatus">
+      <path value="Patient.maritalStatus" />
+      <short value="Estado civil do paciente" />
+      <definition value="Estado civil do paciente" />
+    </element>
+    <element id="Patient.multipleBirth[x]">
+      <path value="Patient.multipleBirth[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <ordered value="false" />
+        <rules value="open" />
+      </slicing>
+      <short value="Indica se o paciente é de parto gemelar" />
+      <definition value="Indica se o paciente é de parto gemelar" />
+    </element>
+    <element id="Patient.multipleBirth[x]:multipleBirthBoolean">
+      <path value="Patient.multipleBirth[x]" />
+      <sliceName value="multipleBirthBoolean" />
+      <type>
+        <code value="boolean" />
+      </type>
+    </element>
+    <element id="Patient.multipleBirth[x]:multipleBirthInteger">
+      <path value="Patient.multipleBirth[x]" />
+      <sliceName value="multipleBirthInteger" />
+      <short value="Gemelaridade do paciente" />
+      <definition value="Gemelaridade do paciente" />
+      <type>
+        <code value="integer" />
+      </type>
+    </element>
+    <element id="Patient.photo">
+      <path value="Patient.photo" />
+      <short value="Fotografia do paciente" />
+      <definition value="Fotografia do paciente" />
+    </element>
+    <element id="Patient.contact">
+      <path value="Patient.contact" />
+      <short value="Uma pessoa para contato (guardião, companheiro, amigo) em caso de emergência" />
+      <definition value="Uma pessoa para contato (guardião, companheiro, amigo) em caso de emergência" />
+    </element>
+    <element id="Patient.contact.id">
+      <path value="Patient.contact.id" />
+      <short value="Identificação unívoca da pessoa de contato" />
+      <definition value="Identificação unívoca da pessoa de contato" />
+    </element>
+    <element id="Patient.contact.extension">
+      <path value="Patient.contact.extension" />
+      <short value="Extensões adicionais" />
+      <definition value="Extensões adicionais que não fazem parte do modelo base" />
+    </element>
+    <element id="Patient.contact.modifierExtension">
+      <path value="Patient.contact.modifierExtension" />
+      <short value="Extensões adicionais" />
+      <definition value="Extensões adicionais que não fazem parte do modelo base" />
+    </element>
+    <element id="Patient.contact.relationship">
+      <path value="Patient.contact.relationship" />
+      <short value="Relação com o paciente" />
+      <definition value="Relação com o paciente" />
+    </element>
+    <element id="Patient.contact.name">
+      <path value="Patient.contact.name" />
+      <short value="Nome da pessoa de contato" />
+      <definition value="Nome da pessoa de contato" />
+    </element>
+    <element id="Patient.contact.telecom">
+      <path value="Patient.contact.telecom" />
+      <short value="Contatos de telecomunicação da pessoa de contato" />
+      <definition value="Contatos de telecomunicação da pessoa de contato" />
+    </element>
+    <element id="Patient.contact.address">
+      <path value="Patient.contact.address" />
+      <short value="Endereço da pessoa de contato" />
+      <definition value="Endereço da pessoa de contato" />
+    </element>
+    <element id="Patient.contact.gender">
+      <path value="Patient.contact.gender" />
+      <short value="Sexo do contato do paciente" />
+      <definition value="Sexo do contato do paciente" />
+    </element>
+    <element id="Patient.contact.organization">
+      <path value="Patient.contact.organization" />
+      <short value="Organização do contato do paciente" />
+      <definition value="Organização do contato do paciente" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Patient.contact.period">
+      <path value="Patient.contact.period" />
+      <short value="Período de tempo em que o contato foi usado" />
+      <definition value="Período de tempo em que o contato foi usado" />
+    </element>
+    <element id="Patient.communication">
+      <path value="Patient.communication" />
+      <short value="Idiomas falados pelo paciente" />
+    </element>
+    <element id="Patient.communication.id">
+      <path value="Patient.communication.id" />
+      <short value="Identificador primário deste recurso" />
+      <definition value="Identificação unívoca para o recurso em um sistema" />
+    </element>
+    <element id="Patient.communication.extension">
+      <path value="Patient.communication.extension" />
+      <short value="Extensões adicionais" />
+      <definition value="Extensões adicionais que não fazem parte do modelo base" />
+    </element>
+    <element id="Patient.communication.modifierExtension">
+      <path value="Patient.communication.modifierExtension" />
+      <short value="Extensões adicionais" />
+      <definition value="Extensões adicionais que não fazem parte do modelo base" />
+    </element>
+    <element id="Patient.communication.language">
+      <path value="Patient.communication.language" />
+      <short value="Idioma falado pelo paciente" />
+      <definition value="Idioma falado pelo paciente" />
+    </element>
+    <element id="Patient.communication.preferred">
+      <path value="Patient.communication.preferred" />
+      <short value="Indica se o idioma é preferido" />
+      <definition value="Indica se o idioma é preferido" />
+    </element>
+    <element id="Patient.generalPractitioner">
+      <path value="Patient.generalPractitioner" />
+      <short value="Médico de atenção primária do paciente" />
+      <definition value="Médico de atenção primária do paciente" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole" />
+      </type>
+    </element>
+    <element id="Patient.managingOrganization">
+      <path value="Patient.managingOrganization" />
+      <short value="Organização responsável pelo paciente" />
+      <definition value="Organização responsável pelo paciente" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Patient.link">
+      <path value="Patient.link" />
+      <short value="Links para outros recursos que se relacionam com este recurso" />
+      <definition value="Links para outros recursos que se relacionam com este recurso" />
+    </element>
+    <element id="Patient.link.id">
+      <path value="Patient.link.id" />
+      <short value="Identificador primário deste recurso" />
+      <definition value="Identificação unívoca para o recurso em um sistema" />
+    </element>
+    <element id="Patient.link.extension">
+      <path value="Patient.link.extension" />
+      <short value="Extensões adicionais" />
+      <definition value="Extensões adicionais que não fazem parte do modelo base" />
+    </element>
+    <element id="Patient.link.modifierExtension">
+      <path value="Patient.link.modifierExtension" />
+      <short value="Extensões adicionais" />
+      <definition value="Extensões adicionais que não fazem parte do modelo base" />
+    </element>
+    <element id="Patient.link.other">
+      <path value="Patient.link.other" />
+      <short value="Outro recurso que se relaciona com este recurso" />
+      <definition value="Outro recurso que se relaciona com este recurso" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson" />
+      </type>
+    </element>
+    <element id="Patient.link.type">
+      <path value="Patient.link.type" />
+      <short value="Tipo de relação entre os recursos" />
+      <definition value="Tipo de relação entre os recursos" />
+    </element>
+  </differential>
+</StructureDefinition>

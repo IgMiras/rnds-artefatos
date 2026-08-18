@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="10eb93e3-f63f-458f-b881-6a37cde2e206" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2020-09-20T20:58:17.103+00:00" />
+  </meta>
+  <url value="http://www.saude.gov.br/fhir/r4/ValueSet/BREstadoSolicitacaoMedicamento-1.0" />
+  <version value="01.10" />
+  <name value="Estado da Solicitação de Medicamento" />
+  <title value="Estado da Solicitação de Medicamento" />
+  <status value="draft" />
+  <experimental value="false" />
+  <date value="2020-09-20T20:58:15.9226123+00:00" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description value="Estado da Solicitação de Medicamento" />
+  <immutable value="true" />
+  <compose>
+    <include>
+      <system value="http://hl7.org/fhir/CodeSystem/medicationrequest-status" />
+      <concept>
+        <code value="active" />
+        <display value="Ativo" />
+      </concept>
+      <concept>
+        <code value="completed" />
+        <display value="Completado" />
+      </concept>
+      <concept>
+        <code value="entered-in-error" />
+        <display value="Entrada com erro" />
+      </concept>
+      <concept>
+        <code value="draft" />
+        <display value="Pretendido" />
+      </concept>
+      <concept>
+        <code value="on-hold" />
+        <display value="Em pausa" />
+      </concept>
+      <concept>
+        <code value="unknown" />
+        <display value="Desconhecida" />
+      </concept>
+      <concept>
+        <code value="cancelled" />
+        <display value="Não realizado" />
+      </concept>
+    </include>
+  </compose>
+</ValueSet>

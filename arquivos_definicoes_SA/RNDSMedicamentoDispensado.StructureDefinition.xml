@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <url value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSMedicamentoDispensado" />
+  <name value="RNDSMedicamentoDispensado" />
+  <status value="draft" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Medication" />
+  <baseDefinition value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSMedicamento" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Medication.manufacturer">
+      <path value="Medication.manufacturer" />
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Medication.batch">
+      <path value="Medication.batch" />
+      <min value="1" />
+    </element>
+    <element id="Medication.batch.lotNumber">
+      <path value="Medication.batch.lotNumber" />
+      <min value="1" />
+    </element>
+    <element id="Medication.batch.expirationDate">
+      <path value="Medication.batch.expirationDate" />
+      <min value="1" />
+    </element>
+  </differential>
+</StructureDefinition>

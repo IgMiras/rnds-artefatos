@@ -1,0 +1,19 @@
+{
+	"resourceType": "NamingSystem",
+	"id": "prescription-item-id",
+	"name": "PrescriptionItemId",
+	"status": "draft",
+	"kind": "identifier",
+	"date": "2024-12-01",
+	"publisher": "Ministério da Saúde do Brasil",
+	"responsible": "Ministério da Saúde do Brasil",
+	"description": "ID Local do item prescrito.",
+	"usage": "RNDS",
+	"uniqueId": [
+		{
+			"type": "uri",
+			"value": "http://www.saude.gov.br/fhir/r4/NamingSystem/prescription-item-id",
+			"preferred": true
+		}
+	]
+}

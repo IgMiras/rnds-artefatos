@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="ImunobiologicoUEVaccineMedicinalProduct"/>
+  <url value="http://www.saude.gov.br/fhir/r4/ConceptMap/BRImunobiologicoUEVaccineMedicinalProduct"/>
+  <version value="01.00"/>
+  <name value="Mapeamento dos códigos do Imunobiologico para os códigos do Vaccine Medicinal Product"/>
+  <status value="draft"/>
+  <experimental value="false"/>
+  <date value="2022-03-17"/>
+  <publisher value="Ministério da Saúde"/>
+  <description value="Um mapeamento dos códigos entre Imunobiológicos e Vaccine Medicinal Product"/>
+  <sourceUri value="http://www.saude.gov.br/fhir/r4/ValueSet/BRImunobiologico-1.0"/>
+  <group>
+    <element>
+      <code value="85"/>
+      <display value="COVID-19 ASTRAZENECA/FIOCRUZ - COVISHIELD"/>
+      <target>
+        <code value="Covid-19-recombinant"/>
+        <display value="Covid-19 (recombinant)"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <element>
+      <code value="86"/>
+      <display value="COVID-19 SINOVAC/BUTANTAN - CORONAVAC"/>
+      <target>
+        <code value="CoronaVac"/>
+        <display value="CoronaVac"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <target value="https://ec.europa.eu/health/documents/community-register/html/"/>
+    <element>
+      <code value="88"/>
+      <display value="COVID-19 JANSSEN - Ad26.COV2.S"/>
+      <target>
+        <code value="EU/1/20/1525"/>
+        <display value="COVID-19 Vaccine Janssen"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <target value="https://ec.europa.eu/health/documents/community-register/html/"/>
+    <element>
+      <code value="89"/>
+      <display value="COVID-19 ASTRAZENECA - ChAdOx1-S"/>
+      <target>
+        <code value="EU/1/21/1529"/>
+        <display value="Vaxsevria"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <element>
+      <code value="98"/>
+      <display value="COVID-19 SINOVAC - CORONAVAC"/>
+      <target>
+        <code value="CoronaVac"/>
+        <display value="CoronaVac"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <target value="https://ec.europa.eu/health/documents/community-register/html/"/>
+    <element>
+      <code value="87"/>
+      <display value="COVID-19 PFIZER - COMIRNATY"/>
+      <target>
+        <code value="EU/1/20/1528"/>
+        <display value="Comirnaty"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <target value="https://ec.europa.eu/health/documents/community-register/html/"/>
+    <element>
+      <code value="99"/>
+      <display value="COVID-19 PEDIÁTRICA - PFIZER COMIRNATY"/>
+      <target>
+        <code value="EU/1/20/1528"/>
+        <display value="Comirnaty"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>

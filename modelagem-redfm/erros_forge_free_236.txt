@@ -1,0 +1,1179 @@
+Message  : Could not parse file as a FHIR resource. Parser: Element 'meta' is not in the correct order and should come before element 'language'.
+FilePath : BRMarcosDesenvolvimento.xml
+Id       : PARSING
+Severity : Error
+
+Message  : Resource BRMarcosDesenvolvimento.xml must have an id
+FilePath : BRMarcosDesenvolvimento.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Could not parse file as a FHIR resource. Parser: Element with name 'include' was found multiple times, but not in sequence. (at line 53, 6)
+FilePath : BRNomeExame-2.0.xml
+Id       : PARSING
+Severity : Error
+
+Message  : Resource BRNomeExame-2.0.xml must have an id
+FilePath : BRNomeExame-2.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Could not parse file as a FHIR resource. Parser: The attribute 'value' in element 'definition' has an empty value, which is not allowed. (at line 4551, 15)
+FilePath : BRTabelaSUS.xml
+Id       : PARSING
+Severity : Error
+
+Message  : Could not parse file as a FHIR resource. Parser: Element 'meta' is not in the correct order and should come before element 'url'.
+FilePath : CodeSystem-BRTipoDispensacaoRealizada.xml
+Id       : PARSING
+Severity : Error
+
+Message  : Could not parse file as a FHIR resource. Parser: Element 'status' is not in the correct order and should come before element 'description'.
+FilePath : ConceptMap.xml
+Id       : PARSING
+Severity : Error
+
+Message  : Resource ConceptMap.xml must have an id
+FilePath : ConceptMap.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Could not parse file as a FHIR resource. One or more errors occurred. (Value 'copyrightyear' is not a correct code for valueset 'GuideParameterCode'. At ImplementationGuide.definition.parameter[0].code, line 355, position 32) (Value 'releaselabel' is not a correct code for valueset 'GuideParameterCode'. At ImplementationGuide.definition.parameter[1].code, line 359, position 31) (Value 'produce-jekyll-data' is not a correct code for valueset 'GuideParameterCode'. At ImplementationGuide.definition.parameter[2].code, line 363, position 38)
+FilePath : ImplementationGuide-br.gov.saude.br-core.fhir.json
+Id       : PARSING
+Severity : Error
+
+Message  : Could not parse file as a FHIR resource. One or more errors occurred. (Properties cannot be empty strings. Either they are absent, or they are present with at least one character of non-whitespace content. At StructureDefinition.differential.element[29].short, line 231, position 20) (Properties cannot be empty strings. Either they are absent, or they are present with at least one character of non-whitespace content. At StructureDefinition.differential.element[29].definition, line 232, position 25) (Properties cannot be empty strings. Either they are absent, or they are present with at least one character of non-whitespace content. At StructureDefinition.differential.element[30].short, line 237, position 20) (Properties cannot be empty strings. Either they are absent, or they are present with at least one character of non-whitespace content. At StructureDefinition.differential.element[30].definition, line 238, position 25)
+FilePath : StructureDefinition-br-core-appointment.json
+Id       : PARSING
+Severity : Error
+
+Message  : Could not parse file as a FHIR resource. One or more errors occurred. (Element 'strength' with minimum cardinality 1 cannot be null. At StructureDefinition.differential.element[3].binding.strength, line 73, position 25)
+FilePath : StructureDefinition-br-core-povo-itinerante.json
+Id       : PARSING
+Severity : Error
+
+Message  : Resource BRAbrangencia-1.0.xml must have an id
+FilePath : BRAbrangencia-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRAbrangencia.xml must have an id
+FilePath : BRAbrangencia.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRAdministradorTerceiro.xml must have an id
+FilePath : BRAdministradorTerceiro.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRAgendamentoRegulacaoAssistencial.xml must have an id
+FilePath : BRAgendamentoRegulacaoAssistencial.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRAmostraBiologica.xml must have an id
+FilePath : BRAmostraBiologica.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRAtendeSUS.xml must have an id
+FilePath : BRAtendeSUS.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRAtestado.xml must have an id
+FilePath : BRAtestado.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCampanhaVacinacao-1.0.xml must have an id
+FilePath : BRCampanhaVacinacao-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCaraterAtendimento-1.0.xml must have an id
+FilePath : BRCaraterAtendimento-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCaraterAtendimentoMIRA.xml must have an id
+FilePath : BRCaraterAtendimentoMIRA.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCategoriaCondicao.xml must have an id
+FilePath : BRCategoriaCondicao.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCategoriaDiagnostico (2).xml must have an id
+FilePath : BRCategoriaDiagnostico (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCategoriaDiagnostico.xml must have an id
+FilePath : BRCategoriaDiagnostico.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCategoriaExame-1.0.xml must have an id
+FilePath : BRCategoriaExame-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCIAP2-1.0.xml must have an id
+FilePath : BRCIAP2-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCodigoSerialMedicamento.xml must have an id
+FilePath : BRCodigoSerialMedicamento.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRComponenteAssistenciaFarmaceutica-1.0.xml must have an id
+FilePath : BRComponenteAssistenciaFarmaceutica-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCondicaoMaternal-1.xml must have an id
+FilePath : BRCondicaoMaternal-1.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCondicaoMaternal.xml must have an id
+FilePath : BRCondicaoMaternal.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCondicaoMaternalex.xml must have an id
+FilePath : BRCondicaoMaternalex.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRCondicaoSaude-1.0.xml must have an id
+FilePath : BRCondicaoSaude-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRConjuntoMinimoDadosANS-1.0.0.xml must have an id
+FilePath : BRConjuntoMinimoDadosANS-1.0.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRConjuntoMinimoDadosCMD-1.0.0.xml must have an id
+FilePath : BRConjuntoMinimoDadosCMD-1.0.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRContatoAssistencialANS-1.0.0.xml must have an id
+FilePath : BRContatoAssistencialANS-1.0.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRContatoAssistencialCMD-1.0.0.xml must have an id
+FilePath : BRContatoAssistencialCMD-1.0.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRDadoAusenteOuDesconhecido.xml must have an id
+FilePath : BRDadoAusenteOuDesconhecido.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRDataPrescricao.xml must have an id
+FilePath : BRDataPrescricao.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRDiagnosticoCOVID19-TesteRapido-01.01.xml must have an id
+FilePath : BRDiagnosticoCOVID19-TesteRapido-01.01.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRDiagnosticoCOVID19-TesteRapido-1.0.xml must have an id
+FilePath : BRDiagnosticoCOVID19-TesteRapido-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRDiagnosticoLaboratorioClinico-2.0.xml must have an id
+FilePath : BRDiagnosticoLaboratorioClinico-2.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRDiagnosticoLaboratorioClinico-3.2.1.xml must have an id
+FilePath : BRDiagnosticoLaboratorioClinico-3.2.1.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRDispensacaoMedicamento.xml must have an id
+FilePath : BRDispensacaoMedicamento.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRDocumentoIndividuo.xml must have an id
+FilePath : BRDocumentoIndividuo.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRDose-1.0.xml must have an id
+FilePath : BRDose-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRDose.xml must have an id
+FilePath : BRDose.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREndereco.xml must have an id
+FilePath : BREndereco.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstadoAfastamentoAtestado.xml must have an id
+FilePath : BREstadoAfastamentoAtestado.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstadoAtestado.xml must have an id
+FilePath : BREstadoAtestado.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstadoCivil-1.0.xml must have an id
+FilePath : BREstadoCivil-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstadoDocumento-1.0.xml must have an id
+FilePath : BREstadoDocumento-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstadoMedicamentoLista-1.0.xml must have an id
+FilePath : BREstadoMedicamentoLista-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstadoMedicamentoLista.xml must have an id
+FilePath : BREstadoMedicamentoLista.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstadoObservacao.xml must have an id
+FilePath : BREstadoObservacao.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstadoResolucaoDiagnosticoProblema-1.0.xml must have an id
+FilePath : BREstadoResolucaoDiagnosticoProblema-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstrategiaCampanha.xml must have an id
+FilePath : BREstrategiaCampanha.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstrategiaVacinacao-1.0.xml must have an id
+FilePath : BREstrategiaVacinacao-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstrategiaVacinacao-duplicate-2.xml must have an id
+FilePath : BREstrategiaVacinacao-duplicate-2.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstrategiaVacinacao.xml must have an id
+FilePath : BREstrategiaVacinacao.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstrategiaVacinacaoCampanha-1.0.xml must have an id
+FilePath : BREstrategiaVacinacaoCampanha-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREstrategiaVacinacaoPesquisa.xml must have an id
+FilePath : BREstrategiaVacinacaoPesquisa.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREtniaIndigena-1.0.xml must have an id
+FilePath : BREtniaIndigena-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BREtniaIndigena.xml must have an id
+FilePath : BREtniaIndigena.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRFabricanteImunobiologico-1.0.xml must have an id
+FilePath : BRFabricanteImunobiologico-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRFabricantePNI.xml must have an id
+FilePath : BRFabricantePNI.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRFinanciamento-1.0.xml must have an id
+FilePath : BRFinanciamento-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRFinanciamento.xml must have an id
+FilePath : BRFinanciamento.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRGrupoAtendimento (2).xml must have an id
+FilePath : BRGrupoAtendimento (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRGrupoAtendimento-1.0 (2).xml must have an id
+FilePath : BRGrupoAtendimento-1.0 (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRGrupoAtendimento-1.0.xml must have an id
+FilePath : BRGrupoAtendimento-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRGrupoAtendimento.xml must have an id
+FilePath : BRGrupoAtendimento.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRImunobiologico-1.0.xml must have an id
+FilePath : BRImunobiologico-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRImunobiologico.xml must have an id
+FilePath : BRImunobiologico.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRImunobiologicoAdministrado.xml must have an id
+FilePath : BRImunobiologicoAdministrado.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRImunobiologicoAdministradoCampanha-1.0.xml must have an id
+FilePath : BRImunobiologicoAdministradoCampanha-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRImunobiologicoAdministradoCampanha-2.0.xml must have an id
+FilePath : BRImunobiologicoAdministradoCampanha-2.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRImunobiologicoAdministradoCarga-1.0.xml must have an id
+FilePath : BRImunobiologicoAdministradoCarga-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRImunobiologicoAdministradoCarga-2.0.xml must have an id
+FilePath : BRImunobiologicoAdministradoCarga-2.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRImunobiologicoUE.xml must have an id
+FilePath : BRImunobiologicoUE.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRIndividuoNaoIdentificado.xml must have an id
+FilePath : BRIndividuoNaoIdentificado.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRIndividuoNaoIdentificadoANS-1.0.0.xml must have an id
+FilePath : BRIndividuoNaoIdentificadoANS-1.0.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRIndividuoNaoIdentificadoCMD-1.0.0.xml must have an id
+FilePath : BRIndividuoNaoIdentificadoCMD-1.0.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRIndividuoProtegido-1.0.StructureDefinition.xml must have an id
+FilePath : BRIndividuoProtegido-1.0.StructureDefinition.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRIntencaoAtestado.xml must have an id
+FilePath : BRIntencaoAtestado.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRIntencaoRegulacao.xml must have an id
+FilePath : BRIntencaoRegulacao.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRIntervaloDoses.Extension.xml must have an id
+FilePath : BRIntervaloDoses.Extension.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRJustificativaIndividuoNaoIdentificado.xml must have an id
+FilePath : BRJustificativaIndividuoNaoIdentificado.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRLocalAfericao-1.0.xml must have an id
+FilePath : BRLocalAfericao-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRLocalAfericao.xml must have an id
+FilePath : BRLocalAfericao.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRLocalAplicacao-1.0.xml must have an id
+FilePath : BRLocalAplicacao-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRLocalAplicacao.xml must have an id
+FilePath : BRLocalAplicacao.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRLocalAtendimento.xml must have an id
+FilePath : BRLocalAtendimento.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRMedicamento (2).xml must have an id
+FilePath : BRMedicamento (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRMedicamento-1.0.xml must have an id
+FilePath : BRMedicamento-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRMedicamento-duplicate-2.xml must have an id
+FilePath : BRMedicamento-duplicate-2.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRMedidaObservada.xml must have an id
+FilePath : BRMedidaObservada.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRMeioContato.xml must have an id
+FilePath : BRMeioContato.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRModalidadeAssistencial-1.0.xml must have an id
+FilePath : BRModalidadeAssistencial-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRModalidadeAssistencial.xml must have an id
+FilePath : BRModalidadeAssistencial.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRModalidadeAssistencialMIRA.xml must have an id
+FilePath : BRModalidadeAssistencialMIRA.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRModalidadeFinanceira.xml must have an id
+FilePath : BRModalidadeFinanceira.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRMotivoDesfecho-1.0.xml must have an id
+FilePath : BRMotivoDesfecho-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRMotivoDesfecho.xml must have an id
+FilePath : BRMotivoDesfecho.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRMunicipio-1.0.xml must have an id
+FilePath : BRMunicipio-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRMunicipio.xml must have an id
+FilePath : BRMunicipio.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRNacionalidade.xml must have an id
+FilePath : BRNacionalidade.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRNaturezaJuridica-1.0.xml must have an id
+FilePath : BRNaturezaJuridica-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRNomeCampanhaPNI-1.0.xml must have an id
+FilePath : BRNomeCampanhaPNI-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRNomeCampanhaVacinacao.xml must have an id
+FilePath : BRNomeCampanhaVacinacao.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRNomeExame-1.0.xml must have an id
+FilePath : BRNomeExame-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRNomeExameTRCOVID19LOINC-1.0.xml must have an id
+FilePath : BRNomeExameTRCOVID19LOINC-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRNomeIndividuo.xml must have an id
+FilePath : BRNomeIndividuo.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BROcupacao-1.0.xml must have an id
+FilePath : BROcupacao-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BROperadorDigitador-1.0.xml must have an id
+FilePath : BROperadorDigitador-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BROrgaoExpedidor-1.0.xml must have an id
+FilePath : BROrgaoExpedidor-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BROrgaoExpedidor.xml must have an id
+FilePath : BROrgaoExpedidor.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BROrigemMedida (2).xml must have an id
+FilePath : BROrigemMedida (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BROrigemMedida.xml must have an id
+FilePath : BROrigemMedida.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BROutrasInformacoes.xml must have an id
+FilePath : BROutrasInformacoes.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRPapelProblemaDiagnostico (2).xml must have an id
+FilePath : BRPapelProblemaDiagnostico (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRPapelProblemaDiagnostico.xml must have an id
+FilePath : BRPapelProblemaDiagnostico.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRParentesco-1.0.xml must have an id
+FilePath : BRParentesco-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRParentesco.xml must have an id
+FilePath : BRParentesco.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRParentesIndividuo.xml must have an id
+FilePath : BRParentesIndividuo.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRPatogeno.xml must have an id
+FilePath : BRPatogeno.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRPessoaJuridicaProfissionalLiberal.xml must have an id
+FilePath : BRPessoaJuridicaProfissionalLiberal.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRPosicaoIndividuo (2).xml must have an id
+FilePath : BRPosicaoIndividuo (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRPosicaoIndividuo-1.0.xml must have an id
+FilePath : BRPosicaoIndividuo-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRPosicaoIndividuo-duplicate-2.xml must have an id
+FilePath : BRPosicaoIndividuo-duplicate-2.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRPosicaoIndividuo.xml must have an id
+FilePath : BRPosicaoIndividuo.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRPrescricaoMedicamento.xml must have an id
+FilePath : BRPrescricaoMedicamento.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRPrescricaoNaoEstruturada.xml must have an id
+FilePath : BRPrescricaoNaoEstruturada.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRProblemaDiagnostico (2).xml must have an id
+FilePath : BRProblemaDiagnostico (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRProblemaDiagnostico.xml must have an id
+FilePath : BRProblemaDiagnostico.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRProblemaDiagnosticoANS.xml must have an id
+FilePath : BRProblemaDiagnosticoANS.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRProblemaDiagnosticoCMD.xml must have an id
+FilePath : BRProblemaDiagnosticoCMD.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRProcedencia-1.0.xml must have an id
+FilePath : BRProcedencia-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRProcedimentoRealizadoANS-1.0.0.xml must have an id
+FilePath : BRProcedimentoRealizadoANS-1.0.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRProcedimentoRealizadoCMD-1.0.0.xml must have an id
+FilePath : BRProcedimentoRealizadoCMD-1.0.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRProfissional.xml must have an id
+FilePath : BRProfissional.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRProgramaSaude-1.0.xml must have an id
+FilePath : BRProgramaSaude-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRProgramaSaude.xml must have an id
+FilePath : BRProgramaSaude.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRQualidadeCadastroIndividuo.xml must have an id
+FilePath : BRQualidadeCadastroIndividuo.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRacaCor-1.0.xml must have an id
+FilePath : BRRacaCor-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRacaCor.xml must have an id
+FilePath : BRRacaCor.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRReferencia.xml must have an id
+FilePath : BRReferencia.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRegistroDispensacaoMedicamento.xml must have an id
+FilePath : BRRegistroDispensacaoMedicamento.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRegistroImunobiologicoAdministrado-1.0.xml must have an id
+FilePath : BRRegistroImunobiologicoAdministrado-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRegistroImunobiologicoAdministrado.xml must have an id
+FilePath : BRRegistroImunobiologicoAdministrado.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRegistroImunobiologicoAdministradoCampanha-1.0.xml must have an id
+FilePath : BRRegistroImunobiologicoAdministradoCampanha-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRegistroImunobiologicoAdministradoCampanha-2.0.xml must have an id
+FilePath : BRRegistroImunobiologicoAdministradoCampanha-2.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRegistroImunobiologicoAdministradoCarga-1.0.xml must have an id
+FilePath : BRRegistroImunobiologicoAdministradoCarga-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRegistroImunobiologicoAdministradoCarga-2.0.xml must have an id
+FilePath : BRRegistroImunobiologicoAdministradoCarga-2.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRegistroImunobiologicoAdministradoRotina-1.0.xml must have an id
+FilePath : BRRegistroImunobiologicoAdministradoRotina-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRegistroOrigem.xml must have an id
+FilePath : BRRegistroOrigem.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRegistroPrescricaoMedicamento.xml must have an id
+FilePath : BRRegistroPrescricaoMedicamento.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRegulacaoAssistencial.xml must have an id
+FilePath : BRRegulacaoAssistencial.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRequisicaoRegulacaoAssistencial.xml must have an id
+FilePath : BRRequisicaoRegulacaoAssistencial.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRResponsabilidadeParticipante-1.0.xml must have an id
+FilePath : BRResponsabilidadeParticipante-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRResponsabilidadeParticipante.xml must have an id
+FilePath : BRResponsabilidadeParticipante.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRResponsavelAtendimento.xml must have an id
+FilePath : BRResponsavelAtendimento.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRResultadoExameLaboratorial-1.0.xml must have an id
+FilePath : BRResultadoExameLaboratorial-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRResultadoExameLaboratorial-2.0.xml must have an id
+FilePath : BRResultadoExameLaboratorial-2.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRResultadoExameLaboratorial-3.2.1.xml must have an id
+FilePath : BRResultadoExameLaboratorial-3.2.1.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRResultadoExameLaboratorial-TesteRapido-01.01.xml must have an id
+FilePath : BRResultadoExameLaboratorial-TesteRapido-01.01.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRResultadoExameLaboratorial-TesteRapido-1.0.xml must have an id
+FilePath : BRResultadoExameLaboratorial-TesteRapido-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRResultadoQualitativoExame.xml must have an id
+FilePath : BRResultadoQualitativoExame.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRResumoEvolucaoClinica.StructureDefinition.xml must have an id
+FilePath : BRResumoEvolucaoClinica.StructureDefinition.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRoupasUsadasMedicao (2).xml must have an id
+FilePath : BRRoupasUsadasMedicao (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRRoupasUsadasMedicao.xml must have an id
+FilePath : BRRoupasUsadasMedicao.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRSituacaoCondicaoIndividuo (2).xml must have an id
+FilePath : BRSituacaoCondicaoIndividuo (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRSituacaoCondicaoIndividuo-1.0.xml must have an id
+FilePath : BRSituacaoCondicaoIndividuo-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRSituacaoCondicaoIndividuo.xml must have an id
+FilePath : BRSituacaoCondicaoIndividuo.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRStatusAgendamentoRegulacaoAssistencial (2).xml must have an id
+FilePath : BRStatusAgendamentoRegulacaoAssistencial (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRStatusParticipante.xml must have an id
+FilePath : BRStatusParticipante.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRStatusRegulacaoAssistencial (2).xml must have an id
+FilePath : BRStatusRegulacaoAssistencial (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRStatusRequisicaoRegulacaoAssistencial.xml must have an id
+FilePath : BRStatusRequisicaoRegulacaoAssistencial.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRSubgrupoGrupo01TabelaSUS.xml must have an id
+FilePath : BRSubgrupoGrupo01TabelaSUS.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRSubgrupoGrupo02TabelaSUS.xml must have an id
+FilePath : BRSubgrupoGrupo02TabelaSUS.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRSubgrupoGrupo03TabelaSUS.xml must have an id
+FilePath : BRSubgrupoGrupo03TabelaSUS.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRSubgrupoGrupo04TabelaSUS.xml must have an id
+FilePath : BRSubgrupoGrupo04TabelaSUS.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRSubgrupoGrupo05TabelaSUS.xml must have an id
+FilePath : BRSubgrupoGrupo05TabelaSUS.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRSubgrupoGrupo06TabelaSUS.xml must have an id
+FilePath : BRSubgrupoGrupo06TabelaSUS.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRSubgrupoGrupo07TabelaSUS.xml must have an id
+FilePath : BRSubgrupoGrupo07TabelaSUS.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRSubgrupoGrupo08TabelaSUS.xml must have an id
+FilePath : BRSubgrupoGrupo08TabelaSUS.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRSubgrupoTabelaSUS-1.1.0.xml must have an id
+FilePath : BRSubgrupoTabelaSUS-1.1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTerminologiaPatogeno-1.0.xml must have an id
+FilePath : BRTerminologiaPatogeno-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTerminologiaPatogeno.xml must have an id
+FilePath : BRTerminologiaPatogeno.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTerminologiaSuspeitaDiagnostica-1.0.xml must have an id
+FilePath : BRTerminologiaSuspeitaDiagnostica-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTerminologiaSuspeitaDiagnostica.xml must have an id
+FilePath : BRTerminologiaSuspeitaDiagnostica.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoAleitamentoMaterno.ValueSet.xml must have an id
+FilePath : BRTipoAleitamentoMaterno.ValueSet.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoAtestado.xml must have an id
+FilePath : BRTipoAtestado.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoCampanha.xml must have an id
+FilePath : BRTipoCampanha.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoDocumento-1.0.xml must have an id
+FilePath : BRTipoDocumento-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoDocumentoIndividuo-1.0.xml must have an id
+FilePath : BRTipoDocumentoIndividuo-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoEstabelecimentoSaude-1.0.xml must have an id
+FilePath : BRTipoEstabelecimentoSaude-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoEstabelecimentoSaude.xml must have an id
+FilePath : BRTipoEstabelecimentoSaude.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoIdentificador.xml must have an id
+FilePath : BRTipoIdentificador.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoIdentificadorProcedimento-1.0.xml must have an id
+FilePath : BRTipoIdentificadorProcedimento-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoLogradouro-1.0.xml must have an id
+FilePath : BRTipoLogradouro-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoLogradouro.xml must have an id
+FilePath : BRTipoLogradouro.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoObservacao (2).xml must have an id
+FilePath : BRTipoObservacao (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoObservacao.xml must have an id
+FilePath : BRTipoObservacao.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoParticipante (2).xml must have an id
+FilePath : BRTipoParticipante (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoParticipante.xml must have an id
+FilePath : BRTipoParticipante.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoResultadoAVIDEZ.xml must have an id
+FilePath : BRTipoResultadoAVIDEZ.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoResultadoDTNT.xml must have an id
+FilePath : BRTipoResultadoDTNT.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoResultadoHISPT.xml must have an id
+FilePath : BRTipoResultadoHISPT.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoResultadoPRAU.xml must have an id
+FilePath : BRTipoResultadoPRAU.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoResultadoPSNG.xml must have an id
+FilePath : BRTipoResultadoPSNG.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoResultadoRGNR.xml must have an id
+FilePath : BRTipoResultadoRGNR.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoResultadoRSBAC.xml must have an id
+FilePath : BRTipoResultadoRSBAC.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTipoResultadoRSCUL.xml must have an id
+FilePath : BRTipoResultadoRSCUL.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTurno.Extension.xml must have an id
+FilePath : BRTurno.Extension.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRTurno.xml must have an id
+FilePath : BRTurno.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRUnidadeConsumo.xml must have an id
+FilePath : BRUnidadeConsumo.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRUnidadeFarmaceutica-1.0.xml must have an id
+FilePath : BRUnidadeFarmaceutica-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRUnidadeFarmaceutica.xml must have an id
+FilePath : BRUnidadeFarmaceutica.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRUnidadeFederativa-1.0.xml must have an id
+FilePath : BRUnidadeFederativa-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRUnidadeMedida.xml must have an id
+FilePath : BRUnidadeMedida.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRUnidadeMedidaMedicamento.xml must have an id
+FilePath : BRUnidadeMedidaMedicamento.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRUnidadeTempo.xml must have an id
+FilePath : BRUnidadeTempo.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRValorMedicamento.xml must have an id
+FilePath : BRValorMedicamento.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRViaAdministracao-1.0.xml must have an id
+FilePath : BRViaAdministracao-1.0.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource BRViaAdministracao.xml must have an id
+FilePath : BRViaAdministracao.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource codesystem_ampp_anvisa.xml must have an id
+FilePath : codesystem_ampp_anvisa.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource codesystem_ampp_obm.xml must have an id
+FilePath : codesystem_ampp_obm.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource codesystem_vmp_catmat.xml must have an id
+FilePath : codesystem_vmp_catmat.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource codesystem_vmp_obm.xml must have an id
+FilePath : codesystem_vmp_obm.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource COVID19VaccineProphylaxis (2).xml must have an id
+FilePath : COVID19VaccineProphylaxis (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource COVID19VaccineProphylaxis.xml must have an id
+FilePath : COVID19VaccineProphylaxis.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource DiseaseAgentTargeted (2).xml must have an id
+FilePath : DiseaseAgentTargeted (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource DiseaseAgentTargeted.xml must have an id
+FilePath : DiseaseAgentTargeted.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource RNDSMedicamentoDispensado.StructureDefinition.xml must have an id
+FilePath : RNDSMedicamentoDispensado.StructureDefinition.xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource VaccineMedicinalProduct (2).xml must have an id
+FilePath : VaccineMedicinalProduct (2).xml
+Id       : FHIRPATH
+Severity : Error
+
+Message  : Resource VaccineMedicinalProduct.xml must have an id
+FilePath : VaccineMedicinalProduct.xml
+Id       : FHIRPATH
+Severity : Error

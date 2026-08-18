@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="br-core-organization" />
+  <url value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+  <name value="BRCoreOrganization" />
+  <status value="active" />
+  <description value="Este perfil representa um agrupamento formal ou informal reconhecido de pessoas ou organizações com o propósito de alcançar alguma forma de ação coletiva. Inclui empresas, instituições, corporações, departamentos, grupos comunitários, grupos de práticas de saúde, planos de saúde, empresas fabricantes de produtos medicinais, entre outros." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Organization" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Organization" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Organization.id">
+      <path value="Organization.id" />
+      <short value="ID lógico deste artefato" />
+      <definition value="ID lógico deste artefato" />
+    </element>
+    <element id="Organization.meta">
+      <path value="Organization.meta" />
+      <short value="Metadados sobre o recurso" />
+      <definition value="Metadados sobre o recurso" />
+    </element>
+    <element id="Organization.implicitRules">
+      <path value="Organization.implicitRules" />
+      <short value="Conjunto de regras sob as quais este conteúdo foi criado" />
+      <definition value="Conjunto de regras sob as quais este conteúdo foi criado" />
+    </element>
+    <element id="Organization.language">
+      <path value="Organization.language" />
+      <short value="Linguagem do recurso" />
+      <definition value="A linguagem humana natural do recurso" />
+    </element>
+    <element id="Organization.text">
+      <path value="Organization.text" />
+      <short value="Texto narrativo" />
+      <definition value="Um texto narrativo resumindo as informações do recurso" />
+    </element>
+    <element id="Organization.contained">
+      <path value="Organization.contained" />
+      <short value="Recursos contidos" />
+      <definition value="Recursos contidos no recurso" />
+    </element>
+    <element id="Organization.extension">
+      <path value="Organization.extension" />
+      <short value="Extenções adicionais" />
+      <definition value="Conteúdo adicional definido por implementações" />
+    </element>
+    <element id="Organization.modifierExtension">
+      <path value="Organization.modifierExtension" />
+      <short value="Extensões adicionais" />
+      <definition value="Extensões que não podem ser ignoradas" />
+    </element>
+    <element id="Organization.identifier">
+      <path value="Organization.identifier" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="system" />
+        </discriminator>
+        <description value="Identificadores nacionais do estabelecimento" />
+        <rules value="open" />
+      </slicing>
+      <short value="Nome da organização nacional" />
+      <definition value="Identifica esta organização em vários sistemas" />
+      <min value="1" />
+    </element>
+    <element id="Organization.identifier:cnes">
+      <path value="Organization.identifier" />
+      <sliceName value="cnes" />
+      <short value="Identificador do estabelecimento" />
+      <definition value="Identificador do estabelecimento" />
+      <max value="1" />
+    </element>
+    <element id="Organization.identifier:cnes.id">
+      <path value="Organization.identifier.id" />
+      <short value="Id lógico do identificador do estabelecimento" />
+      <definition value="Id lógico do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnes.extension">
+      <path value="Organization.identifier.extension" />
+      <short value="Extensões do identificador do estabelecimento" />
+      <definition value="Extensões incluídas no identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnes.use">
+      <path value="Organization.identifier.use" />
+      <short value="Uso do identificador do estabelecimento" />
+      <definition value="usual: identificador usual do estabelecimento. official: identificador oficial do estabelecimento. temp: identificador temporário do estabelecimento. secondary: identificador secundário do estabelecimento." />
+      <fixedCode value="official" />
+    </element>
+    <element id="Organization.identifier:cnes.type">
+      <path value="Organization.identifier.type" />
+      <short value="Tipo do identificador do estabelecimento" />
+      <definition value="Código que representa o tipo do identificador do estabelecimento" />
+      <binding>
+        <strength value="required" />
+        <description value="Tipo do identificador do estabelecimento" />
+      </binding>
+    </element>
+    <element id="Organization.identifier:cnes.type.id">
+      <path value="Organization.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do estabelecimento" />
+      <definition value="Id lógico do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnes.type.extension">
+      <path value="Organization.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do estabelecimento" />
+      <definition value="Extensões incluídas no tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnes.type.coding">
+      <path value="Organization.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do estabelecimento" />
+      <definition value="Codificação que representa o tipo do identificador do estabelecimento" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Organization.identifier:cnes.type.coding.id">
+      <path value="Organization.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Id lógico da codificação do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnes.type.coding.extension">
+      <path value="Organization.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnes.type.coding.system">
+      <path value="Organization.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do estabelecimento" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Organization.identifier:cnes.type.coding.version">
+      <path value="Organization.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Versão da codificação do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnes.type.coding.code">
+      <path value="Organization.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Código que representa a codificação do tipo do identificador do estabelecimento" />
+      <min value="1" />
+      <fixedCode value="PPN" />
+    </element>
+    <element id="Organization.identifier:cnes.type.coding.display">
+      <path value="Organization.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Texto que representa a codificação do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnes.type.coding.userSelected">
+      <path value="Organization.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Indica se a codificação do tipo do identificador do estabelecimento foi selecionada pelo usuário" />
+    </element>
+    <element id="Organization.identifier:cnes.type.text">
+      <path value="Organization.identifier.type.text" />
+      <short value="Texto do tipo do identificador do estabelecimento" />
+      <definition value="Texto que representa o tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnes.system">
+      <path value="Organization.identifier.system" />
+      <short value="Sistema do identificador do estabelecimento" />
+      <definition value="Sistema que identifica o tipo do identificador do estabelecimento" />
+      <min value="1" />
+      <fixedUri value="https://saude.gov.br/sid/cnes" />
+    </element>
+    <element id="Organization.identifier:cnes.value">
+      <path value="Organization.identifier.value" />
+      <short value="Valor do identificador do estabelecimento" />
+      <definition value="Valor do identificador do estabelecimento" />
+      <min value="1" />
+    </element>
+    <element id="Organization.identifier:cnes.period">
+      <path value="Organization.identifier.period" />
+      <short value="Período de uso do identificador do estabelecimento" />
+      <definition value="Período de tempo durante o qual o identificador do estabelecimento foi utilizado" />
+    </element>
+    <element id="Organization.identifier:cnes.assigner">
+      <path value="Organization.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do estabelecimento" />
+      <definition value="Entidade que atribuiu o identificador do estabelecimento" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Organization.identifier:cnes.assigner.display">
+      <path value="Organization.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cpf">
+      <path value="Organization.identifier" />
+      <sliceName value="cpf" />
+      <short value="Identificador do estabelecimento" />
+      <definition value="Identificador do estabelecimento" />
+      <max value="1" />
+    </element>
+    <element id="Organization.identifier:cpf.id">
+      <path value="Organization.identifier.id" />
+      <short value="Id lógico do identificador do estabelecimento" />
+      <definition value="Id lógico do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cpf.extension">
+      <path value="Organization.identifier.extension" />
+      <short value="Extensões do identificador do estabelecimento" />
+      <definition value="Extensões incluídas no identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cpf.use">
+      <path value="Organization.identifier.use" />
+      <short value="Uso do identificador do estabelecimento" />
+      <definition value="usual: identificador usual do estabelecimento. official: identificador oficial do estabelecimento. temp: identificador temporário do estabelecimento. secondary: identificador secundário do estabelecimento." />
+      <fixedCode value="official" />
+    </element>
+    <element id="Organization.identifier:cpf.type">
+      <path value="Organization.identifier.type" />
+      <short value="Tipo do identificador do estabelecimento" />
+      <definition value="Código que representa o tipo do identificador do estabelecimento" />
+      <binding>
+        <strength value="required" />
+        <description value="Tipo do identificador do estabelecimento" />
+      </binding>
+    </element>
+    <element id="Organization.identifier:cpf.type.id">
+      <path value="Organization.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do estabelecimento" />
+      <definition value="Id lógico do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cpf.type.extension">
+      <path value="Organization.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do estabelecimento" />
+      <definition value="Extensões incluídas no tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cpf.type.coding">
+      <path value="Organization.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do estabelecimento" />
+      <definition value="Codificação que representa o tipo do identificador do estabelecimento" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Organization.identifier:cpf.type.coding.id">
+      <path value="Organization.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Id lógico da codificação do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cpf.type.coding.extension">
+      <path value="Organization.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cpf.type.coding.system">
+      <path value="Organization.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do estabelecimento" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Organization.identifier:cpf.type.coding.version">
+      <path value="Organization.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Versão da codificação do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cpf.type.coding.code">
+      <path value="Organization.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Código que representa a codificação do tipo do identificador do estabelecimento" />
+      <min value="1" />
+    </element>
+    <element id="Organization.identifier:cpf.type.coding.display">
+      <path value="Organization.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Texto que representa a codificação do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cpf.type.coding.userSelected">
+      <path value="Organization.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Indica se a codificação do tipo do identificador do estabelecimento foi selecionada pelo usuário" />
+    </element>
+    <element id="Organization.identifier:cpf.type.text">
+      <path value="Organization.identifier.type.text" />
+      <short value="Texto do tipo do identificador do estabelecimento" />
+      <definition value="Texto que representa o tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cpf.system">
+      <path value="Organization.identifier.system" />
+      <short value="Sistema do identificador do estabelecimento" />
+      <definition value="Sistema que identifica o tipo do identificador do estabelecimento" />
+      <min value="1" />
+      <fixedUri value="https://saude.gov.br/sid/cpf" />
+    </element>
+    <element id="Organization.identifier:cpf.value">
+      <path value="Organization.identifier.value" />
+      <short value="Valor do identificador do estabelecimento" />
+      <definition value="Valor do identificador do estabelecimento" />
+      <min value="1" />
+    </element>
+    <element id="Organization.identifier:cpf.period">
+      <path value="Organization.identifier.period" />
+      <short value="Período de uso do identificador do estabelecimento" />
+      <definition value="Período de tempo durante o qual o identificador do estabelecimento foi utilizado" />
+    </element>
+    <element id="Organization.identifier:cpf.assigner">
+      <path value="Organization.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do estabelecimento" />
+      <definition value="Entidade que atribuiu o identificador do estabelecimento" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Organization.identifier:cpf.assigner.display">
+      <path value="Organization.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnpj">
+      <path value="Organization.identifier" />
+      <sliceName value="cnpj" />
+      <short value="Identificador do estabelecimento" />
+      <definition value="Identificador do estabelecimento" />
+      <max value="1" />
+    </element>
+    <element id="Organization.identifier:cnpj.id">
+      <path value="Organization.identifier.id" />
+      <short value="Id lógico do identificador do estabelecimento" />
+      <definition value="Id lógico do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnpj.extension">
+      <path value="Organization.identifier.extension" />
+      <short value="Extensões do identificador do estabelecimento" />
+      <definition value="Extensões incluídas no identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnpj.use">
+      <path value="Organization.identifier.use" />
+      <short value="Uso do identificador do estabelecimento" />
+      <definition value="usual: identificador usual do estabelecimento. official: identificador oficial do estabelecimento. temp: identificador temporário do estabelecimento. secondary: identificador secundário do estabelecimento." />
+      <fixedCode value="official" />
+    </element>
+    <element id="Organization.identifier:cnpj.type">
+      <path value="Organization.identifier.type" />
+      <short value="Tipo do identificador do estabelecimento" />
+      <definition value="Código que representa o tipo do identificador do estabelecimento" />
+      <binding>
+        <strength value="required" />
+        <description value="Tipo do identificador do estabelecimento" />
+      </binding>
+    </element>
+    <element id="Organization.identifier:cnpj.type.id">
+      <path value="Organization.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do estabelecimento" />
+      <definition value="Id lógico do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnpj.type.extension">
+      <path value="Organization.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do estabelecimento" />
+      <definition value="Extensões incluídas no tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnpj.type.coding">
+      <path value="Organization.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do estabelecimento" />
+      <definition value="Codificação que representa o tipo do identificador do estabelecimento" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Organization.identifier:cnpj.type.coding.id">
+      <path value="Organization.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Id lógico da codificação do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnpj.type.coding.extension">
+      <path value="Organization.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnpj.type.coding.system">
+      <path value="Organization.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do estabelecimento" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Organization.identifier:cnpj.type.coding.version">
+      <path value="Organization.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Versão da codificação do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnpj.type.coding.code">
+      <path value="Organization.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Código que representa a codificação do tipo do identificador do estabelecimento" />
+      <min value="1" />
+    </element>
+    <element id="Organization.identifier:cnpj.type.coding.display">
+      <path value="Organization.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Texto que representa a codificação do tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnpj.type.coding.userSelected">
+      <path value="Organization.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do estabelecimento" />
+      <definition value="Indica se a codificação do tipo do identificador do estabelecimento foi selecionada pelo usuário" />
+    </element>
+    <element id="Organization.identifier:cnpj.type.text">
+      <path value="Organization.identifier.type.text" />
+      <short value="Texto do tipo do identificador do estabelecimento" />
+      <definition value="Texto que representa o tipo do identificador do estabelecimento" />
+    </element>
+    <element id="Organization.identifier:cnpj.system">
+      <path value="Organization.identifier.system" />
+      <short value="Sistema do identificador do estabelecimento" />
+      <definition value="Sistema que identifica o tipo do identificador do estabelecimento" />
+      <min value="1" />
+      <fixedUri value="https://saude.gov.br/sid/cnpj" />
+    </element>
+    <element id="Organization.identifier:cnpj.value">
+      <path value="Organization.identifier.value" />
+      <short value="Valor do identificador do estabelecimento" />
+      <definition value="Valor do identificador do estabelecimento" />
+      <min value="1" />
+    </element>
+    <element id="Organization.identifier:cnpj.period">
+      <path value="Organization.identifier.period" />
+      <short value="Período de uso do identificador do estabelecimento" />
+      <definition value="Período de tempo durante o qual o identificador do estabelecimento foi utilizado" />
+    </element>
+    <element id="Organization.identifier:cnpj.assigner">
+      <path value="Organization.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do estabelecimento" />
+      <definition value="Entidade que atribuiu o identificador do estabelecimento" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Organization.identifier:cnpj.assigner.display">
+      <path value="Organization.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do estabelecimento" />
+    </element>
+    <element id="Organization.active">
+      <path value="Organization.active" />
+      <short value="Estabelecimento de Saúde ainda está em ativo." />
+      <definition value="Se o Estabelecimento de Saúde ainda está em ativo." />
+    </element>
+    <element id="Organization.type">
+      <path value="Organization.type" />
+      <short value="Tipo do Estabelecimento de saúde" />
+      <definition value="Classificação do Estabelecimento de Saúde de acordo com um conjunto de dimensões." />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Organization.name">
+      <path value="Organization.name" />
+      <short value="Nome usado para a organização" />
+      <definition value="Nome do Estabelecimento de saúde" />
+    </element>
+    <element id="Organization.alias">
+      <path value="Organization.alias" />
+      <short value="Nome Empresarial" />
+      <definition value="Firma ou denominação adotada para o exercício da instituição/entidade/órgão/empresa." />
+    </element>
+    <element id="Organization.telecom">
+      <path value="Organization.telecom" />
+      <short value="Meio de contato" />
+      <definition value="Informações do(s) meio(s) de contato com o Estabelecimento de Saúde." />
+    </element>
+    <element id="Organization.address">
+      <path value="Organization.address" />
+      <short value="Dados de Endereçamento" />
+      <definition value="Dados do endereço onde o Estabelecimento de Saúde é localizado." />
+    </element>
+    <element id="Organization.partOf">
+      <path value="Organization.partOf" />
+      <short value="CPF/CNPJ do Estabelecimento/Mantenedora" />
+      <definition value="Pessoa Física (CPF) ou Jurídica (CNPJ) proprietária do Estabelecimento de Saúde." />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Organization.contact">
+      <path value="Organization.contact" />
+      <short value="Contato" />
+      <definition value="Contato para a organização para uma determinada finalidade" />
+    </element>
+    <element id="Organization.contact.purpose">
+      <path value="Organization.contact.purpose" />
+      <short value="Tipo de Contato" />
+      <definition value="O tipo de contato Vinculação: ContactEntityType ( extensible ): A finalidade para a qual você entraria em contato com uma parte de contato." />
+    </element>
+    <element id="Organization.contact.name">
+      <path value="Organization.contact.name" />
+      <short value="Nome Associado ao contato" />
+      <definition value="Um nome associado ao contato" />
+    </element>
+    <element id="Organization.contact.telecom">
+      <path value="Organization.contact.telecom" />
+      <short value="Meio de Contato" />
+      <definition value="Contato, Informação de Contato, Telefone, E-Mail, Correio Eletrônico, Celular, Recado" />
+    </element>
+    <element id="Organization.contact.address">
+      <path value="Organization.contact.address" />
+      <short value="Endereço para contato" />
+      <definition value="Dados do endereço para contato." />
+    </element>
+    <element id="Organization.endpoint">
+      <path value="Organization.endpoint" />
+      <short value="APIs que disponibilizam acesso aos serviços da organização" />
+      <definition value="APIs que disponibilizam acesso aos serviços da organização" />
+    </element>
+  </differential>
+</StructureDefinition>

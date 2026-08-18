@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSystem xmlns="http://hl7.org/fhir">
+  <meta>
+    <lastUpdated value="2021-03-10T16:53:20" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRTipoCampanha" />
+  <version value="1.0" />
+  <name value="Nome do tipo de campanha de vacinação" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2021-03-10T16:53:20" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description value="Apresenta o nome do tipo de campanha de vacinação." />
+  <content value="complete" />
+  <concept>
+    <code value="COVID-19" />
+    <display value="Campanha Covid-19" />
+  </concept>
+  <concept>
+    <code value="SARAMPO" />
+    <display value="Campanha Sarampo" />
+  </concept>
+  <concept>
+    <code value="POLIO" />
+    <display value="Campanha Poliomielite" />
+  </concept>
+  <concept>
+    <code value="INFLUENZA" />
+    <display value="Campanha Influenza" />
+  </concept>
+  <concept>
+    <code value="MULTI" />
+    <display value="Campanha Multivacinação" />
+  </concept>
+</CodeSystem>

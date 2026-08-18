@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="ImunobiologicoUECOVID19VaccineProphylaxis"/>
+  <url value="http://www.saude.gov.br/fhir/r4/ConceptMap/BRImunobiologicoUECOVID19VaccineProphylaxis"/>
+  <version value="01.00"/>
+  <name value="Mapeamento dos códigos do Imunobiologico para os códigos do COVID-19 vaccine or prophylaxis"/>
+  <status value="draft"/>
+  <experimental value="false"/>
+  <date value="2022-03-17"/>
+  <publisher value="Ministério da Saúde"/>
+  <description value="Um mapeamento dos códigos entre Imunobiológicos e COVID-19 vaccine or prophylaxis"/>
+  <sourceUri value="http://www.saude.gov.br/fhir/r4/ValueSet/BRImunobiologicoUE"/>
+  <group>
+    <source value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <target value="http://www.whocc.no/atc"/>
+    <element>
+      <code value="85"/>
+      <display value="COVID-19 ASTRAZENECA/FIOCRUZ - COVISHIELD"/>
+      <target>
+        <code value="J07BX03"/>
+        <display value="covid-19 vaccines"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <target value="http://www.whocc.no/atc"/>
+    <element>
+      <code value="86"/>
+      <display value="COVID-19 SINOVAC/BUTANTAN - CORONAVAC"/>
+      <target>
+        <code value="J07BX03"/>
+        <display value="covid-19 vaccines"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <target value="http://www.whocc.no/atc"/>
+    <element>
+      <code value="87"/>
+      <display value="COVID-19 PFIZER - COMIRNATY"/>
+      <target>
+        <code value="J07BX03"/>
+        <display value="covid-19 vaccines"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <target value="http://www.whocc.no/atc"/>
+    <element>
+      <code value="88"/>
+      <display value="COVID-19 JANSSEN - Ad26.COV2.S"/>
+      <target>
+        <code value="J07BX03"/>
+        <display value="covid-19 vaccines"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <target value="http://www.whocc.no/atc"/>
+    <element>
+      <code value="89"/>
+      <display value="COVID-19 ASTRAZENECA - ChAdOx1-S"/>
+      <target>
+        <code value="J07BX03"/>
+        <display value="covid-19 vaccines"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <target value="http://www.whocc.no/atc"/>
+    <element>
+      <code value="98"/>
+      <display value="COVID-19 SINOVAC - CORONAVAC"/>
+      <target>
+        <code value="J07BX03"/>
+        <display value="covid-19 vaccines"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <target value="http://www.whocc.no/atc"/>
+    <element>
+      <code value="99"/>
+      <display value="COVID-19 PEDIÁTRICA - PFIZER COMIRNATY"/>
+      <target>
+        <code value="J07BX03"/>
+        <display value="covid-19 vaccines"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>

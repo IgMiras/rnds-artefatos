@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSystem xmlns="http://hl7.org/fhir">
+  <meta>
+    <lastUpdated value="2022-03-24T14:38:40.0457007+00:00" />
+  </meta>
+  <language value="en" />
+  <url value="http://www.saude.gov.br/fhir/r4/CodeSystem/COVID19VaccineProphylaxis" />
+  <version value="1.0" />
+  <name value="COVID-19 Vaccine or Prophylaxis" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2022-03-24T14:38:40.0457007+00:00" />
+  <publisher value="Ministério da Saúde do Brasil - eHealth Network" />
+  <description value="CodeSystem implementation of Value sets for EU Digital COVID Certificates." />
+  <content value="complete" />
+  <concept>
+    <code value="1119305005" />
+    <display value="SARS-CoV-2 antigen vaccine" />
+  </concept>
+  <concept>
+    <code value="1119349007" />
+    <display value="SARS-CoV-2 mRNA vaccine" />
+  </concept>
+  <concept>
+    <code value="J07BX03" />
+    <display value="covid-19 vaccines" />
+  </concept>
+  <concept>
+    <code value="1162643001" />
+    <display value="SARS-CoV-2 recombinant spike protein antigen vaccine" />
+  </concept>
+  <concept>
+    <code value="1157024006" />
+    <display value="Inactivated whole SARS-CoV-2 antigen vaccine" />
+  </concept>
+  <concept>
+    <code value="29061000087103" />
+    <display value="COVID-19 non-replicating viral vector vaccine" />
+  </concept>
+</CodeSystem>

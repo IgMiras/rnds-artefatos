@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValueSet xmlns="http://hl7.org/fhir">
+  <meta>
+    <lastUpdated value="2021-03-10T17:03:15" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/ValueSet/BRNomeCampanhaPNI-1.0" />
+  <version value="1.0" />
+  <name value="Nome da campanha de vacinação" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2021-03-10T17:03:15" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description value="ValueSet utilizado para identificar o nome do tipo de campanha vacinal." />
+  <immutable value="false" />
+  <compose>
+    <include>
+      <system value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRTipoCampanha" />
+      <version value="*" />
+    </include>
+  </compose>
+</ValueSet>

@@ -1,0 +1,972 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-sumarioalta",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-sumarioalta",
+  "name": "br-core-sumarioalta",
+  "title": "br-core-sumarioalta",
+  "status": "active",
+  "description": "Este perfil representa as restrições aplicadas ao recurso br-core-sumarioalta",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Composition",
+  "baseDefinition": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-composition",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Composition.category",
+        "path": "Composition.category",
+        "max": "1"
+      },
+      {
+        "id": "Composition.section",
+        "path": "Composition.section",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "profile",
+              "path": "code"
+            }
+          ],
+          "rules": "open"
+        },
+        "short": "Seções do sumário de alta",
+        "definition": "Seções do sumário de alta",
+        "min": 7,
+        "max": "7"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao",
+        "path": "Composition.section",
+        "sliceName": "diagnosticosAdmissao",
+        "short": "Seção de Resumo de Diagnósticos Admissão",
+        "definition": "Seção de Resumo de Diagnósticos Admissão",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.id",
+        "path": "Composition.section.id",
+        "short": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.title",
+        "path": "Composition.section.title",
+        "short": "Título da seção - Fixo em 'Diagnósticos Admissão'",
+        "definition": "Título da seção - Fixo em 'Diagnósticos Admissão'"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.code",
+        "path": "Composition.section.code",
+        "short": "Classificação da seção da Composition/Document",
+        "definition": "Classificação da seção da Composition/Document"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.code.id",
+        "path": "Composition.section.code.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.code.extension",
+        "path": "Composition.section.code.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.code.coding",
+        "path": "Composition.section.code.coding",
+        "short": "Código definido por uma terminologia",
+        "definition": "Código definido por uma terminologia"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.code.coding.id",
+        "path": "Composition.section.code.coding.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.code.coding.extension",
+        "path": "Composition.section.code.coding.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.code.coding.system",
+        "path": "Composition.section.code.coding.system",
+        "short": "Identificador da terminologia",
+        "definition": "Identidade da terminologia",
+        "patternUri": "https://loinc.org/"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.code.coding.version",
+        "path": "Composition.section.code.coding.version",
+        "short": "Versão da terminologia - se relevante",
+        "definition": "Versão da terminologia  - se relevante"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.code.coding.code",
+        "path": "Composition.section.code.coding.code",
+        "short": "Código do conceito na sintaxe definida pela terminologia",
+        "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
+        "patternCode": "42347-5"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.code.coding.display",
+        "path": "Composition.section.code.coding.display",
+        "short": "Descrição conforme definido pela terminologia",
+        "definition": "Representação definida pela terminologia",
+        "patternString": "Admission Diagnosis"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.code.coding.userSelected",
+        "path": "Composition.section.code.coding.userSelected",
+        "short": "Se esta codificação foi escolhida diretamente pelo usuário",
+        "definition": "Se esta codificação foi escolhida diretamente pelo usuário"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.code.text",
+        "path": "Composition.section.code.text",
+        "short": "Representação em texto do conceito",
+        "definition": "Representação em texto do conceito"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.author",
+        "path": "Composition.section.author",
+        "short": "Quem/o quê foi o autor desta seção",
+        "definition": "Quem/o quê foi o autor desta seção"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.focus",
+        "path": "Composition.section.focus",
+        "short": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition",
+        "definition": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.text",
+        "path": "Composition.section.text",
+        "short": "Resumo de texto da seção",
+        "definition": "Resumo de texto da seção"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.orderedBy",
+        "path": "Composition.section.orderedBy",
+        "short": "Ordem dos elementos na seção 'entry'",
+        "definition": "Ordem dos elementos na seção 'entry'"
+      },
+      {
+        "id": "Composition.section:diagnosticosAdmissao.entry",
+        "path": "Composition.section.entry",
+        "short": "Medicamentos relevantes para o sumário internacional do paciente",
+        "definition": "Medicamentos relevantes para o sumário internacional do paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias",
+        "path": "Composition.section",
+        "sliceName": "alergiasIntolerancias",
+        "short": "Seção de Resumo de Diagnósticos Admissão",
+        "definition": "Seção de Resumo de Diagnósticos Admissão",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.id",
+        "path": "Composition.section.id",
+        "short": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.title",
+        "path": "Composition.section.title",
+        "short": "Título da seção - Fixo em 'Diagnósticos Admissão'",
+        "definition": "Título da seção - Fixo em 'Diagnósticos Admissão'"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.code",
+        "path": "Composition.section.code",
+        "short": "Classificação da seção da Composition/Document",
+        "definition": "Classificação da seção da Composition/Document"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.code.id",
+        "path": "Composition.section.code.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.code.extension",
+        "path": "Composition.section.code.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.code.coding",
+        "path": "Composition.section.code.coding",
+        "short": "Código definido por uma terminologia",
+        "definition": "Código definido por uma terminologia"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.code.coding.id",
+        "path": "Composition.section.code.coding.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.code.coding.extension",
+        "path": "Composition.section.code.coding.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.code.coding.system",
+        "path": "Composition.section.code.coding.system",
+        "short": "Identificador da terminologia",
+        "definition": "Identidade da terminologia",
+        "patternUri": "https://loinc.org/"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.code.coding.version",
+        "path": "Composition.section.code.coding.version",
+        "short": "Versão da terminologia - se relevante",
+        "definition": "Versão da terminologia  - se relevante"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.code.coding.code",
+        "path": "Composition.section.code.coding.code",
+        "short": "Código do conceito na sintaxe definida pela terminologia",
+        "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
+        "patternCode": "48765-2"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.code.coding.display",
+        "path": "Composition.section.code.coding.display",
+        "short": "Descrição conforme definido pela terminologia",
+        "definition": "Representação definida pela terminologia",
+        "patternString": "Allergies and adverse reactions Document"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.code.coding.userSelected",
+        "path": "Composition.section.code.coding.userSelected",
+        "short": "Se esta codificação foi escolhida diretamente pelo usuário",
+        "definition": "Se esta codificação foi escolhida diretamente pelo usuário"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.code.text",
+        "path": "Composition.section.code.text",
+        "short": "Representação em texto do conceito",
+        "definition": "Representação em texto do conceito"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.author",
+        "path": "Composition.section.author",
+        "short": "Quem/o quê foi o autor desta seção",
+        "definition": "Quem/o quê foi o autor desta seção"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.focus",
+        "path": "Composition.section.focus",
+        "short": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition",
+        "definition": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.text",
+        "path": "Composition.section.text",
+        "short": "Resumo de texto da seção",
+        "definition": "Resumo de texto da seção"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.orderedBy",
+        "path": "Composition.section.orderedBy",
+        "short": "Ordem dos elementos na seção 'entry'",
+        "definition": "Ordem dos elementos na seção 'entry'"
+      },
+      {
+        "id": "Composition.section:alergiasIntolerancias.entry",
+        "path": "Composition.section.entry",
+        "short": "Medicamentos relevantes para o sumário internacional do paciente",
+        "definition": "Medicamentos relevantes para o sumário internacional do paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-allergyintolerance"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados",
+        "path": "Composition.section",
+        "sliceName": "diagnosticosAvaliados",
+        "short": "Seção de Resumo de Diagnósticos Admissão",
+        "definition": "Seção de Resumo de Diagnósticos Admissão",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.id",
+        "path": "Composition.section.id",
+        "short": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.title",
+        "path": "Composition.section.title",
+        "short": "Título da seção - Fixo em 'Diagnósticos Admissão'",
+        "definition": "Título da seção - Fixo em 'Diagnósticos Admissão'"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.code",
+        "path": "Composition.section.code",
+        "short": "Classificação da seção da Composition/Document",
+        "definition": "Classificação da seção da Composition/Document"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.code.id",
+        "path": "Composition.section.code.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.code.extension",
+        "path": "Composition.section.code.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.code.coding",
+        "path": "Composition.section.code.coding",
+        "short": "Código definido por uma terminologia",
+        "definition": "Código definido por uma terminologia"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.code.coding.id",
+        "path": "Composition.section.code.coding.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.code.coding.extension",
+        "path": "Composition.section.code.coding.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.code.coding.system",
+        "path": "Composition.section.code.coding.system",
+        "short": "Identificador da terminologia",
+        "definition": "Identidade da terminologia",
+        "patternUri": "https://loinc.org/"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.code.coding.version",
+        "path": "Composition.section.code.coding.version",
+        "short": "Versão da terminologia - se relevante",
+        "definition": "Versão da terminologia  - se relevante"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.code.coding.code",
+        "path": "Composition.section.code.coding.code",
+        "short": "Código do conceito na sintaxe definida pela terminologia",
+        "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
+        "patternCode": "48765-2"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.code.coding.display",
+        "path": "Composition.section.code.coding.display",
+        "short": "Descrição conforme definido pela terminologia",
+        "definition": "Representação definida pela terminologia",
+        "patternString": "Problem List"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.code.coding.userSelected",
+        "path": "Composition.section.code.coding.userSelected",
+        "short": "Se esta codificação foi escolhida diretamente pelo usuário",
+        "definition": "Se esta codificação foi escolhida diretamente pelo usuário"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.code.text",
+        "path": "Composition.section.code.text",
+        "short": "Representação em texto do conceito",
+        "definition": "Representação em texto do conceito"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.author",
+        "path": "Composition.section.author",
+        "short": "Quem/o quê foi o autor desta seção",
+        "definition": "Quem/o quê foi o autor desta seção"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.focus",
+        "path": "Composition.section.focus",
+        "short": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition",
+        "definition": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.text",
+        "path": "Composition.section.text",
+        "short": "Resumo de texto da seção",
+        "definition": "Resumo de texto da seção"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.orderedBy",
+        "path": "Composition.section.orderedBy",
+        "short": "Ordem dos elementos na seção 'entry'",
+        "definition": "Ordem dos elementos na seção 'entry'"
+      },
+      {
+        "id": "Composition.section:diagnosticosAvaliados.entry",
+        "path": "Composition.section.entry",
+        "short": "Medicamentos relevantes para o sumário internacional do paciente",
+        "definition": "Medicamentos relevantes para o sumário internacional do paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados",
+        "path": "Composition.section",
+        "sliceName": "procedimentosRealizados",
+        "short": "Seção de Resumo de Diagnósticos Admissão",
+        "definition": "Seção de Resumo de Diagnósticos Admissão",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.id",
+        "path": "Composition.section.id",
+        "short": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.title",
+        "path": "Composition.section.title",
+        "short": "Título da seção - Fixo em 'Diagnósticos Admissão'",
+        "definition": "Título da seção - Fixo em 'Diagnósticos Admissão'"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.code",
+        "path": "Composition.section.code",
+        "short": "Classificação da seção da Composition/Document",
+        "definition": "Classificação da seção da Composition/Document"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.code.id",
+        "path": "Composition.section.code.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.code.extension",
+        "path": "Composition.section.code.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.code.coding",
+        "path": "Composition.section.code.coding",
+        "short": "Código definido por uma terminologia",
+        "definition": "Código definido por uma terminologia"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.code.coding.id",
+        "path": "Composition.section.code.coding.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.code.coding.extension",
+        "path": "Composition.section.code.coding.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.code.coding.system",
+        "path": "Composition.section.code.coding.system",
+        "short": "Identificador da terminologia",
+        "definition": "Identidade da terminologia",
+        "patternUri": "https://loinc.org/"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.code.coding.version",
+        "path": "Composition.section.code.coding.version",
+        "short": "Versão da terminologia - se relevante",
+        "definition": "Versão da terminologia  - se relevante"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.code.coding.code",
+        "path": "Composition.section.code.coding.code",
+        "short": "Código do conceito na sintaxe definida pela terminologia",
+        "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
+        "patternCode": "47519-4"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.code.coding.display",
+        "path": "Composition.section.code.coding.display",
+        "short": "Descrição conforme definido pela terminologia",
+        "definition": "Representação definida pela terminologia",
+        "patternString": "History of Procedures Document"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.code.coding.userSelected",
+        "path": "Composition.section.code.coding.userSelected",
+        "short": "Se esta codificação foi escolhida diretamente pelo usuário",
+        "definition": "Se esta codificação foi escolhida diretamente pelo usuário"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.code.text",
+        "path": "Composition.section.code.text",
+        "short": "Representação em texto do conceito",
+        "definition": "Representação em texto do conceito"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.author",
+        "path": "Composition.section.author",
+        "short": "Quem/o quê foi o autor desta seção",
+        "definition": "Quem/o quê foi o autor desta seção"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.focus",
+        "path": "Composition.section.focus",
+        "short": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition",
+        "definition": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.text",
+        "path": "Composition.section.text",
+        "short": "Resumo de texto da seção",
+        "definition": "Resumo de texto da seção"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.orderedBy",
+        "path": "Composition.section.orderedBy",
+        "short": "Ordem dos elementos na seção 'entry'",
+        "definition": "Ordem dos elementos na seção 'entry'"
+      },
+      {
+        "id": "Composition.section:procedimentosRealizados.entry",
+        "path": "Composition.section.entry",
+        "short": "Medicamentos relevantes para o sumário internacional do paciente",
+        "definition": "Medicamentos relevantes para o sumário internacional do paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-procedure"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.section:prescricaoAlta",
+        "path": "Composition.section",
+        "sliceName": "prescricaoAlta",
+        "short": "Seção de Resumo de Diagnósticos Admissão",
+        "definition": "Seção de Resumo de Diagnósticos Admissão",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.id",
+        "path": "Composition.section.id",
+        "short": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.title",
+        "path": "Composition.section.title",
+        "short": "Título da seção - Fixo em 'Diagnósticos Admissão'",
+        "definition": "Título da seção - Fixo em 'Diagnósticos Admissão'"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.code",
+        "path": "Composition.section.code",
+        "short": "Classificação da seção da Composition/Document",
+        "definition": "Classificação da seção da Composition/Document"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.code.id",
+        "path": "Composition.section.code.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.code.extension",
+        "path": "Composition.section.code.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.code.coding",
+        "path": "Composition.section.code.coding",
+        "short": "Código definido por uma terminologia",
+        "definition": "Código definido por uma terminologia"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.code.coding.id",
+        "path": "Composition.section.code.coding.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.code.coding.extension",
+        "path": "Composition.section.code.coding.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.code.coding.system",
+        "path": "Composition.section.code.coding.system",
+        "short": "Identificador da terminologia",
+        "definition": "Identidade da terminologia",
+        "patternUri": "https://loinc.org/"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.code.coding.version",
+        "path": "Composition.section.code.coding.version",
+        "short": "Versão da terminologia - se relevante",
+        "definition": "Versão da terminologia  - se relevante"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.code.coding.code",
+        "path": "Composition.section.code.coding.code",
+        "short": "Código do conceito na sintaxe definida pela terminologia",
+        "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
+        "patternCode": "8654-6"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.code.coding.display",
+        "path": "Composition.section.code.coding.display",
+        "short": "Descrição conforme definido pela terminologia",
+        "definition": "Representação definida pela terminologia",
+        "patternString": "Hospital discharge medications"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.code.coding.userSelected",
+        "path": "Composition.section.code.coding.userSelected",
+        "short": "Se esta codificação foi escolhida diretamente pelo usuário",
+        "definition": "Se esta codificação foi escolhida diretamente pelo usuário"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.code.text",
+        "path": "Composition.section.code.text",
+        "short": "Representação em texto do conceito",
+        "definition": "Representação em texto do conceito"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.author",
+        "path": "Composition.section.author",
+        "short": "Quem/o quê foi o autor desta seção",
+        "definition": "Quem/o quê foi o autor desta seção"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.focus",
+        "path": "Composition.section.focus",
+        "short": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition",
+        "definition": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.text",
+        "path": "Composition.section.text",
+        "short": "Resumo de texto da seção",
+        "definition": "Resumo de texto da seção"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.orderedBy",
+        "path": "Composition.section.orderedBy",
+        "short": "Ordem dos elementos na seção 'entry'",
+        "definition": "Ordem dos elementos na seção 'entry'"
+      },
+      {
+        "id": "Composition.section:prescricaoAlta.entry",
+        "path": "Composition.section.entry",
+        "short": "Medicamentos relevantes para o sumário internacional do paciente",
+        "definition": "Medicamentos relevantes para o sumário internacional do paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.section:planoCuidados",
+        "path": "Composition.section",
+        "sliceName": "planoCuidados",
+        "short": "Seção de Resumo de Diagnósticos Admissão",
+        "definition": "Seção de Resumo de Diagnósticos Admissão",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:planoCuidados.id",
+        "path": "Composition.section.id",
+        "short": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:planoCuidados.title",
+        "path": "Composition.section.title",
+        "short": "Título da seção - Fixo em 'Diagnósticos Admissão'",
+        "definition": "Título da seção - Fixo em 'Diagnósticos Admissão'"
+      },
+      {
+        "id": "Composition.section:planoCuidados.code",
+        "path": "Composition.section.code",
+        "short": "Classificação da seção da Composition/Document",
+        "definition": "Classificação da seção da Composition/Document"
+      },
+      {
+        "id": "Composition.section:planoCuidados.code.id",
+        "path": "Composition.section.code.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:planoCuidados.code.extension",
+        "path": "Composition.section.code.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:planoCuidados.code.coding",
+        "path": "Composition.section.code.coding",
+        "short": "Código definido por uma terminologia",
+        "definition": "Código definido por uma terminologia"
+      },
+      {
+        "id": "Composition.section:planoCuidados.code.coding.id",
+        "path": "Composition.section.code.coding.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:planoCuidados.code.coding.extension",
+        "path": "Composition.section.code.coding.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:planoCuidados.code.coding.system",
+        "path": "Composition.section.code.coding.system",
+        "short": "Identificador da terminologia",
+        "definition": "Identidade da terminologia",
+        "patternUri": "https://loinc.org/"
+      },
+      {
+        "id": "Composition.section:planoCuidados.code.coding.version",
+        "path": "Composition.section.code.coding.version",
+        "short": "Versão da terminologia - se relevante",
+        "definition": "Versão da terminologia  - se relevante"
+      },
+      {
+        "id": "Composition.section:planoCuidados.code.coding.code",
+        "path": "Composition.section.code.coding.code",
+        "short": "Código do conceito na sintaxe definida pela terminologia",
+        "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
+        "patternCode": "18776-5"
+      },
+      {
+        "id": "Composition.section:planoCuidados.code.coding.display",
+        "path": "Composition.section.code.coding.display",
+        "short": "Descrição conforme definido pela terminologia",
+        "definition": "Representação definida pela terminologia",
+        "patternString": "Plan of care note"
+      },
+      {
+        "id": "Composition.section:planoCuidados.code.coding.userSelected",
+        "path": "Composition.section.code.coding.userSelected",
+        "short": "Se esta codificação foi escolhida diretamente pelo usuário",
+        "definition": "Se esta codificação foi escolhida diretamente pelo usuário"
+      },
+      {
+        "id": "Composition.section:planoCuidados.code.text",
+        "path": "Composition.section.code.text",
+        "short": "Representação em texto do conceito",
+        "definition": "Representação em texto do conceito"
+      },
+      {
+        "id": "Composition.section:planoCuidados.author",
+        "path": "Composition.section.author",
+        "short": "Quem/o quê foi o autor desta seção",
+        "definition": "Quem/o quê foi o autor desta seção"
+      },
+      {
+        "id": "Composition.section:planoCuidados.focus",
+        "path": "Composition.section.focus",
+        "short": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition",
+        "definition": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition"
+      },
+      {
+        "id": "Composition.section:planoCuidados.text",
+        "path": "Composition.section.text",
+        "short": "Resumo de texto da seção",
+        "definition": "Resumo de texto da seção"
+      },
+      {
+        "id": "Composition.section:planoCuidados.orderedBy",
+        "path": "Composition.section.orderedBy",
+        "short": "Ordem dos elementos na seção 'entry'",
+        "definition": "Ordem dos elementos na seção 'entry'"
+      },
+      {
+        "id": "Composition.section:planoCuidados.entry",
+        "path": "Composition.section.entry",
+        "short": "Medicamentos relevantes para o sumário internacional do paciente",
+        "definition": "Medicamentos relevantes para o sumário internacional do paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional",
+        "path": "Composition.section",
+        "sliceName": "capacidadeFuncional",
+        "short": "Seção de Resumo de Diagnósticos Admissão",
+        "definition": "Seção de Resumo de Diagnósticos Admissão",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.id",
+        "path": "Composition.section.id",
+        "short": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.title",
+        "path": "Composition.section.title",
+        "short": "Título da seção - Fixo em 'Diagnósticos Admissão'",
+        "definition": "Título da seção - Fixo em 'Diagnósticos Admissão'"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.code",
+        "path": "Composition.section.code",
+        "short": "Classificação da seção da Composition/Document",
+        "definition": "Classificação da seção da Composition/Document"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.code.id",
+        "path": "Composition.section.code.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.code.extension",
+        "path": "Composition.section.code.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.code.coding",
+        "path": "Composition.section.code.coding",
+        "short": "Código definido por uma terminologia",
+        "definition": "Código definido por uma terminologia"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.code.coding.id",
+        "path": "Composition.section.code.coding.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.code.coding.extension",
+        "path": "Composition.section.code.coding.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.code.coding.system",
+        "path": "Composition.section.code.coding.system",
+        "short": "Identificador da terminologia",
+        "definition": "Identidade da terminologia",
+        "patternUri": "https://loinc.org/"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.code.coding.version",
+        "path": "Composition.section.code.coding.version",
+        "short": "Versão da terminologia - se relevante",
+        "definition": "Versão da terminologia  - se relevante"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.code.coding.code",
+        "path": "Composition.section.code.coding.code",
+        "short": "Código do conceito na sintaxe definida pela terminologia",
+        "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
+        "patternCode": "54522-8"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.code.coding.display",
+        "path": "Composition.section.code.coding.display",
+        "short": "Descrição conforme definido pela terminologia",
+        "definition": "Representação definida pela terminologia",
+        "patternString": "Functional status"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.code.coding.userSelected",
+        "path": "Composition.section.code.coding.userSelected",
+        "short": "Se esta codificação foi escolhida diretamente pelo usuário",
+        "definition": "Se esta codificação foi escolhida diretamente pelo usuário"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.code.text",
+        "path": "Composition.section.code.text",
+        "short": "Representação em texto do conceito",
+        "definition": "Representação em texto do conceito"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.author",
+        "path": "Composition.section.author",
+        "short": "Quem/o quê foi o autor desta seção",
+        "definition": "Quem/o quê foi o autor desta seção"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.focus",
+        "path": "Composition.section.focus",
+        "short": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition",
+        "definition": "Sobre quem/o quê é a seção, quando não é sobre o assunto da Composition"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.text",
+        "path": "Composition.section.text",
+        "short": "Resumo de texto da seção",
+        "definition": "Resumo de texto da seção"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.orderedBy",
+        "path": "Composition.section.orderedBy",
+        "short": "Ordem dos elementos na seção 'entry'",
+        "definition": "Ordem dos elementos na seção 'entry'"
+      },
+      {
+        "id": "Composition.section:capacidadeFuncional.entry",
+        "path": "Composition.section.entry",
+        "short": "Medicamentos relevantes para o sumário internacional do paciente",
+        "definition": "Medicamentos relevantes para o sumário internacional do paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-capacidadefuncional"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

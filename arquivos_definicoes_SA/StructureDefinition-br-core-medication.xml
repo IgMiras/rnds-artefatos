@@ -1,0 +1,142 @@
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="br-core-medication" />
+  <url value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medication" />
+  <name value="BRCoreMedication" />
+  <title value="br-core-medication" />
+  <status value="active" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Medication" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Medication" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Medication.id">
+      <path value="Medication.id" />
+      <short value="Referenciamento entre elemento" />
+      <definition value="ID exclusivo para referência entre elementos" />
+    </element>
+    <element id="Medication.meta">
+      <path value="Medication.meta" />
+      <short value="Metadados sobre o recurso" />
+      <definition value="Metadados adicionais sobre o recurso" />
+    </element>
+    <element id="Medication.implicitRules">
+      <path value="Medication.implicitRules" />
+      <short value="Um conjunto de regras sob as quais este conteúdo foi criado" />
+      <definition value="Um ou mais códigos que servem para identificar o tipo de recurso" />
+    </element>
+    <element id="Medication.language">
+      <path value="Medication.language" />
+      <short value="Linguagem do recurso" />
+      <definition value="A linguagem humana natural do recurso" />
+    </element>
+    <element id="Medication.text">
+      <path value="Medication.text" />
+      <short value="Resumo de texto para o recurso, para interpretação humana" />
+      <definition value="Um texto narrativo resumindo as informações do recurso" />
+    </element>
+    <element id="Medication.contained">
+      <path value="Medication.contained" />
+      <short value="Recursos contidos" />
+      <definition value="Recursos contidos no recurso" />
+    </element>
+    <element id="Medication.extension">
+      <path value="Medication.extension" />
+      <short value="Extensões adicionais" />
+      <definition value="Conteúdo adicional definido por implementações" />
+      <max value="1" />
+    </element>
+    <element id="Medication.modifierExtension">
+      <path value="Medication.modifierExtension" />
+      <short value="Extensões" />
+      <definition value="Extensões que não podem ser ignoradas" />
+    </element>
+    <element id="Medication.identifier">
+      <path value="Medication.identifier" />
+      <short value="Identificador de negócios para este medicamento" />
+      <definition value="Identificador de negócios para este medicamento" />
+    </element>
+    <element id="Medication.code">
+      <path value="Medication.code" />
+      <short value="Nome do medicamento" />
+      <definition value="Nome e terminologia do medicamento fabricado." />
+    </element>
+    <element id="Medication.status">
+      <path value="Medication.status" />
+      <short value="ativo| inativo| entrado com erro" />
+      <definition value="ativo| inativo| entrado com erro" />
+    </element>
+    <element id="Medication.manufacturer">
+      <path value="Medication.manufacturer" />
+      <short value="Organização Fabricante" />
+      <definition value="Fabricante do item" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Medication.form">
+      <path value="Medication.form" />
+      <short value="Unidade de medida do medicamento" />
+      <definition value="Unidade de medida do medicamento prescrito (ex.: comprimido, cápsula, frasco, caixa etc.)." />
+    </element>
+    <element id="Medication.amount">
+      <path value="Medication.amount" />
+      <short value="Quantidade de medicamento" />
+      <definition value="Quantidade de medicamento na embalagem" />
+    </element>
+    <element id="Medication.ingredient">
+      <path value="Medication.ingredient" />
+      <short value="Ingrediente ativo ou inativo" />
+      <definition value="Ingrediente ativo ou inativo" />
+    </element>
+    <element id="Medication.ingredient.item[x]">
+      <path value="Medication.ingredient.item[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <ordered value="false" />
+        <rules value="open" />
+      </slicing>
+      <short value="Ingrediente" />
+      <definition value="O ingrediente ou conteúdo real Vinculante: Substâncias ativas de medicamentos - IPS (preferencial): Substâncias medicamentosas SNOMED CT" />
+    </element>
+    <element id="Medication.ingredient.item[x]:itemReference">
+      <path value="Medication.ingredient.item[x]" />
+      <sliceName value="itemReference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Substance" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medication" />
+      </type>
+    </element>
+    <element id="Medication.ingredient.isActive">
+      <path value="Medication.ingredient.isActive" />
+      <short value="Ingrediente ativo" />
+      <definition value="Indicador de ingrediente ativo" />
+    </element>
+    <element id="Medication.ingredient.strength">
+      <path value="Medication.ingredient.strength" />
+      <short value="Uma proporção de dois valores de Quantidade - um numerador e um denominador" />
+      <definition value="Uma proporção de dois valores de Quantidade - um numerador e um denominador" />
+    </element>
+    <element id="Medication.batch">
+      <path value="Medication.batch" />
+      <short value="Detalhes sobre a medicação." />
+      <definition value="Informação sobre lote e validade da medicação." />
+    </element>
+    <element id="Medication.batch.lotNumber">
+      <path value="Medication.batch.lotNumber" />
+      <short value="Lote de medicamento." />
+      <definition value="RN14: Se medicamento serializado/Datamatrix - Elemento lot do XML para grupo IUM." />
+    </element>
+    <element id="Medication.batch.expirationDate">
+      <path value="Medication.batch.expirationDate" />
+      <short value="Data de validade do medicamento." />
+      <definition value="Quando o lote vai expirar" />
+    </element>
+  </differential>
+</StructureDefinition>

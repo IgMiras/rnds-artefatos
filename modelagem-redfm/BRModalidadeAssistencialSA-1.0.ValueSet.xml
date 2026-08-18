@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="9acf4006-e165-4a80-8cfd-7a2f84b1ccb2" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2020-09-20T20:21:36.18+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/ValueSet/BRModalidadeAssistencialSA-1.0" />
+  <version value="1.0" />
+  <name value="Modalidade Assistencial (Sumário de Alta)" />
+  <title value="Modalidade Assistencial (Sumário de Alta)" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2020-09-20T20:21:36.1048476+00:00" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description value="Classificação dos documentos e contatos assistenciais de acordo com as especificidades do modo, local e duração do atendimento. Este conjunto de valores limita àqueles aplicáveis ao Sumário de Alta." />
+  <immutable value="false" />
+  <compose>
+    <include>
+      <system value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRModalidadeAssistencial" />
+      <version value="*" />
+      <concept>
+        <code value="02" />
+      </concept>
+      <concept>
+        <code value="03" />
+      </concept>
+      <concept>
+        <code value="04" />
+      </concept>
+      <concept>
+        <code value="05" />
+      </concept>
+      <concept>
+        <code value="06" />
+      </concept>
+    </include>
+  </compose>
+</ValueSet>

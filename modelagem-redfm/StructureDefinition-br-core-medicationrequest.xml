@@ -1,0 +1,563 @@
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="br-core-medicationrequest" />
+  <url value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest" />
+  <name value="BRCoreMedicationRequest" />
+  <title value="br-core-medicationrequest" />
+  <status value="active" />
+  <description value="Este perfil restringe a representação de uma requisição de medicamento relacionada ao paciente" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="MedicationRequest" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/MedicationRequest" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="MedicationRequest.id">
+      <path value="MedicationRequest.id" />
+      <short value="Identificador lógico deste artefato" />
+      <definition value="Identificador lógico deste artefato" />
+    </element>
+    <element id="MedicationRequest.meta">
+      <path value="MedicationRequest.meta" />
+      <short value="Metadados sobre o recurso" />
+      <definition value="Metadados sobre o recurso" />
+    </element>
+    <element id="MedicationRequest.implicitRules">
+      <path value="MedicationRequest.implicitRules" />
+      <short value="Conjunto de regras sob as quais este conteúdo foi criado" />
+      <definition value="Conjunto de regras sob as quais este conteúdo foi criado" />
+    </element>
+    <element id="MedicationRequest.language">
+      <path value="MedicationRequest.language" />
+      <short value="Idioma do conteúdo do recurso" />
+      <definition value="Idioma do conteúdo do recurso" />
+    </element>
+    <element id="MedicationRequest.text">
+      <path value="MedicationRequest.text" />
+      <short value="Resumo do texto do recurso em linguagem natural" />
+      <definition value="Resumo do texto do recurso em linguagem natural" />
+    </element>
+    <element id="MedicationRequest.contained">
+      <path value="MedicationRequest.contained" />
+      <short value="Recursos contidos neste artefato" />
+      <definition value="Recursos contidos neste artefato" />
+    </element>
+    <element id="MedicationRequest.extension">
+      <path value="MedicationRequest.extension" />
+      <short value="Conteúdo adicional definido por implementações" />
+      <definition value="Conteúdo adicional definido por implementações" />
+    </element>
+    <element id="MedicationRequest.modifierExtension">
+      <path value="MedicationRequest.modifierExtension" />
+      <short value="Extensão que não pode ser ignorada" />
+      <definition value="Extensão que não pode ser ignorada" />
+    </element>
+    <element id="MedicationRequest.identifier">
+      <path value="MedicationRequest.identifier" />
+      <short value="Identificadores externos para este pedido" />
+      <definition value="Identificadores externos para este pedido" />
+    </element>
+    <element id="MedicationRequest.status">
+      <path value="MedicationRequest.status" />
+      <short value="Status atual da requisição" />
+      <definition value="Status atual da requisição de medicamento: ativa,  em espera, cancelada, concluída, registrada por engano, interrompida, rascunho, desconhecido" />
+    </element>
+    <element id="MedicationRequest.statusReason">
+      <path value="MedicationRequest.statusReason" />
+      <short value="Motivo do status atual" />
+      <definition value="Motivo do status atual" />
+    </element>
+    <element id="MedicationRequest.intent">
+      <path value="MedicationRequest.intent" />
+      <short value="O tipo de requisição de medicamento." />
+      <definition value="Tipo de requisição de medicamento: prescrição, prescrição original, prescrição automática, reposição, refill, planejada, opcional (a critério médico), instância específica da prescrição" />
+    </element>
+    <element id="MedicationRequest.category">
+      <path value="MedicationRequest.category" />
+      <short value="Tipo de uso do medicamento" />
+      <definition value="Código que identifica a categoria de uso do medicamento requisitado" />
+    </element>
+    <element id="MedicationRequest.priority">
+      <path value="MedicationRequest.priority" />
+      <short value="Identifica o grau de prioridade da requisição de medicamentos" />
+      <definition value="Identifica o grau de prioridade da requisição de medicamentos: rotina | urgente | o mais rápido possível | emergência" />
+    </element>
+    <element id="MedicationRequest.doNotPerform">
+      <path value="MedicationRequest.doNotPerform" />
+      <short value="Verdadeiro se a requisição for de proibição de execução" />
+      <definition value="Verdadeiro se a requisição for de proibição de execução" />
+    </element>
+    <element id="MedicationRequest.reported[x]">
+      <path value="MedicationRequest.reported[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <ordered value="false" />
+        <rules value="open" />
+      </slicing>
+      <short value="Informado em vez de registro primário" />
+      <definition value="Informado em vez de registro primário" />
+    </element>
+    <element id="MedicationRequest.reported[x]:reportedReference">
+      <path value="MedicationRequest.reported[x]" />
+      <sliceName value="reportedReference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="MedicationRequest.medication[x]">
+      <path value="MedicationRequest.medication[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <ordered value="false" />
+        <rules value="open" />
+      </slicing>
+      <short value="Medicamento prescrito" />
+      <definition value="Medicamento prescrito" />
+    </element>
+    <element id="MedicationRequest.medication[x]:medicationReference">
+      <path value="MedicationRequest.medication[x]" />
+      <sliceName value="medicationReference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medication" />
+      </type>
+    </element>
+    <element id="MedicationRequest.subject">
+      <path value="MedicationRequest.subject" />
+      <short value="A quem ou a que grupo se destina a requisição de medicamento" />
+      <definition value="A quem ou a que grupo se destina a requisição de medicamento" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+      </type>
+    </element>
+    <element id="MedicationRequest.subject.id">
+      <path value="MedicationRequest.subject.id" />
+      <short value="Identificador único para referência entre elementos" />
+      <definition value="Identificador único para referência entre elementos" />
+    </element>
+    <element id="MedicationRequest.subject.extension">
+      <path value="MedicationRequest.subject.extension" />
+      <short value="Extensões adicionais que não fazem parte do modelo de dados básico" />
+      <definition value="Extensões adicionais que não fazem parte do modelo de dados básico" />
+    </element>
+    <element id="MedicationRequest.subject.reference">
+      <path value="MedicationRequest.subject.reference" />
+      <short value="Referência literal. URL relativa, interna ou externa" />
+      <definition value="Referência literal. URL relativa, interna ou externa" />
+    </element>
+    <element id="MedicationRequest.subject.type">
+      <path value="MedicationRequest.subject.type" />
+      <short value="Tipo de recurso ao qual a referência é feita" />
+      <definition value="Tipo de recurso ao qual a referência é feita" />
+    </element>
+    <element id="MedicationRequest.subject.identifier">
+      <path value="MedicationRequest.subject.identifier" />
+      <short value="Referência lógica, quando a referência literal não é conhecida" />
+      <definition value="Referência lógica, quando a referência literal não é conhecida" />
+    </element>
+    <element id="MedicationRequest.subject.display">
+      <path value="MedicationRequest.subject.display" />
+      <short value="Alternativa de texto para o recurso" />
+      <definition value="Alternativa de texto para o recurso" />
+    </element>
+    <element id="MedicationRequest.encounter">
+      <path value="MedicationRequest.encounter" />
+      <short value="Contato assistencial criado como parte do encontro/admissão/estadia" />
+      <definition value="Contato assistencial criado como parte do encontro/admissão/estadia" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter" />
+      </type>
+    </element>
+    <element id="MedicationRequest.supportingInformation">
+      <path value="MedicationRequest.supportingInformation" />
+      <short value="Informações para apoiar a requisição do medicamento" />
+      <definition value="Informações para apoiar a requisição do medicamento" />
+    </element>
+    <element id="MedicationRequest.authoredOn">
+      <path value="MedicationRequest.authoredOn" />
+      <short value="Quando a requisição foi criada" />
+      <definition value="Quando a requisição foi criada" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.requester">
+      <path value="MedicationRequest.requester" />
+      <short value="Quem ou o que solicitou a requisição" />
+      <definition value="Quem ou o que solicitou a requisição" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+      </type>
+    </element>
+    <element id="MedicationRequest.performer">
+      <path value="MedicationRequest.performer" />
+      <short value="Prescritor indicado para a administração" />
+      <definition value="Prescritor indicado para a administração" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
+      </type>
+    </element>
+    <element id="MedicationRequest.performerType">
+      <path value="MedicationRequest.performerType" />
+      <short value="Especialidade do prescritor para a administração do medicamento" />
+      <definition value="Especialidade do prescritor para a administração do medicamento" />
+    </element>
+    <element id="MedicationRequest.recorder">
+      <path value="MedicationRequest.recorder" />
+      <short value="Pessoa que registrou a requisição" />
+      <definition value="Pessoa que registrou a requisição" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole" />
+      </type>
+    </element>
+    <element id="MedicationRequest.reasonCode">
+      <path value="MedicationRequest.reasonCode" />
+      <short value="Motivo ou indicação para solicitar ou não o medicamento" />
+      <definition value="Motivo ou indicação para solicitar ou não o medicamento. Conceito codificado que indica o motivo pelo qual o medicamento foi solicitado ou não" />
+    </element>
+    <element id="MedicationRequest.reasonReference">
+      <path value="MedicationRequest.reasonReference" />
+      <short value="Condição ou observação que apoia o motivo pelo qual a prescrição está sendo escrita" />
+      <definition value="Condição ou observação que apoia o motivo pelo qual a prescrição está sendo escrita" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation" />
+      </type>
+    </element>
+    <element id="MedicationRequest.instantiatesCanonical">
+      <path value="MedicationRequest.instantiatesCanonical" />
+      <short value="Instancia do protocolo ou definição FHIR" />
+      <definition value="Instancia do protocolo ou definição FHIR" />
+    </element>
+    <element id="MedicationRequest.instantiatesUri">
+      <path value="MedicationRequest.instantiatesUri" />
+      <short value="URI da instancia do  protocolo ou a definição FHIR externa" />
+      <definition value="URI da instancia do protocolo ou a definição externa" />
+    </element>
+    <element id="MedicationRequest.basedOn">
+      <path value="MedicationRequest.basedOn" />
+      <short value="o quê a requisição atende" />
+      <definition value="o quê a requisição atende" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-servicerequest" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-immunizationrecommendation" />
+      </type>
+    </element>
+    <element id="MedicationRequest.groupIdentifier">
+      <path value="MedicationRequest.groupIdentifier" />
+      <short value="requisição composta da qual esta requisição faz parte" />
+      <definition value="requisição composta da qual esta requisição faz parte" />
+    </element>
+    <element id="MedicationRequest.courseOfTherapyType">
+      <path value="MedicationRequest.courseOfTherapyType" />
+      <short value="Identifica o padrão de administração de medicamentos" />
+      <definition value="Identifica o padrão de administração de medicamentos" />
+    </element>
+    <element id="MedicationRequest.insurance">
+      <path value="MedicationRequest.insurance" />
+      <short value="Cobertura de planos/seguros de saúde associada" />
+      <definition value="Cobertura de planos/seguros de saúde associada" />
+    </element>
+    <element id="MedicationRequest.note">
+      <path value="MedicationRequest.note" />
+      <short value="Informações sobre a requisição" />
+      <definition value="Informações sobre a requisição" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction">
+      <path value="MedicationRequest.dosageInstruction" />
+      <short value="Como o medicamento deve ser usado" />
+      <definition value="Como o medicamento deve ser usado" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.id">
+      <path value="MedicationRequest.dosageInstruction.id" />
+      <short value="Identificador exclusivo para referência entre elementos" />
+      <definition value="Identificador exclusivo para referência entre elementos" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.extension">
+      <path value="MedicationRequest.dosageInstruction.extension" />
+      <short value="Conteúdo adicional definido pelas implementações" />
+      <definition value="Conteúdo adicional definido pelas implementações" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.modifierExtension">
+      <path value="MedicationRequest.dosageInstruction.modifierExtension" />
+      <short value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+      <definition value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.sequence">
+      <path value="MedicationRequest.dosageInstruction.sequence" />
+      <short value="Ordem na requisição" />
+      <definition value="Ordem na requisição" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.text">
+      <path value="MedicationRequest.dosageInstruction.text" />
+      <short value="Instruções de dosagem em texto livre, por exemplo, SIG" />
+      <definition value="Instruções de dosagem em texto livre, por exemplo, SIG" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.additionalInstruction">
+      <path value="MedicationRequest.dosageInstruction.additionalInstruction" />
+      <short value="Instruções suplementares ou advertências ao paciente." />
+      <definition value="Instruções suplementares ou advertências ao paciente - por exemplo: 'com as refeições', 'pode ​​causar sonolência'" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.patientInstruction">
+      <path value="MedicationRequest.dosageInstruction.patientInstruction" />
+      <short value="Instruções orientadas ao paciente ou ao consumidor" />
+      <definition value="Instruções orientadas ao paciente ou ao consumidor" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.timing">
+      <path value="MedicationRequest.dosageInstruction.timing" />
+      <short value="Quando a medicamento deve ser administrado" />
+      <definition value="Quando a medicamento deve ser administrado" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.timing.repeat">
+      <path value="MedicationRequest.dosageInstruction.timing.repeat" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.asNeeded[x]">
+      <path value="MedicationRequest.dosageInstruction.asNeeded[x]" />
+      <short value="Uso - se necessário" />
+      <definition value="Conceito codificado que identifica a pré-condição que deve ser atendida ou avaliada antes de consumir ou administrar uma dose de medicamento." />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.site">
+      <path value="MedicationRequest.dosageInstruction.site" />
+      <short value="Local anatômico de administração do medicamento" />
+      <definition value="Local anatômico de administração do medicamento" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.route">
+      <path value="MedicationRequest.dosageInstruction.route" />
+      <short value="Via de admiminstração do medicamento" />
+      <definition value="Conceito - referência a uma terminologia ou apenas texto que representa a via de administração do medicamento" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.method">
+      <path value="MedicationRequest.dosageInstruction.method" />
+      <short value="Técnica para a administração do medicamento" />
+      <definition value="Técnica para a administração do medicamento" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.doseAndRate">
+      <path value="MedicationRequest.dosageInstruction.doseAndRate" />
+      <short value="Quantidade administrada do medicamento" />
+      <definition value="Quantidade administrada do medicamento" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.doseAndRate.id">
+      <path value="MedicationRequest.dosageInstruction.doseAndRate.id" />
+      <short value="Identificador exclusivo para referência entre elementos" />
+      <definition value="Identificador exclusivo para referência entre elementos" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.doseAndRate.extension">
+      <path value="MedicationRequest.dosageInstruction.doseAndRate.extension" />
+      <short value="Conteúdo adicional definido pelas implementações" />
+      <definition value="Conteúdo adicional definido pelas implementações" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.doseAndRate.type">
+      <path value="MedicationRequest.dosageInstruction.doseAndRate.type" />
+      <short value="O tipo de dose ou taxa de administração especificada" />
+      <definition value="O tipo de dose ou taxa de administração especificada" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.doseAndRate.dose[x]">
+      <path value="MedicationRequest.dosageInstruction.doseAndRate.dose[x]" />
+      <short value="Quantidade de medicamento por dose" />
+      <definition value="Quantidade de medicamento por dose" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.doseAndRate.rate[x]">
+      <path value="MedicationRequest.dosageInstruction.doseAndRate.rate[x]" />
+      <short value="Quantidade de medicamento por unidade de tempo" />
+      <definition value="Quantidade de medicamento por unidade de tempo" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.maxDosePerPeriod">
+      <path value="MedicationRequest.dosageInstruction.maxDosePerPeriod" />
+      <short value="Quantidade máxima de medicamento por unidade de tempo" />
+      <definition value="Quantidade máxima de medicamento por unidade de tempo" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.maxDosePerAdministration">
+      <path value="MedicationRequest.dosageInstruction.maxDosePerAdministration" />
+      <short value="Quantidade máxima de medicamento por administração" />
+      <definition value="Quantidade máxima de medicamento por administração" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.maxDosePerLifetime">
+      <path value="MedicationRequest.dosageInstruction.maxDosePerLifetime" />
+      <short value="Quantidade máxima de medicamento por toda a vida do paciente" />
+      <definition value="Quantidade máxima de medicamento por toda a vida do paciente" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest">
+      <path value="MedicationRequest.dispenseRequest" />
+      <short value="Autorização de fornecimento de medicamentos" />
+      <definition value="Autorização de fornecimento de medicamentos" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.id">
+      <path value="MedicationRequest.dispenseRequest.id" />
+      <short value="Identificador exclusivo para referência entre elementos" />
+      <definition value="Identificador exclusivo para referência entre elementos" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.extension">
+      <path value="MedicationRequest.dispenseRequest.extension" />
+      <short value="Conteúdo adicional definido por implementações" />
+      <definition value="Conteúdo adicional definido por implementações" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.modifierExtension">
+      <path value="MedicationRequest.dispenseRequest.modifierExtension" />
+      <short value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+      <definition value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.initialFill">
+      <path value="MedicationRequest.dispenseRequest.initialFill" />
+      <short value="Preenchimento dos primeiros detalhes da autorização de fornecimento de medicamentos" />
+      <definition value="Preenchimento dos primeiros detalhes da autorização de fornecimento de medicamentos" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.initialFill.id">
+      <path value="MedicationRequest.dispenseRequest.initialFill.id" />
+      <short value="Identificador exclusivo para referência entre elementos" />
+      <definition value="Identificador exclusivo para referência entre elementos" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.initialFill.extension">
+      <path value="MedicationRequest.dispenseRequest.initialFill.extension" />
+      <short value="Conteúdo adicional definido por implementações" />
+      <definition value="Conteúdo adicional definido por implementações" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.initialFill.modifierExtension">
+      <path value="MedicationRequest.dispenseRequest.initialFill.modifierExtension" />
+      <short value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+      <definition value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.initialFill.quantity">
+      <path value="MedicationRequest.dispenseRequest.initialFill.quantity" />
+      <short value="Quantidade inicial de fornecimento autorizada" />
+      <definition value="Quantidade inicial de fornecimento autorizada" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.initialFill.duration">
+      <path value="MedicationRequest.dispenseRequest.initialFill.duration" />
+      <short value="Duração da primeira autorização de fornecimento de medicamentos" />
+      <definition value="Duração da primeira autorização de fornecimento de medicamentos" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.dispenseInterval">
+      <path value="MedicationRequest.dispenseRequest.dispenseInterval" />
+      <short value="Período mínimo de tempo entre dispensações de medicamentos autorizado" />
+      <definition value="Período mínimo de tempo entre dispensações de medicamentos autorizado" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.validityPeriod">
+      <path value="MedicationRequest.dispenseRequest.validityPeriod" />
+      <short value="Validade da autorização de fornecimento de medicamentos" />
+      <definition value="validade da autorização de fornecimento de medicamentos" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.validityPeriod.id">
+      <path value="MedicationRequest.dispenseRequest.validityPeriod.id" />
+      <short value="Identificador exclusivo para referência entre elementos" />
+      <definition value="Identificador exclusivo para referência entre elementos" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.validityPeriod.start">
+      <path value="MedicationRequest.dispenseRequest.validityPeriod.start" />
+      <short value="Data/Hora do início da validade da autorização(intervalo fechado)" />
+      <definition value="Data/Hora de início da validade da autorização (intervalo fechado)" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.validityPeriod.end">
+      <path value="MedicationRequest.dispenseRequest.validityPeriod.end" />
+      <short value="Data/Hora do final da validade da autorização(intervalo fechado)" />
+      <definition value="Data/Hora do final da validade da autorização(intervalo fechado), se não for contínuo" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.numberOfRepeatsAllowed">
+      <path value="MedicationRequest.dispenseRequest.numberOfRepeatsAllowed" />
+      <short value="Número de refills autorizados" />
+      <definition value="Número de refills autorizados" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.quantity">
+      <path value="MedicationRequest.dispenseRequest.quantity" />
+      <short value="Quantidade de medicamento a ser fornecido por dispensação" />
+      <definition value="Quantidade de medicamento a ser fornecido por dispensação" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.expectedSupplyDuration">
+      <path value="MedicationRequest.dispenseRequest.expectedSupplyDuration" />
+      <short value="Número de dias de fornecimento de medicamentos por dispensação" />
+      <definition value="Número de dias de fornecimento de medicamentos por dispensação" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.performer">
+      <path value="MedicationRequest.dispenseRequest.performer" />
+      <short value="Organização preferencial para a dispensação" />
+      <definition value="Organização preferencial para a dispensação" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="MedicationRequest.substitution">
+      <path value="MedicationRequest.substitution" />
+      <short value="Restrições à substituição de medicamentos" />
+      <definition value="Restrições à substituição de medicamentos" />
+    </element>
+    <element id="MedicationRequest.substitution.id">
+      <path value="MedicationRequest.substitution.id" />
+      <short value="Identificador exclusivo para referência entre elementos" />
+      <definition value="Identificador exclusivo para referência entre elementos" />
+    </element>
+    <element id="MedicationRequest.substitution.extension">
+      <path value="MedicationRequest.substitution.extension" />
+      <short value="Conteúdo adicional definido por implementações" />
+      <definition value="Conteúdo adicional definido por implementações" />
+    </element>
+    <element id="MedicationRequest.substitution.modifierExtension">
+      <path value="MedicationRequest.substitution.modifierExtension" />
+      <short value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+      <definition value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+    </element>
+    <element id="MedicationRequest.substitution.allowed[x]">
+      <path value="MedicationRequest.substitution.allowed[x]" />
+      <short value="Informa se a substituição de medicamentos é ou não permitida" />
+      <definition value="Informa se a substituição de medicamentos é ou não permitida" />
+    </element>
+    <element id="MedicationRequest.substitution.reason">
+      <path value="MedicationRequest.substitution.reason" />
+      <short value="Porque (ou não) a substituição foi feita" />
+      <definition value="Um conceito codificado que descreve a razão pela qual um medicamento diferente deve (ou não) ser substituído daquele que foi prescrito." />
+    </element>
+    <element id="MedicationRequest.priorPrescription">
+      <path value="MedicationRequest.priorPrescription" />
+      <short value="Requisição anterior que está sendo substituída" />
+      <definition value="Requisição anterior que está sendo substituída" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest" />
+      </type>
+    </element>
+    <element id="MedicationRequest.detectedIssue">
+      <path value="MedicationRequest.detectedIssue" />
+      <short value="Condição Clínica detectada" />
+      <definition value="Condição Clínica detectada" />
+    </element>
+    <element id="MedicationRequest.eventHistory">
+      <path value="MedicationRequest.eventHistory" />
+      <short value="Uma lista de eventos de interesse na linha do tempo" />
+      <definition value="Uma lista de eventos de interesse na linha do tempo" />
+    </element>
+  </differential>
+</StructureDefinition>

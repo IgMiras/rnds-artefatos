@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="f85760a8-9a08-4aab-99a7-c9d122116338" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2020-09-20T22:03:43.702+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/ValueSet/BRModalidadeAssistencialRAC-1.0" />
+  <version value="1.0" />
+  <name value="Modalidade Assistencial (Registro de Atendimento Clínico)" />
+  <title value="Modalidade Assistencial (Registro de Atendimento Clínico)" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2020-09-20T22:03:42.6227235+00:00" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description value="Classificação dos documentos e contatos assistenciais de acordo com as especificidades do modo, local e duração do atendimento. Este conjunto de valores limita àqueles aplicáveis ao Registro de Atendimento Clínico." />
+  <immutable value="false" />
+  <compose>
+    <include>
+      <system value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRModalidadeAssistencial" />
+      <version value="*" />
+      <concept>
+        <code value="01" />
+      </concept>
+      <concept>
+        <code value="02" />
+      </concept>
+      <concept>
+        <code value="05" />
+      </concept>
+      <concept>
+        <code value="06" />
+      </concept>
+      <concept>
+        <code value="07" />
+      </concept>
+    </include>
+  </compose>
+</ValueSet>

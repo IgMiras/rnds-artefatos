@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="rnds-prescricao-medicamento" />
+  <url value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPrescricaoMedicamento" />
+  <version value="1.0.0" />
+  <name value="RNDSPrescricaoMedicamento" />
+  <title value="Prescrição Eletrônica de Medicamento" />
+  <status value="draft" />
+  <date value="2024-11-19" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <purpose value="Uma prescrição ou solicitação para dispensação ou fornecimento do medicamento e instruções para administração do medicamento a um indivíduo.&#xD;&#xA;&#xD;&#xA;Este perfil abrange prescrição de medicamentos para pacientes em todos os tipos de atendimento e pode ser usado para dar suporte ao pedido de dispositivos relacionados a medicamentos.&#xD;&#xA;&#xD;&#xA;Ele não se destina ao uso na prescrição de dietas específicas ou para solicitar itens não relacionados a medicamentos (óculos, suprimentos, etc.)." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="MedicationRequest" />
+  <baseDefinition value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="MedicationRequest">
+      <path value="MedicationRequest" />
+      <constraint>
+        <key value="repm-3" />
+        <severity value="error" />
+        <human value="Ao informar o número do RQE o número do CRM também é obrigatório no slice identificadorMedico." />
+        <expression value="MedicationRequest.contained.ofType(Practitioner).identifier.type.coding.where(code = 'DN').exists() implies MedicationRequest.contained.ofType(Practitioner).identifier.type.coding.where(code = 'MD').exists()" />
+      </constraint>
+    </element>
+    <element id="MedicationRequest.contained">
+      <path value="MedicationRequest.contained" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <discriminator>
+          <type value="profile" />
+          <path value="$this" />
+        </discriminator>
+        <ordered value="false" />
+        <rules value="open" />
+      </slicing>
+      <short value="A person with a  formal responsibility in the provisioning of healthcare or related services" />
+      <definition value="A person who is directly or indirectly involved in the provisioning of healthcare." />
+      <min value="2" />
+      <max value="2" />
+      <constraint>
+        <key value="dom-2" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL NOT contain nested Resources" />
+        <expression value="contained.contained.empty()" />
+        <xpath value="not(parent::f:contained and f:contained)" />
+        <source value="http://hl7.org/fhir/StructureDefinition/DomainResource" />
+      </constraint>
+      <constraint>
+        <key value="dom-4" />
+        <severity value="error" />
+        <human value="If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated" />
+        <expression value="contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()" />
+        <xpath value="not(exists(f:contained/*/f:meta/f:versionId)) and not(exists(f:contained/*/f:meta/f:lastUpdated))" />
+        <source value="http://hl7.org/fhir/StructureDefinition/DomainResource" />
+      </constraint>
+      <constraint>
+        <key value="dom-3" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource or SHALL refer to the containing resource" />
+        <expression value="contained.where((('#'+id in (%resource.descendants().reference | %resource.descendants().as(canonical) | %resource.descendants().as(uri) | %resource.descendants().as(url))) or descendants().where(reference = '#').exists() or descendants().where(as(canonical) = '#').exists() or descendants().where(as(canonical) = '#').exists()).not()).trace('unmatched', id).empty()" />
+        <xpath value="not(exists(for $id in f:contained/*/f:id/@value return $contained[not(parent::*/descendant::f:reference/@value=concat('#', $contained/*/id/@value) or descendant::f:reference[@value='#'])]))" />
+        <source value="http://hl7.org/fhir/StructureDefinition/DomainResource" />
+      </constraint>
+      <constraint>
+        <key value="dom-6" />
+        <severity value="warning" />
+        <human value="A resource should have narrative for robust management" />
+        <expression value="text.`div`.exists()" />
+        <xpath value="exists(f:text/h:div)" />
+        <source value="http://hl7.org/fhir/StructureDefinition/DomainResource" />
+      </constraint>
+      <constraint>
+        <key value="dom-5" />
+        <severity value="error" />
+        <human value="If a resource is contained in another resource, it SHALL NOT have a security label" />
+        <expression value="contained.meta.security.empty()" />
+        <xpath value="not(exists(f:contained/*/f:meta/f:security))" />
+        <source value="http://hl7.org/fhir/StructureDefinition/DomainResource" />
+      </constraint>
+      <mustSupport value="true" />
+      <mapping>
+        <identity value="v2" />
+        <map value="PRD (as one example)" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="Role" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="Provider" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner">
+      <path value="MedicationRequest.contained" />
+      <sliceName value="prescriberPractitioner" />
+      <short value="Recursos contidos neste artefato" />
+      <definition value="Recursos contidos neste artefato" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Practitioner" />
+        <profile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional" />
+      </type>
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.id">
+      <path value="MedicationRequest.contained.id" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.meta">
+      <path value="MedicationRequest.contained.meta" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.meta.id">
+      <path value="MedicationRequest.contained.meta.id" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.meta.versionId">
+      <path value="MedicationRequest.contained.meta.versionId" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.meta.lastUpdated">
+      <path value="MedicationRequest.contained.meta.lastUpdated" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.meta.source">
+      <path value="MedicationRequest.contained.meta.source" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.meta.profile">
+      <path value="MedicationRequest.contained.meta.profile" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.meta.security">
+      <path value="MedicationRequest.contained.meta.security" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.meta.tag">
+      <path value="MedicationRequest.contained.meta.tag" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.implicitRules">
+      <path value="MedicationRequest.contained.implicitRules" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.language">
+      <path value="MedicationRequest.contained.language" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.text">
+      <path value="MedicationRequest.contained.text" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.contained">
+      <path value="MedicationRequest.contained.contained" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier">
+      <path value="MedicationRequest.contained.identifier" />
+      <constraint>
+        <key value="repm-1" />
+        <requirements value="Verifica se o identifier corresponde a um dos seguintes slices: identificadorMedico ou identificadorOdontologo" />
+        <severity value="error" />
+        <human value="O profissional deve ter uma identificação de Médico, Odontólogo ou Enfermeiro" />
+        <expression value="type.coding.exists(code = 'MD' or code = 'RN' or code = 'RI')" />
+      </constraint>
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier.id">
+      <path value="MedicationRequest.contained.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier.use">
+      <path value="MedicationRequest.contained.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier.type">
+      <path value="MedicationRequest.contained.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier.system">
+      <path value="MedicationRequest.contained.identifier.system" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier.value">
+      <path value="MedicationRequest.contained.identifier.value" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier.period">
+      <path value="MedicationRequest.contained.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier.assigner">
+      <path value="MedicationRequest.contained.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:cns">
+      <path value="MedicationRequest.contained.identifier" />
+      <sliceName value="cns" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:cns.id">
+      <path value="MedicationRequest.contained.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:cns.period">
+      <path value="MedicationRequest.contained.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:cns.assigner">
+      <path value="MedicationRequest.contained.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:cpf">
+      <path value="MedicationRequest.contained.identifier" />
+      <sliceName value="cpf" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:cpf.id">
+      <path value="MedicationRequest.contained.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:cpf.period">
+      <path value="MedicationRequest.contained.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:cpf.assigner">
+      <path value="MedicationRequest.contained.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorMedico">
+      <path value="MedicationRequest.contained.identifier" />
+      <sliceName value="identificadorMedico" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorMedico.id">
+      <path value="MedicationRequest.contained.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorMedico.period">
+      <path value="MedicationRequest.contained.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorMedico.assigner">
+      <path value="MedicationRequest.contained.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorFarmaceutico">
+      <path value="MedicationRequest.contained.identifier" />
+      <sliceName value="identificadorFarmaceutico" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorFarmaceutico.id">
+      <path value="MedicationRequest.contained.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorFarmaceutico.period">
+      <path value="MedicationRequest.contained.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorFarmaceutico.assigner">
+      <path value="MedicationRequest.contained.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOdontologo">
+      <path value="MedicationRequest.contained.identifier" />
+      <sliceName value="identificadorOdontologo" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOdontologo.id">
+      <path value="MedicationRequest.contained.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOdontologo.period">
+      <path value="MedicationRequest.contained.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOdontologo.assigner">
+      <path value="MedicationRequest.contained.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorEnfermeiro">
+      <path value="MedicationRequest.contained.identifier" />
+      <sliceName value="identificadorEnfermeiro" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorEnfermeiro.id">
+      <path value="MedicationRequest.contained.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorEnfermeiro.period">
+      <path value="MedicationRequest.contained.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorEnfermeiro.assigner">
+      <path value="MedicationRequest.contained.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOutrosProfissionais">
+      <path value="MedicationRequest.contained.identifier" />
+      <sliceName value="identificadorOutrosProfissionais" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOutrosProfissionais.id">
+      <path value="MedicationRequest.contained.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOutrosProfissionais.period">
+      <path value="MedicationRequest.contained.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOutrosProfissionais.assigner">
+      <path value="MedicationRequest.contained.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:rqeMedico">
+      <path value="MedicationRequest.contained.identifier" />
+      <sliceName value="rqeMedico" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:rqeMedico.id">
+      <path value="MedicationRequest.contained.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:rqeMedico.type">
+      <path value="MedicationRequest.contained.identifier.type" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:rqeMedico.type.coding">
+      <path value="MedicationRequest.contained.identifier.type.coding" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:rqeMedico.type.coding.code">
+      <path value="MedicationRequest.contained.identifier.type.coding.code" />
+      <patternCode value="DN" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:rqeMedico.period">
+      <path value="MedicationRequest.contained.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberPractitioner.identifier:rqeMedico.assigner">
+      <path value="MedicationRequest.contained.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty">
+      <path value="MedicationRequest.contained" />
+      <sliceName value="prescriberSpecialty" />
+      <short value="Recursos contidos neste artefato" />
+      <definition value="Recursos contidos neste artefato" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="PractitionerRole" />
+        <profile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSLotacaoProfissional" />
+      </type>
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.id">
+      <path value="MedicationRequest.contained.id" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.meta">
+      <path value="MedicationRequest.contained.meta" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.meta.id">
+      <path value="MedicationRequest.contained.meta.id" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.meta.versionId">
+      <path value="MedicationRequest.contained.meta.versionId" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.meta.lastUpdated">
+      <path value="MedicationRequest.contained.meta.lastUpdated" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.meta.source">
+      <path value="MedicationRequest.contained.meta.source" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.meta.profile">
+      <path value="MedicationRequest.contained.meta.profile" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.meta.security">
+      <path value="MedicationRequest.contained.meta.security" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.meta.tag">
+      <path value="MedicationRequest.contained.meta.tag" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.implicitRules">
+      <path value="MedicationRequest.contained.implicitRules" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.language">
+      <path value="MedicationRequest.contained.language" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.text">
+      <path value="MedicationRequest.contained.text" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.contained:prescriberSpecialty.contained">
+      <path value="MedicationRequest.contained.contained" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.identifier">
+      <path value="MedicationRequest.identifier" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="system" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <short value="Cada item prescrito DEVE ser identificado pelo ID local e também pode ser identificado pelo número do Sistema Nacional de Controle de Receituários - SNCR." />
+      <definition value="Exemplos de identificação (apenas para fins ilustrativos):&#xD;&#xA;&#xD;&#xA;ID Local:&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA; &quot;identifier&quot;:  [&#xD;&#xA;    {&#xD;&#xA;        &quot;system&quot;: &quot;http://www.saude.gov.br/fhir/r4/NamingSystem/prescription-item-id&quot;,&#xD;&#xA;        &quot;value&quot;: &quot;a54219b8-f741-4c47-b662-e4f8dfa49ab6&quot;&#xD;&#xA;    }&#xD;&#xA;]&#xD;&#xA;```&#xD;&#xA;&#xD;&#xA;Número do Sistema Nacional de Controle de Receituários:&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA; &quot;identifier&quot;:  [&#xD;&#xA;    {&#xD;&#xA;        &quot;system&quot;: &quot;http://www.saude.gov.br/fhir/r4/NamingSystem/sncr-number&quot;,&#xD;&#xA;        &quot;value&quot;: &quot;19356261&quot;&#xD;&#xA;    }&#xD;&#xA;]&#xD;&#xA;```" />
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.identifier:prescriptionItemId">
+      <path value="MedicationRequest.identifier" />
+      <sliceName value="prescriptionItemId" />
+      <short value="Identificador local do item prescrito" />
+      <definition value="Identificador local do item prescrito" />
+      <min value="1" />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.identifier:prescriptionItemId.system">
+      <path value="MedicationRequest.identifier.system" />
+      <min value="1" />
+      <fixedUri value="http://www.saude.gov.br/fhir/r4/NamingSystem/prescription-item-id" />
+    </element>
+    <element id="MedicationRequest.identifier:prescriptionItemId.value">
+      <path value="MedicationRequest.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.identifier:sncrNumber">
+      <path value="MedicationRequest.identifier" />
+      <sliceName value="sncrNumber" />
+      <short value="Número do Sistema Nacional de Controle de Receituários" />
+      <definition value="Número do Sistema Nacional de Controle de Receituários (caso aplicado ao item prescrito)" />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.identifier:sncrNumber.system">
+      <path value="MedicationRequest.identifier.system" />
+      <min value="1" />
+      <fixedUri value="http://www.saude.gov.br/fhir/r4/NamingSystem/sncr-number" />
+    </element>
+    <element id="MedicationRequest.identifier:sncrNumber.value">
+      <path value="MedicationRequest.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.status">
+      <path value="MedicationRequest.status" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.statusReason">
+      <path value="MedicationRequest.statusReason" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.intent">
+      <path value="MedicationRequest.intent" />
+      <fixedCode value="order" />
+      <mustSupport value="false" />
+    </element>
+    <element id="MedicationRequest.category">
+      <path value="MedicationRequest.category" />
+      <definition value="Na Atenção Primária, o código `community` deve ser usado. Na Atenção Especializada, a categoria frequentemente corresponderá ao tipo de atendimento prestado.&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;category&quot;: [&#xD;&#xA;    {&#xD;&#xA;        &quot;coding&quot;: [&#xD;&#xA;            {&#xD;&#xA;                &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/medicationrequest-category&quot;,&#xD;&#xA;                &quot;code&quot;: &quot;outpatient&quot;&#xD;&#xA;            }&#xD;&#xA;        ]&#xD;&#xA;    }&#xD;&#xA;],&#xD;&#xA;```" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.medication[x]">
+      <path value="MedicationRequest.medication[x]" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.medication[x]:medicationReference">
+      <path value="MedicationRequest.medication[x]" />
+      <sliceName value="medicationReference" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSMedicamento" />
+      </type>
+    </element>
+    <element id="MedicationRequest.medication[x]:medicationReference.reference">
+      <path value="MedicationRequest.medication[x].reference" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.subject">
+      <path value="MedicationRequest.subject" />
+      <definition value="É necessária a identificação de um paciente com um número de CPF ou CNS.&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;subject&quot;: {&#xD;&#xA;    &quot;identifier&quot;: {&#xD;&#xA;        &quot;system&quot;: &quot;https://saude.gov.br/fhir/sid/cpf&quot;,&#xD;&#xA;        &quot;value&quot;: &quot;53678720454&quot;&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;```" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPaciente" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.subject.identifier">
+      <path value="MedicationRequest.subject.identifier" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.subject.identifier.system">
+      <path value="MedicationRequest.subject.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.subject.identifier.value">
+      <path value="MedicationRequest.subject.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.supportingInformation">
+      <path value="MedicationRequest.supportingInformation" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.supportingInformation:requesterSpecialty">
+      <path value="MedicationRequest.supportingInformation" />
+      <sliceName value="requesterSpecialty" />
+      <short value="Especialidade do Profissional Responsável pela Prescrição" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSLotacaoProfissional" />
+      </type>
+      <constraint>
+        <key value="repm-2" />
+        <severity value="error" />
+        <human value="A referência para a Especialidade do Profissional deve iniciair com #" />
+        <expression value="reference.startsWith('#')" />
+      </constraint>
+    </element>
+    <element id="MedicationRequest.supportingInformation:requesterSpecialty.reference">
+      <path value="MedicationRequest.supportingInformation.reference" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.authoredOn">
+      <path value="MedicationRequest.authoredOn" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.requester">
+      <path value="MedicationRequest.requester" />
+      <definition value="O _requester_ deve conter uma referência de recurso ao Practitioner que emitiu a prescrição.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;{&#xD;&#xA;    &quot;subject&quot;: {&#xD;&#xA;        &quot;reference&quot;: &quot;urn:uuid:01b470ce-64fa-4710-8950-630b8240d83e&quot;,&#xD;&#xA;        &quot;identifier&quot;: {&#xD;&#xA;            &quot;system&quot;: &quot;http://www.saude.gov.br/fhir/r4/StructureDefinition/BRProfissional-1.0&quot;,&#xD;&#xA;            &quot;value&quot;: &quot;24573966207&quot;&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;```" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRProfissional-1.0" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSLotacaoProfissional" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.requester.reference">
+      <path value="MedicationRequest.requester.reference" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.requester.identifier">
+      <path value="MedicationRequest.requester.identifier" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.requester.identifier.system">
+      <path value="MedicationRequest.requester.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.requester.identifier.value">
+      <path value="MedicationRequest.requester.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.reasonCode">
+      <path value="MedicationRequest.reasonCode" />
+      <min value="1" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRProblemaDiagnostico" />
+      </binding>
+    </element>
+    <element id="MedicationRequest.reasonCode.coding">
+      <path value="MedicationRequest.reasonCode.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="MedicationRequest.reasonCode.coding.system">
+      <path value="MedicationRequest.reasonCode.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.reasonCode.coding.code">
+      <path value="MedicationRequest.reasonCode.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.groupIdentifier">
+      <path value="MedicationRequest.groupIdentifier" />
+      <short value="Requisição composta da qual esta requisição faz parte" />
+      <definition value="Requisição composta da qual esta requisição faz parte" />
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.groupIdentifier.system">
+      <path value="MedicationRequest.groupIdentifier.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.groupIdentifier.value">
+      <path value="MedicationRequest.groupIdentifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.note">
+      <path value="MedicationRequest.note" />
+      <short value="Informações sobre a prescrição" />
+      <definition value="Informações clínicas relacionadas a um item de medicamento prescrito que não podem ser transmitidas dentro das instruções de dosagem (dosageInstruction) são preenchidas dentro do campo `note`.&#xD;&#xA;&#xD;&#xA;Exemplos de notas de dispensação são:&#xD;&#xA;&#xD;&#xA;- Para explicar mudanças na dosagem, por exemplo, &quot;A dosagem foi aumentada por recomendação do hospital&quot;.&#xD;&#xA;- &quot;Diga ao paciente para interromper a estatina enquanto estiver tomando este antibiótico&quot;&#xD;&#xA;- &quot;O médico do hospital confirmou o tratamento duplo&quot;&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;note&quot;: [&#xD;&#xA;    {&#xD;&#xA;      &quot;text&quot;: &quot;Tell patient to stop their statin whilst on this anitbiotic&quot;&#xD;&#xA;    }&#xD;&#xA;  ],&#xD;&#xA;```" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction">
+      <path value="MedicationRequest.dosageInstruction" />
+      <definition value="O conteúdo do `dosageInstruction` deve seguir as orientações contidas em cada elemento.&#xD;&#xA;&#xD;&#xA;`dosageInstruction.text` **DEVE** ser fornecido e é uma versão legível por humanos da dose estruturada, como seria impressa em uma prescrição de papel. O prescritor deve inserir uma dosagem de item de medicamento. &#xD;&#xA;&#xD;&#xA;O prescritor deve inserir uma dosagem de item de medicamento. O uso de um valor padrão genérico, por exemplo, &quot;Use conforme as instruções&quot;, se um valor não for inserido, não é aceitável de uma perspectiva clínica. O usuário deve ser solicitado a selecionar uma instrução de dosagem de uma lista de seleção, digitar manualmente ou fazer com que o sistema preencha com uma instrução de dosagem válida e clinicamente segura, relevante para o medicamento prescrito ou circunstâncias clínicas.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;dosageInstruction&quot;: [&#xD;&#xA;   {&#xD;&#xA;        &quot;text&quot;: &quot;Tomar 1 comprimido via oral pela manhã por 10 dias&quot;,&#xD;&#xA;        &quot;timing&quot;: {&#xD;&#xA;            &quot;repeat&quot;: {&#xD;&#xA;                &quot;boundsDuration&quot;: {&#xD;&#xA;                    &quot;value&quot;: 10,&#xD;&#xA;                    &quot;unit&quot;: &quot;day&quot;,&#xD;&#xA;                     &quot;system&quot;: &quot;http://unitsofmeasure.org&quot;,&#xD;&#xA;                     &quot;code&quot;: &quot;d&quot;&#xD;&#xA;                },&#xD;&#xA;                 &quot;frequency&quot;: 1,&#xD;&#xA;                 &quot;period&quot;: 1,&#xD;&#xA;                 &quot;periodUnit&quot;: &quot;d&quot;,&#xD;&#xA;                 &quot;when&quot;: &quot;MORN&quot;&#xD;&#xA;             }&#xD;&#xA;        },&#xD;&#xA;        &quot;route&quot;: {&#xD;&#xA;            &quot;coding&quot;: [&#xD;&#xA;                {&#xD;&#xA;                    &quot;system&quot;: &quot;http://www.saude.gov.br/fhir/r4/CodeSystem/BRViaAdministracao&quot;,&#xD;&#xA;                    &quot;code&quot;: &quot;10907&quot;,&#xD;&#xA;                    &quot;display&quot;: &quot;Oral&quot;&#xD;&#xA;                }&#xD;&#xA;            ]&#xD;&#xA;        },&#xD;&#xA;        &quot;doseAndRate&quot;: [&#xD;&#xA;   {&#xD;&#xA;    &quot;doseQuantity&quot;: {&#xD;&#xA;     &quot;value&quot;: 1,&#xD;&#xA;     &quot;unit&quot;: &quot;Comprimido&quot;,&#xD;&#xA;     &quot;system&quot;: &quot;http://www.saude.gov.br/fhir/r4/CodeSystem/BRUnidadeMedida&quot;,&#xD;&#xA;     &quot;code&quot;: &quot;19&quot;&#xD;&#xA;    }&#xD;&#xA;   }&#xD;&#xA;  ],&#xD;&#xA;    }&#xD;&#xA;]&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;```" />
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.sequence">
+      <path value="MedicationRequest.dosageInstruction.sequence" />
+      <short value="Instruções de dosagem multissequencial." />
+      <definition value="Uma sequência múltipla seria necessária quando uma instrução de dosagem muda ao longo de um determinado cronograma, quando uma instrução de dosagem inclui doses de acompanhamento opcionais ou quando uma instrução de dosagem simultânea é necessária para o mesmo medicamento em uma dose diferente.&#xD;&#xA;&#xD;&#xA;Os exemplos abaixo incluem Prednisolona para tratar paralisia de Bell, onde uma dose começa em 60 mg por dia por um período de tempo e depois reduz em 10 mg por dia. Isso seria descrito como uma instrução de dosagem sequencial. Um exemplo de dosagem simultânea é fornecido para descrever uma dose diferente pela manhã daquela ao meio-dia.&#xD;&#xA;&#xD;&#xA;#### Instruções sequenciais&#xD;&#xA;&#xD;&#xA;Onde o valor da sequência é um inteiro incremental, ele define uma instrução sequencial.&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;dosageInstruction&quot;: [&#xD;&#xA;    {&#xD;&#xA;        &quot;sequence&quot;: 1,&#xD;&#xA;        &quot;text&quot;: &quot;60 milligram - once a day - for 4 days&quot;,&#xD;&#xA;        &quot;timing&quot;: {&#xD;&#xA;            &quot;repeat&quot;: {&#xD;&#xA;                &quot;boundsDuration&quot;: {&#xD;&#xA;                    &quot;value&quot;: 4,&#xD;&#xA;                    &quot;unit&quot;: &quot;day&quot;,&#xD;&#xA;                    &quot;system&quot;: &quot;http://unitsofmeasure.org&quot;,&#xD;&#xA;                    &quot;code&quot;: &quot;d&quot;&#xD;&#xA;                },&#xD;&#xA;                &quot;frequency&quot;: 1,&#xD;&#xA;                &quot;period&quot;: 1,&#xD;&#xA;                &quot;periodUnit&quot;: &quot;d&quot;&#xD;&#xA;            }&#xD;&#xA;        },&#xD;&#xA;        &quot;doseAndRate&quot;: [&#xD;&#xA;            {&#xD;&#xA;                &quot;doseQuantity&quot;: {&#xD;&#xA;                    &quot;value&quot;: 60,&#xD;&#xA;                    &quot;unit&quot;: &quot;milligram&quot;,&#xD;&#xA;                    &quot;system&quot;: &quot;http://unitsofmeasure.org&quot;,&#xD;&#xA;                    &quot;code&quot;: &quot;mg&quot;&#xD;&#xA;                }&#xD;&#xA;            }&#xD;&#xA;        ]&#xD;&#xA;    },&#xD;&#xA;    {&#xD;&#xA;        &quot;sequence&quot;: 2,&#xD;&#xA;        &quot;text&quot;: &quot;50 milligram - once a day - for 1 day&quot;,&#xD;&#xA;        &quot;timing&quot;: {&#xD;&#xA;            &quot;repeat&quot;: {&#xD;&#xA;                &quot;boundsDuration&quot;: {&#xD;&#xA;                    &quot;value&quot;: 1,&#xD;&#xA;                    &quot;unit&quot;: &quot;day&quot;,&#xD;&#xA;                    &quot;system&quot;: &quot;http://unitsofmeasure.org&quot;,&#xD;&#xA;                    &quot;code&quot;: &quot;d&quot;&#xD;&#xA;                },&#xD;&#xA;                &quot;frequency&quot;: 1,&#xD;&#xA;                &quot;period&quot;: 1,&#xD;&#xA;                &quot;periodUnit&quot;: &quot;d&quot;&#xD;&#xA;            }&#xD;&#xA;        },&#xD;&#xA;        &quot;doseAndRate&quot;: [&#xD;&#xA;            {&#xD;&#xA;                &quot;doseQuantity&quot;: {&#xD;&#xA;                    &quot;value&quot;: 50,&#xD;&#xA;                    &quot;unit&quot;: &quot;milligram&quot;,&#xD;&#xA;                    &quot;system&quot;: &quot;http://unitsofmeasure.org&quot;,&#xD;&#xA;                    &quot;code&quot;: &quot;mg&quot;&#xD;&#xA;                }&#xD;&#xA;            }&#xD;&#xA;        ]&#xD;&#xA;    }&#xD;&#xA;]&#xD;&#xA;```&#xD;&#xA;&#xD;&#xA;#### Instruções simultâneas&#xD;&#xA;&#xD;&#xA;Onde o mesmo valor inteiro da sequência é definido, significa uma instrução simultânea.&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;dosageInstruction&quot;: [&#xD;&#xA;    {&#xD;&#xA;        &quot;sequence&quot;: 1,&#xD;&#xA;        &quot;text&quot;: &quot;2 tablet - daily - at 08:00 - for 1 week&quot;,&#xD;&#xA;        &quot;timing&quot;: {&#xD;&#xA;            &quot;repeat&quot;: {&#xD;&#xA;                &quot;boundsDuration&quot;: {&#xD;&#xA;                    &quot;value&quot;: 1,&#xD;&#xA;                    &quot;unit&quot;: &quot;week&quot;,&#xD;&#xA;                    &quot;system&quot;: &quot;http://unitsofmeasure.org&quot;,&#xD;&#xA;                    &quot;code&quot;: &quot;wk&quot;&#xD;&#xA;                },&#xD;&#xA;                &quot;period&quot;: 1,&#xD;&#xA;                &quot;periodUnit&quot;: &quot;d&quot;,&#xD;&#xA;                &quot;timeOfDay&quot;: [&#xD;&#xA;                    &quot;08:00:00&quot;&#xD;&#xA;                ]&#xD;&#xA;            }&#xD;&#xA;        },&#xD;&#xA;        &quot;doseAndRate&quot;: [&#xD;&#xA;            {&#xD;&#xA;                &quot;doseQuantity&quot;: {&#xD;&#xA;                    &quot;value&quot;: 2,&#xD;&#xA;                    &quot;unit&quot;: &quot;tablet&quot;,&#xD;&#xA;                    &quot;system&quot;: &quot;http://snomed.info/sct&quot;,&#xD;&#xA;                    &quot;code&quot;: &quot;428673006&quot;&#xD;&#xA;                }&#xD;&#xA;            }&#xD;&#xA;        ]&#xD;&#xA;    },&#xD;&#xA;    {&#xD;&#xA;        &quot;sequence&quot;: 1,&#xD;&#xA;        &quot;text&quot;: &quot;1 tablet - daily - at 12:00 - for 1 week&quot;,&#xD;&#xA;        &quot;timing&quot;: {&#xD;&#xA;            &quot;repeat&quot;: {&#xD;&#xA;                &quot;boundsDuration&quot;: {&#xD;&#xA;                    &quot;value&quot;: 1,&#xD;&#xA;                    &quot;unit&quot;: &quot;week&quot;,&#xD;&#xA;                    &quot;system&quot;: &quot;http://unitsofmeasure.org&quot;,&#xD;&#xA;                    &quot;code&quot;: &quot;wk&quot;&#xD;&#xA;                },&#xD;&#xA;                &quot;period&quot;: 1,&#xD;&#xA;                &quot;periodUnit&quot;: &quot;d&quot;,&#xD;&#xA;                &quot;timeOfDay&quot;: [&#xD;&#xA;                    &quot;12:00:00&quot;&#xD;&#xA;                ]&#xD;&#xA;            }&#xD;&#xA;        },&#xD;&#xA;        &quot;doseAndRate&quot;: [&#xD;&#xA;            {&#xD;&#xA;                &quot;doseQuantity&quot;: {&#xD;&#xA;                    &quot;value&quot;: 1,&#xD;&#xA;                    &quot;unit&quot;: &quot;tablet&quot;,&#xD;&#xA;                    &quot;system&quot;: &quot;http://snomed.info/sct&quot;,&#xD;&#xA;                    &quot;code&quot;: &quot;428673006&quot;&#xD;&#xA;                }&#xD;&#xA;            }&#xD;&#xA;        ]&#xD;&#xA;    }&#xD;&#xA;]&#xD;&#xA;```" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.text">
+      <path value="MedicationRequest.dosageInstruction.text" />
+      <short value="As instruções completas de dosagem como uma sequência legível por humanos." />
+      <definition value="A instrução de dosagem completa como um texto legível por humanos.&#xD;&#xA;&#xD;&#xA;Por exemplo:&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;text&quot;: &quot;1 comprimido - a cada 6 horas - oral&quot;&#xD;&#xA;```&#xD;&#xA;Onde instruções de dosagem adicionais precisam ser transmitidas e não podem ser descritas usando nenhum outro elemento da estrutura de dosagem, anexe-as ao final do texto de dosagem.&#xD;&#xA;&#xD;&#xA;Por exemplo, a instrução para `“infundir o mais rápido possível via porta intraperitoneal”` não é um termo codificado, portanto, não pode ser compartilhado como uma `additionalInstruction`. Também não seria apropriado como uma string `patientInstruction`.&#xD;&#xA;&#xD;&#xA;Por exemplo:&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;text&quot;: &quot;{os elementos de dosagem traduzidos como texto} - infundir o mais rápido possível via porta intraperitoneal&quot;&#xD;&#xA;```&#xD;&#xA;&#xD;&#xA;Por exemplo, a instrução `“imediatamente após o medicamento {X}”)`, onde {X} é o nome de um medicamento, não é adequada como uma `additionalInstruction` nem como `patientInstruction`.&#xD;&#xA;&#xD;&#xA;Por exemplo:&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;text&quot;: &quot;500 miligramas - uma vez - oral - imediatamente após o medicamento {X}&quot;&#xD;&#xA;```" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.additionalInstruction">
+      <path value="MedicationRequest.dosageInstruction.additionalInstruction" />
+      <definition value="Essas elementos , `additionalInstruction` e `patientInstruction`, **DEVEM** ser usadas somente para passar notas sobre a prescrição ao farmacêutico ou paciente.&#xD;&#xA;Instruções adicionais devem ser codificadas, mas onde não houver código, o elemento pode incluir texto. Por exemplo, &quot;Engula com bastante água&quot;, que pode ou não ser codificado.&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;dosageInstruction&quot;: [&#xD;&#xA;    {&#xD;&#xA;        &quot;text&quot;: &quot;10 milligram, Inject, Subcutaneous route, once weekly&quot;,&#xD;&#xA;        &quot;additionalInstruction&quot;: [&#xD;&#xA;            &quot;coding&quot;: [&#xD;&#xA;                {&#xD;&#xA;                    &quot;system&quot;: &quot;http://snomed.info/sct&quot;,&#xD;&#xA;                    &quot;code&quot;: &quot;421769005&quot;,&#xD;&#xA;                    &quot;display&quot;: &quot;Follow directions&quot;&#xD;&#xA;                }&#xD;&#xA;            ],&#xD;&#xA;        ],&#xD;&#xA;        &quot;patientInstruction&quot;: &quot;Engula com bastante água&quot;&#xD;&#xA;    }&#xD;&#xA;]&#xD;&#xA;```" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.patientInstruction">
+      <path value="MedicationRequest.dosageInstruction.patientInstruction" />
+      <definition value="Essas elementos , `additionalInstruction` e `patientInstruction`, **DEVEM** ser usadas somente para passar notas sobre a prescrição ao farmacêutico ou paciente.&#xD;&#xA;Instruções adicionais devem ser codificadas, mas onde não houver código, o elemento pode incluir texto. Por exemplo, &quot;Engula com bastante água&quot;, que pode ou não ser codificado.&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;dosageInstruction&quot;: [&#xD;&#xA;    {&#xD;&#xA;        &quot;text&quot;: &quot;10 milligram, Inject, Subcutaneous route, once weekly&quot;,&#xD;&#xA;        &quot;additionalInstruction&quot;: [&#xD;&#xA;            &quot;coding&quot;: [&#xD;&#xA;                {&#xD;&#xA;                    &quot;system&quot;: &quot;http://snomed.info/sct&quot;,&#xD;&#xA;                    &quot;code&quot;: &quot;421769005&quot;,&#xD;&#xA;                    &quot;display&quot;: &quot;Follow directions&quot;&#xD;&#xA;                }&#xD;&#xA;            ],&#xD;&#xA;        ],&#xD;&#xA;        &quot;patientInstruction&quot;: &quot;Engula com bastante água&quot;&#xD;&#xA;    }&#xD;&#xA;]&#xD;&#xA;```" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.timing">
+      <path value="MedicationRequest.dosageInstruction.timing" />
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.asNeeded[x]">
+      <path value="MedicationRequest.dosageInstruction.asNeeded[x]" />
+      <definition value="A estrutura `asNeeded` pode ser usada para definir instruções simples “conforme necessário”.&#xD;&#xA;Neste caso, use a opção `asNeededBoolean`. A ausência de `asNeededBoolean` é equivalente a onde `asNeededBoolean` tem um valor de `false`." />
+      <type>
+        <code value="boolean" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.route">
+      <path value="MedicationRequest.dosageInstruction.route" />
+      <definition value="Conceito - referência a uma terminologia que representa a via de administração do medicamento.&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;route&quot;: {&#xD;&#xA;    &quot;coding&quot;: [&#xD;&#xA;        {&#xD;&#xA;            &quot;system&quot;: &quot;http://www.saude.gov.br/fhir/r4/CodeSystem/BRViaAdministracao&quot;,&#xD;&#xA;            &quot;code&quot;: &quot;10907&quot;,&#xD;&#xA;            &quot;display&quot;: &quot;Oral&quot;&#xD;&#xA;        }&#xD;&#xA;    ]&#xD;&#xA;}&#xD;&#xA;```" />
+      <min value="1" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRViaAdministracao-1.0" />
+      </binding>
+    </element>
+    <element id="MedicationRequest.dosageInstruction.route.coding">
+      <path value="MedicationRequest.dosageInstruction.route.coding" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.route.coding.system">
+      <path value="MedicationRequest.dosageInstruction.route.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.route.coding.code">
+      <path value="MedicationRequest.dosageInstruction.route.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.doseAndRate">
+      <path value="MedicationRequest.dosageInstruction.doseAndRate" />
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.doseAndRate.dose[x]">
+      <path value="MedicationRequest.dosageInstruction.doseAndRate.dose[x]" />
+      <type>
+        <code value="Quantity" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

@@ -1,0 +1,1159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="br-core-practitioner" />
+  <url value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+  <name value="BRCorePractitioner" />
+  <status value="active" />
+  <description value="O Profissional é uma pessoa que está direta ou indiretamente envolvida na prestação de cuidados de saúde ou serviços relacionados ao paciente." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Practitioner" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Practitioner.id">
+      <path value="Practitioner.id" />
+      <short value="Identificador Lógico do Artefato" />
+      <definition value="Identificador Lógico do Artefato" />
+    </element>
+    <element id="Practitioner.meta">
+      <path value="Practitioner.meta" />
+      <short value="Metadados do Artefato" />
+      <definition value="Metadados que descrevem o artefato" />
+    </element>
+    <element id="Practitioner.implicitRules">
+      <path value="Practitioner.implicitRules" />
+      <short value="Regras Implícitas de Uso" />
+      <definition value="Regras implícitas de uso do artefato" />
+    </element>
+    <element id="Practitioner.language">
+      <path value="Practitioner.language" />
+      <short value="Linguagem do Artefato" />
+      <definition value="Linguagem do conteúdo do artefato" />
+    </element>
+    <element id="Practitioner.text">
+      <path value="Practitioner.text" />
+      <short value="Texto narrativo do artefato" />
+      <definition value="Texto narrativo que descreve o artefato" />
+    </element>
+    <element id="Practitioner.contained">
+      <path value="Practitioner.contained" />
+      <short value="Artefatos Contidos" />
+      <definition value="Artefatos contidos no artefato" />
+    </element>
+    <element id="Practitioner.extension">
+      <path value="Practitioner.extension" />
+      <short value="Extensões do Artefato" />
+      <definition value="Extensões incluídas no artefato" />
+    </element>
+    <element id="Practitioner.modifierExtension">
+      <path value="Practitioner.modifierExtension" />
+      <short value="Extensões Modificadoras do Artefato" />
+      <definition value="Extensões modificadoras incluídas no artefato" />
+    </element>
+    <element id="Practitioner.identifier">
+      <path value="Practitioner.identifier" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="type" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <short value="Identificadores do profissional" />
+      <definition value="Identificadores do profissional" />
+      <min value="1" />
+    </element>
+    <element id="Practitioner.identifier:cns">
+      <path value="Practitioner.identifier" />
+      <sliceName value="cns" />
+      <short value="Identificador do profissional" />
+      <definition value="Identificador do profissional" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:cns.id">
+      <path value="Practitioner.identifier.id" />
+      <short value="Id lógico do identificador do profissional" />
+      <definition value="Id lógico do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cns.extension">
+      <path value="Practitioner.identifier.extension" />
+      <short value="Extensões do identificador do profissional" />
+      <definition value="Extensões incluídas no identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cns.use">
+      <path value="Practitioner.identifier.use" />
+      <short value="Uso do identificador do profissional" />
+      <definition value="usual: identificador usual do profissional. official: identificador oficial do profissional. temp: identificador temporário do profissional. secondary: identificador secundário do profissional." />
+      <min value="1" />
+      <fixedCode value="official" />
+    </element>
+    <element id="Practitioner.identifier:cns.type">
+      <path value="Practitioner.identifier.type" />
+      <short value="Tipo do identificador do profissional" />
+      <definition value="Código que representa o tipo do identificador do profissional" />
+      <min value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+          <code value="PHO" />
+        </coding>
+      </patternCodeableConcept>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/namingsystem-identifier-system-type" />
+      </binding>
+    </element>
+    <element id="Practitioner.identifier:cns.type.id">
+      <path value="Practitioner.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do profissional" />
+      <definition value="Id lógico do tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cns.type.extension">
+      <path value="Practitioner.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do profissional" />
+      <definition value="Extensões incluídas no tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cns.type.coding">
+      <path value="Practitioner.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do profissional" />
+      <definition value="Codificação que representa o tipo do identificador do profissional" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:cns.type.coding.id">
+      <path value="Practitioner.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do profissional" />
+      <definition value="Id lógico da codificação do tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cns.type.coding.extension">
+      <path value="Practitioner.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do profissional" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cns.type.coding.system">
+      <path value="Practitioner.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do profissional" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do profissional" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Practitioner.identifier:cns.type.coding.version">
+      <path value="Practitioner.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do profissional" />
+      <definition value="Versão da codificação do tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cns.type.coding.code">
+      <path value="Practitioner.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do profissional" />
+      <definition value="Código que representa a codificação do tipo do identificador do profissional" />
+      <min value="1" />
+    </element>
+    <element id="Practitioner.identifier:cns.type.coding.display">
+      <path value="Practitioner.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do profissional" />
+      <definition value="Texto que representa a codificação do tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cns.type.coding.userSelected">
+      <path value="Practitioner.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do profissional" />
+      <definition value="Indica se a codificação do tipo do identificador do profissional foi selecionada pelo usuário" />
+    </element>
+    <element id="Practitioner.identifier:cns.type.text">
+      <path value="Practitioner.identifier.type.text" />
+      <short value="Texto do tipo do identificador do profissional" />
+      <definition value="Texto que representa o tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cns.system">
+      <path value="Practitioner.identifier.system" />
+      <short value="Sistema do identificador do profissional" />
+      <definition value="Sistema que identifica o tipo do identificador do profissional" />
+      <min value="1" />
+      <fixedUri value="https://saude.gov.br/sid/cns" />
+    </element>
+    <element id="Practitioner.identifier:cns.value">
+      <path value="Practitioner.identifier.value" />
+      <short value="Valor do identificador do profissional" />
+      <definition value="Valor do identificador do profissional" />
+      <min value="1" />
+    </element>
+    <element id="Practitioner.identifier:cns.period">
+      <path value="Practitioner.identifier.period" />
+      <short value="Período de uso do identificador do profissional" />
+      <definition value="Período de tempo durante o qual o identificador do profissional foi utilizado" />
+    </element>
+    <element id="Practitioner.identifier:cns.assigner">
+      <path value="Practitioner.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do profissional" />
+      <definition value="Entidade que atribuiu o identificador do profissional" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Practitioner.identifier:cns.assigner.display">
+      <path value="Practitioner.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cpf">
+      <path value="Practitioner.identifier" />
+      <sliceName value="cpf" />
+      <short value="Identificador do profissional" />
+      <definition value="Identificador do profissional" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:cpf.id">
+      <path value="Practitioner.identifier.id" />
+      <short value="Id lógico do identificador do profissional" />
+      <definition value="Id lógico do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cpf.extension">
+      <path value="Practitioner.identifier.extension" />
+      <short value="Extensões do identificador do profissional" />
+      <definition value="Extensões incluídas no identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cpf.use">
+      <path value="Practitioner.identifier.use" />
+      <short value="Uso do identificador do profissional" />
+      <definition value="usual: identificador usual do profissional. official: identificador oficial do profissional. temp: identificador temporário do profissional. secondary: identificador secundário do profissional." />
+      <min value="1" />
+      <fixedCode value="official" />
+    </element>
+    <element id="Practitioner.identifier:cpf.type">
+      <path value="Practitioner.identifier.type" />
+      <short value="Tipo do identificador do profissional" />
+      <definition value="Código que representa o tipo do identificador do profissional" />
+      <min value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+          <code value="TAX" />
+        </coding>
+      </patternCodeableConcept>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/namingsystem-identifier-system-type" />
+      </binding>
+    </element>
+    <element id="Practitioner.identifier:cpf.type.id">
+      <path value="Practitioner.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do profissional" />
+      <definition value="Id lógico do tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cpf.type.extension">
+      <path value="Practitioner.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do profissional" />
+      <definition value="Extensões incluídas no tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cpf.type.coding">
+      <path value="Practitioner.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do profissional" />
+      <definition value="Codificação que representa o tipo do identificador do profissional" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:cpf.type.coding.id">
+      <path value="Practitioner.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do profissional" />
+      <definition value="Id lógico da codificação do tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cpf.type.coding.extension">
+      <path value="Practitioner.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do profissional" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cpf.type.coding.system">
+      <path value="Practitioner.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do profissional" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do profissional" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Practitioner.identifier:cpf.type.coding.version">
+      <path value="Practitioner.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do profissional" />
+      <definition value="Versão da codificação do tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cpf.type.coding.code">
+      <path value="Practitioner.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do profissional" />
+      <definition value="Código que representa a codificação do tipo do identificador do profissional" />
+      <min value="1" />
+    </element>
+    <element id="Practitioner.identifier:cpf.type.coding.display">
+      <path value="Practitioner.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do profissional" />
+      <definition value="Texto que representa a codificação do tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cpf.type.coding.userSelected">
+      <path value="Practitioner.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do profissional" />
+      <definition value="Indica se a codificação do tipo do identificador do profissional foi selecionada pelo usuário" />
+    </element>
+    <element id="Practitioner.identifier:cpf.type.text">
+      <path value="Practitioner.identifier.type.text" />
+      <short value="Texto do tipo do identificador do profissional" />
+      <definition value="Texto que representa o tipo do identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:cpf.system">
+      <path value="Practitioner.identifier.system" />
+      <short value="Sistema do identificador do profissional" />
+      <definition value="Sistema que identifica o tipo do identificador do profissional" />
+      <min value="1" />
+      <fixedUri value="https://saude.gov.br/sid/cpf" />
+    </element>
+    <element id="Practitioner.identifier:cpf.value">
+      <path value="Practitioner.identifier.value" />
+      <short value="Valor do identificador do profissional" />
+      <definition value="Valor do identificador do profissional" />
+      <min value="1" />
+    </element>
+    <element id="Practitioner.identifier:cpf.period">
+      <path value="Practitioner.identifier.period" />
+      <short value="Período de uso do identificador do profissional" />
+      <definition value="Período de tempo durante o qual o identificador do profissional foi utilizado" />
+    </element>
+    <element id="Practitioner.identifier:cpf.assigner">
+      <path value="Practitioner.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do profissional" />
+      <definition value="Entidade que atribuiu o identificador do profissional" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Practitioner.identifier:cpf.assigner.display">
+      <path value="Practitioner.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do profissional" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico">
+      <path value="Practitioner.identifier" />
+      <sliceName value="identificadorMedico" />
+      <short value="Identificador do médico" />
+      <definition value="Identificador do médico" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.id">
+      <path value="Practitioner.identifier.id" />
+      <short value="Id lógico do identificador do médico" />
+      <definition value="Id lógico do identificador do médico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.extension">
+      <path value="Practitioner.identifier.extension" />
+      <short value="Extensões do identificador do médico" />
+      <definition value="Extensões incluídas no identificador do médico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.use">
+      <path value="Practitioner.identifier.use" />
+      <short value="Uso do identificador do médico" />
+      <definition value="usual: identificador usual do médico. official: identificador oficial do médico. temp: identificador temporário do médico. secondary: identificador secundário do médico." />
+      <min value="1" />
+      <fixedCode value="official" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.type">
+      <path value="Practitioner.identifier.type" />
+      <short value="Tipo do identificador do médico" />
+      <definition value="Código que representa o tipo do identificador do médico" />
+      <min value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+          <code value="MD" />
+        </coding>
+      </patternCodeableConcept>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/namingsystem-identifier-system-type" />
+      </binding>
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.type.id">
+      <path value="Practitioner.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do médico" />
+      <definition value="Id lógico do tipo do identificador do médico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.type.extension">
+      <path value="Practitioner.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do médico" />
+      <definition value="Extensões incluídas no tipo do identificador do médico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.type.coding">
+      <path value="Practitioner.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do médico" />
+      <definition value="Codificação que representa o tipo do identificador do médico" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.type.coding.id">
+      <path value="Practitioner.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do médico" />
+      <definition value="Id lógico da codificação do tipo do identificador do médico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.type.coding.extension">
+      <path value="Practitioner.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do médico" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do médico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.type.coding.system">
+      <path value="Practitioner.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do médico" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do médico" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.type.coding.version">
+      <path value="Practitioner.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do médico" />
+      <definition value="Versão da codificação do tipo do identificador do médico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.type.coding.code">
+      <path value="Practitioner.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do médico" />
+      <definition value="Código que representa a codificação do tipo do identificador do médico" />
+      <min value="1" />
+      <patternCode value="MD" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.type.coding.display">
+      <path value="Practitioner.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do médico" />
+      <definition value="Texto que representa a codificação do tipo do identificador do médico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.type.coding.userSelected">
+      <path value="Practitioner.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do médico" />
+      <definition value="Indica se a codificação do tipo do identificador do médico foi selecionada pelo usuário" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.type.text">
+      <path value="Practitioner.identifier.type.text" />
+      <short value="Texto do tipo do identificador do médico" />
+      <definition value="Texto que representa o tipo do identificador do médico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.system">
+      <path value="Practitioner.identifier.system" />
+      <short value="Sistema do identificador do médico" />
+      <definition value="Sistema que identifica o tipo do identificador do médico" />
+      <min value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Sistema do identificador do médico" />
+        <valueSet value="https://terminologia.saude.gov.br/fhir/ValueSet/BRCRM" />
+      </binding>
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.value">
+      <path value="Practitioner.identifier.value" />
+      <short value="Valor do identificador do médico" />
+      <definition value="Valor do identificador do médico" />
+      <min value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.period">
+      <path value="Practitioner.identifier.period" />
+      <short value="Período de uso do identificador do médico" />
+      <definition value="Período de tempo durante o qual o identificador do médico foi utilizado" />
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.assigner">
+      <path value="Practitioner.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do médico" />
+      <definition value="Entidade que atribuiu o identificador do médico" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Practitioner.identifier:identificadorMedico.assigner.display">
+      <path value="Practitioner.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do médico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico">
+      <path value="Practitioner.identifier" />
+      <sliceName value="identificadorFarmaceutico" />
+      <short value="Identificador do farmacêutico" />
+      <definition value="Identificador do farmacêutico" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.id">
+      <path value="Practitioner.identifier.id" />
+      <short value="Id lógico do identificador do farmacêutico" />
+      <definition value="Id lógico do identificador do farmacêutico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.extension">
+      <path value="Practitioner.identifier.extension" />
+      <short value="Extensões do identificador do farmacêutico" />
+      <definition value="Extensões incluídas no identificador do farmacêutico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.use">
+      <path value="Practitioner.identifier.use" />
+      <short value="Uso do identificador do farmacêutico" />
+      <definition value="usual: identificador usual do farmacêutico. official: identificador oficial do farmacêutico. temp: identificador temporário do farmacêutico. secondary: identificador secundário do farmacêutico." />
+      <min value="1" />
+      <fixedCode value="official" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.type">
+      <path value="Practitioner.identifier.type" />
+      <short value="Tipo do identificador do farmacêutico" />
+      <definition value="Código que representa o tipo do identificador do farmacêutico" />
+      <min value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+          <code value="RPH" />
+        </coding>
+      </patternCodeableConcept>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/namingsystem-identifier-system-type" />
+      </binding>
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.type.id">
+      <path value="Practitioner.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do farmacêutico" />
+      <definition value="Id lógico do tipo do identificador do farmacêutico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.type.extension">
+      <path value="Practitioner.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do farmacêutico" />
+      <definition value="Extensões incluídas no tipo do identificador do farmacêutico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.type.coding">
+      <path value="Practitioner.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do farmacêutico" />
+      <definition value="Codificação que representa o tipo do identificador do farmacêutico" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.type.coding.id">
+      <path value="Practitioner.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do farmacêutico" />
+      <definition value="Id lógico da codificação do tipo do identificador do farmacêutico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.type.coding.extension">
+      <path value="Practitioner.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do farmacêutico" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do farmacêutico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.type.coding.system">
+      <path value="Practitioner.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do farmacêutico" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do farmacêutico" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.type.coding.version">
+      <path value="Practitioner.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do farmacêutico" />
+      <definition value="Versão da codificação do tipo do identificador do farmacêutico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.type.coding.code">
+      <path value="Practitioner.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do farmacêutico" />
+      <definition value="Código que representa a codificação do tipo do identificador do farmacêutico" />
+      <min value="1" />
+      <patternCode value="RPH" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.type.coding.display">
+      <path value="Practitioner.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do farmacêutico" />
+      <definition value="Texto que representa a codificação do tipo do identificador do farmacêutico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.type.coding.userSelected">
+      <path value="Practitioner.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do farmacêutico" />
+      <definition value="Indica se a codificação do tipo do identificador do farmacêutico foi selecionada pelo usuário" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.type.text">
+      <path value="Practitioner.identifier.type.text" />
+      <short value="Texto do tipo do identificador do farmacêutico" />
+      <definition value="Texto que representa o tipo do identificador do farmacêutico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.system">
+      <path value="Practitioner.identifier.system" />
+      <short value="Sistema do identificador do farmacêutico" />
+      <definition value="Sistema que identifica o tipo do identificador do farmacêutico" />
+      <min value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Sistema do identificador do farmacêutico" />
+        <valueSet value="https://terminologia.saude.gov.br/fhir/ValueSet/BRCRF" />
+      </binding>
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.value">
+      <path value="Practitioner.identifier.value" />
+      <short value="Valor do identificador do farmacêutico" />
+      <definition value="Valor do identificador do farmacêutico" />
+      <min value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.period">
+      <path value="Practitioner.identifier.period" />
+      <short value="Período de uso do identificador do farmacêutico" />
+      <definition value="Período de tempo durante o qual o identificador do farmacêutico foi utilizado" />
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.assigner">
+      <path value="Practitioner.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do farmacêutico" />
+      <definition value="Entidade que atribuiu o identificador do farmacêutico" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Practitioner.identifier:identificadorFarmaceutico.assigner.display">
+      <path value="Practitioner.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do farmacêutico" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo">
+      <path value="Practitioner.identifier" />
+      <sliceName value="identificadorOdontologo" />
+      <short value="Identificador do odontólogo" />
+      <definition value="Identificador do odontólogo" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.id">
+      <path value="Practitioner.identifier.id" />
+      <short value="Id lógico do identificador do odontólogo" />
+      <definition value="Id lógico do identificador do odontólogo" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.extension">
+      <path value="Practitioner.identifier.extension" />
+      <short value="Extensões do identificador do odontólogo" />
+      <definition value="Extensões incluídas no identificador do odontólogo" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.use">
+      <path value="Practitioner.identifier.use" />
+      <short value="Uso do identificador do odontólogo" />
+      <definition value="usual: identificador usual do odontólogo. official: identificador oficial do odontólogo. temp: identificador temporário do odontólogo. secondary: identificador secundário do odontólogo." />
+      <min value="1" />
+      <fixedCode value="official" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.type">
+      <path value="Practitioner.identifier.type" />
+      <short value="Tipo do identificador do odontólogo" />
+      <definition value="Código que representa o tipo do identificador do odontólogo" />
+      <min value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+          <code value="DDS" />
+        </coding>
+      </patternCodeableConcept>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/namingsystem-identifier-system-type" />
+      </binding>
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.type.id">
+      <path value="Practitioner.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do odontólogo" />
+      <definition value="Id lógico do tipo do identificador do odontólogo" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.type.extension">
+      <path value="Practitioner.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do odontólogo" />
+      <definition value="Extensões incluídas no tipo do identificador do odontólogo" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.type.coding">
+      <path value="Practitioner.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do odontólogo" />
+      <definition value="Codificação que representa o tipo do identificador do odontólogo" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.type.coding.id">
+      <path value="Practitioner.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do odontólogo" />
+      <definition value="Id lógico da codificação do tipo do identificador do odontólogo" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.type.coding.extension">
+      <path value="Practitioner.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do odontólogo" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do odontólogo" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.type.coding.system">
+      <path value="Practitioner.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do odontólogo" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do odontólogo" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.type.coding.version">
+      <path value="Practitioner.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do odontólogo" />
+      <definition value="Versão da codificação do tipo do identificador do odontólogo" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.type.coding.code">
+      <path value="Practitioner.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do odontólogo" />
+      <definition value="Código que representa a codificação do tipo do identificador do odontólogo" />
+      <min value="1" />
+      <patternCode value="RI" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.type.coding.display">
+      <path value="Practitioner.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do odontólogo" />
+      <definition value="Texto que representa a codificação do tipo do identificador do odontólogo" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.type.coding.userSelected">
+      <path value="Practitioner.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do odontólogo" />
+      <definition value="Indica se a codificação do tipo do identificador do odontólogo foi selecionada pelo usuário" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.type.text">
+      <path value="Practitioner.identifier.type.text" />
+      <short value="Texto do tipo do identificador do odontólogo" />
+      <definition value="Texto que representa o tipo do identificador do odontólogo" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.system">
+      <path value="Practitioner.identifier.system" />
+      <short value="Sistema do identificador do odontólogo" />
+      <definition value="Sistema que identifica o tipo do identificador do odontólogo" />
+      <min value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Sistema do identificador do odontólogo" />
+        <valueSet value="https://terminologia.saude.gov.br/fhir/ValueSet/BRCRO" />
+      </binding>
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.value">
+      <path value="Practitioner.identifier.value" />
+      <short value="Valor do identificador do odontólogo" />
+      <definition value="Valor do identificador do odontólogo" />
+      <min value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.period">
+      <path value="Practitioner.identifier.period" />
+      <short value="Período de uso do identificador do odontólogo" />
+      <definition value="Período de tempo durante o qual o identificador do odontólogo foi utilizado" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.assigner">
+      <path value="Practitioner.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do odontólogo" />
+      <definition value="Entidade que atribuiu o identificador do odontólogo" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Practitioner.identifier:identificadorOdontologo.assigner.display">
+      <path value="Practitioner.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do odontólogo" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro">
+      <path value="Practitioner.identifier" />
+      <sliceName value="identificadorEnfermeiro" />
+      <short value="Identificador do enfermeiro" />
+      <definition value="Identificador do enfermeiro" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.id">
+      <path value="Practitioner.identifier.id" />
+      <short value="Id lógico do identificador do enfermeiro" />
+      <definition value="Id lógico do identificador do enfermeiro" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.extension">
+      <path value="Practitioner.identifier.extension" />
+      <short value="Extensões do identificador do enfermeiro" />
+      <definition value="Extensões incluídas no identificador do enfermeiro" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.use">
+      <path value="Practitioner.identifier.use" />
+      <short value="Uso do identificador do enfermeiro" />
+      <definition value="usual: identificador usual do enfermeiro. official: identificador oficial do enfermeiro. temp: identificador temporário do enfermeiro. secondary: identificador secundário do enfermeiro." />
+      <min value="1" />
+      <fixedCode value="official" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.type">
+      <path value="Practitioner.identifier.type" />
+      <short value="Tipo do identificador do enfermeiro" />
+      <definition value="Código que representa o tipo do identificador do enfermeiro" />
+      <min value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+          <code value="RN" />
+        </coding>
+      </patternCodeableConcept>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/namingsystem-identifier-system-type" />
+      </binding>
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.type.id">
+      <path value="Practitioner.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador do enfermeiro" />
+      <definition value="Id lógico do tipo do identificador do enfermeiro" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.type.extension">
+      <path value="Practitioner.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador do enfermeiro" />
+      <definition value="Extensões incluídas no tipo do identificador do enfermeiro" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.type.coding">
+      <path value="Practitioner.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador do enfermeiro" />
+      <definition value="Codificação que representa o tipo do identificador do enfermeiro" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.type.coding.id">
+      <path value="Practitioner.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador do enfermeiro" />
+      <definition value="Id lógico da codificação do tipo do identificador do enfermeiro" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.type.coding.extension">
+      <path value="Practitioner.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador do enfermeiro" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador do enfermeiro" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.type.coding.system">
+      <path value="Practitioner.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador do enfermeiro" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador do enfermeiro" />
+      <min value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.type.coding.version">
+      <path value="Practitioner.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador do enfermeiro" />
+      <definition value="Versão da codificação do tipo do identificador do enfermeiro" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.type.coding.code">
+      <path value="Practitioner.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador do enfermeiro" />
+      <definition value="Código que representa a codificação do tipo do identificador do enfermeiro" />
+      <min value="1" />
+      <patternCode value="RN" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.type.coding.display">
+      <path value="Practitioner.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador do enfermeiro" />
+      <definition value="Texto que representa a codificação do tipo do identificador do enfermeiro" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.type.coding.userSelected">
+      <path value="Practitioner.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador do enfermeiro" />
+      <definition value="Indica se a codificação do tipo do identificador do enfermeiro foi selecionada pelo usuário" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.type.text">
+      <path value="Practitioner.identifier.type.text" />
+      <short value="Texto do tipo do identificador do enfermeiro" />
+      <definition value="Texto que representa o tipo do identificador do enfermeiro" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.system">
+      <path value="Practitioner.identifier.system" />
+      <short value="Sistema do identificador do enfermeiro" />
+      <definition value="Sistema que identifica o tipo do identificador do enfermeiro" />
+      <min value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Sistema do identificador do enfermeiro" />
+        <valueSet value="https://terminologia.saude.gov.br/fhir/ValueSet/BRCOREN" />
+      </binding>
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.value">
+      <path value="Practitioner.identifier.value" />
+      <short value="Valor do identificador do enfermeiro" />
+      <definition value="Valor do identificador do enfermeiro" />
+      <min value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.period">
+      <path value="Practitioner.identifier.period" />
+      <short value="Período de uso do identificador do enfermeiro" />
+      <definition value="Período de tempo durante o qual o identificador do enfermeiro foi utilizado" />
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.assigner">
+      <path value="Practitioner.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador do enfermeiro" />
+      <definition value="Entidade que atribuiu o identificador do enfermeiro" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Practitioner.identifier:identificadorEnfermeiro.assigner.display">
+      <path value="Practitioner.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador do enfermeiro" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais">
+      <path value="Practitioner.identifier" />
+      <sliceName value="identificadorOutrosProfissionais" />
+      <short value="Identificador de outros profissionais" />
+      <definition value="Identificador de outros profissionais" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.id">
+      <path value="Practitioner.identifier.id" />
+      <short value="Id lógico do identificador de outros profissionais" />
+      <definition value="Id lógico do identificador de outros profissionais" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.extension">
+      <path value="Practitioner.identifier.extension" />
+      <short value="Extensões do identificador de outros profissionais" />
+      <definition value="Extensões incluídas no identificador de outros profissionais" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.use">
+      <path value="Practitioner.identifier.use" />
+      <short value="Uso do identificador de outros profissionais" />
+      <definition value="usual: identificador usual de outros profissionais. official: identificador oficial de outros profissionais. temp: identificador temporário de outros profissionais. secondary: identificador secundário de outros profissionais." />
+      <min value="1" />
+      <fixedCode value="official" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.type">
+      <path value="Practitioner.identifier.type" />
+      <short value="Tipo do identificador de outros profissionais" />
+      <definition value="Código que representa o tipo do identificador de outros profissionais" />
+      <min value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+          <code value="RI" />
+        </coding>
+      </patternCodeableConcept>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/namingsystem-identifier-system-type" />
+      </binding>
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.type.id">
+      <path value="Practitioner.identifier.type.id" />
+      <short value="Id lógico do tipo do identificador de outros profissionais" />
+      <definition value="Id lógico do tipo do identificador de outros profissionais" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.type.extension">
+      <path value="Practitioner.identifier.type.extension" />
+      <short value="Extensões do tipo do identificador de outros profissionais" />
+      <definition value="Extensões incluídas no tipo do identificador de outros profissionais" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.type.coding">
+      <path value="Practitioner.identifier.type.coding" />
+      <short value="Codificação do tipo do identificador de outros profissionais" />
+      <definition value="Codificação que representa o tipo do identificador de outros profissionais" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.type.coding.id">
+      <path value="Practitioner.identifier.type.coding.id" />
+      <short value="Id lógico da codificação do tipo do identificador de outros profissionais" />
+      <definition value="Id lógico da codificação do tipo do identificador de outros profissionais" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.type.coding.extension">
+      <path value="Practitioner.identifier.type.coding.extension" />
+      <short value="Extensões da codificação do tipo do identificador de outros profissionais" />
+      <definition value="Extensões incluídas na codificação do tipo do identificador de outros profissionais" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.type.coding.system">
+      <path value="Practitioner.identifier.type.coding.system" />
+      <short value="Sistema da codificação do tipo do identificador de outros profissionais" />
+      <definition value="Sistema que identifica a codificação do tipo do identificador de outros profissionais" />
+      <min value="1" />
+      <fixedUri value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.type.coding.version">
+      <path value="Practitioner.identifier.type.coding.version" />
+      <short value="Versão da codificação do tipo do identificador de outros profissionais" />
+      <definition value="Versão da codificação do tipo do identificador de outros profissionais" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.type.coding.code">
+      <path value="Practitioner.identifier.type.coding.code" />
+      <short value="Código da codificação do tipo do identificador de outros profissionais" />
+      <definition value="Código que representa a codificação do tipo do identificador de outros profissionais" />
+      <min value="1" />
+      <patternCode value="RI" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.type.coding.display">
+      <path value="Practitioner.identifier.type.coding.display" />
+      <short value="Texto da codificação do tipo do identificador de outros profissionais" />
+      <definition value="Texto que representa a codificação do tipo do identificador de outros profissionais" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.type.coding.userSelected">
+      <path value="Practitioner.identifier.type.coding.userSelected" />
+      <short value="Seleção do usuário da codificação do tipo do identificador de outros profissionais" />
+      <definition value="Indica se a codificação do tipo do identificador de outros profissionais foi selecionada pelo usuário" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.type.text">
+      <path value="Practitioner.identifier.type.text" />
+      <short value="Texto do tipo do identificador de outros profissionais" />
+      <definition value="Texto que representa o tipo do identificador de outros profissionais" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.system">
+      <path value="Practitioner.identifier.system" />
+      <short value="Sistema do identificador de outros profissionais" />
+      <definition value="Sistema que identifica o tipo do identificador de outros profissionais" />
+      <min value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Sistema do identificador de outros profissionais" />
+        <valueSet value="https://terminologia.saude.gov.br/fhir/ValueSet/BROutrosProfissionais" />
+      </binding>
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.value">
+      <path value="Practitioner.identifier.value" />
+      <short value="Valor do identificador de outros profissionais" />
+      <definition value="Valor do identificador de outros profissionais" />
+      <min value="1" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.period">
+      <path value="Practitioner.identifier.period" />
+      <short value="Período de uso do identificador de outros profissionais" />
+      <definition value="Período de tempo durante o qual o identificador de outros profissionais foi utilizado" />
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.assigner">
+      <path value="Practitioner.identifier.assigner" />
+      <short value="Entidade que atribuiu o identificador de outros profissionais" />
+      <definition value="Entidade que atribuiu o identificador de outros profissionais" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Practitioner.identifier:identificadorOutrosProfissionais.assigner.display">
+      <path value="Practitioner.identifier.assigner.display" />
+      <short value="Nome da entidade que atribuiu o identificador de outros profissionais" />
+    </element>
+    <element id="Practitioner.active">
+      <path value="Practitioner.active" />
+      <short value="Indica se o registro deste profissional está ativo" />
+      <definition value="Indica se o registro deste profissional está ativo" />
+      <min value="1" />
+    </element>
+    <element id="Practitioner.name">
+      <path value="Practitioner.name" />
+      <short value="Nome do profissional" />
+      <definition value="Nome(s) associado(s) ao profissional." />
+    </element>
+    <element id="Practitioner.name.id">
+      <path value="Practitioner.name.id" />
+      <short value="Identificador único do nome do profissional" />
+      <definition value="Identificador único para referenciar o nome do profissional" />
+    </element>
+    <element id="Practitioner.name.extension">
+      <path value="Practitioner.name.extension" />
+      <short value="Extensões do nome do profissional" />
+      <definition value="Extensões incluídas no nome do profissional" />
+    </element>
+    <element id="Practitioner.name.use">
+      <path value="Practitioner.name.use" />
+      <short value="Usos do nome do profissional" />
+      <definition value="official: nome oficial atual, conforme registrado na certidão de registro civil mais atual do profissional. maiden: nome oficial de solteiro(a), quando houve uma alteração de nome decorrente de uma união de qualquer tipo. old: nome oficial anterior, quando houve uma alteração de nome em uma certidão de registro civil ou decisão judicial decorrente de qualquer outra situação que não seja uma união. usual: nome social. temp: nome temporário, como aqueles utilizados em programas de proteção a testemunhas. anonymous: uso exclusivo para anonimização de registros de profissionais." />
+    </element>
+    <element id="Practitioner.name.text">
+      <path value="Practitioner.name.text" />
+      <short value="Texto do nome do profissional" />
+      <definition value="Nome completo do profissional, composto pelo nome próprio, que pode ser mais de um quando trata-se de um nome composto, pelo sobrenome e pelo sufixo (Filho, Neto, Júnior etc.) quando aplicável." />
+    </element>
+    <element id="Practitioner.name.family">
+      <path value="Practitioner.name.family" />
+      <short value="Sobrenome" />
+      <definition value="O(s) sobrenome(s) do indivíduo, quando é possível coletar esta informação desagregada." />
+    </element>
+    <element id="Practitioner.name.given">
+      <path value="Practitioner.name.given" />
+      <short value="Nome próprio" />
+      <definition value="O(s) nome(s) próprio(s) do indivíduo, quando é possível coletar esta informação desagregada." />
+    </element>
+    <element id="Practitioner.name.prefix">
+      <path value="Practitioner.name.prefix" />
+      <short value="Prefixo do nome" />
+      <definition value="Prefixo do nome do indivíduo, quando é possível coletar esta informação desagregada." />
+    </element>
+    <element id="Practitioner.name.suffix">
+      <path value="Practitioner.name.suffix" />
+      <short value="Sufixo do nome" />
+      <definition value="Sufixo do nome do indivíduo, quando é possível coletar esta informação desagregada." />
+    </element>
+    <element id="Practitioner.name.period">
+      <path value="Practitioner.name.period" />
+      <short value="Período de uso do nome" />
+      <definition value="Período de tempo durante o qual o nome foi utilizado pelo indivíduo." />
+    </element>
+    <element id="Practitioner.telecom">
+      <path value="Practitioner.telecom" />
+      <short value="Contatos do profissional" />
+      <definition value="nformações do(s) meio(s) de contato com o profissional. Não devem ser informados meios de contato pessoais, apenas profissionais." />
+    </element>
+    <element id="Practitioner.address">
+      <path value="Practitioner.address" />
+      <short value="Endereços do profissional" />
+      <definition value="Dados do(s) endereço(s) onde o profissional pode ser localizado. Não devem ser informados endereços pessoais, apenas profissionais." />
+    </element>
+    <element id="Practitioner.gender">
+      <path value="Practitioner.gender" />
+      <short value="Sexo" />
+      <definition value="male: masculino. female: feminino. unknown: ignorado." />
+    </element>
+    <element id="Practitioner.birthDate">
+      <path value="Practitioner.birthDate" />
+      <short value="Data de nascimento" />
+      <definition value="Data de nascimento do profissional." />
+    </element>
+    <element id="Practitioner.photo">
+      <path value="Practitioner.photo" />
+      <short value="Fotografia do profissional" />
+    </element>
+    <element id="Practitioner.qualification">
+      <path value="Practitioner.qualification" />
+      <short value="Qualificações do profissional" />
+      <definition value="A(s) qualificação(ões), conforme a formação, certificações ou acreditações que o profissional possui." />
+      <max value="1" />
+    </element>
+    <element id="Practitioner.qualification.id">
+      <path value="Practitioner.qualification.id" />
+      <short value="Identificador único da qualificação do profissional" />
+      <definition value="Identificador único para referenciar a qualificação do profissional" />
+    </element>
+    <element id="Practitioner.qualification.extension">
+      <path value="Practitioner.qualification.extension" />
+      <short value="Extensões da qualificação do profissional" />
+      <definition value="Extensões incluídas na qualificação do profissional" />
+    </element>
+    <element id="Practitioner.qualification.identifier">
+      <path value="Practitioner.qualification.identifier" />
+      <short value="Identificador da qualificação do profissional" />
+      <definition value="Identificador da qualificação do profissional" />
+    </element>
+    <element id="Practitioner.qualification.code">
+      <path value="Practitioner.qualification.code" />
+      <short value="Código da qualificação do profissional" />
+      <definition value="Código da qualificação do profissional" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="https://simplifier.net/redenacionaldedadosemsaude/valueset-brocupacao-1.0" />
+      </binding>
+    </element>
+    <element id="Practitioner.qualification.code.coding">
+      <path value="Practitioner.qualification.code.coding" />
+      <short value="Codificação da qualificação do profissional" />
+      <definition value="Codificação da qualificação do profissional" />
+    </element>
+    <element id="Practitioner.qualification.code.coding.system">
+      <path value="Practitioner.qualification.code.coding.system" />
+      <short value="Sistema de codificação da qualificação do profissional" />
+      <definition value="Sistema de codificação da qualificação do profissional" />
+    </element>
+    <element id="Practitioner.qualification.code.coding.version">
+      <path value="Practitioner.qualification.code.coding.version" />
+      <short value="Versão do sistema de codificação da qualificação do profissional" />
+      <definition value="Versão do sistema de codificação da qualificação do profissional" />
+    </element>
+    <element id="Practitioner.qualification.code.coding.code">
+      <path value="Practitioner.qualification.code.coding.code" />
+      <short value="Código da qualificação do profissional" />
+      <definition value="Código da qualificação do profissional" />
+    </element>
+    <element id="Practitioner.qualification.period">
+      <path value="Practitioner.qualification.period" />
+      <short value="Período de validade da qualificação do profissional" />
+      <definition value="Período de validade da qualificação do profissional" />
+    </element>
+    <element id="Practitioner.qualification.issuer">
+      <path value="Practitioner.qualification.issuer" />
+      <short value="Emissor da qualificação do profissional" />
+      <definition value="Emissor da qualificação do profissional" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Practitioner.communication">
+      <path value="Practitioner.communication" />
+      <short value="Idiomas que o profissional domina" />
+      <definition value="Idiomas que o profissional domina" />
+    </element>
+  </differential>
+</StructureDefinition>

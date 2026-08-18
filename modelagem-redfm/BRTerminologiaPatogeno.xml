@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSystem xmlns="http://hl7.org/fhir">
+  <meta>
+    <lastUpdated value="2022-09-16T14:16:40.0457007+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRTerminologiaPatogeno" />
+  <version value="1.0.1" />
+  <name value="Patógeno" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2022-12-23T14:16:40.0457007+00:00" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description value="Terminologia para indicação de um Patógeno." />
+  <content value="complete" />
+    <concept>
+        <code value="01" />
+        <display value="Orthopoxvirus (nome do gênero do vírus)" />
+        <designation>
+            <language value="en" />
+            <value value="Orthopoxvirus" />
+        </designation>
+        <designation>
+            <language value="es" />
+            <value value="Orthopoxvirus (género)" />
+        </designation>
+    </concept>
+    <concept>
+        <code value="02" />
+        <display value="Orthopoxvirus não-varíola" />
+        <designation>
+            <language value="en" />
+            <value value="Orthopoxvirus species, not Variola virus" />
+        </designation>
+        <designation>
+            <language value="es" />
+            <value value="Orthopoxvirus, no Variola (especie)" />
+        </designation>
+    </concept>
+    <concept>
+        <code value="03" />
+        <display value="Vírus Monkeypox" />
+        <designation>
+            <language value="en" />
+            <value value="Monkeypox virus" />
+        </designation>
+        <designation>
+            <language value="es" />
+            <value value="Virus de la Viruela del Mono" />
+        </designation>
+    </concept>
+    <concept>
+        <code value="04" />
+        <display value="Parapoxvirus (nome do gênero do vírus)" />
+        <designation>
+            <language value="en" />
+            <value value="Parapoxvirus" />
+        </designation>
+        <designation>
+            <language value="es" />
+            <value value="Parapoxvirus (género)" />
+        </designation>
+    </concept>
+    <concept>
+        <code value="05" />
+        <display value="Vírus Orf" />
+        <designation>
+            <language value="en" />
+            <value value="Orf virus" />
+        </designation>
+        <designation>
+            <language value="es" />
+            <value value="Virus del Orf" />
+        </designation>
+    </concept>
+    <concept>
+        <code value="06" />
+        <display value="Vírus Pseudovaríola" />
+        <designation>
+            <language value="en" />
+            <value value="Pseudocowpox virus" />
+        </designation>
+        <designation>
+            <language value="es" />
+            <value value="Virus de la Pseudoviruela Vacuna" />
+        </designation>
+    </concept>
+    <concept>
+        <code value="07" />
+        <display value="SARS-CoV-2" />
+        <designation>
+            <language value="en" />
+            <value value="SARS-CoV-2" />
+        </designation>
+        <designation>
+            <language value="es" />
+            <value value="SARS-CoV-2" />
+        </designation>
+    </concept>
+</CodeSystem>

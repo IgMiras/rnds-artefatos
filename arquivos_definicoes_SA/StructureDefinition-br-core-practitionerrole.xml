@@ -1,0 +1,220 @@
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="br-core-practitionerrole" />
+  <url value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole" />
+  <name value="BRCorePractitionerRole" />
+  <status value="active" />
+  <description value="Este perfil restringe o recurso [PractitionerRole](hl7.org/fhir/R4/practitionerrole.html) que representa um conjunto específico de funções/locais/especialidades/serviços que um profissional pode desempenhar em uma organização por um período de tempo." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="PractitionerRole" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="PractitionerRole.id">
+      <path value="PractitionerRole.id" />
+      <short value="ID lógico deste artefato" />
+      <definition value="ID lógico deste artefato" />
+    </element>
+    <element id="PractitionerRole.meta">
+      <path value="PractitionerRole.meta" />
+      <short value="Metadados sobre o recurso" />
+      <definition value="Metadados sobre o recurso" />
+    </element>
+    <element id="PractitionerRole.implicitRules">
+      <path value="PractitionerRole.implicitRules" />
+      <short value="Conjunto de regras sob as quais este conteúdo foi criado" />
+      <definition value="Conjunto de regras sob as quais este conteúdo foi criado" />
+    </element>
+    <element id="PractitionerRole.language">
+      <path value="PractitionerRole.language" />
+      <short value="Idioma do conteúdo do recurso" />
+      <definition value="Idioma do conteúdo do recurso" />
+    </element>
+    <element id="PractitionerRole.text">
+      <path value="PractitionerRole.text" />
+      <short value="Resumo textual do recurso em linguagem natural" />
+      <definition value="Resumo textual do recurso em linguagem natural" />
+    </element>
+    <element id="PractitionerRole.contained">
+      <path value="PractitionerRole.contained" />
+      <short value="Recursos contidos em linha" />
+      <definition value="Recursos contidos em linha" />
+    </element>
+    <element id="PractitionerRole.modifierExtension">
+      <path value="PractitionerRole.modifierExtension" />
+      <short value="Extensão que não pode ser ignorada" />
+      <definition value="Extensão que não pode ser ignorada" />
+    </element>
+    <element id="PractitionerRole.identifier">
+      <path value="PractitionerRole.identifier" />
+      <short value="Identificadores externos para este item" />
+      <definition value="Identificadores externos para este item" />
+    </element>
+    <element id="PractitionerRole.identifier.use">
+      <path value="PractitionerRole.identifier.use" />
+      <min value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/identifier-use" />
+      </binding>
+    </element>
+    <element id="PractitionerRole.identifier.type">
+      <path value="PractitionerRole.identifier.type" />
+      <min value="1" />
+    </element>
+    <element id="PractitionerRole.identifier.type.coding.system">
+      <path value="PractitionerRole.identifier.type.coding.system" />
+      <fixedUri value="http://www.saude.gov.br/fhir/r4/ValueSet/BRTipoDocumentoIndividuo-1.0" />
+    </element>
+    <element id="PractitionerRole.active">
+      <path value="PractitionerRole.active" />
+      <short value="Informa de o registro de função do profissional está em uso ativo" />
+      <definition value="Informa de o registro de função do profissional está em uso ativo" />
+      <min value="1" />
+    </element>
+    <element id="PractitionerRole.period">
+      <path value="PractitionerRole.period" />
+      <short value="Período durante o qual o profissional está autorizado a exercer essa(s) função(ões)." />
+      <definition value="Período durante o qual o profissional está autorizado a exercer essa(s) função(ões)." />
+    </element>
+    <element id="PractitionerRole.practitioner">
+      <path value="PractitionerRole.practitioner" />
+      <short value="Profissional capaz de fornecer os serviços definidos para a organização" />
+      <definition value="Profissional capaz de fornecer os serviços definidos para a organização" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+      </type>
+    </element>
+    <element id="PractitionerRole.organization">
+      <path value="PractitionerRole.organization" />
+      <short value="Organização onde as funções estão disponíveis." />
+      <definition value="Organização onde as funções estão disponíveis." />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="PractitionerRole.code">
+      <path value="PractitionerRole.code" />
+      <short value="Códigos dos papeis dos profissionais de saúde." />
+      <definition value="Códigos dos papeis dos profissionais de saúde." />
+      <min value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BROcupacao-1.0" />
+      </binding>
+    </element>
+    <element id="PractitionerRole.specialty">
+      <path value="PractitionerRole.specialty" />
+      <short value="Especialidade específica do profissional." />
+      <definition value="Especialidade específica do profissional." />
+    </element>
+    <element id="PractitionerRole.location">
+      <path value="PractitionerRole.location" />
+      <short value="Local em que este profissional presta cuidados." />
+      <definition value="Local em que este profissional presta cuidados." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location" />
+      </type>
+    </element>
+    <element id="PractitionerRole.healthcareService">
+      <path value="PractitionerRole.healthcareService" />
+      <short value="A lista de serviços de saúde que este profissional fornece para a organização/local(is) desta função." />
+      <definition value="A lista de serviços de saúde que este profissional fornece para a organização/local(is) desta função." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-healthcareservice" />
+      </type>
+    </element>
+    <element id="PractitionerRole.telecom">
+      <path value="PractitionerRole.telecom" />
+      <short value="Detalhes de contato específicos para a função/local/serviço." />
+      <definition value="Detalhes de contato específicos para a função/local/serviço." />
+    </element>
+    <element id="PractitionerRole.availableTime">
+      <path value="PractitionerRole.availableTime" />
+      <short value="Horários em que o site do serviço está disponível." />
+      <definition value="Horários em que o site do serviço está disponível." />
+    </element>
+    <element id="PractitionerRole.availableTime.id">
+      <path value="PractitionerRole.availableTime.id" />
+      <short value="ID exclusivo para referência entre elementos." />
+      <definition value="ID exclusivo para referência entre elementos." />
+    </element>
+    <element id="PractitionerRole.availableTime.extension">
+      <path value="PractitionerRole.availableTime.extension" />
+      <short value="Conteúdo adicional definido por implementações." />
+      <definition value="Conteúdo adicional definido por implementações." />
+    </element>
+    <element id="PractitionerRole.availableTime.modifierExtension">
+      <path value="PractitionerRole.availableTime.modifierExtension" />
+      <short value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas." />
+      <definition value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas." />
+    </element>
+    <element id="PractitionerRole.availableTime.daysOfWeek">
+      <path value="PractitionerRole.availableTime.daysOfWeek" />
+      <short value="Dias da semana: seg| ter| qua| qui| sex| sab | dom." />
+      <definition value="Dias da semana: seg| ter| qua| qui| sex| sab | dom." />
+    </element>
+    <element id="PractitionerRole.availableTime.allDay">
+      <path value="PractitionerRole.availableTime.allDay" />
+      <short value="Sempre disponível? sim ou não, por exemplo: serviço 24 horas." />
+      <definition value="Sempre disponível? por exemplo: serviço 24 horas." />
+    </element>
+    <element id="PractitionerRole.availableTime.availableStartTime">
+      <path value="PractitionerRole.availableTime.availableStartTime" />
+      <short value="Hora de abertura do dia (ignorado se allDay = true)" />
+      <definition value="Hora de abertura do dia (ignorado se allDay = true)" />
+    </element>
+    <element id="PractitionerRole.availableTime.availableEndTime">
+      <path value="PractitionerRole.availableTime.availableEndTime" />
+      <short value="Horário de fechamento do dia (ignorado se allDay = true)." />
+      <definition value="Horário de fechamento do dia (ignorado se allDay = true)." />
+    </element>
+    <element id="PractitionerRole.notAvailable">
+      <path value="PractitionerRole.notAvailable" />
+      <short value="Não disponível durante este período devido ao motivo fornecido." />
+      <definition value="Não disponível durante este período devido ao motivo fornecido." />
+    </element>
+    <element id="PractitionerRole.notAvailable.id">
+      <path value="PractitionerRole.notAvailable.id" />
+      <short value="ID exclusivo para referência entre elementos." />
+      <definition value="ID exclusivo para referência entre elementos." />
+    </element>
+    <element id="PractitionerRole.notAvailable.extension">
+      <path value="PractitionerRole.notAvailable.extension" />
+      <short value="Conteúdo adicional definido por implementações." />
+      <definition value="Conteúdo adicional definido por implementações." />
+    </element>
+    <element id="PractitionerRole.notAvailable.modifierExtension">
+      <path value="PractitionerRole.notAvailable.modifierExtension" />
+      <short value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas." />
+      <definition value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas." />
+    </element>
+    <element id="PractitionerRole.notAvailable.description">
+      <path value="PractitionerRole.notAvailable.description" />
+      <short value="Motivo apresentado ao usuário explicando porque o horário não está disponível." />
+      <definition value="Motivo apresentado ao usuário explicando porque o horário não está disponível." />
+    </element>
+    <element id="PractitionerRole.notAvailable.during">
+      <path value="PractitionerRole.notAvailable.during" />
+      <short value="Serviço indisponível a partir desta data." />
+      <definition value="Serviço indisponível a partir desta data." />
+    </element>
+    <element id="PractitionerRole.availabilityExceptions">
+      <path value="PractitionerRole.availabilityExceptions" />
+      <short value="Descrição da disponibilidade das exceções." />
+      <definition value="Descrição da disponibilidade das exceções." />
+    </element>
+    <element id="PractitionerRole.endpoint">
+      <path value="PractitionerRole.endpoint" />
+      <short value="Endpoints que fornecem acesso a serviços operados para o profissional com esta função." />
+      <definition value="Endpoints que fornecem acesso a serviços operados para o profissional com esta função." />
+    </element>
+  </differential>
+</StructureDefinition>

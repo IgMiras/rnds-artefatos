@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="COVID-19VaccineMarketingAuthorizationHolderManufacturerImunobiologicoUE"/>
+  <url value="http://www.saude.gov.br/fhir/r4/ConceptMap/COVID-19VaccineMarketingAuthorizationHolderManufacturerBRImunobiologicoUE"/>
+  <version value="01.00"/>
+  <name value="Mapeamento dos códigos do COVID-19 Vaccine Marketing Authorization Holder Manufacturer para os códigos do Imunobiologico"/>
+  <status value="draft"/>
+  <experimental value="false"/>
+  <date value="2022-03-17"/>
+  <publisher value="Ministério da Saúde"/>
+  <description value="Um mapeamento dos códigos entre COVID-19 Vaccine Marketing Authorization Holder Manufacturer e Imunobiologico"/>
+  <targetUri value="http://www.saude.gov.br/fhir/r4/ValueSet/BRImunobiologicoUE"/>
+  <group>
+    <source value="https://spor.ema.europa.eu/v1/organisations"/>
+    <target value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <element>
+      <code value="ORG-100030215"/>
+      <display value="Biontech Manufacturing GmbH"/>
+      <target>
+        <code value="87"/>
+        <display value="COVID-19 PFIZER - COMIRNATY"/>
+        <equivalence value="equivalent"/>
+      </target>
+      <target>
+        <code value="99"/>
+        <display value="COVID-19 PEDIÁTRICA - PFIZER COMIRNATY"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <element>
+      <code value="Sinovac-Biotech"/>
+      <display value="Sinovac Biotech"/>
+      <target>
+        <code value="86"/>
+        <display value="COVID-19 SINOVAC/BUTANTAN - CORONAVAC"/>
+        <equivalence value="equivalent"/>
+      </target>
+      <target>
+        <code value="98"/>
+        <display value="COVID-19 SINOVAC - CORONAVAC"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <element>
+      <code value="Fiocruz"/>
+      <display value="Fiocruz"/>
+      <target>
+        <code value="85"/>
+        <display value="COVID-19 ASTRAZENECA/FIOCRUZ - COVISHIELD"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="https://spor.ema.europa.eu/v1/organisations"/>
+    <target value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <element>
+      <code value="ORG-100001417"/>
+      <display value="Janssen-Cilag International"/>
+      <target>
+        <code value="88"/>
+        <display value="COVID-19 JANSSEN - Ad26.COV2.S"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+  <group>
+    <source value="https://spor.ema.europa.eu/v1/organisations"/>
+    <target value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <element>
+      <code value="ORG-100001699"/>
+      <display value="AstraZeneca AB"/>
+      <target>
+        <code value="89"/>
+        <display value="COVID-19 ASTRAZENECA - ChAdOx1-S"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>

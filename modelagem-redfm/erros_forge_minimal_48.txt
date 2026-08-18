@@ -1,0 +1,301 @@
+Message  : Could not parse file as a FHIR resource. Parser: Element 'meta' is not in the correct order and should come before element 'language'.
+FilePath : BRMarcosDesenvolvimento.xml
+Id       : PARSING
+Severity : Error
+
+Message  : Could not parse file as a FHIR resource. Parser: Element with name 'include' was found multiple times, but not in sequence. (at line 53, 6)
+FilePath : BRNomeExame-2.0.xml
+Id       : PARSING
+Severity : Error
+
+Message  : Could not parse file as a FHIR resource. Parser: The attribute 'value' in element 'definition' has an empty value, which is not allowed. (at line 4551, 15)
+FilePath : BRTabelaSUS.xml
+Id       : PARSING
+Severity : Error
+
+Message  : Element must not be empty
+FilePath : BRTabelaSUS.xml
+Id       : 1000
+Severity : Error
+Context  : CodeSystem.concept[415].definition[0]
+
+Message  : Element must not be empty
+FilePath : BRTabelaSUS.xml
+Id       : 1000
+Severity : Error
+Context  : CodeSystem.concept[416].definition[0]
+
+Message  : Could not parse file as a FHIR resource. Parser: Element 'meta' is not in the correct order and should come before element 'url'.
+FilePath : CodeSystem-BRTipoDispensacaoRealizada.xml
+Id       : PARSING
+Severity : Error
+
+Message  : Unable to resolve reference to profile 'http://hl7.org/fhir/StructureDefinition/shareablecodesystem'
+FilePath : CodeSystem-BRTipoDispensacaoRealizada.xml
+Id       : 4000
+Severity : Error
+Context  : CodeSystem
+
+Message  : Could not parse file as a FHIR resource. Parser: Element 'status' is not in the correct order and should come before element 'description'.
+FilePath : ConceptMap.xml
+Id       : PARSING
+Severity : Error
+
+Message  : Value '2020-09-02T16:00' does not match regex '([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?'
+FilePath : ConceptMap.xml
+Id       : 1006
+Severity : Error
+Context  : ConceptMap.date[0]
+
+Message  : Could not parse file as a FHIR resource. One or more errors occurred. (Value 'copyrightyear' is not a correct code for valueset 'GuideParameterCode'. At ImplementationGuide.definition.parameter[0].code, line 355, position 32) (Value 'releaselabel' is not a correct code for valueset 'GuideParameterCode'. At ImplementationGuide.definition.parameter[1].code, line 359, position 31) (Value 'produce-jekyll-data' is not a correct code for valueset 'GuideParameterCode'. At ImplementationGuide.definition.parameter[2].code, line 363, position 38)
+FilePath : ImplementationGuide-br.gov.saude.br-core.fhir.json
+Id       : PARSING
+Severity : Error
+
+Message  : Could not parse file as a FHIR resource. One or more errors occurred. (Properties cannot be empty strings. Either they are absent, or they are present with at least one character of non-whitespace content. At StructureDefinition.differential.element[29].short, line 231, position 20) (Properties cannot be empty strings. Either they are absent, or they are present with at least one character of non-whitespace content. At StructureDefinition.differential.element[29].definition, line 232, position 25) (Properties cannot be empty strings. Either they are absent, or they are present with at least one character of non-whitespace content. At StructureDefinition.differential.element[30].short, line 237, position 20) (Properties cannot be empty strings. Either they are absent, or they are present with at least one character of non-whitespace content. At StructureDefinition.differential.element[30].definition, line 238, position 25)
+FilePath : StructureDefinition-br-core-appointment.json
+Id       : PARSING
+Severity : Error
+
+Message  : Could not parse file as a FHIR resource. One or more errors occurred. (Element 'strength' with minimum cardinality 1 cannot be null. At StructureDefinition.differential.element[3].binding.strength, line 73, position 25)
+FilePath : StructureDefinition-br-core-povo-itinerante.json
+Id       : PARSING
+Severity : Error
+
+Message  : Instance count for 'ElementDefinition.binding.strength' is 0, which is not within the specified cardinality of 1..1
+FilePath : StructureDefinition-br-core-povo-itinerante.json
+Id       : 1028
+Severity : Error
+Context  : StructureDefinition.differential[0].element[3].binding[0]
+
+Message  : Value '2020-12-08T17:23:03' does not match regex '([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?'
+FilePath : BRAbrangencia-1.0.xml
+Id       : 1006
+Severity : Error
+Context  : ValueSet.date[0]
+
+Message  : Value '2020-12-08T17:34:45' does not match regex '([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?'
+FilePath : BRAbrangencia.xml
+Id       : 1006
+Severity : Error
+Context  : CodeSystem.date[0]
+
+Message  : Value '2020-12-08T13:40:00' does not match regex '([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?'
+FilePath : BRCampanhaVacinacao-1.0.xml
+Id       : 1006
+Severity : Error
+Context  : ValueSet.date[0]
+
+Message  : Value '2021-08-19T14:10:22' does not match regex '([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?'
+FilePath : BRCondicaoMaternal.xml
+Id       : 1006
+Severity : Error
+Context  : CodeSystem.date[0]
+
+Message  : Value '2020-12-15T16:29:40' does not match regex '([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?'
+FilePath : BRGrupoAtendimento-1.0 (2).xml
+Id       : 1006
+Severity : Error
+Context  : ValueSet.date[0]
+
+Message  : Instance failed constraint csd-1 "Within a code system definition, all the codes SHALL be unique"
+FilePath : BRMedicamento-duplicate-2.xml
+Id       : csd-1
+Severity : Error
+Context  : CodeSystem
+
+Message  : Instance failed constraint csd-1 "Within a code system definition, all the codes SHALL be unique"
+FilePath : BRMedicamento.CodeSystem.xml
+Id       : csd-1
+Severity : Error
+Context  : CodeSystem
+
+Message  : Instance failed constraint csd-1 "Within a code system definition, all the codes SHALL be unique"
+FilePath : BRMedicamento.xml
+Id       : csd-1
+Severity : Error
+Context  : CodeSystem
+
+Message  : Value '2021-03-10T17:03:15' does not match regex '([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?'
+FilePath : BRNomeCampanhaPNI-1.0.xml
+Id       : 1006
+Severity : Error
+Context  : ValueSet.date[0]
+
+Message  : Value '2020-12-08T13:49:02' does not match regex '([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?'
+FilePath : BRNomeCampanhaVacinacao.xml
+Id       : 1006
+Severity : Error
+Context  : CodeSystem.date[0]
+
+Message  : Instance failed constraint csd-1 "Within a code system definition, all the codes SHALL be unique"
+FilePath : BROrgaoExpedidor.xml
+Id       : csd-1
+Severity : Error
+Context  : CodeSystem
+
+Message  : Value '2021-08-30T14:05:47' does not match regex '([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?'
+FilePath : BRRegistroImunobiologicoAdministradoRotina-1.0.xml
+Id       : 1006
+Severity : Error
+Context  : StructureDefinition.date[0]
+
+Message  : Instance failed constraint eld-1 "If there are no discriminators, there must be a definition"
+FilePath : BRSumarioAlta.xml
+Id       : eld-1
+Severity : Error
+Context  : StructureDefinition.differential[0].element[5].slicing[0]
+
+Message  : Value '2021-03-10T16:53:20' does not match regex '([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?'
+FilePath : BRTipoCampanha.xml
+Id       : 1006
+Severity : Error
+Context  : CodeSystem.date[0]
+
+Message  : Instance failed constraint csd-1 "Within a code system definition, all the codes SHALL be unique"
+FilePath : BRTipoIdentificador.xml
+Id       : csd-1
+Severity : Error
+Context  : CodeSystem
+
+Message  : Unable to resolve reference to profile 'http://hl7.org/fhir/StructureDefinition/shareablecodesystem'
+FilePath : CodeSystem-BRConselhoProfissional.xml
+Id       : 4000
+Severity : Error
+Context  : CodeSystem
+
+Message  : Resolution of profile at 'http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCodeSystemQuestionario' failed: Found multiple conflicting conformance resources with the same canonical url identifier.
+
+Url: http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCodeSystemQuestionario
+   File: C:\Users\wes_l\OneDrive\modelagem-rpm-rdm\modelagem-master\Profile-BRCodeSystemQuestionario.StructureDefinition.xml
+   File: C:\Users\wes_l\OneDrive\modelagem-rpm-rdm\modelagem-master\arquivos-marcos-desenv\Profile-BRCodeSystemQuestionario.StructureDefinition.xml
+FilePath : CodeSystem-BRPresenteAusente.xml
+Id       : 4000
+Severity : Error
+Context  : CodeSystem
+
+Message  : Resolution of profile at 'http://www.saude.gov.br/fhir/r4/StructureDefinition/BRQuestionarioBase' failed: Found multiple conflicting conformance resources with the same canonical url identifier.
+
+Url: http://www.saude.gov.br/fhir/r4/StructureDefinition/BRQuestionarioBase
+   File: C:\Users\wes_l\OneDrive\modelagem-rpm-rdm\modelagem-master\Profile-BRQuestionarioBase.StructureDefinition.xml
+   File: C:\Users\wes_l\OneDrive\modelagem-rpm-rdm\modelagem-master\arquivos-marcos-desenv\Profile-BRQuestionarioBase.StructureDefinition.xml
+FilePath : Instance-QuestionnaireMarcosDesenvolvimento.xml
+Id       : 4000
+Severity : Error
+Context  : Questionnaire
+
+Message  : Instance failed constraint sdf-6 "A structure must have either a differential, or a snapshot (or both)"
+FilePath : RNDSEstabelecimentoSaude.StructureDefinition.xml
+Id       : sdf-6
+Severity : Error
+Context  : StructureDefinition
+
+Message  : Instance failed constraint sdf-6 "A structure must have either a differential, or a snapshot (or both)"
+FilePath : RNDSPaciente.StructureDefinition.xml
+Id       : sdf-6
+Severity : Error
+Context  : StructureDefinition
+
+Message  : Instance failed constraint eld-1 "If there are no discriminators, there must be a definition"
+FilePath : StructureDefinition-br-core-patient.xml
+Id       : eld-1
+Severity : Error
+Context  : StructureDefinition.differential[0].element[6].slicing[0]
+
+Message  : Unable to resolve reference to profile 'http://hl7.org/fhir/StructureDefinition/shareablevalueset'
+FilePath : ValueSet-BRCOREN.xml
+Id       : 4000
+Severity : Error
+Context  : ValueSet
+
+Message  : Unable to resolve reference to profile 'http://hl7.org/fhir/StructureDefinition/shareablevalueset'
+FilePath : ValueSet-BRCRF.xml
+Id       : 4000
+Severity : Error
+Context  : ValueSet
+
+Message  : Unable to resolve reference to profile 'http://hl7.org/fhir/StructureDefinition/shareablevalueset'
+FilePath : ValueSet-BRCRM.xml
+Id       : 4000
+Severity : Error
+Context  : ValueSet
+
+Message  : Unable to resolve reference to profile 'http://hl7.org/fhir/StructureDefinition/shareablevalueset'
+FilePath : ValueSet-BRCRO.xml
+Id       : 4000
+Severity : Error
+Context  : ValueSet
+
+Message  : Unable to resolve reference to profile 'http://hl7.org/fhir/StructureDefinition/shareablevalueset'
+FilePath : ValueSet-BROutrosProfissionais.xml
+Id       : 4000
+Severity : Error
+Context  : ValueSet
+
+Message  : Resolution of profile at 'http://www.saude.gov.br/fhir/r4/StructureDefinition/BRValueSetQuestionario' failed: Found multiple conflicting conformance resources with the same canonical url identifier.
+
+Url: http://www.saude.gov.br/fhir/r4/StructureDefinition/BRValueSetQuestionario
+   File: C:\Users\wes_l\OneDrive\modelagem-rpm-rdm\modelagem-master\Profile-BRValueSetQuestionario.StructureDefinition.xml
+   File: C:\Users\wes_l\OneDrive\modelagem-rpm-rdm\modelagem-master\arquivos-marcos-desenv\Profile-BRValueSetQuestionario.StructureDefinition.xml
+FilePath : ValueSet-BRRespostaMarcosDesenvolvimento.xml
+Id       : 4000
+Severity : Error
+Context  : ValueSet
+
+Message  : Unable to resolve reference to profile 'http://hl7.org/fhir/StructureDefinition/shareablevalueset'
+FilePath : ValueSet-BRTipoDispensacaoRealizada.xml
+Id       : 4000
+Severity : Error
+Context  : ValueSet
+
+Message  : Unable to resolve reference to profile 'http://hl7.org/fhir/StructureDefinition/shareablevalueset'
+FilePath : valueset-namingsystem-identifier-system-type.xml
+Id       : 4000
+Severity : Error
+Context  : ValueSet
+
+Message  : Unable to resolve reference to profile 'http://hl7.org/fhir/StructureDefinition/shareablevalueset'
+FilePath : valueset-units-of-time.xml
+Id       : 4000
+Severity : Error
+Context  : ValueSet
+
+Message  : Resolution of profile at 'http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCodeSystemQuestionario' failed: Found multiple conflicting conformance resources with the same canonical url identifier.
+
+Url: http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCodeSystemQuestionario
+   File: C:\Users\wes_l\OneDrive\modelagem-rpm-rdm\modelagem-master\Profile-BRCodeSystemQuestionario.StructureDefinition.xml
+   File: C:\Users\wes_l\OneDrive\modelagem-rpm-rdm\modelagem-master\arquivos-marcos-desenv\Profile-BRCodeSystemQuestionario.StructureDefinition.xml
+FilePath : arquivos-marcos-desenv\CodeSystem-BRPresenteAusente.xml
+Id       : 4000
+Severity : Error
+Context  : CodeSystem
+
+Message  : Resolution of profile at 'http://www.saude.gov.br/fhir/r4/StructureDefinition/BRQuestionarioBase' failed: Found multiple conflicting conformance resources with the same canonical url identifier.
+
+Url: http://www.saude.gov.br/fhir/r4/StructureDefinition/BRQuestionarioBase
+   File: C:\Users\wes_l\OneDrive\modelagem-rpm-rdm\modelagem-master\Profile-BRQuestionarioBase.StructureDefinition.xml
+   File: C:\Users\wes_l\OneDrive\modelagem-rpm-rdm\modelagem-master\arquivos-marcos-desenv\Profile-BRQuestionarioBase.StructureDefinition.xml
+FilePath : arquivos-marcos-desenv\Instance-QuestionnaireMarcosDesenvolvimento.xml
+Id       : 4000
+Severity : Error
+Context  : Questionnaire
+
+Message  : Resolution of profile at 'http://www.saude.gov.br/fhir/r4/StructureDefinition/BRValueSetQuestionario' failed: Found multiple conflicting conformance resources with the same canonical url identifier.
+
+Url: http://www.saude.gov.br/fhir/r4/StructureDefinition/BRValueSetQuestionario
+   File: C:\Users\wes_l\OneDrive\modelagem-rpm-rdm\modelagem-master\Profile-BRValueSetQuestionario.StructureDefinition.xml
+   File: C:\Users\wes_l\OneDrive\modelagem-rpm-rdm\modelagem-master\arquivos-marcos-desenv\Profile-BRValueSetQuestionario.StructureDefinition.xml
+FilePath : arquivos-marcos-desenv\ValueSet-BRRespostaMarcosDesenvolvimento.xml
+Id       : 4000
+Severity : Error
+Context  : ValueSet
+
+Message  : The following values are duplicated: http://www.saude.gov.br/fhir/r4/StructureDefinition/BRRegistroImunobiologicoAdministrado-1.0, http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCodeSystemQuestionario, http://www.saude.gov.br/fhir/r4/StructureDefinition/BRQuestionarioBase, http://www.saude.gov.br/fhir/r4/StructureDefinition/BRQuestionarioResposta, http://www.saude.gov.br/fhir/r4/StructureDefinition/BRValueSetQuestionario
+FilePath : 
+Id       : UNIQUENESS
+Severity : Error
+
+Message  : No file exists that matches your filter
+FilePath : 
+Id       : EXISTS
+Severity : Error

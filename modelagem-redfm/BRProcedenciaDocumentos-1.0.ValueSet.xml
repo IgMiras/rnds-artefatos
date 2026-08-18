@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="60388101-e26c-490e-8547-cfd5a68086ed" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2020-09-20T20:30:49.671+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/ValueSet/BRProcedenciaDocumentos-1.0" />
+  <version value="1.0" />
+  <name value="Procedência do Contato Assistencial (SA, RAC e CMD)" />
+  <title value="Procedência do Contato Assistencial (SA, RAC e CMD)" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2020-09-20T20:30:47.9067772+00:00" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description value="Classifica o serviço que encaminhou o indivíduo ou a sua iniciativa/de seu responsável na busca pelo acesso ao serviço de saúde. Para uso com o Sumário de Alta, Registro de Atendimento Clínico e Conjunto Mínimo de Dados gerado por integradores." />
+  <immutable value="false" />
+  <compose>
+    <include>
+      <system value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRProcedencia" />
+      <version value="*" />
+      <concept>
+        <code value="09" />
+      </concept>
+      <concept>
+        <code value="10" />
+      </concept>
+      <concept>
+        <code value="11" />
+      </concept>
+      <concept>
+        <code value="12" />
+      </concept>
+    </include>
+  </compose>
+</ValueSet>

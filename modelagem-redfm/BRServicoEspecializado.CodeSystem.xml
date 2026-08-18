@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSystem xmlns="http://hl7.org/fhir">
+  <id value="2a4a5299-5e17-4f72-8a4f-b81abad55a5a" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2020-09-20T20:53:03.855+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRServicoEspecializado" />
+  <version value="201701A" />
+  <name value="Serviço Especializado" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2020-09-20T20:53:03.6887767+00:00" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description value="Classifica o tipo de serviço de saúde prestado em um estabelecimento de saúde." />
+  <content value="complete" />
+</CodeSystem>

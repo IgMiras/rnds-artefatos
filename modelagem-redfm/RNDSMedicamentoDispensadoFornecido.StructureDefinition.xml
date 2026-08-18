@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="rnds-medicamento-dispensado-fornecido" />
+  <url value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSMedicamentoDispensadoFornecido" />
+  <version value="1.0.0" />
+  <name value="RNDSMedicamentoDispensadoFornecido" />
+  <title value="Dispensação ou Fornecimento Eletrônico de Medicamento" />
+  <status value="draft" />
+  <date value="2024-12-16" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="workflow" />
+    <uri value="http://hl7.org/fhir/workflow" />
+    <name value="Workflow Pattern" />
+  </mapping>
+  <mapping>
+    <identity value="rim" />
+    <uri value="http://hl7.org/v3" />
+    <name value="RIM Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="w5" />
+    <uri value="http://hl7.org/fhir/fivews" />
+    <name value="FiveWs Pattern Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="rx-dispense-rmim" />
+    <uri value="http://www.hl7.org/v3/PORX_RM020070UV" />
+    <name value="V3 Pharmacy Dispense RMIM" />
+  </mapping>
+  <mapping>
+    <identity value="v2" />
+    <uri value="http://hl7.org/v2" />
+    <name value="HL7 v2 Mapping" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="MedicationDispense" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/MedicationDispense" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="MedicationDispense">
+      <path value="MedicationDispense" />
+      <constraint>
+        <key value="dfm-1" />
+        <severity value="error" />
+        <human value="Caso o medicamento seja dispensado deve ser informado o elemento medicationReference, caso não seja dispensado deve ser informado apenas o código do medicamento no elemento medicationCodeableConcept." />
+        <expression value="(MedicationDispense.type.coding.exists(code = 'not-dispensed') implies MedicationDispense.medication.ofType(CodeableConcept).exists()) and (MedicationDispense.type.coding.exists(code = 'not-dispensed').not() implies MedicationDispense.medication.ofType(Reference).exists())" />
+      </constraint>
+      <constraint>
+        <key value="dfm-2" />
+        <severity value="error" />
+        <human value="A quantidade (quantity) e o indivíduo que retirou o medicamento (receiver) são obrigatórios caso a prescrição seja atendida." />
+        <expression value="MedicationDispense.medication.ofType(Reference).exists() implies MedicationDispense.quantity.exists() and MedicationDispense.receiver.exists()" />
+      </constraint>
+      <constraint>
+        <key value="dfm-3" />
+        <severity value="error" />
+        <human value="Caso a Prescrição não esteja disponível na RNDS é necessário informar as informações nos respectivos elementos." />
+        <expression value="MedicationDispense.authorizingPrescription.exists(id = 'out-of-rnds') implies MedicationDispense.supportingInformation.where(reference = '#prescriber-identifier').exists() and MedicationDispense.supportingInformation.where(reference = '#prescriber-specialty').exists() and MedicationDispense.contained.where(id = 'prescription').exists() and MedicationDispense.contained.where(id = 'prescriber-identifier').exists() and MedicationDispense.contained.where(id = 'prescriber-specialty').exists()" />
+      </constraint>
+      <constraint>
+        <key value="dfm-4" />
+        <severity value="error" />
+        <human value="Caso o profissional responsável seja Farmacêutico devem ser informados os dados do conselho profissional." />
+        <expression value="MedicationDispense.performer.where(id = 'pharmacist').exists() implies MedicationDispense.contained.where(id = 'pharmacist-crf').identifier.type.coding.where(code = 'RPH').exists()" />
+      </constraint>
+      <constraint>
+        <key value="dfm-5" />
+        <severity value="error" />
+        <human value="O profissional responsável deve ser Farmacêutico ou outra categoria de profissional." />
+        <expression value="MedicationDispense.performer.exists(id = 'pharmacist') xor MedicationDispense.performer.exists(id = 'other-practitioner')" />
+      </constraint>
+      <constraint>
+        <key value="dfm-7" />
+        <severity value="error" />
+        <human value="Em caso de Dispensação Parcial ou Não Atendimento da prescrição deve ser informada a justificativa no elemento note." />
+        <expression value="MedicationDispense.type.coding.exists(code = 'partial-dispensing' or code = 'not-dispensed') implies MedicationDispense.note.exists()" />
+      </constraint>
+      <constraint>
+        <key value="dfm-8" />
+        <severity value="error" />
+        <human value="O profissional Prescritor, quando informado, deve ter uma identificação de Médico, Odontólogo ou Enfermeiro." />
+        <expression value="MedicationDispense.contained.where(id = 'prescriber-identifier').exists() implies MedicationDispense.contained.where(id = 'prescriber-identifier').identifier.type.coding.exists(code = 'MD' or code = 'RN' or code = 'RI')" />
+      </constraint>
+      <constraint>
+        <key value="dfm-9" />
+        <severity value="error" />
+        <human value="Ao informar o número do RQE o número do CRM também é obrigatório no slice prescriberIdentifier." />
+        <expression value="MedicationDispense.contained.ofType(Practitioner).identifier.type.coding.where(code = 'DN').exists() implies MedicationDispense.contained.ofType(Practitioner).identifier.type.coding.where(code = 'MD').exists()" />
+      </constraint>
+    </element>
+    <element id="MedicationDispense.contained">
+      <path value="MedicationDispense.contained" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="id" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationDispense.contained:prescriptionDetails">
+      <path value="MedicationDispense.contained" />
+      <sliceName value="prescriptionDetails" />
+      <max value="1" />
+      <type>
+        <code value="MedicationRequest" />
+        <profile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPrescricaoMedicamentoDispensado" />
+      </type>
+    </element>
+    <element id="MedicationDispense.contained:prescriptionDetails.id">
+      <path value="MedicationDispense.contained.id" />
+      <min value="1" />
+      <fixedString value="prescription" />
+    </element>
+    <element id="MedicationDispense.contained:prescriptionDetails.meta">
+      <path value="MedicationDispense.contained.meta" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.contained:prescriptionDetails.meta.profile">
+      <path value="MedicationDispense.contained.meta.profile" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="MedicationDispense.contained:prescriberIdentifier">
+      <path value="MedicationDispense.contained" />
+      <sliceName value="prescriberIdentifier" />
+      <max value="1" />
+      <type>
+        <code value="Practitioner" />
+        <profile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional" />
+      </type>
+    </element>
+    <element id="MedicationDispense.contained:prescriberIdentifier.id">
+      <path value="MedicationDispense.contained.id" />
+      <min value="1" />
+      <fixedString value="prescriber-identifier" />
+    </element>
+    <element id="MedicationDispense.contained:prescriberIdentifier.meta">
+      <path value="MedicationDispense.contained.meta" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.contained:prescriberIdentifier.meta.profile">
+      <path value="MedicationDispense.contained.meta.profile" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="MedicationDispense.contained:prescriberIdentifier.identifier">
+      <path value="MedicationDispense.contained.identifier" />
+    </element>
+    <element id="MedicationDispense.contained:prescriberIdentifier.identifier:rqeMedico">
+      <path value="MedicationDispense.contained.identifier" />
+      <sliceName value="rqeMedico" />
+    </element>
+    <element id="MedicationDispense.contained:prescriberIdentifier.identifier:rqeMedico.type">
+      <path value="MedicationDispense.contained.identifier.type" />
+    </element>
+    <element id="MedicationDispense.contained:prescriberIdentifier.identifier:rqeMedico.type.coding">
+      <path value="MedicationDispense.contained.identifier.type.coding" />
+    </element>
+    <element id="MedicationDispense.contained:prescriberIdentifier.identifier:rqeMedico.type.coding.code">
+      <path value="MedicationDispense.contained.identifier.type.coding.code" />
+      <patternCode value="DN" />
+    </element>
+    <element id="MedicationDispense.contained:prescriberSpecialty">
+      <path value="MedicationDispense.contained" />
+      <sliceName value="prescriberSpecialty" />
+      <max value="1" />
+      <type>
+        <code value="PractitionerRole" />
+        <profile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSLotacaoProfissional" />
+      </type>
+    </element>
+    <element id="MedicationDispense.contained:prescriberSpecialty.id">
+      <path value="MedicationDispense.contained.id" />
+      <min value="1" />
+      <fixedString value="prescriber-specialty" />
+    </element>
+    <element id="MedicationDispense.contained:prescriberSpecialty.meta">
+      <path value="MedicationDispense.contained.meta" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.contained:prescriberSpecialty.meta.profile">
+      <path value="MedicationDispense.contained.meta.profile" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="MedicationDispense.contained:pharmacistIdentifier">
+      <path value="MedicationDispense.contained" />
+      <sliceName value="pharmacistIdentifier" />
+      <max value="1" />
+      <type>
+        <code value="Practitioner" />
+        <profile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional" />
+      </type>
+    </element>
+    <element id="MedicationDispense.contained:pharmacistIdentifier.id">
+      <path value="MedicationDispense.contained.id" />
+      <min value="1" />
+      <fixedString value="pharmacist-crf" />
+    </element>
+    <element id="MedicationDispense.contained:pharmacistIdentifier.identifier">
+      <path value="MedicationDispense.contained.identifier" />
+    </element>
+    <element id="MedicationDispense.contained:pharmacistIdentifier.identifier:identificadorFarmaceutico">
+      <path value="MedicationDispense.contained.identifier" />
+      <sliceName value="identificadorFarmaceutico" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.identifier">
+      <path value="MedicationDispense.identifier" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="system" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <short value="Cada item dispensado ou fornecido DEVE ser identificado pelo ID local e também pode ser identificado pelo número do Sistema Nacional de Controle de Receituários - SNCR." />
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationDispense.identifier:dispensedItemId">
+      <path value="MedicationDispense.identifier" />
+      <sliceName value="dispensedItemId" />
+      <short value="Identificadores local do item dispensado ou fornecido" />
+      <min value="1" />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationDispense.identifier:dispensedItemId.system">
+      <path value="MedicationDispense.identifier.system" />
+      <min value="1" />
+      <fixedUri value="http://www.saude.gov.br/fhir/r4/NamingSystem/dispensed-item-id" />
+    </element>
+    <element id="MedicationDispense.identifier:dispensedItemId.value">
+      <path value="MedicationDispense.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.identifier:sncrNumber">
+      <path value="MedicationDispense.identifier" />
+      <sliceName value="sncrNumber" />
+      <short value="Número do Sistema Nacional de Controle de Receituários" />
+      <definition value="Número do Sistema Nacional de Controle de Receituários (caso aplicado ao item dispensado ou fornecido)" />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationDispense.identifier:sncrNumber.system">
+      <path value="MedicationDispense.identifier.system" />
+      <min value="1" />
+      <fixedUri value="http://www.saude.gov.br/fhir/r4/NamingSystem/sncr-number" />
+    </element>
+    <element id="MedicationDispense.identifier:sncrNumber.value">
+      <path value="MedicationDispense.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.status">
+      <path value="MedicationDispense.status" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationDispense.statusReason[x]">
+      <path value="MedicationDispense.statusReason[x]" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+    </element>
+    <element id="MedicationDispense.category">
+      <path value="MedicationDispense.category" />
+      <short value="Categoria de dispensação de medicamentos" />
+      <definition value="Na Atenção Primária, o código `community` deve ser usado. Na Atenção Especializada, a categoria frequentemente corresponderá ao tipo de atendimento prestado.&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;category&quot;: [&#xD;&#xA;    {&#xD;&#xA;        &quot;coding&quot;: [&#xD;&#xA;            {&#xD;&#xA;                &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/medicationdispense-category&quot;,&#xD;&#xA;                &quot;code&quot;: &quot;community&quot;&#xD;&#xA;            }&#xD;&#xA;        ]&#xD;&#xA;    }&#xD;&#xA;],&#xD;&#xA;```" />
+    </element>
+    <element id="MedicationDispense.medication[x]">
+      <path value="MedicationDispense.medication[x]" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSMedicamentoDispensado" />
+      </type>
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRTerminologiaMedicamento" />
+      </binding>
+    </element>
+    <element id="MedicationDispense.subject">
+      <path value="MedicationDispense.subject" />
+      <short value="Para quem é a dispensação" />
+      <definition value="É necessária a identificação de um paciente com um número de CPF ou CNS.&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;subject&quot;: {&#xD;&#xA;    &quot;identifier&quot;: {&#xD;&#xA;        &quot;system&quot;: &quot;http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0&quot;,&#xD;&#xA;        &quot;value&quot;: &quot;53678720454&quot;&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;```" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPaciente" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationDispense.subject.identifier">
+      <path value="MedicationDispense.subject.identifier" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.subject.identifier.system">
+      <path value="MedicationDispense.subject.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.subject.identifier.value">
+      <path value="MedicationDispense.subject.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.supportingInformation">
+      <path value="MedicationDispense.supportingInformation" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationDispense.supportingInformation:prescriberIdentifierReference">
+      <path value="MedicationDispense.supportingInformation" />
+      <sliceName value="prescriberIdentifierReference" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional" />
+      </type>
+    </element>
+    <element id="MedicationDispense.supportingInformation:prescriberIdentifierReference.reference">
+      <path value="MedicationDispense.supportingInformation.reference" />
+      <min value="1" />
+      <fixedString value="#prescriber-identifier" />
+    </element>
+    <element id="MedicationDispense.supportingInformation:prescriberSpecialtyReference">
+      <path value="MedicationDispense.supportingInformation" />
+      <sliceName value="prescriberSpecialtyReference" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSLotacaoProfissional" />
+      </type>
+    </element>
+    <element id="MedicationDispense.supportingInformation:prescriberSpecialtyReference.reference">
+      <path value="MedicationDispense.supportingInformation.reference" />
+      <min value="1" />
+      <fixedString value="#prescriber-specialty" />
+    </element>
+    <element id="MedicationDispense.performer">
+      <path value="MedicationDispense.performer" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="id" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationDispense.performer:organization">
+      <path value="MedicationDispense.performer" />
+      <sliceName value="organization" />
+      <short value="Estabelecimento onde ocorreu a dispensação ou fornecimento de medicamento." />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="MedicationDispense.performer:organization.id">
+      <path value="MedicationDispense.performer.id" />
+      <min value="1" />
+      <fixedString value="organization" />
+    </element>
+    <element id="MedicationDispense.performer:organization.actor">
+      <path value="MedicationDispense.performer.actor" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSEstabelecimentoSaude" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0" />
+      </type>
+    </element>
+    <element id="MedicationDispense.performer:organization.actor.identifier">
+      <path value="MedicationDispense.performer.actor.identifier" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.performer:organization.actor.identifier.system">
+      <path value="MedicationDispense.performer.actor.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.performer:organization.actor.identifier.value">
+      <path value="MedicationDispense.performer.actor.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.performer:pharmacist">
+      <path value="MedicationDispense.performer" />
+      <sliceName value="pharmacist" />
+      <short value="Farmacêutico que realizou a dispensação do medicamento" />
+      <max value="1" />
+    </element>
+    <element id="MedicationDispense.performer:pharmacist.id">
+      <path value="MedicationDispense.performer.id" />
+      <min value="1" />
+      <fixedString value="pharmacist" />
+    </element>
+    <element id="MedicationDispense.performer:pharmacist.function">
+      <path value="MedicationDispense.performer.function" />
+      <min value="1" />
+      <constraint>
+        <key value="dfm-6" />
+        <severity value="error" />
+        <human value="Caso o profissional seja farmacêutico deve conter um código CBO da Família &quot;2234 : Farmacêuticos&quot;" />
+        <expression value="coding.code.startsWith('2234')" />
+      </constraint>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BROcupacao-1.0" />
+      </binding>
+    </element>
+    <element id="MedicationDispense.performer:pharmacist.function.coding">
+      <path value="MedicationDispense.performer.function.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="MedicationDispense.performer:pharmacist.function.coding.system">
+      <path value="MedicationDispense.performer.function.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.performer:pharmacist.function.coding.code">
+      <path value="MedicationDispense.performer.function.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.performer:pharmacist.actor">
+      <path value="MedicationDispense.performer.actor" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRProfissional-1.0" />
+      </type>
+    </element>
+    <element id="MedicationDispense.performer:pharmacist.actor.reference">
+      <path value="MedicationDispense.performer.actor.reference" />
+      <min value="1" />
+      <fixedString value="#pharmacist-crf" />
+    </element>
+    <element id="MedicationDispense.performer:pharmacist.actor.identifier">
+      <path value="MedicationDispense.performer.actor.identifier" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.performer:pharmacist.actor.identifier.system">
+      <path value="MedicationDispense.performer.actor.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.performer:pharmacist.actor.identifier.value">
+      <path value="MedicationDispense.performer.actor.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.performer:otherPractitioner">
+      <path value="MedicationDispense.performer" />
+      <sliceName value="otherPractitioner" />
+      <short value="Profissional que realizou o fornecimento do medicamento" />
+      <max value="1" />
+    </element>
+    <element id="MedicationDispense.performer:otherPractitioner.id">
+      <path value="MedicationDispense.performer.id" />
+      <min value="1" />
+      <fixedString value="other-practitioner" />
+    </element>
+    <element id="MedicationDispense.performer:otherPractitioner.function">
+      <path value="MedicationDispense.performer.function" />
+      <min value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BROcupacao-1.0" />
+      </binding>
+    </element>
+    <element id="MedicationDispense.performer:otherPractitioner.function.coding">
+      <path value="MedicationDispense.performer.function.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="MedicationDispense.performer:otherPractitioner.function.coding.system">
+      <path value="MedicationDispense.performer.function.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.performer:otherPractitioner.function.coding.code">
+      <path value="MedicationDispense.performer.function.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.performer:otherPractitioner.actor">
+      <path value="MedicationDispense.performer.actor" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRProfissional-1.0" />
+      </type>
+    </element>
+    <element id="MedicationDispense.authorizingPrescription">
+      <path value="MedicationDispense.authorizingPrescription" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="id" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPrescricaoMedicamentoDispensado" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationDispense.authorizingPrescription:prescriptionInRNDS">
+      <path value="MedicationDispense.authorizingPrescription" />
+      <sliceName value="prescriptionInRNDS" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPrescricaoMedicamentoDispensado" />
+      </type>
+    </element>
+    <element id="MedicationDispense.authorizingPrescription:prescriptionInRNDS.id">
+      <path value="MedicationDispense.authorizingPrescription.id" />
+      <fixedString value="in-rnds" />
+    </element>
+    <element id="MedicationDispense.authorizingPrescription:prescriptionInRNDS.reference">
+      <path value="MedicationDispense.authorizingPrescription.reference" />
+      <max value="0" />
+    </element>
+    <element id="MedicationDispense.authorizingPrescription:prescriptionInRNDS.identifier">
+      <path value="MedicationDispense.authorizingPrescription.identifier" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.authorizingPrescription:prescriptionInRNDS.identifier.system">
+      <path value="MedicationDispense.authorizingPrescription.identifier.system" />
+      <min value="1" />
+      <fixedUri value="http://www.saude.gov.br/fhir/r4/NamingSystem/prescription-item-id" />
+    </element>
+    <element id="MedicationDispense.authorizingPrescription:prescriptionInRNDS.identifier.value">
+      <path value="MedicationDispense.authorizingPrescription.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.authorizingPrescription:prescriptionOutOfRNDS">
+      <path value="MedicationDispense.authorizingPrescription" />
+      <sliceName value="prescriptionOutOfRNDS" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPrescricaoMedicamentoDispensado" />
+      </type>
+    </element>
+    <element id="MedicationDispense.authorizingPrescription:prescriptionOutOfRNDS.id">
+      <path value="MedicationDispense.authorizingPrescription.id" />
+      <fixedString value="out-of-rnds" />
+    </element>
+    <element id="MedicationDispense.authorizingPrescription:prescriptionOutOfRNDS.reference">
+      <path value="MedicationDispense.authorizingPrescription.reference" />
+      <min value="1" />
+      <fixedString value="#prescription" />
+    </element>
+    <element id="MedicationDispense.authorizingPrescription:prescriptionOutOfRNDS.identifier">
+      <path value="MedicationDispense.authorizingPrescription.identifier" />
+      <max value="0" />
+    </element>
+    <element id="MedicationDispense.type">
+      <path value="MedicationDispense.type" />
+      <min value="1" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRTipoDispensacaoRealizada" />
+      </binding>
+    </element>
+    <element id="MedicationDispense.type.coding">
+      <path value="MedicationDispense.type.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="MedicationDispense.type.coding.system">
+      <path value="MedicationDispense.type.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.type.coding.code">
+      <path value="MedicationDispense.type.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.quantity">
+      <path value="MedicationDispense.quantity" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationDispense.quantity.value">
+      <path value="MedicationDispense.quantity.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.whenHandedOver">
+      <path value="MedicationDispense.whenHandedOver" />
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationDispense.receiver">
+      <path value="MedicationDispense.receiver" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPaciente" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationDispense.receiver.identifier">
+      <path value="MedicationDispense.receiver.identifier" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.receiver.identifier.system">
+      <path value="MedicationDispense.receiver.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.receiver.identifier.value">
+      <path value="MedicationDispense.receiver.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.note">
+      <path value="MedicationDispense.note" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationDispense.dosageInstruction">
+      <path value="MedicationDispense.dosageInstruction" />
+      <short value="Como o medicamento deve ser usado" />
+      <definition value="O conteúdo do `dosageInstruction` deve seguir as orientações contidas em cada elemento.&#xD;&#xA;&#xD;&#xA;`dosageInstruction.text` **DEVE** ser fornecido e é uma versão legível por humanos da dose estruturada, como seria impressa em uma prescrição de papel. O prescritor deve inserir uma dosagem de item de medicamento. &#xD;&#xA;&#xD;&#xA;O prescritor deve inserir uma dosagem de item de medicamento. O uso de um valor padrão genérico, por exemplo, &quot;Use conforme as instruções&quot;, se um valor não for inserido, não é aceitável de uma perspectiva clínica. O usuário deve ser solicitado a selecionar uma instrução de dosagem de uma lista de seleção, digitar manualmente ou fazer com que o sistema preencha com uma instrução de dosagem válida e clinicamente segura, relevante para o medicamento prescrito ou circunstâncias clínicas.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;dosageInstruction&quot;: [&#xD;&#xA;   {&#xD;&#xA;        &quot;text&quot;: &quot;Tomar 1 comprimido via oral pela manhã por 10 dias&quot;,&#xD;&#xA;        &quot;timing&quot;: {&#xD;&#xA;            &quot;repeat&quot;: {&#xD;&#xA;                &quot;boundsDuration&quot;: {&#xD;&#xA;                    &quot;value&quot;: 10,&#xD;&#xA;                    &quot;unit&quot;: &quot;day&quot;,&#xD;&#xA;                     &quot;system&quot;: &quot;http://unitsofmeasure.org&quot;,&#xD;&#xA;                     &quot;code&quot;: &quot;d&quot;&#xD;&#xA;                },&#xD;&#xA;                 &quot;frequency&quot;: 1,&#xD;&#xA;                 &quot;period&quot;: 1,&#xD;&#xA;                 &quot;periodUnit&quot;: &quot;d&quot;,&#xD;&#xA;                 &quot;when&quot;: &quot;MORN&quot;&#xD;&#xA;             }&#xD;&#xA;        },&#xD;&#xA;        &quot;route&quot;: {&#xD;&#xA;            &quot;coding&quot;: [&#xD;&#xA;                {&#xD;&#xA;                    &quot;system&quot;: &quot;http://www.saude.gov.br/fhir/r4/CodeSystem/BRViaAdministracao&quot;,&#xD;&#xA;                    &quot;code&quot;: &quot;10907&quot;,&#xD;&#xA;                    &quot;display&quot;: &quot;Oral&quot;&#xD;&#xA;                }&#xD;&#xA;            ]&#xD;&#xA;        },&#xD;&#xA;        &quot;doseAndRate&quot;: [&#xD;&#xA;   {&#xD;&#xA;    &quot;doseQuantity&quot;: {&#xD;&#xA;     &quot;value&quot;: 1,&#xD;&#xA;     &quot;unit&quot;: &quot;Comprimido&quot;,&#xD;&#xA;     &quot;system&quot;: &quot;http://www.saude.gov.br/fhir/r4/CodeSystem/BRUnidadeMedida&quot;,&#xD;&#xA;     &quot;code&quot;: &quot;19&quot;&#xD;&#xA;    }&#xD;&#xA;   }&#xD;&#xA;  ],&#xD;&#xA; }&#xD;&#xA;]&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;```" />
+    </element>
+    <element id="MedicationDispense.dosageInstruction.route">
+      <path value="MedicationDispense.dosageInstruction.route" />
+      <short value="Via de admiminstração do medicamento" />
+      <definition value="Conceito - referência a uma terminologia que representa a via de administração do medicamento.&#xD;&#xA;&#xD;&#xA;```json&#xD;&#xA;&quot;route&quot;: {&#xD;&#xA;    &quot;coding&quot;: [&#xD;&#xA;        {&#xD;&#xA;            &quot;system&quot;: &quot;http://www.saude.gov.br/fhir/r4/CodeSystem/BRViaAdministracao&quot;,&#xD;&#xA;            &quot;code&quot;: &quot;10907&quot;,&#xD;&#xA;            &quot;display&quot;: &quot;Oral&quot;&#xD;&#xA;        }&#xD;&#xA;    ]&#xD;&#xA;}&#xD;&#xA;```" />
+      <min value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRViaAdministracao-1.0" />
+      </binding>
+    </element>
+    <element id="MedicationDispense.dosageInstruction.route.coding">
+      <path value="MedicationDispense.dosageInstruction.route.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="MedicationDispense.dosageInstruction.route.coding.system">
+      <path value="MedicationDispense.dosageInstruction.route.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.dosageInstruction.route.coding.code">
+      <path value="MedicationDispense.dosageInstruction.route.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="MedicationDispense.dosageInstruction.doseAndRate">
+      <path value="MedicationDispense.dosageInstruction.doseAndRate" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="MedicationDispense.dosageInstruction.doseAndRate.dose[x]">
+      <path value="MedicationDispense.dosageInstruction.doseAndRate.dose[x]" />
+      <min value="1" />
+      <type>
+        <code value="Quantity" />
+      </type>
+    </element>
+    <element id="MedicationDispense.dosageInstruction.doseAndRate.dose[x].value">
+      <path value="MedicationDispense.dosageInstruction.doseAndRate.dose[x].value" />
+      <min value="1" />
+    </element>
+  </differential>
+</StructureDefinition>

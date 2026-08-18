@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="br-core-composition" />
+  <url value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-composition" />
+  <name value="BRCoreComposition" />
+  <title value="br-core-composition" />
+  <status value="active" />
+  <description value="Este perfil representa as restrições aplicadas ao recurso br-core-composition" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Composition" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Composition" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Composition.id">
+      <path value="Composition.id" />
+      <short value="ID lógico deste artefato" />
+      <definition value="ID lógico deste artefato" />
+    </element>
+    <element id="Composition.meta">
+      <path value="Composition.meta" />
+      <short value="ID lógico deste artefato" />
+      <definition value="ID lógico deste artefato" />
+    </element>
+    <element id="Composition.implicitRules">
+      <path value="Composition.implicitRules" />
+      <short value="Conjunto de regras utilizadas para a elaboração deste conteúdo" />
+      <definition value="Conjunto de regras utilizadas para a elaboração deste conteúdo" />
+    </element>
+    <element id="Composition.language">
+      <path value="Composition.language" />
+      <short value="Idioma do conteúdo do recurso" />
+      <definition value="Idioma do conteúdo do recurso" />
+    </element>
+    <element id="Composition.text">
+      <path value="Composition.text" />
+      <short value="Resumo do recurso para interpretação humana" />
+      <definition value="Resumo do recurso para interpretação humana" />
+    </element>
+    <element id="Composition.contained">
+      <path value="Composition.contained" />
+      <short value="Recursos contidos" />
+      <definition value="Recursos contidos neste artefato" />
+    </element>
+    <element id="Composition.modifierExtension">
+      <path value="Composition.modifierExtension" />
+      <short value="Extensões que não podem ser ignoradas" />
+      <definition value="Extensões que não podem ser ignoradas" />
+    </element>
+    <element id="Composition.identifier">
+      <path value="Composition.identifier" />
+      <short value="Identificador independente da versão da Composition" />
+      <definition value="Identificador independente da versão da Composition" />
+    </element>
+    <element id="Composition.status">
+      <path value="Composition.status" />
+      <short value="Status/Situação da Composition" />
+      <definition value="Status/Situação da Composition: preliminar, definitivo, alterado, inserido com erro" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/composition-status" />
+      </binding>
+    </element>
+    <element id="Composition.type">
+      <path value="Composition.type" />
+      <short value="Tipo da Composition" />
+      <definition value="Tipo da Composition (fixo em 'Sumário Internacional do Paciente)" />
+      <binding>
+        <strength value="preferred" />
+        <valueSet value="http://hl7.org/fhir/R4/valueset-doc-typecodes.html" />
+      </binding>
+    </element>
+    <element id="Composition.type.id">
+      <path value="Composition.type.id" />
+      <short value="ID exclusivo para referência entre elementos" />
+      <definition value="ID exclusivo para referência entre elementos" />
+    </element>
+    <element id="Composition.type.extension">
+      <path value="Composition.type.extension" />
+      <short value="Conteúdo adicional definido por implementações" />
+      <definition value="Conteúdo adicional definido por implementações" />
+    </element>
+    <element id="Composition.type.coding">
+      <path value="Composition.type.coding" />
+      <short value="Código definido por uma terminologia" />
+      <definition value="Código definido por uma terminologia" />
+    </element>
+    <element id="Composition.type.coding.id">
+      <path value="Composition.type.coding.id" />
+      <short value="ID exclusivo para referência entre elementos" />
+      <definition value="ID exclusivo para referência entre elementos" />
+    </element>
+    <element id="Composition.type.coding.extension">
+      <path value="Composition.type.coding.extension" />
+      <short value="Conteúdo adicional definido por implementações" />
+      <definition value="Conteúdo adicional definido por implementações" />
+    </element>
+    <element id="Composition.type.coding.system">
+      <path value="Composition.type.coding.system" />
+      <short value="Identificador do sistema de terminologia" />
+      <definition value="Identidficador do sistema de terminologia." />
+    </element>
+    <element id="Composition.type.coding.version">
+      <path value="Composition.type.coding.version" />
+      <short value="Versão da terminologia LOINC" />
+      <definition value="Versão da terminologia LOINC - se relevante" />
+    </element>
+    <element id="Composition.type.coding.code">
+      <path value="Composition.type.coding.code" />
+      <short value="Código conforme terminologia" />
+      <definition value="Código conforme terminologia." />
+    </element>
+    <element id="Composition.type.coding.display">
+      <path value="Composition.type.coding.display" />
+      <short value="Descrição conforme definição da terminologia LOINC" />
+      <definition value="Descrição conforme definição da terminologia LOINC" />
+    </element>
+    <element id="Composition.type.coding.userSelected">
+      <path value="Composition.type.coding.userSelected" />
+      <short value="Se esta codificação foi escolhida diretamente pelo usuário" />
+      <definition value="Se esta codificação foi escolhida diretamente pelo usuário" />
+    </element>
+    <element id="Composition.type.text">
+      <path value="Composition.type.text" />
+      <short value="Representação em texto livre do conceito" />
+      <definition value="Representação em texto livre do conceito" />
+    </element>
+    <element id="Composition.category">
+      <path value="Composition.category" />
+      <short value="Categorização da Composition" />
+      <definition value="Categorização da Composition" />
+      <binding>
+        <strength value="example" />
+        <valueSet value="http://hl7.org/fhir/R4/valueset-document-classcodes.html" />
+      </binding>
+    </element>
+    <element id="Composition.subject">
+      <path value="Composition.subject" />
+      <short value="Sobre quem e/ou sobre o que é a Composition" />
+      <definition value="Sobre quem e/ou sobre o que é a Composition" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+      </type>
+    </element>
+    <element id="Composition.subject.id">
+      <path value="Composition.subject.id" />
+      <short value="ID exclusivo para referência entre elementos" />
+      <definition value="ID exclusivo para referência entre elementos" />
+    </element>
+    <element id="Composition.subject.extension">
+      <path value="Composition.subject.extension" />
+      <short value="Conteúdo adicional definido por implementações" />
+      <definition value="Conteúdo adicional definido por implementações" />
+    </element>
+    <element id="Composition.subject.reference">
+      <path value="Composition.subject.reference" />
+      <short value="Referência literal, URL relativa, interna ou absoluta" />
+      <definition value="Referência literal, URL relativa, interna ou absoluta" />
+    </element>
+    <element id="Composition.subject.type">
+      <path value="Composition.subject.type" />
+      <short value="Tipo ao qual a referência se refere" />
+      <definition value="Tipo ao qual a referência se refere (por exemplo,'Paciente')" />
+    </element>
+    <element id="Composition.subject.identifier">
+      <path value="Composition.subject.identifier" />
+      <short value="Referência lógica, quando a referência literal não é conhecida" />
+      <definition value="Referência lógica, quando a referência literal não é conhecida" />
+    </element>
+    <element id="Composition.subject.display">
+      <path value="Composition.subject.display" />
+      <short value="Texto alternativo para o recurso" />
+      <definition value="Texto alternativo para o recurso" />
+    </element>
+    <element id="Composition.encounter">
+      <path value="Composition.encounter" />
+      <short value="Contato assistencial descrito nesta Composition" />
+      <definition value="Contato assistencial descrito nesta Composition" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter" />
+      </type>
+    </element>
+    <element id="Composition.date">
+      <path value="Composition.date" />
+      <short value="Data de edição da Composition" />
+      <definition value="Data de edição da Composition" />
+    </element>
+    <element id="Composition.author">
+      <path value="Composition.author" />
+      <short value="Quem e/ou o que foi o autor desta Composition" />
+      <definition value="Quem e/ou o que foi o autor desta Compositon" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Composition.title">
+      <path value="Composition.title" />
+      <short value="Sumário Internacional do Paciente" />
+      <definition value="Sumário Internacional do Paciente" />
+    </element>
+    <element id="Composition.confidentiality">
+      <path value="Composition.confidentiality" />
+      <short value="Códigos que especificam o nível de confidencialidade da Composition" />
+      <definition value="Códigos que especificam o nível de confidencialidade da Composition" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://terminology.hl7.org/ValueSet/v3-ConfidentialityClassification" />
+      </binding>
+    </element>
+    <element id="Composition.attester">
+      <path value="Composition.attester" />
+      <short value="Responsável por atestar a acurácia da Composition" />
+      <definition value="Responsável por atestar a acurácia da Composition" />
+    </element>
+    <element id="Composition.attester.id">
+      <path value="Composition.attester.id" />
+      <short value="ID exclusivo para referência entre elementos" />
+      <definition value="ID exclusivo para referência entre elementos" />
+    </element>
+    <element id="Composition.attester.extension">
+      <path value="Composition.attester.extension" />
+      <short value="Conteúdo adicional definido por implementações" />
+      <definition value="Conteúdo adicional definido por implementações" />
+    </element>
+    <element id="Composition.attester.modifierExtension">
+      <path value="Composition.attester.modifierExtension" />
+      <short value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+      <definition value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+    </element>
+    <element id="Composition.attester.mode">
+      <path value="Composition.attester.mode" />
+      <short value="Métodolo utilizada para autenticar a Composition" />
+      <definition value="Métodolo utilizada para autenticar a Composition: pessoal, profissional, legal, oficial" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/R4/valueset-composition-attestation-mode.html" />
+      </binding>
+    </element>
+    <element id="Composition.attester.time">
+      <path value="Composition.attester.time" />
+      <short value="Quando a Composition foi atestada" />
+      <definition value="Quando a Composition foi atestada" />
+    </element>
+    <element id="Composition.attester.party">
+      <path value="Composition.attester.party" />
+      <short value="Quem atestou a Composition" />
+      <definition value="Quem atestou a Composition" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Composition.custodian">
+      <path value="Composition.custodian" />
+      <short value="Organização responsável pela custódia da Composition" />
+      <definition value="Identifica a organização ou grupo responsável pela composição." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Composition.relatesTo">
+      <path value="Composition.relatesTo" />
+      <short value="Relacionamentos com outras Compositions/Documents" />
+      <definition value="Relações que esta composição tem com outras composições ou recursos." />
+    </element>
+    <element id="Composition.relatesTo.id">
+      <path value="Composition.relatesTo.id" />
+      <short value="Relacionamentos com outras composições/Documents" />
+      <definition value="Relacionamentos com outras composições/Documents" />
+    </element>
+    <element id="Composition.relatesTo.extension">
+      <path value="Composition.relatesTo.extension" />
+      <short value="Conteúdo adicional definido por implementações" />
+      <definition value="Conteúdo adicional definido por implementações" />
+    </element>
+    <element id="Composition.relatesTo.modifierExtension">
+      <path value="Composition.relatesTo.modifierExtension" />
+      <short value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+      <definition value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+    </element>
+    <element id="Composition.relatesTo.code">
+      <path value="Composition.relatesTo.code" />
+      <short value="Alvo do relacionamento da composição" />
+      <definition value="Alvo do relacionamento da composição" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/R4/valueset-document-relationship-type.html" />
+      </binding>
+    </element>
+    <element id="Composition.relatesTo.target[x]">
+      <path value="Composition.relatesTo.target[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <ordered value="false" />
+        <rules value="open" />
+      </slicing>
+      <short value="Relacionamento alvo" />
+      <definition value="Relacionamento alvo" />
+    </element>
+    <element id="Composition.relatesTo.target[x]:targetReference">
+      <path value="Composition.relatesTo.target[x]" />
+      <sliceName value="targetReference" />
+      <short value="Referencia a composition alvo" />
+      <definition value="Referencia a composition alvo" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-composition" />
+      </type>
+    </element>
+    <element id="Composition.event">
+      <path value="Composition.event" />
+      <short value="Serviços assistenciais documentados" />
+      <definition value="O serviço especializado  como uma colonoscopia ou uma apendicectomia, sendo documentado." />
+    </element>
+    <element id="Composition.event.id">
+      <path value="Composition.event.id" />
+      <short value="ID exclusivo para referência entre elementos" />
+      <definition value="Identificador  único para o elemento dentro de um recurso (para referências internas). Este pode ser qualquer valor de string que não contenha espaços." />
+    </element>
+    <element id="Composition.event.extension">
+      <path value="Composition.event.extension" />
+      <short value="Conteúdo adicional definido por implementações" />
+      <definition value="Conteúdo adicional definido por implementações" />
+    </element>
+    <element id="Composition.event.modifierExtension">
+      <path value="Composition.event.modifierExtension" />
+      <short value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+      <definition value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+    </element>
+    <element id="Composition.event.code">
+      <path value="Composition.event.code" />
+      <short value="Código(s) aplicável(is) aos eventos documentados" />
+      <definition value="Esta lista de códigos representa os principais atos clínicos, como uma colonoscopia ou uma apendicectomia, sendo documentados. Em alguns casos, o evento é inerente ao typeCode, como um 'Histórico e Relatório Físico', no qual o procedimento documentado é necessariamente um ato de 'Histórico e Físico'." />
+      <binding>
+        <strength value="required" />
+      </binding>
+    </element>
+    <element id="Composition.event.period">
+      <path value="Composition.event.period" />
+      <short value="O período de tempo coberto pela composition." />
+      <definition value="O período de tempo coberto pela composition. Não há afirmação de que a documentação seja uma representação completa para este período, apenas que documenta eventos durante esse tempo." />
+    </element>
+    <element id="Composition.event.detail">
+      <path value="Composition.event.detail" />
+      <short value="Referência aos eventos da Composition" />
+      <definition value="Referência aos eventos da Composition" />
+    </element>
+    <element id="Composition.section">
+      <path value="Composition.section" />
+      <short value="A secção inicial da composition a partir da qual as demais seções são definidas" />
+      <definition value="A secção inicial da composition a partir da qual as demais seções são definidas" />
+    </element>
+    <element id="Composition.section.id">
+      <path value="Composition.section.id" />
+      <short value="Identificador exclusivo para referência entre elemento" />
+      <definition value="Identificador exclusivo para referência entre elementos" />
+    </element>
+    <element id="Composition.section.extension">
+      <path value="Composition.section.extension" />
+      <short value="Conteúdo adicional definido por implementações" />
+      <definition value="Conteúdo adicional definido por implementações" />
+    </element>
+    <element id="Composition.section.modifierExtension">
+      <path value="Composition.section.modifierExtension" />
+      <short value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+      <definition value="Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas" />
+    </element>
+    <element id="Composition.section.title">
+      <path value="Composition.section.title" />
+      <short value="Título da seção" />
+      <definition value="Título da seção do Sumário Internacional do Paciente" />
+    </element>
+    <element id="Composition.section.code">
+      <path value="Composition.section.code" />
+      <short value="Um código que identifica o tipo de conteúdo contido dentro da seção." />
+      <definition value="Um código que identifica o tipo de conteúdo contido dentro da seção. Isso deve ser consistente com o título da seção." />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/R4/valueset-doc-section-codes.html" />
+      </binding>
+    </element>
+    <element id="Composition.section.author">
+      <path value="Composition.section.author" />
+      <short value="Quem e/ou o que foi o autor desta seção" />
+      <definition value="Identifica quem é responsável pelas informações nesta seção, não necessariamente quem a digitou." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson" />
+        <targetProfile value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" />
+      </type>
+    </element>
+    <element id="Composition.section.focus">
+      <path value="Composition.section.focus" />
+      <short value="Quem/o que é a seção" />
+      <definition value="Quem/o que é a seção" />
+    </element>
+    <element id="Composition.section.text">
+      <path value="Composition.section.text" />
+      <short value="Resumo em texto livre da seção" />
+      <definition value="Resumo em texto livre da seção" />
+    </element>
+    <element id="Composition.section.mode">
+      <path value="Composition.section.mode" />
+      <short value="Método de processamento da seção" />
+      <definition value="Método de processamento da seção" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/R4/valueset-list-mode.html" />
+      </binding>
+    </element>
+    <element id="Composition.section.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <short value="Especifica a ordem dos itens nas sections.entry" />
+      <definition value="Especifica a ordem dos itens nas sections.entry" />
+      <binding>
+        <strength value="preferred" />
+        <valueSet value="http://hl7.org/fhir/R4/valueset-list-empty-reason.html" />
+      </binding>
+    </element>
+    <element id="Composition.section.entry">
+      <path value="Composition.section.entry" />
+      <short value="Uma referência ao recurso a partir  do qual narrativa da seção é derivada." />
+      <definition value="Uma referência ao recurso a partir  do qual narrativa da seção é derivada." />
+    </element>
+    <element id="Composition.section.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <short value="Explicação porquê a secção está vazia" />
+      <definition value="Explicação porquê a secção está vazia" />
+    </element>
+    <element id="Composition.section.section">
+      <path value="Composition.section.section" />
+      <short value="Uma subseção aninhada dentro desta seção" />
+      <definition value="Uma subseção aninhada dentro desta seção" />
+    </element>
+  </differential>
+</StructureDefinition>

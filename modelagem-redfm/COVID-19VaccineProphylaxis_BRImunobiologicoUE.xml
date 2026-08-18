@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="COVID19VaccineProphylaxisImunobiologicoUE"/>
+  <url value="http://www.saude.gov.br/fhir/r4/ConceptMap/COVID19VaccineProphylaxisBRImunobiologicoUE"/>
+  <version value="01.00"/>
+  <name value="Mapeamento dos códigos do COVID-19 vaccine or prophylaxis para os códigos do Imunobiologico"/>
+  <status value="draft"/>
+  <experimental value="false"/>
+  <date value="2022-03-17"/>
+  <publisher value="Ministério da Saúde"/>
+  <description value="Um mapeamento dos códigos entre COVID-19 vaccine or prophylaxis e Imunobiologico"/>
+  <targetUri value="http://www.saude.gov.br/fhir/r4/ValueSet/BRImunobiologicoUE"/>
+  <group>
+    <source value="http://www.whocc.no/atc"/>
+    <target value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRImunobiologico"/>
+    <element>
+      <code value="J07BX03"/>
+      <display value="covid-19 vaccines"/>
+      <target>
+        <code value="85"/>
+        <display value="COVID-19 ASTRAZENECA/FIOCRUZ - COVISHIELD"/>
+        <equivalence value="equivalent"/>
+      </target>
+      <target>
+        <code value="86"/>
+        <display value="COVID-19 SINOVAC/BUTANTAN - CORONAVAC"/>
+        <equivalence value="equivalent"/>
+      </target>
+      <target>
+        <code value="88"/>
+        <display value="COVID-19 JANSSEN - Ad26.COV2.S"/>
+        <equivalence value="equivalent"/>
+      </target>
+      <target>
+        <code value="89"/>
+        <display value="COVID-19 ASTRAZENECA - ChAdOx1-S"/>
+        <equivalence value="equivalent"/>
+      </target>
+      <target>
+        <code value="98"/>
+        <display value="COVID-19 SINOVAC - CORONAVAC"/>
+        <equivalence value="equivalent"/>
+      </target>
+      <target>
+        <code value="99"/>
+        <display value="COVID-19 PEDIÁTRICA - PFIZER COMIRNATY"/>
+        <equivalence value="equivalent"/>
+      </target>
+      <target>
+        <code value="87"/>
+        <display value="COVID-19 PFIZER - COMIRNATY"/>
+        <equivalence value="equivalent"/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>

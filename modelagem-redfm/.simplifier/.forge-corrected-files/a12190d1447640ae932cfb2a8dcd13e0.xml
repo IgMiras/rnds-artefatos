@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="d4bd1cdc-f5e3-4834-995e-c073de785eae" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2025-06-03T18:37:43.6587818+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCID10AvaliadoSAeRAC-1.0" />
+  <version value="1.0" />
+  <name value="BRCID10AvaliadoSAeRAC" />
+  <title value="CID10 Avaliado (Sumário de Alta e Registro de Atendimento Clínico)" />
+  <status value="draft" />
+  <date value="2020-09-20T20:13:32.2738589+00:00" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <purpose value="Para uso no Sumário de Alta e Registro de Atendimento Clínico." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Condition" />
+  <baseDefinition value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCID10Avaliado-1.0" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Condition.extension">
+      <path value="Condition.extension" />
+      <min value="1" />
+    </element>
+    <element id="Condition.extension:estadoResolucao">
+      <path value="Condition.extension" />
+      <sliceName value="estadoResolucao" />
+      <min value="1" />
+    </element>
+    <element id="Condition.subject.extension:unidentifiedPatient">
+      <path value="Condition.subject.extension" />
+      <sliceName value="unidentifiedPatient" />
+    </element>
+    <element id="Condition.subject.extension:unidentifiedPatient.extension">
+      <path value="Condition.subject.extension.extension" />
+      <min value="3" />
+    </element>
+  </differential>
+</StructureDefinition>

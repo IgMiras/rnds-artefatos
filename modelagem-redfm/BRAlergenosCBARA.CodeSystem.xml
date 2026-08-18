@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSystem xmlns="http://hl7.org/fhir">
+  <id value="45d54558-0b5b-42ac-a5f5-f025c644a4b6" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2020-09-20T20:37:11.642+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRAlergenosCBARA" />
+  <version value="201701" />
+  <name value="CBARA" />
+  <title value="Catálogo Brasileiro de Alergias e Reações Adversas (CBARA)" />
+  <status value="draft" />
+  <experimental value="false" />
+  <date value="2020-09-20T20:37:11.5191487+00:00" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description value="Classifica as alergias e reações adversas." />
+  <content value="complete" />
+</CodeSystem>

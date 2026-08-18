@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="rnds-redfm" />
+  <url value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSRegistroEletronicoDispensacaoFornecimentoMedicamento" />
+  <name value="RNDSRegistroEletronicoDispensacaoFornecimentoMedicamento" />
+  <title value="Registro Eletrônico de Dispensação ou Fornecimento de Medicamento - REDFM" />
+  <status value="draft" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Composition" />
+  <baseDefinition value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-composition" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Composition.status">
+      <path value="Composition.status" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.type">
+      <path value="Composition.type" />
+      <definition value="Tipo da Composition" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRTipoDocumento-1.0" />
+      </binding>
+    </element>
+    <element id="Composition.subject">
+      <path value="Composition.subject" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPaciente" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.subject.identifier">
+      <path value="Composition.subject.identifier" />
+      <min value="1" />
+    </element>
+    <element id="Composition.subject.identifier.system">
+      <path value="Composition.subject.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.subject.identifier.value">
+      <path value="Composition.subject.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Composition.date">
+      <path value="Composition.date" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.author">
+      <path value="Composition.author" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSEstabelecimentoSaude" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.author.identifier">
+      <path value="Composition.author.identifier" />
+      <min value="1" />
+    </element>
+    <element id="Composition.author.identifier.system">
+      <path value="Composition.author.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.author.identifier.value">
+      <path value="Composition.author.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Composition.title">
+      <path value="Composition.title" />
+      <short value="Título do Documento" />
+      <definition value="Título do Documento" />
+      <fixedString value="Registro Eletrônico de Dispensação ou Fornecimento de Medicamentos" />
+    </element>
+    <element id="Composition.relatesTo">
+      <path value="Composition.relatesTo" />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.relatesTo.code">
+      <path value="Composition.relatesTo.code" />
+      <fixedCode value="replaces" />
+    </element>
+    <element id="Composition.relatesTo.target[x]">
+      <path value="Composition.relatesTo.target[x]" />
+      <type>
+        <code value="Reference" />
+      </type>
+    </element>
+    <element id="Composition.relatesTo.target[x]:targetReference">
+      <path value="Composition.relatesTo.target[x]" />
+      <sliceName value="targetReference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSRegistroEletronicoDispensacaoFornecimentoMedicamento" />
+      </type>
+    </element>
+    <element id="Composition.relatesTo.target[x]:targetReference.reference">
+      <path value="Composition.relatesTo.target[x].reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section">
+      <path value="Composition.section" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code.coding.code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.section:dispensedMedications">
+      <path value="Composition.section" />
+      <sliceName value="dispensedMedications" />
+      <min value="1" />
+      <max value="1" />
+      <mustSupport value="false" />
+    </element>
+    <element id="Composition.section:dispensedMedications.title">
+      <path value="Composition.section.title" />
+      <min value="1" />
+      <fixedString value="Medicamentos Dispensados" />
+    </element>
+    <element id="Composition.section:dispensedMedications.code">
+      <path value="Composition.section.code" />
+      <min value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="56445-0" />
+        </coding>
+      </patternCodeableConcept>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/document-classcodes" />
+      </binding>
+    </element>
+    <element id="Composition.section:dispensedMedications.code.coding">
+      <path value="Composition.section.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:dispensedMedications.code.coding.system">
+      <path value="Composition.section.code.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:dispensedMedications.code.coding.code">
+      <path value="Composition.section.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="56445-0" />
+    </element>
+    <element id="Composition.section:dispensedMedications.entry">
+      <path value="Composition.section.entry" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSMedicamentoDispensadoFornecido" />
+      </type>
+    </element>
+    <element id="Composition.section:dispensedMedications.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
+    </element>
+  </differential>
+</StructureDefinition>

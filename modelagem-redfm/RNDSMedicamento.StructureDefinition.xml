@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="rnds-medicamento" />
+  <url value="http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSMedicamento" />
+  <name value="RNDSMedicamento" />
+  <status value="draft" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Medication" />
+  <baseDefinition value="https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medication" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Medication.code">
+      <path value="Medication.code" />
+      <min value="1" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRTerminologiaMedicamento" />
+      </binding>
+    </element>
+    <element id="Medication.code.coding">
+      <path value="Medication.code.coding" />
+      <min value="1" />
+    </element>
+    <element id="Medication.code.coding.system">
+      <path value="Medication.code.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Medication.code.coding.code">
+      <path value="Medication.code.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Medication.status">
+      <path value="Medication.status" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Medication.form">
+      <path value="Medication.form" />
+      <min value="1" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRUnidadeMedidaMedicamento" />
+      </binding>
+    </element>
+    <element id="Medication.batch">
+      <path value="Medication.batch" />
+      <mustSupport value="true" />
+    </element>
+  </differential>
+</StructureDefinition>

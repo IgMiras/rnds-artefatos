@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConceptMap xmlns="http://hl7.org/fhir">
+<url value="http://www.saude.gov.br/fhir/r4/ConceptMap/BRTipoObservcacao-1.0" />
+<version value="1.0" />
+<name value="Mapa de conceito entre o TREM e o COISO" />
+<description value="Mapa de conceito entre o TREM e o COISO" />
+<status value="active" />
+<date value="2020-09-02T16:00" />
+<experimental value="false"/>
+<publisher value="Ministério da Saúde do Brasil" />
+<sourceUri value="nosso"/>
+<targetUri value="HL7"/>
+<group>
+<element>
+<code value="valorOrigem"/>
+<target>
+<code value="valorDestino"/>
+<equivalence value="equivalent"/>
+</target>
+</element>
+</group>
+</ConceptMap>

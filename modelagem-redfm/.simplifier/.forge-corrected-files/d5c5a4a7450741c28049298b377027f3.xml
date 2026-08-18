@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="c8030b62-2076-46f3-9655-41e5c25692c7" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2025-06-03T18:37:33.6744776+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCIAP2AvaliadoSAeRAC-1.0" />
+  <version value="1.0" />
+  <name value="BRCIAP2AvaliadoSAeRAC" />
+  <title value="CIAP2 Avaliado (Sumário de Alta e Registro de Atendimento Clínico)" />
+  <status value="draft" />
+  <experimental value="false" />
+  <date value="2020-09-20T20:11:19.6238902+00:00" />
+  <publisher value="Ministério da Saúde do brasil" />
+  <purpose value="Para uso com o Sumário de Alta e Registro de Atendimento Clínico." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Condition" />
+  <baseDefinition value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCIAP2Avaliado-1.0" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Condition.extension">
+      <path value="Condition.extension" />
+      <min value="1" />
+    </element>
+    <element id="Condition.extension:estadoResolucao">
+      <path value="Condition.extension" />
+      <sliceName value="estadoResolucao" />
+      <min value="1" />
+    </element>
+    <element id="Condition.subject.extension:unidentifiedPatient">
+      <path value="Condition.subject.extension" />
+      <sliceName value="unidentifiedPatient" />
+    </element>
+    <element id="Condition.subject.extension:unidentifiedPatient.extension">
+      <path value="Condition.subject.extension.extension" />
+      <min value="3" />
+    </element>
+  </differential>
+</StructureDefinition>

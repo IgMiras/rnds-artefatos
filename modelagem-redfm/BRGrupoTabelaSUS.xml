@@ -1,0 +1,97 @@
+<?xml version="1.0" ?>
+
+<CodeSystem xmlns="http://hl7.org/fhir">
+
+	<id value="a091fd3f-1552-4bd2-8b92-02cfe23c4974"/>
+
+	<meta>
+
+		<lastUpdated value="2022-10-07T13:16:25.364+00:00"/>
+
+	</meta>
+
+	<language value="pt-BR"/>
+
+	<url value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRGrupoTabelaSUS"/>
+
+	<version value="1.0"/>
+
+	<name value="Grupo da Tabela SUS"/>
+
+	<status value="active"/>
+
+	<experimental value="false"/>
+
+	<date value="2022-10-07T13:16:25.364+00:00"/>
+
+	<publisher value="Ministério da Saúde do Brasil"/>
+
+	<description value="O grupo é o primeiro nível da hierarquia da Tabela SUS e seus códigos ajudam a classificar e localizar procedimentos."/>
+
+	<content value="complete"/>
+
+	<concept>
+
+		<code value="01"/>
+
+		<display value="Ações de promoção e prevenção de saúde."/>
+
+	</concept>
+
+	<concept>
+
+		<code value="02"/>
+
+		<display value="Procedimentos com finalidade diagnóstica."/>
+
+	</concept>
+
+	<concept>
+
+		<code value="03"/>
+
+		<display value="Procedimentos clínicos."/>
+
+	</concept>
+
+	<concept>
+
+		<code value="04"/>
+
+		<display value="Procedimentos cirúrgicos."/>
+
+	</concept>
+
+	<concept>
+
+		<code value="05"/>
+
+		<display value="Transplantes de orgãos, tecidos e células."/>
+
+	</concept>
+
+	<concept>
+
+		<code value="06"/>
+
+		<display value="Medicamentos."/>
+
+	</concept>
+
+	<concept>
+
+		<code value="07"/>
+
+		<display value="Órteses, próteses e materiais especiais."/>
+
+	</concept>
+
+	<concept>
+
+		<code value="08"/>
+
+		<display value="Ações complementares da atenção à saúde."/>
+
+	</concept>
+
+</CodeSystem>
