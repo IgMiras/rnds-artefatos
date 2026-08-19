@@ -1,0 +1,24 @@
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="COVID19VaccineProphylaxis" />
+  <language value="en" />
+  <url value="http://www.saude.gov.br/fhir/r4/ValueSet/COVID19VaccineProphylaxis" />
+  <version value="1.0" />
+  <name value="COVID19VaccineProphylaxis" />
+  <title value="COVID-19 Vaccine or Prophylaxis" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2022-03-24T14:51:30.2531733+00:00" />
+  <publisher value="Ministério da Saúde do Brasil - eHealth Network" />
+  <description value="Value sets for EU Digital COVID Certificates" />
+  <immutable value="false" />
+  <compose>
+    <include>
+      <system value="http://www.saude.gov.br/fhir/r4/CodeSystem/COVID19VaccineProphylaxis" />
+      <version value="*" />
+      <concept>
+        <code value="J07BX03" />
+        <display value="covid-19 vaccines" />
+      </concept>
+    </include>
+  </compose>
+</ValueSet>

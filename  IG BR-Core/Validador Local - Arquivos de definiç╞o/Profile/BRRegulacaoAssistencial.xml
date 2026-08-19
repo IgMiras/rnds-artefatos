@@ -1,0 +1,1220 @@
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="BRRegulacaoAssistencial" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2025-03-31T16:10:52.7278664+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRRegulacaoAssistencial" />
+  <version value="1.0" />
+  <name value="BRRegulacaoAssistencial" />
+  <title value="Regulação Assistencial" />
+  <status value="active" />
+  <date value="2023-04-04" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description value="Documento público que coleta os dados da regulação assistencial" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Composition" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Composition" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Composition">
+      <path value="Composition" />
+      <short value="Regulação Assistencial" />
+      <definition value="Documento que representa o documento de regulação assistencial." />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.identifier">
+      <path value="Composition.identifier" />
+      <max value="0" />
+    </element>
+    <element id="Composition.status">
+      <path value="Composition.status" />
+      <short value="final | entered-in-error" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="Estado do Documento" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BREstadoDocumento-1.0" />
+      </binding>
+    </element>
+    <element id="Composition.type">
+      <path value="Composition.type" />
+      <short value="Tipo de Documento" />
+      <definition value="Especifica o tipo de documento que está sendo enviado na composição." />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="Tipo de Documento" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRTipoDocumento-1.0" />
+      </binding>
+    </element>
+    <element id="Composition.type.id">
+      <path value="Composition.type.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.type.coding">
+      <path value="Composition.type.coding" />
+      <min value="1" />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.type.coding.id">
+      <path value="Composition.type.coding.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.type.coding.system">
+      <path value="Composition.type.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.type.coding.code">
+      <path value="Composition.type.coding.code" />
+      <min value="1" />
+      <fixedCode value="RA" />
+    </element>
+    <element id="Composition.type.coding.display">
+      <path value="Composition.type.coding.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.type.coding.userSelected">
+      <path value="Composition.type.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.type.text">
+      <path value="Composition.type.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.category">
+      <path value="Composition.category" />
+      <short value="Modalidade Assistencial" />
+      <definition
+        value="Classifica os contatos assistenciais de acordo com as especificidades do modo, local e duração do atendimento.&#xD;&#xA;Referência: https://rts.saude.gov.br/#/modalidade-assistencial" />
+      <min value="1" />
+      <max value="1" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="Modalidade Assistencial" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRModalidadeAssistencialMIRA" />
+      </binding>
+    </element>
+    <element id="Composition.category.coding">
+      <path value="Composition.category.coding" />
+      <min value="1" />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.category.coding.system">
+      <path value="Composition.category.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.category.coding.code">
+      <path value="Composition.category.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.category.coding.display">
+      <path value="Composition.category.coding.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.category.coding.userSelected">
+      <path value="Composition.category.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.category.text">
+      <path value="Composition.category.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.subject">
+      <path value="Composition.subject" />
+      <short value="Sujeito da Composição" />
+      <definition
+        value="Quem ou o quê a composição se refere. Pode ser um indivíduo, dispositivo, grupos (de indivíduos, dispositivos etc.)." />
+      <comment value="Nesta versão, a RNDS suportará somente indivíduos." />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.subject.extension:unidentifiedPatient">
+      <path value="Composition.subject.extension" />
+      <sliceName value="unidentifiedPatient" />
+      <short value="Dados do Indivíduo Não Identificado" />
+      <type>
+        <code value="Extension" />
+        <profile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuoNaoIdentificado-1.0" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.subject.extension:unidentifiedPatient.extension:gender">
+      <path value="Composition.subject.extension.extension" />
+      <sliceName value="gender" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.subject.extension:unidentifiedPatient.extension:birthYear">
+      <path value="Composition.subject.extension.extension" />
+      <sliceName value="birthYear" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.subject.extension:unidentifiedPatient.extension:reason">
+      <path value="Composition.subject.extension.extension" />
+      <sliceName value="reason" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.subject.reference">
+      <path value="Composition.subject.reference" />
+      <max value="0" />
+    </element>
+    <element id="Composition.subject.type">
+      <path value="Composition.subject.type" />
+      <max value="0" />
+      <fixedUri value="Patient" />
+    </element>
+    <element id="Composition.subject.identifier.use">
+      <path value="Composition.subject.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="Composition.subject.identifier.type">
+      <path value="Composition.subject.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.subject.identifier.system">
+      <path value="Composition.subject.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.subject.identifier.value">
+      <path value="Composition.subject.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Composition.subject.identifier.period">
+      <path value="Composition.subject.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="Composition.subject.identifier.assigner">
+      <path value="Composition.subject.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="Composition.subject.display">
+      <path value="Composition.subject.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.encounter">
+      <path value="Composition.encounter" />
+      <max value="0" />
+    </element>
+    <element id="Composition.date">
+      <path value="Composition.date" />
+      <short value="Data/hora de Geração do Documento" />
+      <definition value="Data e hora em que o documento foi gerado." />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.author">
+      <path value="Composition.author" />
+      <short value="Reponsável pelo Contato Assistencial" />
+      <definition
+        value="Identifica a Pessoa Jurídica ou Pessoa Física (profissional liberal) responsável por gerar o documento." />
+      <comment
+        value="Nesta versão da RNDS somente serão suportadas edições provenientes de Estabelecimentos de Saúde." />
+      <type>
+        <code value="Reference" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRPessoaJuridicaProfissionalLiberal-1.0" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.author.reference">
+      <path value="Composition.author.reference" />
+      <max value="0" />
+    </element>
+    <element id="Composition.author.type">
+      <path value="Composition.author.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.author.identifier">
+      <path value="Composition.author.identifier" />
+      <min value="1" />
+    </element>
+    <element id="Composition.author.identifier.use">
+      <path value="Composition.author.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="Composition.author.identifier.type">
+      <path value="Composition.author.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.author.identifier.system">
+      <path value="Composition.author.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.author.identifier.value">
+      <path value="Composition.author.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Composition.author.identifier.period">
+      <path value="Composition.author.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="Composition.author.identifier.assigner">
+      <path value="Composition.author.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="Composition.author.display">
+      <path value="Composition.author.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.title">
+      <path value="Composition.title" />
+      <short value="Título do documento" />
+      <definition value="Título do documento em linguagem humana." />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.confidentiality">
+      <path value="Composition.confidentiality" />
+      <max value="0" />
+    </element>
+    <element id="Composition.attester">
+      <path value="Composition.attester" />
+      <max value="0" />
+    </element>
+    <element id="Composition.custodian">
+      <path value="Composition.custodian" />
+      <max value="0" />
+    </element>
+    <element id="Composition.relatesTo">
+      <path value="Composition.relatesTo" />
+      <short value="Relação a Outros Documentos" />
+      <definition
+        value="Indica uma relação entre esse documento e outro documento (ou composição) existente." />
+      <requirements
+        value="Este elemento deve ser utilizado exclusivamente para indicar que este documento substitui (replaces) outro documento / composição; ou seja, é utilizado para cancelar o anterior e passar a considerar este no seu lugar. Este documento receberá um ID próprio; o documento anterior continuará disponível na RNDS e poderá ser recuperado integralmente por referência direta ao seu ID, garantindo a rastreabilidade do processo, mas não estará diretamente disponível na timeline do cidadão." />
+      <max value="1" />
+    </element>
+    <element id="Composition.relatesTo.code">
+      <path value="Composition.relatesTo.code" />
+      <short value="Tipo de Relacionamento" />
+      <definition
+        value="Indica o tipo de relacionamento que este documento tem com o outro documento (composição)." />
+      <requirements
+        value="O valor é fixado em replaces, pois a substituição de documentos é a única operação permitida na RNDS." />
+      <fixedCode value="replaces" />
+    </element>
+    <element id="Composition.relatesTo.target[x]">
+      <path value="Composition.relatesTo.target[x]" />
+      <short value="Documento a Ser Substituído" />
+      <definition value="Referência ao documento anterior que este documento está substituindo." />
+      <requirements
+        value="O valor é fixado em replaces, pois a substituição de documentos é a única operação permitida na RNDS." />
+      <type>
+        <code value="Reference" />
+      </type>
+    </element>
+    <element id="Composition.relatesTo.target[x].id">
+      <path value="Composition.relatesTo.target[x].id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.relatesTo.target[x].reference">
+      <path value="Composition.relatesTo.target[x].reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.relatesTo.target[x].type">
+      <path value="Composition.relatesTo.target[x].type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.relatesTo.target[x].identifier">
+      <path value="Composition.relatesTo.target[x].identifier" />
+      <max value="0" />
+    </element>
+    <element id="Composition.relatesTo.target[x].display">
+      <path value="Composition.relatesTo.target[x].display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event">
+      <path value="Composition.event" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code.coding.code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <short value="Evento de regulação" />
+      <definition value="Definição dos eventos de um processo de regulação" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:pending">
+      <path value="Composition.event" />
+      <sliceName value="pending" />
+      <short value="Evento de solicitação de procedimento regulado" />
+      <definition
+        value="Evento destinado a modelar a solicitação de um serviço, bem como o estabelecimento solicitante." />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:pending.id">
+      <path value="Composition.event.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.code">
+      <path value="Composition.event.code" />
+      <min value="1" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Lista de códigos descritores de um evento de regulação." />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRStatusRegulacaoAssistencial" />
+      </binding>
+    </element>
+    <element id="Composition.event:pending.code.id">
+      <path value="Composition.event.code.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.code.coding">
+      <path value="Composition.event.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:pending.code.coding.system">
+      <path value="Composition.event.code.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:pending.code.coding.code">
+      <path value="Composition.event.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="pending" />
+    </element>
+    <element id="Composition.event:pending.code.coding.userSelected">
+      <path value="Composition.event.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.code.text">
+      <path value="Composition.event.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.period">
+      <path value="Composition.event.period" />
+      <short value="Data da solicitação" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:pending.period.id">
+      <path value="Composition.event.period.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.period.end">
+      <path value="Composition.event.period.end" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:pending.detail">
+      <path value="Composition.event.detail" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRRequisicaoRegulacaoAssistencial" />
+      </type>
+    </element>
+    <element id="Composition.event:pending.detail.id">
+      <path value="Composition.event.detail.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.detail.type">
+      <path value="Composition.event.detail.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.id">
+      <path value="Composition.event.detail.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.use">
+      <path value="Composition.event.detail.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.type">
+      <path value="Composition.event.detail.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.type.id">
+      <path value="Composition.event.detail.identifier.type.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.type.coding">
+      <path value="Composition.event.detail.identifier.type.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.type.coding.id">
+      <path value="Composition.event.detail.identifier.type.coding.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.type.coding.system">
+      <path value="Composition.event.detail.identifier.type.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.type.coding.code">
+      <path value="Composition.event.detail.identifier.type.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.type.coding.userSelected">
+      <path value="Composition.event.detail.identifier.type.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.type.text">
+      <path value="Composition.event.detail.identifier.type.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.system">
+      <path value="Composition.event.detail.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.value">
+      <path value="Composition.event.detail.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.period">
+      <path value="Composition.event.detail.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.detail.identifier.assigner">
+      <path value="Composition.event.detail.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:pending.detail.display">
+      <path value="Composition.event.detail.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester">
+      <path value="Composition.event" />
+      <sliceName value="returned-to-requester" />
+      <short value="Evento de devolução ao solicitante" />
+      <definition
+        value="Evento destinado a modelar a devolução (feita por um estabelecimento regulador) de um serviço ao estabelecimento solicitante." />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:returned-to-requester.id">
+      <path value="Composition.event.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.code">
+      <path value="Composition.event.code" />
+      <min value="1" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Lista de códigos descritores de um evento de regulação." />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRStatusRegulacaoAssistencial" />
+      </binding>
+    </element>
+    <element id="Composition.event:returned-to-requester.code.id">
+      <path value="Composition.event.code.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.code.coding">
+      <path value="Composition.event.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:returned-to-requester.code.coding.id">
+      <path value="Composition.event.code.coding.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.code.coding.system">
+      <path value="Composition.event.code.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:returned-to-requester.code.coding.code">
+      <path value="Composition.event.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="returned-to-requester" />
+    </element>
+    <element id="Composition.event:returned-to-requester.code.coding.userSelected">
+      <path value="Composition.event.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.code.text">
+      <path value="Composition.event.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.period.id">
+      <path value="Composition.event.period.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.period.end">
+      <path value="Composition.event.period.end" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:returned-to-requester.detail">
+      <path value="Composition.event.detail" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0" />
+      </type>
+    </element>
+    <element id="Composition.event:returned-to-requester.detail.id">
+      <path value="Composition.event.detail.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.detail.reference">
+      <path value="Composition.event.detail.reference" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.detail.type">
+      <path value="Composition.event.detail.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.detail.identifier">
+      <path value="Composition.event.detail.identifier" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:returned-to-requester.detail.identifier.id">
+      <path value="Composition.event.detail.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.detail.identifier.use">
+      <path value="Composition.event.detail.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.detail.identifier.type">
+      <path value="Composition.event.detail.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.detail.identifier.system">
+      <path value="Composition.event.detail.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:returned-to-requester.detail.identifier.value">
+      <path value="Composition.event.detail.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:returned-to-requester.detail.identifier.period">
+      <path value="Composition.event.detail.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.detail.identifier.assigner">
+      <path value="Composition.event.detail.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:returned-to-requester.detail.display">
+      <path value="Composition.event.detail.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked">
+      <path value="Composition.event" />
+      <sliceName value="booked" />
+      <short value="Evento de agendamento de procedimento regulado" />
+      <definition
+        value="Evento destinado a modelar o agendamento de um serviço, bem como o estabelecimento executante." />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:booked.id">
+      <path value="Composition.event.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.code">
+      <path value="Composition.event.code" />
+      <min value="1" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Lista de códigos descritores de um evento de regulação." />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRStatusRegulacaoAssistencial" />
+      </binding>
+    </element>
+    <element id="Composition.event:booked.code.id">
+      <path value="Composition.event.code.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.code.coding">
+      <path value="Composition.event.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:booked.code.coding.id">
+      <path value="Composition.event.code.coding.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.code.coding.system">
+      <path value="Composition.event.code.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:booked.code.coding.code">
+      <path value="Composition.event.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="booked" />
+    </element>
+    <element id="Composition.event:booked.code.coding.userSelected">
+      <path value="Composition.event.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.code.text">
+      <path value="Composition.event.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.period.id">
+      <path value="Composition.event.period.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.period.end">
+      <path value="Composition.event.period.end" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:booked.detail">
+      <path value="Composition.event.detail" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRAgendamentoRegulacaoAssistencial" />
+      </type>
+    </element>
+    <element id="Composition.event:booked.detail.id">
+      <path value="Composition.event.detail.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.detail.type">
+      <path value="Composition.event.detail.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.detail.identifier.id">
+      <path value="Composition.event.detail.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.detail.identifier.use">
+      <path value="Composition.event.detail.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.detail.identifier.type">
+      <path value="Composition.event.detail.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.detail.identifier.system">
+      <path value="Composition.event.detail.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:booked.detail.identifier.value">
+      <path value="Composition.event.detail.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:booked.detail.identifier.period">
+      <path value="Composition.event.detail.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.detail.identifier.assigner">
+      <path value="Composition.event.detail.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:booked.detail.display">
+      <path value="Composition.event.detail.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended">
+      <path value="Composition.event" />
+      <sliceName value="attended" />
+      <short value="Evento de atendimento de procedimento regulado" />
+      <definition
+        value="Evento destinado a modelar o atendimento de um serviço, bem como o estabelecimento executante." />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:attended.id">
+      <path value="Composition.event.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.code">
+      <path value="Composition.event.code" />
+      <min value="1" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Lista de códigos descritores de um evento de regulação." />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRStatusRegulacaoAssistencial" />
+      </binding>
+    </element>
+    <element id="Composition.event:attended.code.id">
+      <path value="Composition.event.code.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.code.coding">
+      <path value="Composition.event.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:attended.code.coding.id">
+      <path value="Composition.event.code.coding.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.code.coding.system">
+      <path value="Composition.event.code.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:attended.code.coding.code">
+      <path value="Composition.event.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="attended" />
+    </element>
+    <element id="Composition.event:attended.code.coding.userSelected">
+      <path value="Composition.event.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.code.text">
+      <path value="Composition.event.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.period.id">
+      <path value="Composition.event.period.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.period.end">
+      <path value="Composition.event.period.end" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:attended.detail">
+      <path value="Composition.event.detail" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRAgendamentoRegulacaoAssistencial" />
+      </type>
+    </element>
+    <element id="Composition.event:attended.detail.id">
+      <path value="Composition.event.detail.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.detail.type">
+      <path value="Composition.event.detail.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.detail.identifier.id">
+      <path value="Composition.event.detail.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.detail.identifier.use">
+      <path value="Composition.event.detail.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.detail.identifier.type">
+      <path value="Composition.event.detail.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.detail.identifier.system">
+      <path value="Composition.event.detail.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:attended.detail.identifier.value">
+      <path value="Composition.event.detail.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:attended.detail.identifier.period">
+      <path value="Composition.event.detail.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.detail.identifier.assigner">
+      <path value="Composition.event.detail.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:attended.detail.display">
+      <path value="Composition.event.detail.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled">
+      <path value="Composition.event" />
+      <sliceName value="cancelled" />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:cancelled.id">
+      <path value="Composition.event.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.code">
+      <path value="Composition.event.code" />
+      <min value="1" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Lista de códigos descritores de um evento de regulação." />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRStatusRegulacaoAssistencial" />
+      </binding>
+    </element>
+    <element id="Composition.event:cancelled.code.id">
+      <path value="Composition.event.code.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.code.coding">
+      <path value="Composition.event.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:cancelled.code.coding.id">
+      <path value="Composition.event.code.coding.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.code.coding.system">
+      <path value="Composition.event.code.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:cancelled.code.coding.code">
+      <path value="Composition.event.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="cancelled" />
+    </element>
+    <element id="Composition.event:cancelled.code.coding.userSelected">
+      <path value="Composition.event.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.code.text">
+      <path value="Composition.event.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.period.id">
+      <path value="Composition.event.period.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.period.end">
+      <path value="Composition.event.period.end" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:cancelled.detail">
+      <path value="Composition.event.detail" />
+      <type>
+        <code value="Reference" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0" />
+      </type>
+    </element>
+    <element id="Composition.event:cancelled.detail.id">
+      <path value="Composition.event.detail.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.detail.type">
+      <path value="Composition.event.detail.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.detail.identifier.id">
+      <path value="Composition.event.detail.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.detail.identifier.use">
+      <path value="Composition.event.detail.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.detail.identifier.type">
+      <path value="Composition.event.detail.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.detail.identifier.system">
+      <path value="Composition.event.detail.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:cancelled.detail.identifier.value">
+      <path value="Composition.event.detail.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:cancelled.detail.identifier.period">
+      <path value="Composition.event.detail.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.detail.identifier.assigner">
+      <path value="Composition.event.detail.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:cancelled.detail.display">
+      <path value="Composition.event.detail.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence">
+      <path value="Composition.event" />
+      <sliceName value="absence" />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:absence.id">
+      <path value="Composition.event.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.code">
+      <path value="Composition.event.code" />
+      <min value="1" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Lista de códigos descritores de um evento de regulação." />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRStatusRegulacaoAssistencial" />
+      </binding>
+    </element>
+    <element id="Composition.event:absence.code.id">
+      <path value="Composition.event.code.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.code.coding">
+      <path value="Composition.event.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:absence.code.coding.id">
+      <path value="Composition.event.code.coding.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.code.coding.system">
+      <path value="Composition.event.code.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:absence.code.coding.code">
+      <path value="Composition.event.code.coding.code" />
+      <fixedCode value="absence" />
+    </element>
+    <element id="Composition.event:absence.code.coding.userSelected">
+      <path value="Composition.event.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.code.text">
+      <path value="Composition.event.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.period.id">
+      <path value="Composition.event.period.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.period.end">
+      <path value="Composition.event.period.end" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:absence.detail">
+      <path value="Composition.event.detail" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRAgendamentoRegulacaoAssistencial" />
+      </type>
+    </element>
+    <element id="Composition.event:absence.detail.id">
+      <path value="Composition.event.detail.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.detail.type">
+      <path value="Composition.event.detail.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.detail.identifier.id">
+      <path value="Composition.event.detail.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.detail.identifier.use">
+      <path value="Composition.event.detail.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.detail.identifier.type">
+      <path value="Composition.event.detail.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.detail.identifier.system">
+      <path value="Composition.event.detail.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:absence.detail.identifier.value">
+      <path value="Composition.event.detail.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:absence.detail.identifier.period">
+      <path value="Composition.event.detail.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.detail.identifier.assigner">
+      <path value="Composition.event.detail.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:absence.detail.display">
+      <path value="Composition.event.detail.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded">
+      <path value="Composition.event" />
+      <sliceName value="excluded" />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:excluded.id">
+      <path value="Composition.event.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.code">
+      <path value="Composition.event.code" />
+      <min value="1" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Lista de códigos descritores de um evento de regulação." />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRStatusRegulacaoAssistencial" />
+      </binding>
+    </element>
+    <element id="Composition.event:excluded.code.id">
+      <path value="Composition.event.code.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.code.coding">
+      <path value="Composition.event.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.event:excluded.code.coding.id">
+      <path value="Composition.event.code.coding.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.code.coding.system">
+      <path value="Composition.event.code.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:excluded.code.coding.code">
+      <path value="Composition.event.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="excluded" />
+    </element>
+    <element id="Composition.event:excluded.code.coding.userSelected">
+      <path value="Composition.event.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.code.text">
+      <path value="Composition.event.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.period.id">
+      <path value="Composition.event.period.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.period.end">
+      <path value="Composition.event.period.end" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:excluded.detail.id">
+      <path value="Composition.event.detail.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.detail.type">
+      <path value="Composition.event.detail.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.detail.identifier.id">
+      <path value="Composition.event.detail.identifier.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.detail.identifier.use">
+      <path value="Composition.event.detail.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.detail.identifier.type">
+      <path value="Composition.event.detail.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.detail.identifier.system">
+      <path value="Composition.event.detail.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:excluded.detail.identifier.value">
+      <path value="Composition.event.detail.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Composition.event:excluded.detail.identifier.period">
+      <path value="Composition.event.detail.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.detail.identifier.assigner">
+      <path value="Composition.event.detail.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="Composition.event:excluded.detail.display">
+      <path value="Composition.event.detail.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section">
+      <path value="Composition.section" />
+      <short value="Seções do documento" />
+      <definition value="Referencia todas as seções (profiles/resources) contidos neste documento." />
+      <min value="1" />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.section.id">
+      <path value="Composition.section.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.title">
+      <path value="Composition.section.title" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.code">
+      <path value="Composition.section.code" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.author">
+      <path value="Composition.section.author" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.focus">
+      <path value="Composition.section.focus" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.text">
+      <path value="Composition.section.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.entry">
+      <path value="Composition.section.entry" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRAgendamentoRegulacaoAssistencial" />
+      </type>
+    </element>
+    <element id="Composition.section.entry.id">
+      <path value="Composition.section.entry.id" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section.entry.type">
+      <path value="Composition.section.entry.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.entry.identifier">
+      <path value="Composition.section.entry.identifier" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.entry.display">
+      <path value="Composition.section.entry.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+  </differential>
+</StructureDefinition>

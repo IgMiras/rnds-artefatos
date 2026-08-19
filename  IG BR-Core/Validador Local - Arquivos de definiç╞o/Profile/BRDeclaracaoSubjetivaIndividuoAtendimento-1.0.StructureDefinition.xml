@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="31aae43f-fed7-439e-a240-3cbd0f8ce920" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2020-09-20T22:13:30.271+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRDeclaracaoSubjetivaIndividuoAtendimento-1.0" />
+  <version value="1.0" />
+  <name value="BRDeclaracaoSubjetivaIndividuoAtendimento" />
+  <title value="Declaração Subjetiva do Indivíduo para o Atendimento" />
+  <status value="draft" />
+  <experimental value="false" />
+  <date value="2020-09-20T22:13:28.3655778+00:00" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Observation" />
+  <baseDefinition value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRObservacaoDescritiva-1.0" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation.code.coding.system">
+      <path value="Observation.code.coding.system" />
+      <fixedUri value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRTipoObservacao" />
+    </element>
+    <element id="Observation.code.coding.code">
+      <path value="Observation.code.coding.code" />
+      <fixedCode value="DSIA" />
+    </element>
+  </differential>
+</StructureDefinition>

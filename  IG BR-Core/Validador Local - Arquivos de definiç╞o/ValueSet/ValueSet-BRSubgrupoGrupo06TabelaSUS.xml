@@ -1,0 +1,26 @@
+<ValueSet xmlns="http://hl7.org/fhir">
+	<id value="BRSubgrupoGrupo06TabelaSUS" />
+	<language value="pt-BR" />
+	<url value="http://www.saude.gov.br/fhir/r4/ValueSet/BRSubgrupoGrupo06TabelaSUS" />
+	<version value="1.1.0" />
+	<name value="BRSubgrupoGrupo06TabelaSUS" />
+	<title value="Subgrupos do Grupo 06 da Tabela SUS" />
+	<status value="active" />
+	<experimental value="false" />
+	<date value="2022-10-07T17:23:44.666897+00:00" />
+	<publisher value="Ministério da Saúde do Brasil" />
+	<description
+		value="O subgrupo é o segundo nível de hierarquia do Grupo 06 da Tabela SUS e seus códigos ajudam a classificar e localizar procedimentos." />
+	<immutable value="false" />
+	<compose>
+		<include>
+			<system value="http://www.saude.gov.br/fhir/r4/CodeSystem/BRSubgrupoTabelaSUS" />
+			<version value="1.1.0" />
+			<filter>
+				<property value="group" />
+				<op value="=" />
+				<value value="06" />
+			</filter>
+		</include>
+	</compose>
+</ValueSet>

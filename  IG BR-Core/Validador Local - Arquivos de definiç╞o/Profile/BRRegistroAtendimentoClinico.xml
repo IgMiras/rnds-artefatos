@@ -1,0 +1,413 @@
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="BRRegistroAtendimentoClinico" />
+  <language value="pt-BR" />
+  <text>
+    <status value="generated" />
+    <div xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR">
+      <p>Documento destinado a modelar dados essenciais de uma consulta realizada a um indivíduo no
+        âmbito da atenção básica, especializada ou domiciliar, conforme preconizado pelo Ministério
+        da Saúde do Brasil.</p>
+    </div>
+  </text>
+  <url value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRRegistroAtendimentoClinico" />
+  <version value="3.0" />
+  <name value="BRRegistroAtendimentoClinico" />
+  <title value="Registro de Atendimento Clínico" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2023-07-25" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description
+    value="Documento destinado a modelar dados essenciais de uma consulta realizada a um indivíduo no âmbito da atenção básica, especializada ou domiciliar." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Composition" />
+  <baseDefinition
+    value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRConjuntoMinimoDados-1.1" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Composition">
+      <path value="Composition" />
+      <short value="Registro Atendimento Clínico" />
+      <definition value="Documento que representa o Registro Atendimento Clínico" />
+    </element>
+    <element id="Composition.meta">
+      <path value="Composition.meta" />
+    </element>
+    <element id="Composition.meta.versionId">
+      <path value="Composition.meta.versionId" />
+      <fixedId value="3.0" />
+    </element>
+    <element id="Composition.language">
+      <path value="Composition.language" />
+      <fixedCode value="pt-BR" />
+    </element>
+    <element id="Composition.type.coding.code">
+      <path value="Composition.type.coding.code" />
+      <fixedCode value="RAC" />
+    </element>
+    <element id="Composition.section:problemasDiagnosticosAvaliados">
+      <path value="Composition.section" />
+      <sliceName value="problemasDiagnosticosAvaliados" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:observacoes">
+      <path value="Composition.section" />
+      <sliceName value="observacoes" />
+    </element>
+    <element id="Composition.section:observacoes.title">
+      <path value="Composition.section.title" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:observacoes.code">
+      <path value="Composition.section.code" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:observacoes.author">
+      <path value="Composition.section.author" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:observacoes.focus">
+      <path value="Composition.section.focus" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:observacoes.text">
+      <path value="Composition.section.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:observacoes.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:observacoes.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:observacoes.entry">
+      <path value="Composition.section.entry" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRMedidaObservada" />
+      </type>
+    </element>
+    <element id="Composition.section:observacoes.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:observacoes.entry.type">
+      <path value="Composition.section.entry.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:observacoes.entry.identifier">
+      <path value="Composition.section.entry.identifier" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:observacoes.entry.display">
+      <path value="Composition.section.entry.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:observacoes.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:observacoes.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa">
+      <path value="Composition.section" />
+      <sliceName value="alergiaReacaoAdversa" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.title">
+      <path value="Composition.section.title" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.code">
+      <path value="Composition.section.code" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.author">
+      <path value="Composition.section.author" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.focus">
+      <path value="Composition.section.focus" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.text">
+      <path value="Composition.section.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.entry">
+      <path value="Composition.section.entry" />
+      <type>
+        <code value="Reference" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRAlergiaReacaoAdversa-1.0" />
+      </type>
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.entry.type">
+      <path value="Composition.section.entry.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.entry.identifier">
+      <path value="Composition.section.entry.identifier" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.entry.display">
+      <path value="Composition.section.entry.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:alergiaReacaoAdversa.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao">
+      <path value="Composition.section" />
+      <sliceName value="prescricao" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:prescricao.title">
+      <path value="Composition.section.title" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.code">
+      <path value="Composition.section.code" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.author">
+      <path value="Composition.section.author" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.focus">
+      <path value="Composition.section.focus" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.text">
+      <path value="Composition.section.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.entry">
+      <path value="Composition.section.entry" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRRegistroPrescricaoMedicamento" />
+      </type>
+    </element>
+    <element id="Composition.section:prescricao.entry.type">
+      <path value="Composition.section.entry.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.entry.identifier.use">
+      <path value="Composition.section.entry.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.entry.identifier.type">
+      <path value="Composition.section.entry.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.entry.identifier.system">
+      <path value="Composition.section.entry.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:prescricao.entry.identifier.value">
+      <path value="Composition.section.entry.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:prescricao.entry.identifier.period">
+      <path value="Composition.section.entry.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.entry.identifier.assigner">
+      <path value="Composition.section.entry.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.entry.display">
+      <path value="Composition.section.entry.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:prescricao.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planoCuidados">
+      <path value="Composition.section" />
+      <sliceName value="planoCuidados" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:planoCuidados.title">
+      <path value="Composition.section.title" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planoCuidados.code">
+      <path value="Composition.section.code" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planoCuidados.author">
+      <path value="Composition.section.author" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planoCuidados.focus">
+      <path value="Composition.section.focus" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planoCuidados.text">
+      <path value="Composition.section.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planoCuidados.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planoCuidados.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planoCuidados.entry">
+      <path value="Composition.section.entry" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile
+          value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRPlanoCuidados-1.0" />
+      </type>
+    </element>
+    <element id="Composition.section:planoCuidados.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:planoCuidados.entry.type">
+      <path value="Composition.section.entry.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planoCuidados.entry.identifier">
+      <path value="Composition.section.entry.identifier" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planoCuidados.entry.display">
+      <path value="Composition.section.entry.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planoCuidados.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planoCuidados.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico">
+      <path value="Composition.section" />
+      <sliceName value="atestadoMedicoOdontologico" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.title">
+      <path value="Composition.section.title" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.code">
+      <path value="Composition.section.code" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.author">
+      <path value="Composition.section.author" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.focus">
+      <path value="Composition.section.focus" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.text">
+      <path value="Composition.section.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.entry">
+      <path value="Composition.section.entry" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRAtestado" />
+      </type>
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.entry.type">
+      <path value="Composition.section.entry.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.entry.identifier">
+      <path value="Composition.section.entry.identifier" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.entry.display">
+      <path value="Composition.section.entry.display" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:atestadoMedicoOdontologico.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:cadernetaCrianca">
+      <path value="Composition.section" />
+      <sliceName value="cadernetaCrianca" />
+      <short value="Caderneta da criança" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:cadernetaCrianca.entry">
+      <path value="Composition.section.entry" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/questionnaire/brmarcosdesenvolvimento" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

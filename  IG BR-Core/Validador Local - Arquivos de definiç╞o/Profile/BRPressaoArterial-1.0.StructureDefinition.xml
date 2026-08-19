@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="5de57866-27bc-4e93-88e3-c7d26550ac51" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2020-09-20T23:16:32.366+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRPressaoArterial-1.0" />
+  <version value="1.0" />
+  <name value="BRPressaoArterial" />
+  <title value="Pressão Arterial" />
+  <status value="draft" />
+  <experimental value="false" />
+  <date value="2020-09-20T23:11:04.6606338Z" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description value="Registra valores de pressão arterial sistólica e diastólica e demais detalhes acerca da sua aferição, conforme estrutura do modelo de informação do Registro de Atendimento Clínico constante da Resolução CIT nº 33/2018." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="Pressão Arterial" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Observation.extension">
+      <path value="Observation.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.extension:posicaoIndividuo">
+      <path value="Observation.extension" />
+      <sliceName value="posicaoIndividuo" />
+      <short value="Posição do Indivíudo na Aferição" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/observation-bodyPosition" />
+      </type>
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="Posição do Indivíduo" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRPosicaoIndividuo-1.0" />
+      </binding>
+    </element>
+    <element id="Observation.extension:posicaoIndividuo.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <mustSupport value="false" />
+    </element>
+    <element id="Observation.extension:posicaoIndividuo.value[x].coding">
+      <path value="Observation.extension.value[x].coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Observation.extension:posicaoIndividuo.value[x].coding.system">
+      <path value="Observation.extension.value[x].coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Observation.extension:posicaoIndividuo.value[x].coding.code">
+      <path value="Observation.extension.value[x].coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Observation.extension:posicaoIndividuo.value[x].coding.display">
+      <path value="Observation.extension.value[x].coding.display" />
+      <max value="0" />
+    </element>
+    <element id="Observation.extension:posicaoIndividuo.value[x].coding.userSelected">
+      <path value="Observation.extension.value[x].coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Observation.extension:posicaoIndividuo.value[x].text">
+      <path value="Observation.extension.value[x].text" />
+      <max value="0" />
+    </element>
+    <element id="Observation.identifier">
+      <path value="Observation.identifier" />
+      <max value="0" />
+    </element>
+    <element id="Observation.basedOn">
+      <path value="Observation.basedOn" />
+      <max value="0" />
+    </element>
+    <element id="Observation.partOf">
+      <path value="Observation.partOf" />
+      <max value="0" />
+    </element>
+    <element id="Observation.status">
+      <path value="Observation.status" />
+      <short value="Estado da Observação" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="Estado da Observação" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BREstadoObservacao-1.0" />
+      </binding>
+    </element>
+    <element id="Observation.category">
+      <path value="Observation.category" />
+      <max value="0" />
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <short value="Tipo da Observação" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+      </binding>
+    </element>
+    <element id="Observation.code.coding">
+      <path value="Observation.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Observation.code.coding.system">
+      <path value="Observation.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://loinc.org" />
+    </element>
+    <element id="Observation.code.coding.code">
+      <path value="Observation.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="85354-9" />
+    </element>
+    <element id="Observation.code.coding.display">
+      <path value="Observation.code.coding.display" />
+      <max value="0" />
+    </element>
+    <element id="Observation.code.coding.userSelected">
+      <path value="Observation.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Observation.code.text">
+      <path value="Observation.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <max value="0" />
+    </element>
+    <element id="Observation.focus">
+      <path value="Observation.focus" />
+      <max value="0" />
+    </element>
+    <element id="Observation.encounter">
+      <path value="Observation.encounter" />
+      <max value="0" />
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <max value="0" />
+    </element>
+    <element id="Observation.issued">
+      <path value="Observation.issued" />
+      <max value="0" />
+    </element>
+    <element id="Observation.performer">
+      <path value="Observation.performer" />
+      <max value="0" />
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <max value="0" />
+    </element>
+    <element id="Observation.dataAbsentReason">
+      <path value="Observation.dataAbsentReason" />
+      <max value="0" />
+    </element>
+    <element id="Observation.interpretation">
+      <path value="Observation.interpretation" />
+      <max value="0" />
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="0" />
+    </element>
+    <element id="Observation.bodySite">
+      <path value="Observation.bodySite" />
+      <short value="Local de Aferição" />
+      <definition value="Indica a localização corporal do indivíduo no qual a observação foi realizada." />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="Local da Aferição" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BRLocalAfericao-1.0" />
+      </binding>
+    </element>
+    <element id="Observation.bodySite.coding">
+      <path value="Observation.bodySite.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Observation.bodySite.coding.system">
+      <path value="Observation.bodySite.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Observation.bodySite.coding.code">
+      <path value="Observation.bodySite.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Observation.bodySite.coding.display">
+      <path value="Observation.bodySite.coding.display" />
+      <max value="0" />
+    </element>
+    <element id="Observation.bodySite.coding.userSelected">
+      <path value="Observation.bodySite.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Observation.bodySite.text">
+      <path value="Observation.bodySite.text" />
+      <max value="0" />
+    </element>
+    <element id="Observation.method">
+      <path value="Observation.method" />
+      <max value="0" />
+    </element>
+    <element id="Observation.specimen">
+      <path value="Observation.specimen" />
+      <max value="0" />
+    </element>
+    <element id="Observation.device">
+      <path value="Observation.device" />
+      <max value="0" />
+    </element>
+    <element id="Observation.referenceRange">
+      <path value="Observation.referenceRange" />
+      <max value="0" />
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <max value="0" />
+    </element>
+    <element id="Observation.derivedFrom">
+      <path value="Observation.derivedFrom" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code.coding.system" />
+        </discriminator>
+        <discriminator>
+          <type value="value" />
+          <path value="code.coding.code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <short value="Resultado Composto" />
+      <min value="2" />
+      <max value="2" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Observation.component:pressaoSistolica">
+      <path value="Observation.component" />
+      <sliceName value="pressaoSistolica" />
+      <short value="Pressão Arterial Sistólica (em mmHg)" />
+      <min value="1" />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.code">
+      <path value="Observation.component.code" />
+      <short value="Tipo de Pressão Aferida" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+      </binding>
+    </element>
+    <element id="Observation.component:pressaoSistolica.code.coding">
+      <path value="Observation.component.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.code.coding.system">
+      <path value="Observation.component.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://loinc.org" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.code.coding.code">
+      <path value="Observation.component.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="8480-6" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.code.coding.display">
+      <path value="Observation.component.code.coding.display" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.code.coding.userSelected">
+      <path value="Observation.component.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.code.text">
+      <path value="Observation.component.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Resultado da Aferição" />
+      <min value="1" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <fixedQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="mm[Hg]" />
+      </fixedQuantity>
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="Unidades Frequentes da UCUM para Sinais Vitais" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/ucum-vitals-common" />
+      </binding>
+    </element>
+    <element id="Observation.component:pressaoSistolica.value[x].value">
+      <path value="Observation.component.value[x].value" />
+      <short value="Valor da Pressão Arterial Sistólica" />
+      <min value="1" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.value[x].comparator">
+      <path value="Observation.component.value[x].comparator" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.value[x].unit">
+      <path value="Observation.component.value[x].unit" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.value[x].system">
+      <path value="Observation.component.value[x].system" />
+      <min value="1" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.value[x].code">
+      <path value="Observation.component.value[x].code" />
+      <min value="1" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.dataAbsentReason">
+      <path value="Observation.component.dataAbsentReason" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.interpretation">
+      <path value="Observation.component.interpretation" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoSistolica.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica">
+      <path value="Observation.component" />
+      <sliceName value="pressaoDiastolica" />
+      <short value="Pressão Arterial Diastólica (em mmHg)" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.code">
+      <path value="Observation.component.code" />
+      <short value="Pressão Arterial Diastólica" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+      </binding>
+    </element>
+    <element id="Observation.component:pressaoDiastolica.code.coding">
+      <path value="Observation.component.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.code.coding.system">
+      <path value="Observation.component.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://loinc.org" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.code.coding.code">
+      <path value="Observation.component.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="8462-4" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.code.coding.display">
+      <path value="Observation.component.code.coding.display" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.code.coding.userSelected">
+      <path value="Observation.component.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.code.text">
+      <path value="Observation.component.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Resultado da Aferição" />
+      <min value="1" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <fixedQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="mm[Hg]" />
+      </fixedQuantity>
+      <binding>
+        <strength value="required" />
+        <description value="Unidades Frequentes da UCUM para Sinais Vitais" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/ucum-vitals-common" />
+      </binding>
+    </element>
+    <element id="Observation.component:pressaoDiastolica.value[x].value">
+      <path value="Observation.component.value[x].value" />
+      <short value="Valor da Pressão Arterial Diastólica" />
+      <min value="1" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.value[x].comparator">
+      <path value="Observation.component.value[x].comparator" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.value[x].unit">
+      <path value="Observation.component.value[x].unit" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.value[x].system">
+      <path value="Observation.component.value[x].system" />
+      <min value="1" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.value[x].code">
+      <path value="Observation.component.value[x].code" />
+      <min value="1" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.dataAbsentReason">
+      <path value="Observation.component.dataAbsentReason" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.interpretation">
+      <path value="Observation.component.interpretation" />
+      <max value="0" />
+    </element>
+    <element id="Observation.component:pressaoDiastolica.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <max value="0" />
+    </element>
+  </differential>
+</StructureDefinition>

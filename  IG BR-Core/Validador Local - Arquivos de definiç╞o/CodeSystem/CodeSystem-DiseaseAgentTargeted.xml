@@ -1,0 +1,19 @@
+<CodeSystem xmlns="http://hl7.org/fhir">
+  <id value="DiseaseAgentTargeted" />
+  <language value="en" />
+  <url value="http://www.saude.gov.br/fhir/r4/CodeSystem/DiseaseAgentTargeted" />
+  <version value="1.0" />
+  <name value="DiseaseAgentTargeted" />
+  <title value="Disease or agent targeted / Disease or agent the citizen has recovered from" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2022-03-24T14:38:40.0457007+00:00" />
+  <publisher value="Ministério da Saúde do Brasil - eHealth Network" />
+  <description value="CodeSystem implementation of Value sets for EU Digital COVID Certificates." />
+  <caseSensitive value="true" />
+  <content value="complete" />
+  <concept>
+    <code value="840539006" />
+    <display value="COVID-19" />
+  </concept>
+</CodeSystem>

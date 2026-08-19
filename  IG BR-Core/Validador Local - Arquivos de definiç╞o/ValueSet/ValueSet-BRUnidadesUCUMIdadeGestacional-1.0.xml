@@ -1,0 +1,29 @@
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="BRUnidadesUCUMIdadeGestacional-1.0" />
+  <language value="pt-BR" />
+  <url value="http://www.saude.gov.br/fhir/r4/ValueSet/BRUnidadesUCUMIdadeGestacional-1.0" />
+  <version value="1.0" />
+  <name value="BRUnidadesUCUMIdadeGestacional" />
+  <title value="Unidades da UCUM para Idade Gestacional" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2020-09-20T22:27:19.7093467+00:00" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description
+    value="Unidades da UCUM mais frequentemente utilizadas para representar a Idade Gestacional." />
+  <copyright
+    value="UCUM possui direitos autorais © 1999-2013 Regenstrief Institute, Inc. e The UCUM Organization, Indianapolis, IN. Todos os direitos reservados. Mais informações em: http://unitsofmeasure.org/trac//wiki/TermsOfUse" />
+  <compose>
+    <include>
+      <system value="http://unitsofmeasure.org" />
+      <concept>
+        <code value="d" />
+        <display value="dias" />
+      </concept>
+      <concept>
+        <code value="wk" />
+        <display value="semanas" />
+      </concept>
+    </include>
+  </compose>
+</ValueSet>

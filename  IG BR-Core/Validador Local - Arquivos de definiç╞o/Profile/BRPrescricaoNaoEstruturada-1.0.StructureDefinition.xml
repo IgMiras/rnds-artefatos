@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="b687b35f-75d3-43a5-8b25-27583fef3fad" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2020-09-20T20:58:38.864+00:00" />
+  </meta>
+  <language value="pt-BR" />
+  <text>
+    <status value="generated" />
+    <div xmlns="http://www.w3.org/1999/xhtml">O medicamento deverá ser descrito no elemento medicationCodeableConcept.text utilizando o nome do princípio ativo (composto), sua concentração e respectiva unidade de medida, e sua forma farmacêutica, seguidos da dosagem e sua respectiva unidade de medida, a frequência de uso do medicamento e via de administração.<p>Para cada medicação prescrita deve ser gerado um recurso MedicationRequest específico, NÃO pode ser utilizado um único MedicationRequest para informar uma lista inteira de medicamentos prescritos.</p><p>Ex.1: Paracetamol 750mg comprimido, 1 comprimido 3 vezes ao dia durante 7 dias.</p><p>Ex.2: Paracetamol 500mg + Cloridrato de Pseudoefedrina 30mg comprimido, 1 comprimido 3 vezes ao dia durante 7 dias.</p></div>
+  </text>
+  <url value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRPrescricaoNaoEstruturada-1.0" />
+  <version value="1.0" />
+  <name value="BRPrescricaoNaoEstruturada" />
+  <title value="Prescrição Não Estruturada" />
+  <status value="draft" />
+  <experimental value="false" />
+  <date value="2020-09-20T20:58:38.6492068+00:00" />
+  <publisher value="Ministério da Saúde do Brasil" />
+  <description value="Orientações escritas [em texto livre] para a aquisição e uso de medicamentos. (Adaptado do DeCS/BVS)" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="MedicationRequest" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/MedicationRequest" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="MedicationRequest">
+      <path value="MedicationRequest" />
+      <short value="Prescrição Não Estruturada" />
+      <definition value="Orientações escritas [em texto livre] para a aquisição e uso de medicamentos. (Adaptado do DeCS/BVS)" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.identifier">
+      <path value="MedicationRequest.identifier" />
+      <short value="Identificador(es) Externo(s) para o Recurso" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.identifier.use">
+      <path value="MedicationRequest.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.identifier.type">
+      <path value="MedicationRequest.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.identifier.system">
+      <path value="MedicationRequest.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.identifier.value">
+      <path value="MedicationRequest.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.identifier.period">
+      <path value="MedicationRequest.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.identifier.assigner">
+      <path value="MedicationRequest.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.status">
+      <path value="MedicationRequest.status" />
+      <short value="Estado da Prescrição" />
+      <mustSupport value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="Estado da Prescrição" />
+        <valueSet value="http://www.saude.gov.br/fhir/r4/ValueSet/BREstadoSolicitacaoMedicamento-1.0" />
+      </binding>
+    </element>
+    <element id="MedicationRequest.statusReason">
+      <path value="MedicationRequest.statusReason" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.intent">
+      <path value="MedicationRequest.intent" />
+      <short value="Intenção da Prescrição do Medicamento" />
+      <fixedCode value="plan" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.category">
+      <path value="MedicationRequest.category" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.priority">
+      <path value="MedicationRequest.priority" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.doNotPerform">
+      <path value="MedicationRequest.doNotPerform" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.reported[x]">
+      <path value="MedicationRequest.reported[x]" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.medication[x]">
+      <path value="MedicationRequest.medication[x]" />
+      <short value="Medicamento Prescrito" />
+      <definition value="Identifica o medicamento que está sendo precrito." />
+      <comment value="O medicamento deverá ser descrito utilizando o nome do princípio ativo (composto), sua concentração e respectiva unidade de medida, e sua forma farmacêutica, seguido da dosagem e sua respectiva unidade de medida, a frequência de uso do medicamento e via de administração.&#xD;&#xA;Este elemento NÃO pode ser utilizado para informar uma lista inteira de medicamentos prescritos, devendo ser ser gerado um recurso MedicationRequest específico para cada medicamento prescrito.&#xD;&#xA;Ex.1: Paracetamol 750mg omprimido, 1 comprimido 3 vezes ao dia durante 7 dias.&#xD;&#xA;Ex.2: Paracetamol 500mg + Cloridrato de Pseudoefedrina 30mg comprimido, 1 comprimido 3 vezes ao dia durante 7 dias." />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.medication[x].coding">
+      <path value="MedicationRequest.medication[x].coding" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.medication[x].text">
+      <path value="MedicationRequest.medication[x].text" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.subject">
+      <path value="MedicationRequest.subject" />
+      <short value="Indivíduo da Prescrição" />
+      <definition value="Pessoa natural ao qual a prescrição se refere." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.subject.reference">
+      <path value="MedicationRequest.subject.reference" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.subject.type">
+      <path value="MedicationRequest.subject.type" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.subject.identifier">
+      <path value="MedicationRequest.subject.identifier" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.subject.identifier.use">
+      <path value="MedicationRequest.subject.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.subject.identifier.type">
+      <path value="MedicationRequest.subject.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.subject.identifier.system">
+      <path value="MedicationRequest.subject.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.subject.identifier.value">
+      <path value="MedicationRequest.subject.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.subject.identifier.period">
+      <path value="MedicationRequest.subject.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.subject.identifier.assigner">
+      <path value="MedicationRequest.subject.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.subject.display">
+      <path value="MedicationRequest.subject.display" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.encounter">
+      <path value="MedicationRequest.encounter" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.supportingInformation">
+      <path value="MedicationRequest.supportingInformation" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.authoredOn">
+      <path value="MedicationRequest.authoredOn" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.requester">
+      <path value="MedicationRequest.requester" />
+      <short value="Prescritor" />
+      <definition value="Profissional de saúde que realizou a prescrição." />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BRLotacaoProfissional-1.0" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.requester.extension">
+      <path value="MedicationRequest.requester.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationRequest.requester.extension:ocupacaoPrescritor">
+      <path value="MedicationRequest.requester.extension" />
+      <sliceName value="ocupacaoPrescritor" />
+      <short value="Ocupação do Prescritor" />
+      <definition value="Identifica qual a ocupação do profissional de saúde que realizou a prescrição." />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://www.saude.gov.br/fhir/r4/StructureDefinition/BROcupacao-1.0" />
+      </type>
+    </element>
+    <element id="MedicationRequest.requester.reference">
+      <path value="MedicationRequest.requester.reference" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.requester.type">
+      <path value="MedicationRequest.requester.type" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.requester.identifier">
+      <path value="MedicationRequest.requester.identifier" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.requester.identifier.use">
+      <path value="MedicationRequest.requester.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.requester.identifier.type">
+      <path value="MedicationRequest.requester.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.requester.identifier.system">
+      <path value="MedicationRequest.requester.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.requester.identifier.value">
+      <path value="MedicationRequest.requester.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.requester.identifier.period">
+      <path value="MedicationRequest.requester.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.requester.identifier.assigner">
+      <path value="MedicationRequest.requester.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.requester.display">
+      <path value="MedicationRequest.requester.display" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.performer">
+      <path value="MedicationRequest.performer" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.performerType">
+      <path value="MedicationRequest.performerType" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.recorder">
+      <path value="MedicationRequest.recorder" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.reasonCode">
+      <path value="MedicationRequest.reasonCode" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.reasonReference">
+      <path value="MedicationRequest.reasonReference" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.instantiatesCanonical">
+      <path value="MedicationRequest.instantiatesCanonical" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.instantiatesUri">
+      <path value="MedicationRequest.instantiatesUri" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.basedOn">
+      <path value="MedicationRequest.basedOn" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.groupIdentifier">
+      <path value="MedicationRequest.groupIdentifier" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.courseOfTherapyType">
+      <path value="MedicationRequest.courseOfTherapyType" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.insurance">
+      <path value="MedicationRequest.insurance" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.note">
+      <path value="MedicationRequest.note" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction">
+      <path value="MedicationRequest.dosageInstruction" />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.sequence">
+      <path value="MedicationRequest.dosageInstruction.sequence" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.text">
+      <path value="MedicationRequest.dosageInstruction.text" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.additionalInstruction">
+      <path value="MedicationRequest.dosageInstruction.additionalInstruction" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.patientInstruction">
+      <path value="MedicationRequest.dosageInstruction.patientInstruction" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.timing">
+      <path value="MedicationRequest.dosageInstruction.timing" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.asNeeded[x]">
+      <path value="MedicationRequest.dosageInstruction.asNeeded[x]" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.site">
+      <path value="MedicationRequest.dosageInstruction.site" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.route">
+      <path value="MedicationRequest.dosageInstruction.route" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.method">
+      <path value="MedicationRequest.dosageInstruction.method" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.doseAndRate">
+      <path value="MedicationRequest.dosageInstruction.doseAndRate" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.maxDosePerPeriod">
+      <path value="MedicationRequest.dosageInstruction.maxDosePerPeriod" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.maxDosePerAdministration">
+      <path value="MedicationRequest.dosageInstruction.maxDosePerAdministration" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.maxDosePerLifetime">
+      <path value="MedicationRequest.dosageInstruction.maxDosePerLifetime" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest">
+      <path value="MedicationRequest.dispenseRequest" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.substitution">
+      <path value="MedicationRequest.substitution" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.priorPrescription">
+      <path value="MedicationRequest.priorPrescription" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.detectedIssue">
+      <path value="MedicationRequest.detectedIssue" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.eventHistory">
+      <path value="MedicationRequest.eventHistory" />
+      <max value="0" />
+    </element>
+  </differential>
+</StructureDefinition>
