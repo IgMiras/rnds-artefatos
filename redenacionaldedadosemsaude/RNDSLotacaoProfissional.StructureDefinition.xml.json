@@ -1,0 +1,58 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "rnds-lotacao-profissional",
+  "url": "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSLotacaoProfissional",
+  "version": "1.0.0",
+  "name": "RNDSLotacaoProfissional",
+  "title": "RNDSLotacaoProfissional",
+  "status": "draft",
+  "date": "2024-12-10",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "PractitionerRole",
+  "baseDefinition": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "PractitionerRole.active",
+        "path": "PractitionerRole.active",
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.practitioner",
+        "path": "PractitionerRole.practitioner",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRProfissional-1.0"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.organization",
+        "path": "PractitionerRole.organization",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSEstabelecimentoSaude",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.code",
+        "path": "PractitionerRole.code",
+        "mustSupport": true
+      }
+    ]
+  }
+}

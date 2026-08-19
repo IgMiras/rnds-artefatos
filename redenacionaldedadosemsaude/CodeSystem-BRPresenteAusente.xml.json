@@ -1,0 +1,33 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "BRPresenteAusente",
+  "meta": {
+    "profile": [
+      "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCodeSystemQuestionario"
+    ]
+  },
+  "language": "pt-BR",
+  "url": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRPresenteAusente",
+  "version": "1.0",
+  "name": "CodeSystem-BRPresenteAusente",
+  "status": "active",
+  "date": "2024-11-01T17:53:09+00:00",
+  "publisher": "Ministério da Saúde do Brasil",
+  "description": "Code System utilizado para definir o valor atribuído ao nas resposta do questionário dos Marcos do Desenvolvimento da Criança.",
+  "caseSensitive": true,
+  "content": "complete",
+  "concept": [
+    {
+      "code": "Presente",
+      "display": "Presente"
+    },
+    {
+      "code": "Ausente",
+      "display": "Ausente"
+    },
+    {
+      "code": "Vazio",
+      "display": "Vazio"
+    }
+  ]
+}

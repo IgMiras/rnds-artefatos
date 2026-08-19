@@ -1,0 +1,46 @@
+{
+  "resourceType": "ValueSet",
+  "id": "valueset-fornecedores-opm",
+  "language": "pt-BR",
+  "url": "http://www.saude.gov.br/fhir/r4/ValueSet/FornecedoresOPM",
+  "version": "1.0.0",
+  "name": "BRFornecedoresOPM",
+  "title": "Fornecedores OPM",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-09-20T03:00:00+00:00",
+  "publisher": "Ministério da Saúde do Brasil",
+  "contact": [
+    {
+      "name": "COPIS - Coordenação de Padrões e Interoperabilidade em Saúde",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://webatendimento.saude.gov.br/faq/rnds"
+        }
+      ]
+    }
+  ],
+  "description": "Fornecedores de órteses, próteses e materiais especiais",
+  "immutable": false,
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRFornecedoresAnvisa",
+        "version": "*"
+      },
+      {
+        "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRTerceirosBrasil",
+        "version": "*"
+      },
+      {
+        "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRMantenedoras",
+        "version": "*"
+      },
+      {
+        "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BREstabelecimentosCNPJ",
+        "version": "*"
+      }
+    ]
+  }
+}

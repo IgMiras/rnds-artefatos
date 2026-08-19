@@ -1,0 +1,294 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "rnds-prescricao-medicamento-dispensado",
+  "url": "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPrescricaoMedicamentoDispensado",
+  "version": "1.0.0",
+  "name": "RNDSPrescricaoMedicamentoDispensado",
+  "title": "Prescrição Eletrônica de Medicamento (Contida na Dispensação)",
+  "status": "draft",
+  "date": "2024-12-14",
+  "publisher": "Ministério da Saúde do Brasil",
+  "description": "Dados da prescrição a serem informados durante a dispensação caso o registro não esteja na RNDS.",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "script10.6",
+      "uri": "http://ncpdp.org/SCRIPT10_6",
+      "name": "Mapping to NCPDP SCRIPT 10.6"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "MedicationRequest",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "MedicationRequest.identifier",
+        "path": "MedicationRequest.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "short": "Cada item prescrito DEVE ser identificado pelo ID local e também pode ser identificado pelo número do Sistema Nacional de Controle de Receituários - SNCR.",
+        "definition": "Exemplos de identificação (apenas para fins ilustrativos):\r\n\r\nID Local:\r\n\r\n```json\r\n \"identifier\":  [\r\n    {\r\n        \"system\": \"http://www.saude.gov.br/fhir/r4/NamingSystem/prescription-item-id\",\r\n        \"value\": \"a54219b8-f741-4c47-b662-e4f8dfa49ab6\"\r\n    }\r\n]\r\n```\r\n\r\nNúmero do Sistema Nacional de Controle de Receituários:\r\n\r\n```json\r\n \"identifier\":  [\r\n    {\r\n        \"system\": \"http://www.saude.gov.br/fhir/r4/NamingSystem/sncr-number\",\r\n        \"value\": \"19356261\"\r\n    }\r\n]\r\n```",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier:prescriptionItemId",
+        "path": "MedicationRequest.identifier",
+        "sliceName": "prescriptionItemId",
+        "short": "Identificador local do item prescrito",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier:prescriptionItemId.system",
+        "path": "MedicationRequest.identifier.system",
+        "min": 1,
+        "fixedUri": "http://www.saude.gov.br/fhir/r4/NamingSystem/prescription-item-id"
+      },
+      {
+        "id": "MedicationRequest.identifier:prescriptionItemId.value",
+        "path": "MedicationRequest.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.identifier:sncrNumber",
+        "path": "MedicationRequest.identifier",
+        "sliceName": "sncrNumber",
+        "short": "Número do Sistema Nacional de Controle de Receituários",
+        "definition": "Número do Sistema Nacional de Controle de Receituários (caso aplicado ao item prescrito)",
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier:sncrNumber.system",
+        "path": "MedicationRequest.identifier.system",
+        "min": 1,
+        "fixedUri": "http://www.saude.gov.br/fhir/r4/NamingSystem/sncr-number"
+      },
+      {
+        "id": "MedicationRequest.identifier:sncrNumber.value",
+        "path": "MedicationRequest.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.status",
+        "path": "MedicationRequest.status",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.medication[x]",
+        "path": "MedicationRequest.medication[x]",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BRTerminologiaMedicamento"
+        }
+      },
+      {
+        "id": "MedicationRequest.medication[x].coding",
+        "path": "MedicationRequest.medication[x].coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationRequest.medication[x].coding.system",
+        "path": "MedicationRequest.medication[x].coding.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.medication[x].coding.code",
+        "path": "MedicationRequest.medication[x].coding.code",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.subject",
+        "path": "MedicationRequest.subject",
+        "short": "A quem ou a que grupo se destina a requisição de medicamento",
+        "definition": "É necessária a identificação de um paciente com um número de CPF ou CNS.\r\n\r\n```json\r\n\"subject\": {\r\n    \"identifier\": {\r\n        \"system\": \"http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0\",\r\n        \"value\": \"53678720454\"\r\n    }\r\n}\r\n```",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPaciente",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.subject.identifier",
+        "path": "MedicationRequest.subject.identifier",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.subject.identifier.system",
+        "path": "MedicationRequest.subject.identifier.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.subject.identifier.value",
+        "path": "MedicationRequest.subject.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.requester",
+        "path": "MedicationRequest.requester",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRProfissional-1.0",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSLotacaoProfissional"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.requester.reference",
+        "path": "MedicationRequest.requester.reference",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.requester.identifier",
+        "path": "MedicationRequest.requester.identifier",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.requester.identifier.system",
+        "path": "MedicationRequest.requester.identifier.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.requester.identifier.value",
+        "path": "MedicationRequest.requester.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.reasonCode",
+        "path": "MedicationRequest.reasonCode",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BRProblemaDiagnostico"
+        }
+      },
+      {
+        "id": "MedicationRequest.reasonCode.coding",
+        "path": "MedicationRequest.reasonCode.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationRequest.reasonCode.coding.system",
+        "path": "MedicationRequest.reasonCode.coding.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.reasonCode.coding.code",
+        "path": "MedicationRequest.reasonCode.coding.code",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.note",
+        "path": "MedicationRequest.note",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction",
+        "path": "MedicationRequest.dosageInstruction",
+        "short": "Como o medicamento deve ser usado",
+        "definition": "O conteúdo do `dosageInstruction` deve seguir as orientações contidas em cada elemento.\r\n\r\n`dosageInstruction.text` **DEVE** ser fornecido e é uma versão legível por humanos da dose estruturada, como seria impressa em uma prescrição de papel. O prescritor deve inserir uma dosagem de item de medicamento. \r\n\r\nO prescritor deve inserir uma dosagem de item de medicamento. O uso de um valor padrão genérico, por exemplo, \"Use conforme as instruções\", se um valor não for inserido, não é aceitável de uma perspectiva clínica. O usuário deve ser solicitado a selecionar uma instrução de dosagem de uma lista de seleção, digitar manualmente ou fazer com que o sistema preencha com uma instrução de dosagem válida e clinicamente segura, relevante para o medicamento prescrito ou circunstâncias clínicas.\r\n\r\n\r\n```json\r\n\"dosageInstruction\": [\r\n   {\r\n        \"text\": \"Tomar 1 comprimido via oral pela manhã por 10 dias\",\r\n        \"timing\": {\r\n            \"repeat\": {\r\n                \"boundsDuration\": {\r\n                    \"value\": 10,\r\n                    \"unit\": \"day\",\r\n                     \"system\": \"http://unitsofmeasure.org\",\r\n                     \"code\": \"d\"\r\n                },\r\n                 \"frequency\": 1,\r\n                 \"period\": 1,\r\n                 \"periodUnit\": \"d\",\r\n                 \"when\": \"MORN\"\r\n             }\r\n        },\r\n        \"route\": {\r\n            \"coding\": [\r\n                {\r\n                    \"system\": \"http://www.saude.gov.br/fhir/r4/CodeSystem/BRViaAdministracao\",\r\n                    \"code\": \"10907\",\r\n                    \"display\": \"Oral\"\r\n                }\r\n            ]\r\n        },\r\n        \"doseAndRate\": [\r\n   {\r\n    \"doseQuantity\": {\r\n     \"value\": 1,\r\n     \"unit\": \"Comprimido\",\r\n     \"system\": \"http://www.saude.gov.br/fhir/r4/CodeSystem/BRUnidadeMedida\",\r\n     \"code\": \"19\"\r\n    }\r\n   }\r\n  ],\r\n }\r\n]\r\n\r\n\r\n```",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.route",
+        "path": "MedicationRequest.dosageInstruction.route",
+        "short": "Via de admiminstração do medicamento",
+        "definition": "Conceito - referência a uma terminologia que representa a via de administração do medicamento.\r\n\r\n```json\r\n\"route\": {\r\n    \"coding\": [\r\n        {\r\n            \"system\": \"http://www.saude.gov.br/fhir/r4/CodeSystem/BRViaAdministracao\",\r\n            \"code\": \"10907\",\r\n            \"display\": \"Oral\"\r\n        }\r\n    ]\r\n}\r\n```",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BRViaAdministracao-1.0"
+        }
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.route.coding",
+        "path": "MedicationRequest.dosageInstruction.route.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.route.coding.system",
+        "path": "MedicationRequest.dosageInstruction.route.coding.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.route.coding.code",
+        "path": "MedicationRequest.dosageInstruction.route.coding.code",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.doseAndRate",
+        "path": "MedicationRequest.dosageInstruction.doseAndRate",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.doseAndRate.dose[x]",
+        "path": "MedicationRequest.dosageInstruction.doseAndRate.dose[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Quantity"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.doseAndRate.dose[x].value",
+        "path": "MedicationRequest.dosageInstruction.doseAndRate.dose[x].value",
+        "min": 1
+      }
+    ]
+  }
+}

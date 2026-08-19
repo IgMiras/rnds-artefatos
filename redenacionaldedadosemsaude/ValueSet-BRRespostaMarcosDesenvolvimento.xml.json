@@ -1,0 +1,26 @@
+{
+  "resourceType": "ValueSet",
+  "id": "BRRespostaMarcosDesenvolvimento",
+  "meta": {
+    "profile": [
+      "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRValueSetQuestionario"
+    ]
+  },
+  "language": "pt-BR",
+  "url": "http://www.saude.gov.br/fhir/r4/ValueSet/BRRespostaMarcosDesenvolvimento",
+  "version": "1.0",
+  "name": "ValueSet-BRRespostaMarcosDesenvolvimento",
+  "status": "active",
+  "date": "2024-11-01T13:25:38.9038219+00:00",
+  "publisher": "Ministério da Saúde do Brasil",
+  "description": "Valores permitidos nas resposta do questionário dos Marcos do Desenvolvimento da Criança.",
+  "immutable": true,
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRPresenteAusente",
+        "version": "*"
+      }
+    ]
+  }
+}

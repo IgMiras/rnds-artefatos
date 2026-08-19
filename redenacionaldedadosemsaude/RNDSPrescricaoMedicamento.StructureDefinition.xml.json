@@ -1,0 +1,848 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "rnds-prescricao-medicamento",
+  "url": "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPrescricaoMedicamento",
+  "version": "1.0.0",
+  "name": "RNDSPrescricaoMedicamento",
+  "title": "Prescrição Eletrônica de Medicamento",
+  "status": "draft",
+  "date": "2024-11-19",
+  "publisher": "Ministério da Saúde do Brasil",
+  "purpose": "Uma prescrição ou solicitação para dispensação ou fornecimento do medicamento e instruções para administração do medicamento a um indivíduo.\r\n\r\nEste perfil abrange prescrição de medicamentos para pacientes em todos os tipos de atendimento e pode ser usado para dar suporte ao pedido de dispositivos relacionados a medicamentos.\r\n\r\nEle não se destina ao uso na prescrição de dietas específicas ou para solicitar itens não relacionados a medicamentos (óculos, suprimentos, etc.).",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "MedicationRequest",
+  "baseDefinition": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "MedicationRequest",
+        "path": "MedicationRequest",
+        "constraint": [
+          {
+            "key": "repm-3",
+            "severity": "error",
+            "human": "Ao informar o número do RQE o número do CRM também é obrigatório no slice identificadorMedico.",
+            "expression": "MedicationRequest.contained.ofType(Practitioner).identifier.type.coding.where(code = 'DN').exists() implies MedicationRequest.contained.ofType(Practitioner).identifier.type.coding.where(code = 'MD').exists()"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.contained",
+        "path": "MedicationRequest.contained",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            },
+            {
+              "type": "profile",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "A person with a  formal responsibility in the provisioning of healthcare or related services",
+        "definition": "A person who is directly or indirectly involved in the provisioning of healthcare.",
+        "min": 2,
+        "max": "2",
+        "constraint": [
+          {
+            "key": "dom-2",
+            "severity": "error",
+            "human": "If the resource is contained in another resource, it SHALL NOT contain nested Resources",
+            "expression": "contained.contained.empty()",
+            "xpath": "not(parent::f:contained and f:contained)",
+            "source": "http://hl7.org/fhir/StructureDefinition/DomainResource"
+          },
+          {
+            "key": "dom-4",
+            "severity": "error",
+            "human": "If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated",
+            "expression": "contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()",
+            "xpath": "not(exists(f:contained/*/f:meta/f:versionId)) and not(exists(f:contained/*/f:meta/f:lastUpdated))",
+            "source": "http://hl7.org/fhir/StructureDefinition/DomainResource"
+          },
+          {
+            "key": "dom-3",
+            "severity": "error",
+            "human": "If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource or SHALL refer to the containing resource",
+            "expression": "contained.where((('#'+id in (%resource.descendants().reference | %resource.descendants().as(canonical) | %resource.descendants().as(uri) | %resource.descendants().as(url))) or descendants().where(reference = '#').exists() or descendants().where(as(canonical) = '#').exists() or descendants().where(as(canonical) = '#').exists()).not()).trace('unmatched', id).empty()",
+            "xpath": "not(exists(for $id in f:contained/*/f:id/@value return $contained[not(parent::*/descendant::f:reference/@value=concat('#', $contained/*/id/@value) or descendant::f:reference[@value='#'])]))",
+            "source": "http://hl7.org/fhir/StructureDefinition/DomainResource"
+          },
+          {
+            "key": "dom-6",
+            "severity": "warning",
+            "human": "A resource should have narrative for robust management",
+            "expression": "text.`div`.exists()",
+            "xpath": "exists(f:text/h:div)",
+            "source": "http://hl7.org/fhir/StructureDefinition/DomainResource"
+          },
+          {
+            "key": "dom-5",
+            "severity": "error",
+            "human": "If a resource is contained in another resource, it SHALL NOT have a security label",
+            "expression": "contained.meta.security.empty()",
+            "xpath": "not(exists(f:contained/*/f:meta/f:security))",
+            "source": "http://hl7.org/fhir/StructureDefinition/DomainResource"
+          }
+        ],
+        "mustSupport": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "PRD (as one example)"
+          },
+          {
+            "identity": "rim",
+            "map": "Role"
+          },
+          {
+            "identity": "servd",
+            "map": "Provider"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner",
+        "path": "MedicationRequest.contained",
+        "sliceName": "prescriberPractitioner",
+        "short": "Recursos contidos neste artefato",
+        "definition": "Recursos contidos neste artefato",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Practitioner",
+            "profile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.id",
+        "path": "MedicationRequest.contained.id",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.meta",
+        "path": "MedicationRequest.contained.meta",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.meta.id",
+        "path": "MedicationRequest.contained.meta.id",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.meta.versionId",
+        "path": "MedicationRequest.contained.meta.versionId",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.meta.lastUpdated",
+        "path": "MedicationRequest.contained.meta.lastUpdated",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.meta.source",
+        "path": "MedicationRequest.contained.meta.source",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.meta.profile",
+        "path": "MedicationRequest.contained.meta.profile",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.meta.security",
+        "path": "MedicationRequest.contained.meta.security",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.meta.tag",
+        "path": "MedicationRequest.contained.meta.tag",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.implicitRules",
+        "path": "MedicationRequest.contained.implicitRules",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.language",
+        "path": "MedicationRequest.contained.language",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.text",
+        "path": "MedicationRequest.contained.text",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.contained",
+        "path": "MedicationRequest.contained.contained",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier",
+        "path": "MedicationRequest.contained.identifier",
+        "constraint": [
+          {
+            "key": "repm-1",
+            "requirements": "Verifica se o identifier corresponde a um dos seguintes slices: identificadorMedico ou identificadorOdontologo",
+            "severity": "error",
+            "human": "O profissional deve ter uma identificação de Médico, Odontólogo ou Enfermeiro",
+            "expression": "type.coding.exists(code = 'MD' or code = 'RN' or code = 'RI')"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier.id",
+        "path": "MedicationRequest.contained.identifier.id",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier.use",
+        "path": "MedicationRequest.contained.identifier.use",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier.type",
+        "path": "MedicationRequest.contained.identifier.type",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier.system",
+        "path": "MedicationRequest.contained.identifier.system",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier.value",
+        "path": "MedicationRequest.contained.identifier.value",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier.period",
+        "path": "MedicationRequest.contained.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier.assigner",
+        "path": "MedicationRequest.contained.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:cns",
+        "path": "MedicationRequest.contained.identifier",
+        "sliceName": "cns"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:cns.id",
+        "path": "MedicationRequest.contained.identifier.id",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:cns.period",
+        "path": "MedicationRequest.contained.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:cns.assigner",
+        "path": "MedicationRequest.contained.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:cpf",
+        "path": "MedicationRequest.contained.identifier",
+        "sliceName": "cpf"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:cpf.id",
+        "path": "MedicationRequest.contained.identifier.id",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:cpf.period",
+        "path": "MedicationRequest.contained.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:cpf.assigner",
+        "path": "MedicationRequest.contained.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorMedico",
+        "path": "MedicationRequest.contained.identifier",
+        "sliceName": "identificadorMedico"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorMedico.id",
+        "path": "MedicationRequest.contained.identifier.id",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorMedico.period",
+        "path": "MedicationRequest.contained.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorMedico.assigner",
+        "path": "MedicationRequest.contained.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorFarmaceutico",
+        "path": "MedicationRequest.contained.identifier",
+        "sliceName": "identificadorFarmaceutico"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorFarmaceutico.id",
+        "path": "MedicationRequest.contained.identifier.id",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorFarmaceutico.period",
+        "path": "MedicationRequest.contained.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorFarmaceutico.assigner",
+        "path": "MedicationRequest.contained.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOdontologo",
+        "path": "MedicationRequest.contained.identifier",
+        "sliceName": "identificadorOdontologo"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOdontologo.id",
+        "path": "MedicationRequest.contained.identifier.id",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOdontologo.period",
+        "path": "MedicationRequest.contained.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOdontologo.assigner",
+        "path": "MedicationRequest.contained.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorEnfermeiro",
+        "path": "MedicationRequest.contained.identifier",
+        "sliceName": "identificadorEnfermeiro"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorEnfermeiro.id",
+        "path": "MedicationRequest.contained.identifier.id",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorEnfermeiro.period",
+        "path": "MedicationRequest.contained.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorEnfermeiro.assigner",
+        "path": "MedicationRequest.contained.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOutrosProfissionais",
+        "path": "MedicationRequest.contained.identifier",
+        "sliceName": "identificadorOutrosProfissionais"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOutrosProfissionais.id",
+        "path": "MedicationRequest.contained.identifier.id",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOutrosProfissionais.period",
+        "path": "MedicationRequest.contained.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:identificadorOutrosProfissionais.assigner",
+        "path": "MedicationRequest.contained.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:rqeMedico",
+        "path": "MedicationRequest.contained.identifier",
+        "sliceName": "rqeMedico"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:rqeMedico.id",
+        "path": "MedicationRequest.contained.identifier.id",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:rqeMedico.period",
+        "path": "MedicationRequest.contained.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberPractitioner.identifier:rqeMedico.assigner",
+        "path": "MedicationRequest.contained.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty",
+        "path": "MedicationRequest.contained",
+        "sliceName": "prescriberSpecialty",
+        "short": "Recursos contidos neste artefato",
+        "definition": "Recursos contidos neste artefato",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "PractitionerRole",
+            "profile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSLotacaoProfissional"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.id",
+        "path": "MedicationRequest.contained.id",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.meta",
+        "path": "MedicationRequest.contained.meta",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.meta.id",
+        "path": "MedicationRequest.contained.meta.id",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.meta.versionId",
+        "path": "MedicationRequest.contained.meta.versionId",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.meta.lastUpdated",
+        "path": "MedicationRequest.contained.meta.lastUpdated",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.meta.source",
+        "path": "MedicationRequest.contained.meta.source",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.meta.profile",
+        "path": "MedicationRequest.contained.meta.profile",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.meta.security",
+        "path": "MedicationRequest.contained.meta.security",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.meta.tag",
+        "path": "MedicationRequest.contained.meta.tag",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.implicitRules",
+        "path": "MedicationRequest.contained.implicitRules",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.language",
+        "path": "MedicationRequest.contained.language",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.text",
+        "path": "MedicationRequest.contained.text",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.contained:prescriberSpecialty.contained",
+        "path": "MedicationRequest.contained.contained",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.identifier",
+        "path": "MedicationRequest.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "short": "Cada item prescrito DEVE ser identificado pelo ID local e também pode ser identificado pelo número do Sistema Nacional de Controle de Receituários - SNCR.",
+        "definition": "Exemplos de identificação (apenas para fins ilustrativos):\r\n\r\nID Local:\r\n\r\n```json\r\n \"identifier\":  [\r\n    {\r\n        \"system\": \"http://www.saude.gov.br/fhir/r4/NamingSystem/prescription-item-id\",\r\n        \"value\": \"a54219b8-f741-4c47-b662-e4f8dfa49ab6\"\r\n    }\r\n]\r\n```\r\n\r\nNúmero do Sistema Nacional de Controle de Receituários:\r\n\r\n```json\r\n \"identifier\":  [\r\n    {\r\n        \"system\": \"http://www.saude.gov.br/fhir/r4/NamingSystem/sncr-number\",\r\n        \"value\": \"19356261\"\r\n    }\r\n]\r\n```",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier:prescriptionItemId",
+        "path": "MedicationRequest.identifier",
+        "sliceName": "prescriptionItemId",
+        "short": "Identificador local do item prescrito",
+        "definition": "Identificador local do item prescrito",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier:prescriptionItemId.system",
+        "path": "MedicationRequest.identifier.system",
+        "min": 1,
+        "fixedUri": "http://www.saude.gov.br/fhir/r4/NamingSystem/prescription-item-id"
+      },
+      {
+        "id": "MedicationRequest.identifier:prescriptionItemId.value",
+        "path": "MedicationRequest.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.identifier:sncrNumber",
+        "path": "MedicationRequest.identifier",
+        "sliceName": "sncrNumber",
+        "short": "Número do Sistema Nacional de Controle de Receituários",
+        "definition": "Número do Sistema Nacional de Controle de Receituários (caso aplicado ao item prescrito)",
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier:sncrNumber.system",
+        "path": "MedicationRequest.identifier.system",
+        "min": 1,
+        "fixedUri": "http://www.saude.gov.br/fhir/r4/NamingSystem/sncr-number"
+      },
+      {
+        "id": "MedicationRequest.identifier:sncrNumber.value",
+        "path": "MedicationRequest.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.status",
+        "path": "MedicationRequest.status",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.statusReason",
+        "path": "MedicationRequest.statusReason",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.intent",
+        "path": "MedicationRequest.intent",
+        "fixedCode": "order",
+        "mustSupport": false
+      },
+      {
+        "id": "MedicationRequest.category",
+        "path": "MedicationRequest.category",
+        "definition": "Na Atenção Primária, o código `community` deve ser usado. Na Atenção Especializada, a categoria frequentemente corresponderá ao tipo de atendimento prestado.\r\n\r\n```json\r\n\"category\": [\r\n    {\r\n        \"coding\": [\r\n            {\r\n                \"system\": \"http://terminology.hl7.org/CodeSystem/medicationrequest-category\",\r\n                \"code\": \"outpatient\"\r\n            }\r\n        ]\r\n    }\r\n],\r\n```",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.medication[x]",
+        "path": "MedicationRequest.medication[x]",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.medication[x]:medicationReference",
+        "path": "MedicationRequest.medication[x]",
+        "sliceName": "medicationReference",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSMedicamento"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.medication[x]:medicationReference.reference",
+        "path": "MedicationRequest.medication[x].reference",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.subject",
+        "path": "MedicationRequest.subject",
+        "definition": "É necessária a identificação de um paciente com um número de CPF ou CNS.\r\n\r\n```json\r\n\"subject\": {\r\n    \"identifier\": {\r\n        \"system\": \"https://saude.gov.br/fhir/sid/cpf\",\r\n        \"value\": \"53678720454\"\r\n    }\r\n}\r\n```",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPaciente",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.subject.identifier",
+        "path": "MedicationRequest.subject.identifier",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.subject.identifier.system",
+        "path": "MedicationRequest.subject.identifier.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.subject.identifier.value",
+        "path": "MedicationRequest.subject.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.supportingInformation",
+        "path": "MedicationRequest.supportingInformation",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "profile",
+              "path": "resolve()"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.supportingInformation:requesterSpecialty",
+        "path": "MedicationRequest.supportingInformation",
+        "sliceName": "requesterSpecialty",
+        "short": "Especialidade do Profissional Responsável pela Prescrição",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSLotacaoProfissional"
+            ]
+          }
+        ],
+        "constraint": [
+          {
+            "key": "repm-2",
+            "severity": "error",
+            "human": "A referência para a Especialidade do Profissional deve iniciair com #",
+            "expression": "reference.startsWith('#')"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.supportingInformation:requesterSpecialty.reference",
+        "path": "MedicationRequest.supportingInformation.reference",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.authoredOn",
+        "path": "MedicationRequest.authoredOn",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.requester",
+        "path": "MedicationRequest.requester",
+        "definition": "O _requester_ deve conter uma referência de recurso ao Practitioner que emitiu a prescrição.\r\n\r\n\r\n```json\r\n{\r\n    \"subject\": {\r\n        \"reference\": \"urn:uuid:01b470ce-64fa-4710-8950-630b8240d83e\",\r\n        \"identifier\": {\r\n            \"system\": \"http://www.saude.gov.br/fhir/r4/StructureDefinition/BRProfissional-1.0\",\r\n            \"value\": \"24573966207\"\r\n        }\r\n    }\r\n}\r\n```",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRProfissional-1.0",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSLotacaoProfissional"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.requester.reference",
+        "path": "MedicationRequest.requester.reference",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.requester.identifier",
+        "path": "MedicationRequest.requester.identifier",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.requester.identifier.system",
+        "path": "MedicationRequest.requester.identifier.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.requester.identifier.value",
+        "path": "MedicationRequest.requester.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.reasonCode",
+        "path": "MedicationRequest.reasonCode",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BRProblemaDiagnostico"
+        }
+      },
+      {
+        "id": "MedicationRequest.reasonCode.coding",
+        "path": "MedicationRequest.reasonCode.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationRequest.reasonCode.coding.system",
+        "path": "MedicationRequest.reasonCode.coding.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.reasonCode.coding.code",
+        "path": "MedicationRequest.reasonCode.coding.code",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.groupIdentifier",
+        "path": "MedicationRequest.groupIdentifier",
+        "short": "Requisição composta da qual esta requisição faz parte",
+        "definition": "Requisição composta da qual esta requisição faz parte",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.groupIdentifier.system",
+        "path": "MedicationRequest.groupIdentifier.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.groupIdentifier.value",
+        "path": "MedicationRequest.groupIdentifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.note",
+        "path": "MedicationRequest.note",
+        "short": "Informações sobre a prescrição",
+        "definition": "Informações clínicas relacionadas a um item de medicamento prescrito que não podem ser transmitidas dentro das instruções de dosagem (dosageInstruction) são preenchidas dentro do campo `note`.\r\n\r\nExemplos de notas de dispensação são:\r\n\r\n- Para explicar mudanças na dosagem, por exemplo, \"A dosagem foi aumentada por recomendação do hospital\".\r\n- \"Diga ao paciente para interromper a estatina enquanto estiver tomando este antibiótico\"\r\n- \"O médico do hospital confirmou o tratamento duplo\"\r\n\r\n```json\r\n\"note\": [\r\n    {\r\n      \"text\": \"Tell patient to stop their statin whilst on this anitbiotic\"\r\n    }\r\n  ],\r\n```",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction",
+        "path": "MedicationRequest.dosageInstruction",
+        "definition": "O conteúdo do `dosageInstruction` deve seguir as orientações contidas em cada elemento.\r\n\r\n`dosageInstruction.text` **DEVE** ser fornecido e é uma versão legível por humanos da dose estruturada, como seria impressa em uma prescrição de papel. O prescritor deve inserir uma dosagem de item de medicamento. \r\n\r\nO prescritor deve inserir uma dosagem de item de medicamento. O uso de um valor padrão genérico, por exemplo, \"Use conforme as instruções\", se um valor não for inserido, não é aceitável de uma perspectiva clínica. O usuário deve ser solicitado a selecionar uma instrução de dosagem de uma lista de seleção, digitar manualmente ou fazer com que o sistema preencha com uma instrução de dosagem válida e clinicamente segura, relevante para o medicamento prescrito ou circunstâncias clínicas.\r\n\r\n\r\n```json\r\n\"dosageInstruction\": [\r\n   {\r\n        \"text\": \"Tomar 1 comprimido via oral pela manhã por 10 dias\",\r\n        \"timing\": {\r\n            \"repeat\": {\r\n                \"boundsDuration\": {\r\n                    \"value\": 10,\r\n                    \"unit\": \"day\",\r\n                     \"system\": \"http://unitsofmeasure.org\",\r\n                     \"code\": \"d\"\r\n                },\r\n                 \"frequency\": 1,\r\n                 \"period\": 1,\r\n                 \"periodUnit\": \"d\",\r\n                 \"when\": \"MORN\"\r\n             }\r\n        },\r\n        \"route\": {\r\n            \"coding\": [\r\n                {\r\n                    \"system\": \"http://www.saude.gov.br/fhir/r4/CodeSystem/BRViaAdministracao\",\r\n                    \"code\": \"10907\",\r\n                    \"display\": \"Oral\"\r\n                }\r\n            ]\r\n        },\r\n        \"doseAndRate\": [\r\n   {\r\n    \"doseQuantity\": {\r\n     \"value\": 1,\r\n     \"unit\": \"Comprimido\",\r\n     \"system\": \"http://www.saude.gov.br/fhir/r4/CodeSystem/BRUnidadeMedida\",\r\n     \"code\": \"19\"\r\n    }\r\n   }\r\n  ],\r\n    }\r\n]\r\n\r\n\r\n```",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.sequence",
+        "path": "MedicationRequest.dosageInstruction.sequence",
+        "short": "Instruções de dosagem multissequencial.",
+        "definition": "Uma sequência múltipla seria necessária quando uma instrução de dosagem muda ao longo de um determinado cronograma, quando uma instrução de dosagem inclui doses de acompanhamento opcionais ou quando uma instrução de dosagem simultânea é necessária para o mesmo medicamento em uma dose diferente.\r\n\r\nOs exemplos abaixo incluem Prednisolona para tratar paralisia de Bell, onde uma dose começa em 60 mg por dia por um período de tempo e depois reduz em 10 mg por dia. Isso seria descrito como uma instrução de dosagem sequencial. Um exemplo de dosagem simultânea é fornecido para descrever uma dose diferente pela manhã daquela ao meio-dia.\r\n\r\n#### Instruções sequenciais\r\n\r\nOnde o valor da sequência é um inteiro incremental, ele define uma instrução sequencial.\r\n\r\n```json\r\n\"dosageInstruction\": [\r\n    {\r\n        \"sequence\": 1,\r\n        \"text\": \"60 milligram - once a day - for 4 days\",\r\n        \"timing\": {\r\n            \"repeat\": {\r\n                \"boundsDuration\": {\r\n                    \"value\": 4,\r\n                    \"unit\": \"day\",\r\n                    \"system\": \"http://unitsofmeasure.org\",\r\n                    \"code\": \"d\"\r\n                },\r\n                \"frequency\": 1,\r\n                \"period\": 1,\r\n                \"periodUnit\": \"d\"\r\n            }\r\n        },\r\n        \"doseAndRate\": [\r\n            {\r\n                \"doseQuantity\": {\r\n                    \"value\": 60,\r\n                    \"unit\": \"milligram\",\r\n                    \"system\": \"http://unitsofmeasure.org\",\r\n                    \"code\": \"mg\"\r\n                }\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"sequence\": 2,\r\n        \"text\": \"50 milligram - once a day - for 1 day\",\r\n        \"timing\": {\r\n            \"repeat\": {\r\n                \"boundsDuration\": {\r\n                    \"value\": 1,\r\n                    \"unit\": \"day\",\r\n                    \"system\": \"http://unitsofmeasure.org\",\r\n                    \"code\": \"d\"\r\n                },\r\n                \"frequency\": 1,\r\n                \"period\": 1,\r\n                \"periodUnit\": \"d\"\r\n            }\r\n        },\r\n        \"doseAndRate\": [\r\n            {\r\n                \"doseQuantity\": {\r\n                    \"value\": 50,\r\n                    \"unit\": \"milligram\",\r\n                    \"system\": \"http://unitsofmeasure.org\",\r\n                    \"code\": \"mg\"\r\n                }\r\n            }\r\n        ]\r\n    }\r\n]\r\n```\r\n\r\n#### Instruções simultâneas\r\n\r\nOnde o mesmo valor inteiro da sequência é definido, significa uma instrução simultânea.\r\n\r\n```json\r\n\"dosageInstruction\": [\r\n    {\r\n        \"sequence\": 1,\r\n        \"text\": \"2 tablet - daily - at 08:00 - for 1 week\",\r\n        \"timing\": {\r\n            \"repeat\": {\r\n                \"boundsDuration\": {\r\n                    \"value\": 1,\r\n                    \"unit\": \"week\",\r\n                    \"system\": \"http://unitsofmeasure.org\",\r\n                    \"code\": \"wk\"\r\n                },\r\n                \"period\": 1,\r\n                \"periodUnit\": \"d\",\r\n                \"timeOfDay\": [\r\n                    \"08:00:00\"\r\n                ]\r\n            }\r\n        },\r\n        \"doseAndRate\": [\r\n            {\r\n                \"doseQuantity\": {\r\n                    \"value\": 2,\r\n                    \"unit\": \"tablet\",\r\n                    \"system\": \"http://snomed.info/sct\",\r\n                    \"code\": \"428673006\"\r\n                }\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"sequence\": 1,\r\n        \"text\": \"1 tablet - daily - at 12:00 - for 1 week\",\r\n        \"timing\": {\r\n            \"repeat\": {\r\n                \"boundsDuration\": {\r\n                    \"value\": 1,\r\n                    \"unit\": \"week\",\r\n                    \"system\": \"http://unitsofmeasure.org\",\r\n                    \"code\": \"wk\"\r\n                },\r\n                \"period\": 1,\r\n                \"periodUnit\": \"d\",\r\n                \"timeOfDay\": [\r\n                    \"12:00:00\"\r\n                ]\r\n            }\r\n        },\r\n        \"doseAndRate\": [\r\n            {\r\n                \"doseQuantity\": {\r\n                    \"value\": 1,\r\n                    \"unit\": \"tablet\",\r\n                    \"system\": \"http://snomed.info/sct\",\r\n                    \"code\": \"428673006\"\r\n                }\r\n            }\r\n        ]\r\n    }\r\n]\r\n```",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.text",
+        "path": "MedicationRequest.dosageInstruction.text",
+        "short": "As instruções completas de dosagem como uma sequência legível por humanos.",
+        "definition": "A instrução de dosagem completa como um texto legível por humanos.\r\n\r\nPor exemplo:\r\n\r\n```json\r\n\"text\": \"1 comprimido - a cada 6 horas - oral\"\r\n```\r\nOnde instruções de dosagem adicionais precisam ser transmitidas e não podem ser descritas usando nenhum outro elemento da estrutura de dosagem, anexe-as ao final do texto de dosagem.\r\n\r\nPor exemplo, a instrução para `“infundir o mais rápido possível via porta intraperitoneal”` não é um termo codificado, portanto, não pode ser compartilhado como uma `additionalInstruction`. Também não seria apropriado como uma string `patientInstruction`.\r\n\r\nPor exemplo:\r\n\r\n```json\r\n\"text\": \"{os elementos de dosagem traduzidos como texto} - infundir o mais rápido possível via porta intraperitoneal\"\r\n```\r\n\r\nPor exemplo, a instrução `“imediatamente após o medicamento {X}”)`, onde {X} é o nome de um medicamento, não é adequada como uma `additionalInstruction` nem como `patientInstruction`.\r\n\r\nPor exemplo:\r\n\r\n```json\r\n\"text\": \"500 miligramas - uma vez - oral - imediatamente após o medicamento {X}\"\r\n```",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.additionalInstruction",
+        "path": "MedicationRequest.dosageInstruction.additionalInstruction",
+        "definition": "Essas elementos , `additionalInstruction` e `patientInstruction`, **DEVEM** ser usadas somente para passar notas sobre a prescrição ao farmacêutico ou paciente.\r\nInstruções adicionais devem ser codificadas, mas onde não houver código, o elemento pode incluir texto. Por exemplo, \"Engula com bastante água\", que pode ou não ser codificado.\r\n\r\n```json\r\n\"dosageInstruction\": [\r\n    {\r\n        \"text\": \"10 milligram, Inject, Subcutaneous route, once weekly\",\r\n        \"additionalInstruction\": [\r\n            \"coding\": [\r\n                {\r\n                    \"system\": \"http://snomed.info/sct\",\r\n                    \"code\": \"421769005\",\r\n                    \"display\": \"Follow directions\"\r\n                }\r\n            ],\r\n        ],\r\n        \"patientInstruction\": \"Engula com bastante água\"\r\n    }\r\n]\r\n```",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.patientInstruction",
+        "path": "MedicationRequest.dosageInstruction.patientInstruction",
+        "definition": "Essas elementos , `additionalInstruction` e `patientInstruction`, **DEVEM** ser usadas somente para passar notas sobre a prescrição ao farmacêutico ou paciente.\r\nInstruções adicionais devem ser codificadas, mas onde não houver código, o elemento pode incluir texto. Por exemplo, \"Engula com bastante água\", que pode ou não ser codificado.\r\n\r\n```json\r\n\"dosageInstruction\": [\r\n    {\r\n        \"text\": \"10 milligram, Inject, Subcutaneous route, once weekly\",\r\n        \"additionalInstruction\": [\r\n            \"coding\": [\r\n                {\r\n                    \"system\": \"http://snomed.info/sct\",\r\n                    \"code\": \"421769005\",\r\n                    \"display\": \"Follow directions\"\r\n                }\r\n            ],\r\n        ],\r\n        \"patientInstruction\": \"Engula com bastante água\"\r\n    }\r\n]\r\n```",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.timing",
+        "path": "MedicationRequest.dosageInstruction.timing",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.asNeeded[x]",
+        "path": "MedicationRequest.dosageInstruction.asNeeded[x]",
+        "definition": "A estrutura `asNeeded` pode ser usada para definir instruções simples “conforme necessário”.\r\nNeste caso, use a opção `asNeededBoolean`. A ausência de `asNeededBoolean` é equivalente a onde `asNeededBoolean` tem um valor de `false`.",
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.route",
+        "path": "MedicationRequest.dosageInstruction.route",
+        "definition": "Conceito - referência a uma terminologia que representa a via de administração do medicamento.\r\n\r\n```json\r\n\"route\": {\r\n    \"coding\": [\r\n        {\r\n            \"system\": \"http://www.saude.gov.br/fhir/r4/CodeSystem/BRViaAdministracao\",\r\n            \"code\": \"10907\",\r\n            \"display\": \"Oral\"\r\n        }\r\n    ]\r\n}\r\n```",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BRViaAdministracao-1.0"
+        }
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.route.coding",
+        "path": "MedicationRequest.dosageInstruction.route.coding",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.route.coding.system",
+        "path": "MedicationRequest.dosageInstruction.route.coding.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.route.coding.code",
+        "path": "MedicationRequest.dosageInstruction.route.coding.code",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.doseAndRate",
+        "path": "MedicationRequest.dosageInstruction.doseAndRate",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.doseAndRate.dose[x]",
+        "path": "MedicationRequest.dosageInstruction.doseAndRate.dose[x]",
+        "type": [
+          {
+            "code": "Quantity"
+          }
+        ]
+      }
+    ]
+  }
+}

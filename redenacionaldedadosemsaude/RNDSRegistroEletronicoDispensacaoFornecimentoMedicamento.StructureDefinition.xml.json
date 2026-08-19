@@ -1,0 +1,223 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "rnds-redfm",
+  "url": "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSRegistroEletronicoDispensacaoFornecimentoMedicamento",
+  "name": "RNDSRegistroEletronicoDispensacaoFornecimentoMedicamento",
+  "title": "Registro Eletrônico de Dispensação ou Fornecimento de Medicamento - REDFM",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Composition",
+  "baseDefinition": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-composition",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Composition.status",
+        "path": "Composition.status",
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.type",
+        "path": "Composition.type",
+        "definition": "Tipo da Composition",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BRTipoDocumento-1.0"
+        }
+      },
+      {
+        "id": "Composition.subject",
+        "path": "Composition.subject",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPaciente",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.subject.identifier",
+        "path": "Composition.subject.identifier",
+        "min": 1
+      },
+      {
+        "id": "Composition.subject.identifier.system",
+        "path": "Composition.subject.identifier.system",
+        "min": 1
+      },
+      {
+        "id": "Composition.subject.identifier.value",
+        "path": "Composition.subject.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Composition.date",
+        "path": "Composition.date",
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.author",
+        "path": "Composition.author",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSEstabelecimentoSaude",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.author.identifier",
+        "path": "Composition.author.identifier",
+        "min": 1
+      },
+      {
+        "id": "Composition.author.identifier.system",
+        "path": "Composition.author.identifier.system",
+        "min": 1
+      },
+      {
+        "id": "Composition.author.identifier.value",
+        "path": "Composition.author.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Composition.title",
+        "path": "Composition.title",
+        "short": "Título do Documento",
+        "definition": "Título do Documento",
+        "fixedString": "Registro Eletrônico de Dispensação ou Fornecimento de Medicamentos"
+      },
+      {
+        "id": "Composition.relatesTo",
+        "path": "Composition.relatesTo",
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.relatesTo.code",
+        "path": "Composition.relatesTo.code",
+        "fixedCode": "replaces"
+      },
+      {
+        "id": "Composition.relatesTo.target[x]",
+        "path": "Composition.relatesTo.target[x]",
+        "type": [
+          {
+            "code": "Reference"
+          }
+        ]
+      },
+      {
+        "id": "Composition.relatesTo.target[x]:targetReference",
+        "path": "Composition.relatesTo.target[x]",
+        "sliceName": "targetReference",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSRegistroEletronicoDispensacaoFornecimentoMedicamento"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.relatesTo.target[x]:targetReference.reference",
+        "path": "Composition.relatesTo.target[x].reference",
+        "min": 1
+      },
+      {
+        "id": "Composition.section",
+        "path": "Composition.section",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "code.coding.code"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.section:dispensedMedications",
+        "path": "Composition.section",
+        "sliceName": "dispensedMedications",
+        "min": 1,
+        "max": "1",
+        "mustSupport": false
+      },
+      {
+        "id": "Composition.section:dispensedMedications.title",
+        "path": "Composition.section.title",
+        "min": 1,
+        "fixedString": "Medicamentos Dispensados"
+      },
+      {
+        "id": "Composition.section:dispensedMedications.code",
+        "path": "Composition.section.code",
+        "min": 1,
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "56445-0"
+            }
+          ]
+        },
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/ValueSet/document-classcodes"
+        }
+      },
+      {
+        "id": "Composition.section:dispensedMedications.code.coding",
+        "path": "Composition.section.code.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:dispensedMedications.code.coding.system",
+        "path": "Composition.section.code.coding.system",
+        "min": 1
+      },
+      {
+        "id": "Composition.section:dispensedMedications.code.coding.code",
+        "path": "Composition.section.code.coding.code",
+        "min": 1,
+        "fixedCode": "56445-0"
+      },
+      {
+        "id": "Composition.section:dispensedMedications.entry",
+        "path": "Composition.section.entry",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSMedicamentoDispensadoFornecido"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.section:dispensedMedications.entry.reference",
+        "path": "Composition.section.entry.reference",
+        "min": 1
+      }
+    ]
+  }
+}

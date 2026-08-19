@@ -1,0 +1,103 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "rnds-profissional",
+  "url": "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional",
+  "version": "1.0.0",
+  "name": "RNDSProfissional",
+  "title": "Profissional RNDS",
+  "status": "draft",
+  "date": "2024-12-10",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Practitioner",
+  "baseDefinition": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Practitioner.identifier",
+        "path": "Practitioner.identifier",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.identifier:identificadorOutrosProfissionais",
+        "path": "Practitioner.identifier",
+        "sliceName": "identificadorOutrosProfissionais"
+      },
+      {
+        "id": "Practitioner.identifier:identificadorOutrosProfissionais.type",
+        "path": "Practitioner.identifier.type",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "code": "LN"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Practitioner.identifier:rqeMedico",
+        "path": "Practitioner.identifier",
+        "sliceName": "rqeMedico",
+        "max": "1"
+      },
+      {
+        "id": "Practitioner.identifier:rqeMedico.use",
+        "path": "Practitioner.identifier.use",
+        "min": 1,
+        "fixedCode": "secondary"
+      },
+      {
+        "id": "Practitioner.identifier:rqeMedico.type",
+        "path": "Practitioner.identifier.type",
+        "min": 1,
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "DN"
+            }
+          ]
+        },
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/ValueSet/namingsystem-identifier-system-type"
+        }
+      },
+      {
+        "id": "Practitioner.identifier:rqeMedico.type.coding",
+        "path": "Practitioner.identifier.type.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Practitioner.identifier:rqeMedico.type.coding.system",
+        "path": "Practitioner.identifier.type.coding.system",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/v2-0203"
+      },
+      {
+        "id": "Practitioner.identifier:rqeMedico.type.coding.code",
+        "path": "Practitioner.identifier.type.coding.code",
+        "min": 1
+      },
+      {
+        "id": "Practitioner.identifier:rqeMedico.system",
+        "path": "Practitioner.identifier.system",
+        "min": 1,
+        "fixedUri": "https://saude.gov.br/sid/rqe"
+      },
+      {
+        "id": "Practitioner.identifier:rqeMedico.value",
+        "path": "Practitioner.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Practitioner.active",
+        "path": "Practitioner.active",
+        "mustSupport": true
+      }
+    ]
+  }
+}

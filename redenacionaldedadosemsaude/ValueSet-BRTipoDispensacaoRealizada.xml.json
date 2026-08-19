@@ -1,0 +1,25 @@
+{
+  "resourceType": "ValueSet",
+  "id": "valueset-brtipodispensacaorealizada",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
+    ]
+  },
+  "url": "http://www.saude.gov.br/fhir/r4/ValueSet/BRTipoDispensacaoRealizada",
+  "version": "1.0.0",
+  "name": "ValueSet-BRTipoDispensacaoRealizada",
+  "title": "Tipo de Dispensação Realizada",
+  "status": "draft",
+  "experimental": false,
+  "date": "2024-12-10",
+  "publisher": "Ministério da Saúde do Brasil",
+  "description": "Indica o tipo de dispensação que foi realizada",
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRTipoDispensacaoRealizada"
+      }
+    ]
+  }
+}

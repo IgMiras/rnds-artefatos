@@ -1,0 +1,1226 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-patient",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+  "version": "1.0.0",
+  "name": "BRCorePatient",
+  "status": "active",
+  "description": "Este perfil representa o perfil [br-core-patient](https://saude.gov.br/fhir/StructureDefinition/br-core-patient.html) com todas as informações demográficas e administrativas necessárias para descrever um paciente no Brasil, com as respectivas legislações dos elementos e domínios obrigatórios conforme abaixo. O perfil [br-core-patient](https://saude.gov.br/fhir/StructureDefinition/br-core-patient.html) herda do recurso FHIR R4 [Patient](https://hl7.org/fhir/R4B/patient.html) para definições de escopo e uso. Este perfil define expectativas mínimas para o recurso [br-core-patient](https://saude.gov.br/fhir/StructureDefinition/br-core-patient.html) registrar, pesquisar e buscar dados demográficos básicos e outras informações administrativas sobre um paciente individual. Ele especifica quais elementos principais, extensões, vocabulários e conjuntos de valores DEVEM estar presentes e restringe como os elementos são usados.  \r\n\r\nPara contemplar uma descrição do paciente com maior equidade, conforme recomendações da portaria GM/MS Nº 230, de 7 de março de 2023, foram adicionados atributos adicionais para expressar o sexo do paciente, além do sexo administrativo: sexo ao nascer descritos no ValueSet [BRSexoNascimento](https://terminologia.saude.gov.br/fhir/ValueSet/BRSexoNascimento) e identidade de gênero descrita no ValueSet [BRIdentidadeGenero](https://terminologia.saude.gov.br/fhir/ValueSet/BRIdentidadeGenero). Com relação a orientação sexual, este é um dado que pode mudar durante a vida do paciente, portanto, recomenda-se que ele seja coletado em cada evento assistencial",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.id",
+        "path": "Patient.id",
+        "short": "Identificador literal deste recurso",
+        "definition": "Identificação unívoca para o recurso em um sistema"
+      },
+      {
+        "id": "Patient.meta",
+        "path": "Patient.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados adicionais sobre o recurso"
+      },
+      {
+        "id": "Patient.implicitRules",
+        "path": "Patient.implicitRules",
+        "short": "URI(s) sob as quais este recurso é conhecido",
+        "definition": "Um ou mais códigos que servem para identificar o tipo de recurso"
+      },
+      {
+        "id": "Patient.language",
+        "path": "Patient.language",
+        "short": "Linguagem do recurso",
+        "definition": "A linguagem humana natural do recurso"
+      },
+      {
+        "id": "Patient.text",
+        "path": "Patient.text",
+        "short": "Texto narrativo, 72 caracteres para resumo",
+        "definition": "Um texto narrativo resumindo as informações do recurso"
+      },
+      {
+        "id": "Patient.contained",
+        "path": "Patient.contained",
+        "short": "Recursos contidos",
+        "definition": "Recursos contidos no recurso"
+      },
+      {
+        "id": "Patient.extension",
+        "path": "Patient.extension",
+        "slicing": {
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Patient.extension:localNascimento",
+        "path": "Patient.extension",
+        "sliceName": "localNascimento",
+        "short": "Local de nascimento do paciente",
+        "definition": "Local de nascimento do paciente",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/patient-birthPlace"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.extension:identidadeGenero",
+        "path": "Patient.extension",
+        "sliceName": "identidadeGenero",
+        "short": "Identidade de gênero do paciente",
+        "definition": "Identidade de gênero do paciente",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/patient-genderIdentity"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.extension:povoTradicional",
+        "path": "Patient.extension",
+        "sliceName": "povoTradicional",
+        "short": "Extensão de populacao tradicional do Core do Brasil",
+        "definition": "Extensão de populacao tradicional do Core do Brasil",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-populacao-tradicional"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.extension:povoItinerante",
+        "path": "Patient.extension",
+        "sliceName": "povoItinerante",
+        "short": "Extensão de povo intinerante do Core do Brasil",
+        "definition": "Extensão de povo intinerante do Core do Brasil",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://br-core.saude.gov.br/StructureDefinition/br-core-povo-itinerante"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.modifierExtension",
+        "path": "Patient.modifierExtension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "description": "Identificadores nacionais do paciente",
+          "rules": "open"
+        },
+        "short": "Identificadores nacionais do paciente",
+        "definition": "Identificadores nacionais do paciente",
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier:cns",
+        "path": "Patient.identifier",
+        "sliceName": "cns",
+        "short": "Identificador do paciente",
+        "definition": "Identificador do paciente",
+        "max": "1"
+      },
+      {
+        "id": "Patient.identifier:cns.id",
+        "path": "Patient.identifier.id",
+        "short": "Id lógico do identificador do paciente",
+        "definition": "Id lógico do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cns.extension",
+        "path": "Patient.identifier.extension",
+        "short": "Extensões do identificador do paciente",
+        "definition": "Extensões incluídas no identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cns.use",
+        "path": "Patient.identifier.use",
+        "short": "Uso do identificador do paciente",
+        "definition": "usual: identificador usual do paciente. official: identificador oficial do paciente. temp: identificador temporário do paciente. secondary: identificador secundário do paciente.",
+        "min": 1,
+        "fixedCode": "official"
+      },
+      {
+        "id": "Patient.identifier:cns.type",
+        "path": "Patient.identifier.type",
+        "short": "Tipo do identificador do paciente",
+        "definition": "Código que representa o tipo do identificador do paciente",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://terminologia.saude.gov.br/fhir/ValueSet-BRTipoIdentificadorIndividuo"
+        }
+      },
+      {
+        "id": "Patient.identifier:cns.type.id",
+        "path": "Patient.identifier.type.id",
+        "short": "Id lógico do tipo do identificador do paciente",
+        "definition": "Id lógico do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cns.type.extension",
+        "path": "Patient.identifier.type.extension",
+        "short": "Extensões do tipo do identificador do paciente",
+        "definition": "Extensões incluídas no tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cns.type.coding",
+        "path": "Patient.identifier.type.coding",
+        "short": "Codificação do tipo do identificador do paciente",
+        "definition": "Codificação que representa o tipo do identificador do paciente",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Patient.identifier:cns.type.coding.id",
+        "path": "Patient.identifier.type.coding.id",
+        "short": "Id lógico da codificação do tipo do identificador do paciente",
+        "definition": "Id lógico da codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cns.type.coding.extension",
+        "path": "Patient.identifier.type.coding.extension",
+        "short": "Extensões da codificação do tipo do identificador do paciente",
+        "definition": "Extensões incluídas na codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cns.type.coding.system",
+        "path": "Patient.identifier.type.coding.system",
+        "short": "Sistema da codificação do tipo do identificador do paciente",
+        "definition": "Sistema que identifica a codificação do tipo do identificador do paciente",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/v2-0203"
+      },
+      {
+        "id": "Patient.identifier:cns.type.coding.version",
+        "path": "Patient.identifier.type.coding.version",
+        "short": "Versão da codificação do tipo do identificador do paciente",
+        "definition": "Versão da codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cns.type.coding.code",
+        "path": "Patient.identifier.type.coding.code",
+        "short": "Código da codificação do tipo do identificador do paciente",
+        "definition": "Código que representa a codificação do tipo do identificador do paciente",
+        "min": 1,
+        "fixedCode": "HC"
+      },
+      {
+        "id": "Patient.identifier:cns.type.coding.display",
+        "path": "Patient.identifier.type.coding.display",
+        "short": "Texto da codificação do tipo do identificador do paciente",
+        "definition": "Texto que representa a codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cns.type.coding.userSelected",
+        "path": "Patient.identifier.type.coding.userSelected",
+        "short": "Seleção do usuário da codificação do tipo do identificador do paciente",
+        "definition": "Indica se a codificação do tipo do identificador do paciente foi selecionada pelo usuário"
+      },
+      {
+        "id": "Patient.identifier:cns.type.text",
+        "path": "Patient.identifier.type.text",
+        "short": "Texto do tipo do identificador do paciente",
+        "definition": "Texto que representa o tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cns.system",
+        "path": "Patient.identifier.system",
+        "short": "Sistema do identificador do paciente",
+        "definition": "Sistema que identifica o tipo do identificador do paciente",
+        "min": 1,
+        "fixedUri": "https://saude.gov.br/sid/cns"
+      },
+      {
+        "id": "Patient.identifier:cns.value",
+        "path": "Patient.identifier.value",
+        "short": "Valor do identificador do paciente",
+        "definition": "Valor do identificador do paciente",
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier:cns.period",
+        "path": "Patient.identifier.period",
+        "short": "Período de uso do identificador do paciente",
+        "definition": "Período de tempo durante o qual o identificador do paciente foi utilizado"
+      },
+      {
+        "id": "Patient.identifier:cns.assigner",
+        "path": "Patient.identifier.assigner",
+        "short": "Entidade que atribuiu o identificador do paciente",
+        "definition": "Entidade que atribuiu o identificador do paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.identifier:cns.assigner.display",
+        "path": "Patient.identifier.assigner.display",
+        "short": "Nome da entidade que atribuiu o identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cpf",
+        "path": "Patient.identifier",
+        "sliceName": "cpf",
+        "short": "Identificador do paciente",
+        "definition": "Identificador do paciente",
+        "max": "1"
+      },
+      {
+        "id": "Patient.identifier:cpf.id",
+        "path": "Patient.identifier.id",
+        "short": "Id lógico do identificador do paciente",
+        "definition": "Id lógico do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cpf.extension",
+        "path": "Patient.identifier.extension",
+        "short": "Extensões do identificador do paciente",
+        "definition": "Extensões incluídas no identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cpf.use",
+        "path": "Patient.identifier.use",
+        "short": "Uso do identificador do paciente",
+        "definition": "usual: identificador usual do paciente. official: identificador oficial do paciente. temp: identificador temporário do paciente. secondary: identificador secundário do paciente.",
+        "min": 1,
+        "fixedCode": "official"
+      },
+      {
+        "id": "Patient.identifier:cpf.type",
+        "path": "Patient.identifier.type",
+        "short": "Tipo do identificador do paciente",
+        "definition": "Código que representa o tipo do identificador do paciente",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://terminologia.saude.gov.br/fhir/ValueSet-BRTipoIdentificadorIndividuo"
+        }
+      },
+      {
+        "id": "Patient.identifier:cpf.type.id",
+        "path": "Patient.identifier.type.id",
+        "short": "Id lógico do tipo do identificador do paciente",
+        "definition": "Id lógico do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cpf.type.extension",
+        "path": "Patient.identifier.type.extension",
+        "short": "Extensões do tipo do identificador do paciente",
+        "definition": "Extensões incluídas no tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cpf.type.coding",
+        "path": "Patient.identifier.type.coding",
+        "short": "Codificação do tipo do identificador do paciente",
+        "definition": "Codificação que representa o tipo do identificador do paciente",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Patient.identifier:cpf.type.coding.id",
+        "path": "Patient.identifier.type.coding.id",
+        "short": "Id lógico da codificação do tipo do identificador do paciente",
+        "definition": "Id lógico da codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cpf.type.coding.extension",
+        "path": "Patient.identifier.type.coding.extension",
+        "short": "Extensões da codificação do tipo do identificador do paciente",
+        "definition": "Extensões incluídas na codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cpf.type.coding.system",
+        "path": "Patient.identifier.type.coding.system",
+        "short": "Sistema da codificação do tipo do identificador do paciente",
+        "definition": "Sistema que identifica a codificação do tipo do identificador do paciente",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/v2-0203"
+      },
+      {
+        "id": "Patient.identifier:cpf.type.coding.version",
+        "path": "Patient.identifier.type.coding.version",
+        "short": "Versão da codificação do tipo do identificador do paciente",
+        "definition": "Versão da codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cpf.type.coding.code",
+        "path": "Patient.identifier.type.coding.code",
+        "short": "Código da codificação do tipo do identificador do paciente",
+        "definition": "Código que representa a codificação do tipo do identificador do paciente",
+        "min": 1,
+        "fixedCode": "TAX"
+      },
+      {
+        "id": "Patient.identifier:cpf.type.coding.display",
+        "path": "Patient.identifier.type.coding.display",
+        "short": "Texto da codificação do tipo do identificador do paciente",
+        "definition": "Texto que representa a codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cpf.type.coding.userSelected",
+        "path": "Patient.identifier.type.coding.userSelected",
+        "short": "Seleção do usuário da codificação do tipo do identificador do paciente",
+        "definition": "Indica se a codificação do tipo do identificador do paciente foi selecionada pelo usuário"
+      },
+      {
+        "id": "Patient.identifier:cpf.type.text",
+        "path": "Patient.identifier.type.text",
+        "short": "Texto do tipo do identificador do paciente",
+        "definition": "Texto que representa o tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:cpf.system",
+        "path": "Patient.identifier.system",
+        "short": "Sistema do identificador do paciente",
+        "definition": "Sistema que identifica o tipo do identificador do paciente",
+        "min": 1,
+        "fixedUri": "https://saude.gov.br/sid/cpf"
+      },
+      {
+        "id": "Patient.identifier:cpf.value",
+        "path": "Patient.identifier.value",
+        "short": "Valor do identificador do paciente",
+        "definition": "Valor do identificador do paciente",
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier:cpf.period",
+        "path": "Patient.identifier.period",
+        "short": "Período de uso do identificador do paciente",
+        "definition": "Período de tempo durante o qual o identificador do paciente foi utilizado"
+      },
+      {
+        "id": "Patient.identifier:cpf.assigner",
+        "path": "Patient.identifier.assigner",
+        "short": "Entidade que atribuiu o identificador do paciente",
+        "definition": "Entidade que atribuiu o identificador do paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.identifier:cpf.assigner.display",
+        "path": "Patient.identifier.assigner.display",
+        "short": "Nome da entidade que atribuiu o identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro",
+        "path": "Patient.identifier",
+        "sliceName": "registroEstrangeiro",
+        "short": "Identificador do paciente",
+        "definition": "Identificador do paciente",
+        "max": "1"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.id",
+        "path": "Patient.identifier.id",
+        "short": "Id lógico do identificador do paciente",
+        "definition": "Id lógico do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.extension",
+        "path": "Patient.identifier.extension",
+        "short": "Extensões do identificador do paciente",
+        "definition": "Extensões incluídas no identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.use",
+        "path": "Patient.identifier.use",
+        "short": "Uso do identificador do paciente",
+        "definition": "usual: identificador usual do paciente. official: identificador oficial do paciente. temp: identificador temporário do paciente. secondary: identificador secundário do paciente.",
+        "fixedCode": "official"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.type",
+        "path": "Patient.identifier.type",
+        "short": "Tipo do identificador do paciente",
+        "definition": "Código que representa o tipo do identificador do paciente",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://terminologia.saude.gov.br/fhir/ValueSet-BRTipoIdentificadorIndividuo"
+        }
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.type.id",
+        "path": "Patient.identifier.type.id",
+        "short": "Id lógico do tipo do identificador do paciente",
+        "definition": "Id lógico do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.type.extension",
+        "path": "Patient.identifier.type.extension",
+        "short": "Extensões do tipo do identificador do paciente",
+        "definition": "Extensões incluídas no tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.type.coding",
+        "path": "Patient.identifier.type.coding",
+        "short": "Codificação do tipo do identificador do paciente",
+        "definition": "Codificação que representa o tipo do identificador do paciente",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.type.coding.id",
+        "path": "Patient.identifier.type.coding.id",
+        "short": "Id lógico da codificação do tipo do identificador do paciente",
+        "definition": "Id lógico da codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.type.coding.extension",
+        "path": "Patient.identifier.type.coding.extension",
+        "short": "Extensões da codificação do tipo do identificador do paciente",
+        "definition": "Extensões incluídas na codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.type.coding.system",
+        "path": "Patient.identifier.type.coding.system",
+        "short": "Sistema da codificação do tipo do identificador do paciente",
+        "definition": "Sistema que identifica a codificação do tipo do identificador do paciente",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/v2-0203"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.type.coding.version",
+        "path": "Patient.identifier.type.coding.version",
+        "short": "Versão da codificação do tipo do identificador do paciente",
+        "definition": "Versão da codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.type.coding.code",
+        "path": "Patient.identifier.type.coding.code",
+        "short": "Código da codificação do tipo do identificador do paciente",
+        "definition": "Código que representa a codificação do tipo do identificador do paciente",
+        "min": 1,
+        "fixedCode": "RNE"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.type.coding.display",
+        "path": "Patient.identifier.type.coding.display",
+        "short": "Texto da codificação do tipo do identificador do paciente",
+        "definition": "Texto que representa a codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.type.coding.userSelected",
+        "path": "Patient.identifier.type.coding.userSelected",
+        "short": "Seleção do usuário da codificação do tipo do identificador do paciente",
+        "definition": "Indica se a codificação do tipo do identificador do paciente foi selecionada pelo usuário"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.type.text",
+        "path": "Patient.identifier.type.text",
+        "short": "Texto do tipo do identificador do paciente",
+        "definition": "Texto que representa o tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.system",
+        "path": "Patient.identifier.system",
+        "short": "Sistema do identificador do paciente",
+        "definition": "Sistema que identifica o tipo do identificador do paciente",
+        "min": 1,
+        "fixedUri": "https://saude.gov.br/sid/rne"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.value",
+        "path": "Patient.identifier.value",
+        "short": "Valor do identificador do paciente",
+        "definition": "Valor do identificador do paciente",
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.period",
+        "path": "Patient.identifier.period",
+        "short": "Período de uso do identificador do paciente",
+        "definition": "Período de tempo durante o qual o identificador do paciente foi utilizado"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.assigner",
+        "path": "Patient.identifier.assigner",
+        "short": "Entidade que atribuiu o identificador do paciente",
+        "definition": "Entidade que atribuiu o identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:registroEstrangeiro.assigner.display",
+        "path": "Patient.identifier.assigner.display",
+        "short": "Nome da entidade que atribuiu o identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:passaporte",
+        "path": "Patient.identifier",
+        "sliceName": "passaporte",
+        "short": "Identificador do paciente",
+        "definition": "Identificador do paciente",
+        "max": "1"
+      },
+      {
+        "id": "Patient.identifier:passaporte.id",
+        "path": "Patient.identifier.id",
+        "short": "Id lógico do identificador do paciente",
+        "definition": "Id lógico do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:passaporte.extension",
+        "path": "Patient.identifier.extension",
+        "short": "Extensões do identificador do paciente",
+        "definition": "Extensões incluídas no identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:passaporte.use",
+        "path": "Patient.identifier.use",
+        "short": "Uso do identificador do paciente",
+        "definition": "usual: identificador usual do paciente. official: identificador oficial do paciente. temp: identificador temporário do paciente. secondary: identificador secundário do paciente.",
+        "fixedCode": "official"
+      },
+      {
+        "id": "Patient.identifier:passaporte.type",
+        "path": "Patient.identifier.type",
+        "short": "Tipo do identificador do paciente",
+        "definition": "Código que representa o tipo do identificador do paciente",
+        "binding": {
+          "strength": "required",
+          "description": "Tipo do identificador do paciente",
+          "valueSet": "https://terminologia.saude.gov.br/fhir/ValueSet-BRTipoIdentificadorIndividuo"
+        }
+      },
+      {
+        "id": "Patient.identifier:passaporte.type.id",
+        "path": "Patient.identifier.type.id",
+        "short": "Id lógico do tipo do identificador do paciente",
+        "definition": "Id lógico do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:passaporte.type.extension",
+        "path": "Patient.identifier.type.extension",
+        "short": "Extensões do tipo do identificador do paciente",
+        "definition": "Extensões incluídas no tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:passaporte.type.coding",
+        "path": "Patient.identifier.type.coding",
+        "short": "Codificação do tipo do identificador do paciente",
+        "definition": "Codificação que representa o tipo do identificador do paciente",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Patient.identifier:passaporte.type.coding.id",
+        "path": "Patient.identifier.type.coding.id",
+        "short": "Id lógico da codificação do tipo do identificador do paciente",
+        "definition": "Id lógico da codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:passaporte.type.coding.extension",
+        "path": "Patient.identifier.type.coding.extension",
+        "short": "Extensões da codificação do tipo do identificador do paciente",
+        "definition": "Extensões incluídas na codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:passaporte.type.coding.system",
+        "path": "Patient.identifier.type.coding.system",
+        "short": "Sistema da codificação do tipo do identificador do paciente",
+        "definition": "Sistema que identifica a codificação do tipo do identificador do paciente",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/v2-0203"
+      },
+      {
+        "id": "Patient.identifier:passaporte.type.coding.version",
+        "path": "Patient.identifier.type.coding.version",
+        "short": "Versão da codificação do tipo do identificador do paciente",
+        "definition": "Versão da codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:passaporte.type.coding.code",
+        "path": "Patient.identifier.type.coding.code",
+        "short": "Código da codificação do tipo do identificador do paciente",
+        "definition": "Código que representa a codificação do tipo do identificador do paciente",
+        "min": 1,
+        "fixedCode": "PPN"
+      },
+      {
+        "id": "Patient.identifier:passaporte.type.coding.display",
+        "path": "Patient.identifier.type.coding.display",
+        "short": "Texto da codificação do tipo do identificador do paciente",
+        "definition": "Texto que representa a codificação do tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:passaporte.type.coding.userSelected",
+        "path": "Patient.identifier.type.coding.userSelected",
+        "short": "Seleção do usuário da codificação do tipo do identificador do paciente",
+        "definition": "Indica se a codificação do tipo do identificador do paciente foi selecionada pelo usuário"
+      },
+      {
+        "id": "Patient.identifier:passaporte.type.text",
+        "path": "Patient.identifier.type.text",
+        "short": "Texto do tipo do identificador do paciente",
+        "definition": "Texto que representa o tipo do identificador do paciente"
+      },
+      {
+        "id": "Patient.identifier:passaporte.system",
+        "path": "Patient.identifier.system",
+        "short": "Sistema do identificador do paciente",
+        "definition": "Sistema que identifica o tipo do identificador do paciente",
+        "min": 1,
+        "fixedUri": "http://hl7.org/fhir/sid/passport-BRA"
+      },
+      {
+        "id": "Patient.identifier:passaporte.value",
+        "path": "Patient.identifier.value",
+        "short": "Valor do identificador do paciente",
+        "definition": "Valor do identificador do paciente",
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier:passaporte.period",
+        "path": "Patient.identifier.period",
+        "short": "Período de uso do identificador do paciente",
+        "definition": "Período de tempo durante o qual o identificador do paciente foi utilizado"
+      },
+      {
+        "id": "Patient.identifier:passaporte.assigner",
+        "path": "Patient.identifier.assigner",
+        "short": "Entidade que atribuiu o identificador do paciente",
+        "definition": "Entidade que atribuiu o identificador do paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.identifier:passaporte.assigner.display",
+        "path": "Patient.identifier.assigner.display",
+        "short": "Nome da entidade que atribuiu o identificador do paciente"
+      },
+      {
+        "id": "Patient.active",
+        "path": "Patient.active",
+        "short": "Indica se o paciente está ativo",
+        "definition": "Indica se o paciente está ativo"
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "short": "Nome do paciente",
+        "definition": "Nome do paciente",
+        "constraint": [
+          {
+            "key": "br-core-pat-1",
+            "severity": "error",
+            "human": "Patient.name.given, Patient.name.family, Patient.name.text or Patient.name.extension SHALL be present",
+            "expression": "(family.exists() or given.exists() or text.exists()) xor extension.where(url='http://hl7.org/fhir/StructureDefinition/data-absent-reason').exists()",
+            "xpath": "(/f:extension/@url='http://hl7.org/fhir/StructureDefinition/data-absent-reason' and not(/f:family or /f:given or /f:text)) or (not(/f:extension/@url='http://hl7.org/fhir/StructureDefinition/data-absent-reason') and (/f:family or /f:given or /f:text))"
+          }
+        ]
+      },
+      {
+        "id": "Patient.name.id",
+        "path": "Patient.name.id",
+        "short": "Identificador primário deste recurso",
+        "definition": "Identificação unívoca para o recurso em um sistema"
+      },
+      {
+        "id": "Patient.name.extension",
+        "path": "Patient.name.extension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Patient.name.use",
+        "path": "Patient.name.use",
+        "short": "Uso do nome",
+        "definition": "O uso do nome"
+      },
+      {
+        "id": "Patient.name.text",
+        "path": "Patient.name.text",
+        "short": "Representação textual do nome completo do paciente",
+        "definition": "Representação textual do nome completo do paciente"
+      },
+      {
+        "id": "Patient.name.family",
+        "path": "Patient.name.family",
+        "short": "Sobrenome",
+        "definition": "Sobrenome do paciente"
+      },
+      {
+        "id": "Patient.name.given",
+        "path": "Patient.name.given",
+        "short": "Nome completo do paciente",
+        "definition": "Nome completo do paciente"
+      },
+      {
+        "id": "Patient.name.prefix",
+        "path": "Patient.name.prefix",
+        "short": "Prefixo do nome",
+        "definition": "Prefixo do nome do paciente"
+      },
+      {
+        "id": "Patient.name.suffix",
+        "path": "Patient.name.suffix",
+        "short": "Sufixo do nome",
+        "definition": "Sufixo do nome do paciente"
+      },
+      {
+        "id": "Patient.name.period",
+        "path": "Patient.name.period",
+        "short": "Período de tempo em que o nome foi usado",
+        "definition": "Período de tempo em que o nome foi usado"
+      },
+      {
+        "id": "Patient.telecom",
+        "path": "Patient.telecom",
+        "short": "Contatos de telecomunicação do paciente",
+        "definition": "Contatos de telecomunicação do paciente"
+      },
+      {
+        "id": "Patient.telecom.id",
+        "path": "Patient.telecom.id",
+        "short": "Identificador primário deste recurso",
+        "definition": "Identificação unívoca para o recurso em um sistema"
+      },
+      {
+        "id": "Patient.telecom.extension",
+        "path": "Patient.telecom.extension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Patient.telecom.system",
+        "path": "Patient.telecom.system",
+        "short": "Sistema de telecomunicação usado para o contato",
+        "definition": "O sistema de telecomunicação usado para o contato"
+      },
+      {
+        "id": "Patient.telecom.value",
+        "path": "Patient.telecom.value",
+        "short": "Número ou  do contato",
+        "definition": "O número de telefone ou fax usado para o contato"
+      },
+      {
+        "id": "Patient.telecom.use",
+        "path": "Patient.telecom.use",
+        "short": "Uso do contato",
+        "definition": "home | work | temp | old | mobile - propósito do contato"
+      },
+      {
+        "id": "Patient.telecom.rank",
+        "path": "Patient.telecom.rank",
+        "short": "Indica a ordem de preferência do contato",
+        "definition": "Indica a ordem de preferência do contato"
+      },
+      {
+        "id": "Patient.telecom.period",
+        "path": "Patient.telecom.period",
+        "short": "Período de tempo em que o contato foi usado",
+        "definition": "Período em que o meio de contato foi utilizado pelo paciente"
+      },
+      {
+        "id": "Patient.gender",
+        "path": "Patient.gender",
+        "short": "Sexo",
+        "definition": "male | female | other | unknown"
+      },
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "short": "Data de nascimento do paciente",
+        "definition": "Data de nascimento do paciente"
+      },
+      {
+        "id": "Patient.deceased[x]",
+        "path": "Patient.deceased[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Indica se o paciente é falecido",
+        "definition": "Indica se o paciente é falecido"
+      },
+      {
+        "id": "Patient.deceased[x]:deceasedBoolean",
+        "path": "Patient.deceased[x]",
+        "sliceName": "deceasedBoolean",
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "Patient.deceased[x]:deceasedDateTime",
+        "path": "Patient.deceased[x]",
+        "sliceName": "deceasedDateTime",
+        "short": "Data e hora do falecimento do paciente",
+        "definition": "Data e hora do falecimento do paciente",
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address",
+        "path": "Patient.address",
+        "short": "Endereço do paciente",
+        "definition": "Endereço do paciente"
+      },
+      {
+        "id": "Patient.address.id",
+        "path": "Patient.address.id",
+        "short": "Identificador primário deste recurso",
+        "definition": "Identificação unívoca para o recurso em um sistema"
+      },
+      {
+        "id": "Patient.address.extension",
+        "path": "Patient.address.extension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Patient.address.use",
+        "path": "Patient.address.use",
+        "short": "Uso do endereço",
+        "definition": "home | work | temp | old - propósito do endereço"
+      },
+      {
+        "id": "Patient.address.type",
+        "path": "Patient.address.type",
+        "short": "Tipo de endereço",
+        "definition": "postal | physical | both"
+      },
+      {
+        "id": "Patient.address.text",
+        "path": "Patient.address.text",
+        "short": "Representação textual do endereço",
+        "definition": "Representação textual do endereço"
+      },
+      {
+        "id": "Patient.address.line",
+        "path": "Patient.address.line",
+        "short": "Endereço do paciente",
+        "definition": "Endereço do paciente"
+      },
+      {
+        "id": "Patient.address.city",
+        "path": "Patient.address.city",
+        "short": "Cidade do endereço",
+        "definition": "Cidade do endereço"
+      },
+      {
+        "id": "Patient.address.district",
+        "path": "Patient.address.district",
+        "short": "Distrito do endereço",
+        "definition": "Distrito do endereço"
+      },
+      {
+        "id": "Patient.address.state",
+        "path": "Patient.address.state",
+        "short": "Unidade Federativa",
+        "definition": "Unidade Federativa"
+      },
+      {
+        "id": "Patient.address.postalCode",
+        "path": "Patient.address.postalCode",
+        "short": "CEP do endereço",
+        "definition": "CEP do endereço"
+      },
+      {
+        "id": "Patient.address.country",
+        "path": "Patient.address.country",
+        "short": "País do endereço",
+        "definition": "País do endereço"
+      },
+      {
+        "id": "Patient.address.period",
+        "path": "Patient.address.period",
+        "short": "Período de tempo em que o endereço foi usado",
+        "definition": "Período de tempo em que o endereço foi usado"
+      },
+      {
+        "id": "Patient.maritalStatus",
+        "path": "Patient.maritalStatus",
+        "short": "Estado civil do paciente",
+        "definition": "Estado civil do paciente"
+      },
+      {
+        "id": "Patient.multipleBirth[x]",
+        "path": "Patient.multipleBirth[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Indica se o paciente é de parto gemelar",
+        "definition": "Indica se o paciente é de parto gemelar"
+      },
+      {
+        "id": "Patient.multipleBirth[x]:multipleBirthBoolean",
+        "path": "Patient.multipleBirth[x]",
+        "sliceName": "multipleBirthBoolean",
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "Patient.multipleBirth[x]:multipleBirthInteger",
+        "path": "Patient.multipleBirth[x]",
+        "sliceName": "multipleBirthInteger",
+        "short": "Gemelaridade do paciente",
+        "definition": "Gemelaridade do paciente",
+        "type": [
+          {
+            "code": "integer"
+          }
+        ]
+      },
+      {
+        "id": "Patient.photo",
+        "path": "Patient.photo",
+        "short": "Fotografia do paciente",
+        "definition": "Fotografia do paciente"
+      },
+      {
+        "id": "Patient.contact",
+        "path": "Patient.contact",
+        "short": "Uma pessoa para contato (guardião, companheiro, amigo) em caso de emergência",
+        "definition": "Uma pessoa para contato (guardião, companheiro, amigo) em caso de emergência"
+      },
+      {
+        "id": "Patient.contact.id",
+        "path": "Patient.contact.id",
+        "short": "Identificação unívoca da pessoa de contato",
+        "definition": "Identificação unívoca da pessoa de contato"
+      },
+      {
+        "id": "Patient.contact.extension",
+        "path": "Patient.contact.extension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Patient.contact.modifierExtension",
+        "path": "Patient.contact.modifierExtension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Patient.contact.relationship",
+        "path": "Patient.contact.relationship",
+        "short": "Relação com o paciente",
+        "definition": "Relação com o paciente"
+      },
+      {
+        "id": "Patient.contact.name",
+        "path": "Patient.contact.name",
+        "short": "Nome da pessoa de contato",
+        "definition": "Nome da pessoa de contato"
+      },
+      {
+        "id": "Patient.contact.telecom",
+        "path": "Patient.contact.telecom",
+        "short": "Contatos de telecomunicação da pessoa de contato",
+        "definition": "Contatos de telecomunicação da pessoa de contato"
+      },
+      {
+        "id": "Patient.contact.address",
+        "path": "Patient.contact.address",
+        "short": "Endereço da pessoa de contato",
+        "definition": "Endereço da pessoa de contato"
+      },
+      {
+        "id": "Patient.contact.gender",
+        "path": "Patient.contact.gender",
+        "short": "Sexo do contato do paciente",
+        "definition": "Sexo do contato do paciente"
+      },
+      {
+        "id": "Patient.contact.organization",
+        "path": "Patient.contact.organization",
+        "short": "Organização do contato do paciente",
+        "definition": "Organização do contato do paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.contact.period",
+        "path": "Patient.contact.period",
+        "short": "Período de tempo em que o contato foi usado",
+        "definition": "Período de tempo em que o contato foi usado"
+      },
+      {
+        "id": "Patient.communication",
+        "path": "Patient.communication",
+        "short": "Idiomas falados pelo paciente"
+      },
+      {
+        "id": "Patient.communication.id",
+        "path": "Patient.communication.id",
+        "short": "Identificador primário deste recurso",
+        "definition": "Identificação unívoca para o recurso em um sistema"
+      },
+      {
+        "id": "Patient.communication.extension",
+        "path": "Patient.communication.extension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Patient.communication.modifierExtension",
+        "path": "Patient.communication.modifierExtension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Patient.communication.language",
+        "path": "Patient.communication.language",
+        "short": "Idioma falado pelo paciente",
+        "definition": "Idioma falado pelo paciente"
+      },
+      {
+        "id": "Patient.communication.preferred",
+        "path": "Patient.communication.preferred",
+        "short": "Indica se o idioma é preferido",
+        "definition": "Indica se o idioma é preferido"
+      },
+      {
+        "id": "Patient.generalPractitioner",
+        "path": "Patient.generalPractitioner",
+        "short": "Médico de atenção primária do paciente",
+        "definition": "Médico de atenção primária do paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.managingOrganization",
+        "path": "Patient.managingOrganization",
+        "short": "Organização responsável pelo paciente",
+        "definition": "Organização responsável pelo paciente",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.link",
+        "path": "Patient.link",
+        "short": "Links para outros recursos que se relacionam com este recurso",
+        "definition": "Links para outros recursos que se relacionam com este recurso"
+      },
+      {
+        "id": "Patient.link.id",
+        "path": "Patient.link.id",
+        "short": "Identificador primário deste recurso",
+        "definition": "Identificação unívoca para o recurso em um sistema"
+      },
+      {
+        "id": "Patient.link.extension",
+        "path": "Patient.link.extension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Patient.link.modifierExtension",
+        "path": "Patient.link.modifierExtension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Patient.link.other",
+        "path": "Patient.link.other",
+        "short": "Outro recurso que se relaciona com este recurso",
+        "definition": "Outro recurso que se relaciona com este recurso",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.link.type",
+        "path": "Patient.link.type",
+        "short": "Tipo de relação entre os recursos",
+        "definition": "Tipo de relação entre os recursos"
+      }
+    ]
+  }
+}

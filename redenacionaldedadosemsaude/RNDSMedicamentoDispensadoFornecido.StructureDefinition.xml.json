@@ -1,0 +1,854 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "rnds-medicamento-dispensado-fornecido",
+  "url": "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSMedicamentoDispensadoFornecido",
+  "version": "1.0.0",
+  "name": "RNDSMedicamentoDispensadoFornecido",
+  "title": "Dispensação ou Fornecimento Eletrônico de Medicamento",
+  "status": "draft",
+  "date": "2024-12-16",
+  "publisher": "Ministério da Saúde do Brasil",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "rx-dispense-rmim",
+      "uri": "http://www.hl7.org/v3/PORX_RM020070UV",
+      "name": "V3 Pharmacy Dispense RMIM"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "MedicationDispense",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/MedicationDispense",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "MedicationDispense",
+        "path": "MedicationDispense",
+        "constraint": [
+          {
+            "key": "dfm-1",
+            "severity": "error",
+            "human": "Caso o medicamento seja dispensado deve ser informado o elemento medicationReference, caso não seja dispensado deve ser informado apenas o código do medicamento no elemento medicationCodeableConcept.",
+            "expression": "(MedicationDispense.type.coding.exists(code = 'not-dispensed') implies MedicationDispense.medication.ofType(CodeableConcept).exists()) and (MedicationDispense.type.coding.exists(code = 'not-dispensed').not() implies MedicationDispense.medication.ofType(Reference).exists())"
+          },
+          {
+            "key": "dfm-2",
+            "severity": "error",
+            "human": "A quantidade (quantity) e o indivíduo que retirou o medicamento (receiver) são obrigatórios caso a prescrição seja atendida.",
+            "expression": "MedicationDispense.medication.ofType(Reference).exists() implies MedicationDispense.quantity.exists() and MedicationDispense.receiver.exists()"
+          },
+          {
+            "key": "dfm-3",
+            "severity": "error",
+            "human": "Caso a Prescrição não esteja disponível na RNDS é necessário informar as informações nos respectivos elementos.",
+            "expression": "MedicationDispense.authorizingPrescription.exists(id = 'out-of-rnds') implies MedicationDispense.supportingInformation.where(reference = '#prescriber-identifier').exists() and MedicationDispense.supportingInformation.where(reference = '#prescriber-specialty').exists() and MedicationDispense.contained.where(id = 'prescription').exists() and MedicationDispense.contained.where(id = 'prescriber-identifier').exists() and MedicationDispense.contained.where(id = 'prescriber-specialty').exists()"
+          },
+          {
+            "key": "dfm-4",
+            "severity": "error",
+            "human": "Caso o profissional responsável seja Farmacêutico devem ser informados os dados do conselho profissional.",
+            "expression": "MedicationDispense.performer.where(id = 'pharmacist').exists() implies MedicationDispense.contained.where(id = 'pharmacist-crf').identifier.type.coding.where(code = 'RPH').exists()"
+          },
+          {
+            "key": "dfm-5",
+            "severity": "error",
+            "human": "O profissional responsável deve ser Farmacêutico ou outra categoria de profissional.",
+            "expression": "MedicationDispense.performer.exists(id = 'pharmacist') xor MedicationDispense.performer.exists(id = 'other-practitioner')"
+          },
+          {
+            "key": "dfm-7",
+            "severity": "error",
+            "human": "Em caso de Dispensação Parcial ou Não Atendimento da prescrição deve ser informada a justificativa no elemento note.",
+            "expression": "MedicationDispense.type.coding.exists(code = 'partial-dispensing' or code = 'not-dispensed') implies MedicationDispense.note.exists()"
+          },
+          {
+            "key": "dfm-8",
+            "severity": "error",
+            "human": "O profissional Prescritor, quando informado, deve ter uma identificação de Médico, Odontólogo ou Enfermeiro.",
+            "expression": "MedicationDispense.contained.where(id = 'prescriber-identifier').exists() implies MedicationDispense.contained.where(id = 'prescriber-identifier').identifier.type.coding.exists(code = 'MD' or code = 'RN' or code = 'RI')"
+          },
+          {
+            "key": "dfm-9",
+            "severity": "error",
+            "human": "Ao informar o número do RQE o número do CRM também é obrigatório no slice prescriberIdentifier.",
+            "expression": "MedicationDispense.contained.ofType(Practitioner).identifier.type.coding.where(code = 'DN').exists() implies MedicationDispense.contained.ofType(Practitioner).identifier.type.coding.where(code = 'MD').exists()"
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.contained",
+        "path": "MedicationDispense.contained",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "id"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "MedicationDispense.contained:prescriptionDetails",
+        "path": "MedicationDispense.contained",
+        "sliceName": "prescriptionDetails",
+        "max": "1",
+        "type": [
+          {
+            "code": "MedicationRequest",
+            "profile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPrescricaoMedicamentoDispensado"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.contained:prescriptionDetails.id",
+        "path": "MedicationDispense.contained.id",
+        "min": 1,
+        "fixedString": "prescription"
+      },
+      {
+        "id": "MedicationDispense.contained:prescriptionDetails.meta",
+        "path": "MedicationDispense.contained.meta",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.contained:prescriptionDetails.meta.profile",
+        "path": "MedicationDispense.contained.meta.profile",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberIdentifier",
+        "path": "MedicationDispense.contained",
+        "sliceName": "prescriberIdentifier",
+        "max": "1",
+        "type": [
+          {
+            "code": "Practitioner",
+            "profile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberIdentifier.id",
+        "path": "MedicationDispense.contained.id",
+        "min": 1,
+        "fixedString": "prescriber-identifier"
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberIdentifier.meta",
+        "path": "MedicationDispense.contained.meta",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberIdentifier.meta.profile",
+        "path": "MedicationDispense.contained.meta.profile",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberIdentifier.identifier",
+        "path": "MedicationDispense.contained.identifier"
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberIdentifier.identifier:rqeMedico",
+        "path": "MedicationDispense.contained.identifier",
+        "sliceName": "rqeMedico"
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberIdentifier.identifier:rqeMedico.type",
+        "path": "MedicationDispense.contained.identifier.type"
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberIdentifier.identifier:rqeMedico.type.coding",
+        "path": "MedicationDispense.contained.identifier.type.coding"
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberIdentifier.identifier:rqeMedico.type.coding.code",
+        "path": "MedicationDispense.contained.identifier.type.coding.code",
+        "patternCode": "DN"
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberSpecialty",
+        "path": "MedicationDispense.contained",
+        "sliceName": "prescriberSpecialty",
+        "max": "1",
+        "type": [
+          {
+            "code": "PractitionerRole",
+            "profile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSLotacaoProfissional"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberSpecialty.id",
+        "path": "MedicationDispense.contained.id",
+        "min": 1,
+        "fixedString": "prescriber-specialty"
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberSpecialty.meta",
+        "path": "MedicationDispense.contained.meta",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.contained:prescriberSpecialty.meta.profile",
+        "path": "MedicationDispense.contained.meta.profile",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationDispense.contained:pharmacistIdentifier",
+        "path": "MedicationDispense.contained",
+        "sliceName": "pharmacistIdentifier",
+        "max": "1",
+        "type": [
+          {
+            "code": "Practitioner",
+            "profile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.contained:pharmacistIdentifier.id",
+        "path": "MedicationDispense.contained.id",
+        "min": 1,
+        "fixedString": "pharmacist-crf"
+      },
+      {
+        "id": "MedicationDispense.contained:pharmacistIdentifier.identifier",
+        "path": "MedicationDispense.contained.identifier"
+      },
+      {
+        "id": "MedicationDispense.contained:pharmacistIdentifier.identifier:identificadorFarmaceutico",
+        "path": "MedicationDispense.contained.identifier",
+        "sliceName": "identificadorFarmaceutico",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.identifier",
+        "path": "MedicationDispense.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "short": "Cada item dispensado ou fornecido DEVE ser identificado pelo ID local e também pode ser identificado pelo número do Sistema Nacional de Controle de Receituários - SNCR.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.identifier:dispensedItemId",
+        "path": "MedicationDispense.identifier",
+        "sliceName": "dispensedItemId",
+        "short": "Identificadores local do item dispensado ou fornecido",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.identifier:dispensedItemId.system",
+        "path": "MedicationDispense.identifier.system",
+        "min": 1,
+        "fixedUri": "http://www.saude.gov.br/fhir/r4/NamingSystem/dispensed-item-id"
+      },
+      {
+        "id": "MedicationDispense.identifier:dispensedItemId.value",
+        "path": "MedicationDispense.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.identifier:sncrNumber",
+        "path": "MedicationDispense.identifier",
+        "sliceName": "sncrNumber",
+        "short": "Número do Sistema Nacional de Controle de Receituários",
+        "definition": "Número do Sistema Nacional de Controle de Receituários (caso aplicado ao item dispensado ou fornecido)",
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.identifier:sncrNumber.system",
+        "path": "MedicationDispense.identifier.system",
+        "min": 1,
+        "fixedUri": "http://www.saude.gov.br/fhir/r4/NamingSystem/sncr-number"
+      },
+      {
+        "id": "MedicationDispense.identifier:sncrNumber.value",
+        "path": "MedicationDispense.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.status",
+        "path": "MedicationDispense.status",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.statusReason[x]",
+        "path": "MedicationDispense.statusReason[x]",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.category",
+        "path": "MedicationDispense.category",
+        "short": "Categoria de dispensação de medicamentos",
+        "definition": "Na Atenção Primária, o código `community` deve ser usado. Na Atenção Especializada, a categoria frequentemente corresponderá ao tipo de atendimento prestado.\r\n\r\n```json\r\n\"category\": [\r\n    {\r\n        \"coding\": [\r\n            {\r\n                \"system\": \"http://terminology.hl7.org/CodeSystem/medicationdispense-category\",\r\n                \"code\": \"community\"\r\n            }\r\n        ]\r\n    }\r\n],\r\n```"
+      },
+      {
+        "id": "MedicationDispense.medication[x]",
+        "path": "MedicationDispense.medication[x]",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSMedicamentoDispensado"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BRTerminologiaMedicamento"
+        }
+      },
+      {
+        "id": "MedicationDispense.subject",
+        "path": "MedicationDispense.subject",
+        "short": "Para quem é a dispensação",
+        "definition": "É necessária a identificação de um paciente com um número de CPF ou CNS.\r\n\r\n```json\r\n\"subject\": {\r\n    \"identifier\": {\r\n        \"system\": \"http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0\",\r\n        \"value\": \"53678720454\"\r\n    }\r\n}\r\n```",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPaciente",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.subject.identifier",
+        "path": "MedicationDispense.subject.identifier",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.subject.identifier.system",
+        "path": "MedicationDispense.subject.identifier.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.subject.identifier.value",
+        "path": "MedicationDispense.subject.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.supportingInformation",
+        "path": "MedicationDispense.supportingInformation",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "profile",
+              "path": "resolve()"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "MedicationDispense.supportingInformation:prescriberIdentifierReference",
+        "path": "MedicationDispense.supportingInformation",
+        "sliceName": "prescriberIdentifierReference",
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.supportingInformation:prescriberIdentifierReference.reference",
+        "path": "MedicationDispense.supportingInformation.reference",
+        "min": 1,
+        "fixedString": "#prescriber-identifier"
+      },
+      {
+        "id": "MedicationDispense.supportingInformation:prescriberSpecialtyReference",
+        "path": "MedicationDispense.supportingInformation",
+        "sliceName": "prescriberSpecialtyReference",
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSLotacaoProfissional"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.supportingInformation:prescriberSpecialtyReference.reference",
+        "path": "MedicationDispense.supportingInformation.reference",
+        "min": 1,
+        "fixedString": "#prescriber-specialty"
+      },
+      {
+        "id": "MedicationDispense.performer",
+        "path": "MedicationDispense.performer",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "id"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.performer:organization",
+        "path": "MedicationDispense.performer",
+        "sliceName": "organization",
+        "short": "Estabelecimento onde ocorreu a dispensação ou fornecimento de medicamento.",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationDispense.performer:organization.id",
+        "path": "MedicationDispense.performer.id",
+        "min": 1,
+        "fixedString": "organization"
+      },
+      {
+        "id": "MedicationDispense.performer:organization.actor",
+        "path": "MedicationDispense.performer.actor",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSEstabelecimentoSaude",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.performer:organization.actor.identifier",
+        "path": "MedicationDispense.performer.actor.identifier",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.performer:organization.actor.identifier.system",
+        "path": "MedicationDispense.performer.actor.identifier.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.performer:organization.actor.identifier.value",
+        "path": "MedicationDispense.performer.actor.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.performer:pharmacist",
+        "path": "MedicationDispense.performer",
+        "sliceName": "pharmacist",
+        "short": "Farmacêutico que realizou a dispensação do medicamento",
+        "max": "1"
+      },
+      {
+        "id": "MedicationDispense.performer:pharmacist.id",
+        "path": "MedicationDispense.performer.id",
+        "min": 1,
+        "fixedString": "pharmacist"
+      },
+      {
+        "id": "MedicationDispense.performer:pharmacist.function",
+        "path": "MedicationDispense.performer.function",
+        "min": 1,
+        "constraint": [
+          {
+            "key": "dfm-6",
+            "severity": "error",
+            "human": "Caso o profissional seja farmacêutico deve conter um código CBO da Família \"2234 : Farmacêuticos\"",
+            "expression": "coding.code.startsWith('2234')"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BROcupacao-1.0"
+        }
+      },
+      {
+        "id": "MedicationDispense.performer:pharmacist.function.coding",
+        "path": "MedicationDispense.performer.function.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationDispense.performer:pharmacist.function.coding.system",
+        "path": "MedicationDispense.performer.function.coding.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.performer:pharmacist.function.coding.code",
+        "path": "MedicationDispense.performer.function.coding.code",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.performer:pharmacist.actor",
+        "path": "MedicationDispense.performer.actor",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRProfissional-1.0"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.performer:pharmacist.actor.reference",
+        "path": "MedicationDispense.performer.actor.reference",
+        "min": 1,
+        "fixedString": "#pharmacist-crf"
+      },
+      {
+        "id": "MedicationDispense.performer:pharmacist.actor.identifier",
+        "path": "MedicationDispense.performer.actor.identifier",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.performer:pharmacist.actor.identifier.system",
+        "path": "MedicationDispense.performer.actor.identifier.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.performer:pharmacist.actor.identifier.value",
+        "path": "MedicationDispense.performer.actor.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.performer:otherPractitioner",
+        "path": "MedicationDispense.performer",
+        "sliceName": "otherPractitioner",
+        "short": "Profissional que realizou o fornecimento do medicamento",
+        "max": "1"
+      },
+      {
+        "id": "MedicationDispense.performer:otherPractitioner.id",
+        "path": "MedicationDispense.performer.id",
+        "min": 1,
+        "fixedString": "other-practitioner"
+      },
+      {
+        "id": "MedicationDispense.performer:otherPractitioner.function",
+        "path": "MedicationDispense.performer.function",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BROcupacao-1.0"
+        }
+      },
+      {
+        "id": "MedicationDispense.performer:otherPractitioner.function.coding",
+        "path": "MedicationDispense.performer.function.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationDispense.performer:otherPractitioner.function.coding.system",
+        "path": "MedicationDispense.performer.function.coding.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.performer:otherPractitioner.function.coding.code",
+        "path": "MedicationDispense.performer.function.coding.code",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.performer:otherPractitioner.actor",
+        "path": "MedicationDispense.performer.actor",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSProfissional",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRProfissional-1.0"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.authorizingPrescription",
+        "path": "MedicationDispense.authorizingPrescription",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "id"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPrescricaoMedicamentoDispensado"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.authorizingPrescription:prescriptionInRNDS",
+        "path": "MedicationDispense.authorizingPrescription",
+        "sliceName": "prescriptionInRNDS",
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPrescricaoMedicamentoDispensado"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.authorizingPrescription:prescriptionInRNDS.id",
+        "path": "MedicationDispense.authorizingPrescription.id",
+        "fixedString": "in-rnds"
+      },
+      {
+        "id": "MedicationDispense.authorizingPrescription:prescriptionInRNDS.reference",
+        "path": "MedicationDispense.authorizingPrescription.reference",
+        "max": "0"
+      },
+      {
+        "id": "MedicationDispense.authorizingPrescription:prescriptionInRNDS.identifier",
+        "path": "MedicationDispense.authorizingPrescription.identifier",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.authorizingPrescription:prescriptionInRNDS.identifier.system",
+        "path": "MedicationDispense.authorizingPrescription.identifier.system",
+        "min": 1,
+        "fixedUri": "http://www.saude.gov.br/fhir/r4/NamingSystem/prescription-item-id"
+      },
+      {
+        "id": "MedicationDispense.authorizingPrescription:prescriptionInRNDS.identifier.value",
+        "path": "MedicationDispense.authorizingPrescription.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.authorizingPrescription:prescriptionOutOfRNDS",
+        "path": "MedicationDispense.authorizingPrescription",
+        "sliceName": "prescriptionOutOfRNDS",
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPrescricaoMedicamentoDispensado"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.authorizingPrescription:prescriptionOutOfRNDS.id",
+        "path": "MedicationDispense.authorizingPrescription.id",
+        "fixedString": "out-of-rnds"
+      },
+      {
+        "id": "MedicationDispense.authorizingPrescription:prescriptionOutOfRNDS.reference",
+        "path": "MedicationDispense.authorizingPrescription.reference",
+        "min": 1,
+        "fixedString": "#prescription"
+      },
+      {
+        "id": "MedicationDispense.authorizingPrescription:prescriptionOutOfRNDS.identifier",
+        "path": "MedicationDispense.authorizingPrescription.identifier",
+        "max": "0"
+      },
+      {
+        "id": "MedicationDispense.type",
+        "path": "MedicationDispense.type",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BRTipoDispensacaoRealizada"
+        }
+      },
+      {
+        "id": "MedicationDispense.type.coding",
+        "path": "MedicationDispense.type.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationDispense.type.coding.system",
+        "path": "MedicationDispense.type.coding.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.type.coding.code",
+        "path": "MedicationDispense.type.coding.code",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.quantity",
+        "path": "MedicationDispense.quantity",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.quantity.value",
+        "path": "MedicationDispense.quantity.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.whenHandedOver",
+        "path": "MedicationDispense.whenHandedOver",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.receiver",
+        "path": "MedicationDispense.receiver",
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPaciente",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.receiver.identifier",
+        "path": "MedicationDispense.receiver.identifier",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.receiver.identifier.system",
+        "path": "MedicationDispense.receiver.identifier.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.receiver.identifier.value",
+        "path": "MedicationDispense.receiver.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.note",
+        "path": "MedicationDispense.note",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.dosageInstruction",
+        "path": "MedicationDispense.dosageInstruction",
+        "short": "Como o medicamento deve ser usado",
+        "definition": "O conteúdo do `dosageInstruction` deve seguir as orientações contidas em cada elemento.\r\n\r\n`dosageInstruction.text` **DEVE** ser fornecido e é uma versão legível por humanos da dose estruturada, como seria impressa em uma prescrição de papel. O prescritor deve inserir uma dosagem de item de medicamento. \r\n\r\nO prescritor deve inserir uma dosagem de item de medicamento. O uso de um valor padrão genérico, por exemplo, \"Use conforme as instruções\", se um valor não for inserido, não é aceitável de uma perspectiva clínica. O usuário deve ser solicitado a selecionar uma instrução de dosagem de uma lista de seleção, digitar manualmente ou fazer com que o sistema preencha com uma instrução de dosagem válida e clinicamente segura, relevante para o medicamento prescrito ou circunstâncias clínicas.\r\n\r\n\r\n```json\r\n\"dosageInstruction\": [\r\n   {\r\n        \"text\": \"Tomar 1 comprimido via oral pela manhã por 10 dias\",\r\n        \"timing\": {\r\n            \"repeat\": {\r\n                \"boundsDuration\": {\r\n                    \"value\": 10,\r\n                    \"unit\": \"day\",\r\n                     \"system\": \"http://unitsofmeasure.org\",\r\n                     \"code\": \"d\"\r\n                },\r\n                 \"frequency\": 1,\r\n                 \"period\": 1,\r\n                 \"periodUnit\": \"d\",\r\n                 \"when\": \"MORN\"\r\n             }\r\n        },\r\n        \"route\": {\r\n            \"coding\": [\r\n                {\r\n                    \"system\": \"http://www.saude.gov.br/fhir/r4/CodeSystem/BRViaAdministracao\",\r\n                    \"code\": \"10907\",\r\n                    \"display\": \"Oral\"\r\n                }\r\n            ]\r\n        },\r\n        \"doseAndRate\": [\r\n   {\r\n    \"doseQuantity\": {\r\n     \"value\": 1,\r\n     \"unit\": \"Comprimido\",\r\n     \"system\": \"http://www.saude.gov.br/fhir/r4/CodeSystem/BRUnidadeMedida\",\r\n     \"code\": \"19\"\r\n    }\r\n   }\r\n  ],\r\n }\r\n]\r\n\r\n\r\n```"
+      },
+      {
+        "id": "MedicationDispense.dosageInstruction.route",
+        "path": "MedicationDispense.dosageInstruction.route",
+        "short": "Via de admiminstração do medicamento",
+        "definition": "Conceito - referência a uma terminologia que representa a via de administração do medicamento.\r\n\r\n```json\r\n\"route\": {\r\n    \"coding\": [\r\n        {\r\n            \"system\": \"http://www.saude.gov.br/fhir/r4/CodeSystem/BRViaAdministracao\",\r\n            \"code\": \"10907\",\r\n            \"display\": \"Oral\"\r\n        }\r\n    ]\r\n}\r\n```",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BRViaAdministracao-1.0"
+        }
+      },
+      {
+        "id": "MedicationDispense.dosageInstruction.route.coding",
+        "path": "MedicationDispense.dosageInstruction.route.coding",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationDispense.dosageInstruction.route.coding.system",
+        "path": "MedicationDispense.dosageInstruction.route.coding.system",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.dosageInstruction.route.coding.code",
+        "path": "MedicationDispense.dosageInstruction.route.coding.code",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.dosageInstruction.doseAndRate",
+        "path": "MedicationDispense.dosageInstruction.doseAndRate",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "MedicationDispense.dosageInstruction.doseAndRate.dose[x]",
+        "path": "MedicationDispense.dosageInstruction.doseAndRate.dose[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Quantity"
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.dosageInstruction.doseAndRate.dose[x].value",
+        "path": "MedicationDispense.dosageInstruction.doseAndRate.dose[x].value",
+        "min": 1
+      }
+    ]
+  }
+}

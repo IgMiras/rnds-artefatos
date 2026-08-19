@@ -1,0 +1,195 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "rnds-rpdm",
+  "url": "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSRegistroEletronicoPrescricaoMedicamento",
+  "name": "RNDSRegistroEletronicoPrescricaoMedicamento",
+  "title": "Registro Eletrônico da Prescrição de Medicamento - REPM",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Composition",
+  "baseDefinition": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-composition",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Composition.status",
+        "path": "Composition.status",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BREstadoDocumento-1.0"
+        }
+      },
+      {
+        "id": "Composition.type",
+        "path": "Composition.type",
+        "definition": "Código LOINC que representa o tipo do documento\r\n(https://loinc.org/57833-6)",
+        "mustSupport": true,
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BRTipoDocumento-1.0"
+        }
+      },
+      {
+        "id": "Composition.subject",
+        "path": "Composition.subject",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPaciente",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.subject.identifier",
+        "path": "Composition.subject.identifier",
+        "min": 1
+      },
+      {
+        "id": "Composition.subject.identifier.system",
+        "path": "Composition.subject.identifier.system",
+        "min": 1
+      },
+      {
+        "id": "Composition.subject.identifier.value",
+        "path": "Composition.subject.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Composition.date",
+        "path": "Composition.date",
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.author",
+        "path": "Composition.author",
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSEstabelecimentoSaude",
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.title",
+        "path": "Composition.title",
+        "short": "Título do Documento",
+        "definition": "Título do Documento",
+        "fixedString": "Registro Eletrônico da Prescrição de Medicamentos"
+      },
+      {
+        "id": "Composition.relatesTo",
+        "path": "Composition.relatesTo",
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.relatesTo.code",
+        "path": "Composition.relatesTo.code",
+        "fixedCode": "replaces"
+      },
+      {
+        "id": "Composition.relatesTo.target[x]",
+        "path": "Composition.relatesTo.target[x]",
+        "type": [
+          {
+            "code": "Reference"
+          }
+        ]
+      },
+      {
+        "id": "Composition.relatesTo.target[x]:targetReference",
+        "path": "Composition.relatesTo.target[x]",
+        "sliceName": "targetReference",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSRegistroEletronicoPrescricaoMedicamento"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.relatesTo.target[x]:targetReference.reference",
+        "path": "Composition.relatesTo.target[x].reference",
+        "min": 1
+      },
+      {
+        "id": "Composition.section",
+        "path": "Composition.section",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "code"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.section:prescriptionMedications",
+        "path": "Composition.section",
+        "sliceName": "prescriptionMedications",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:prescriptionMedications.title",
+        "path": "Composition.section.title",
+        "min": 1,
+        "fixedString": "Medicamentos Prescritos"
+      },
+      {
+        "id": "Composition.section:prescriptionMedications.code",
+        "path": "Composition.section.code",
+        "min": 1,
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "57828-6"
+            }
+          ]
+        },
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/ValueSet/c80-doc-typecodes"
+        }
+      },
+      {
+        "id": "Composition.section:prescriptionMedications.entry",
+        "path": "Composition.section.entry",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/RNDSPrescricaoMedicamento"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.section:prescriptionMedications.entry.reference",
+        "path": "Composition.section.entry.reference",
+        "min": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "codesystem-medication-dispense-type",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"
+    ]
+  },
+  "url": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRTipoDispensacaoRealizada",
+  "version": "1.0.0",
+  "name": "CodeSystem-BRTipoDispensacaoRealizada",
+  "title": "Tipo de Dispensação Realizada",
+  "status": "draft",
+  "experimental": false,
+  "date": "2024-12-10",
+  "publisher": "Ministério da Saúde do Brasil",
+  "description": "Indica o tipo de dispensação que foi realizada",
+  "caseSensitive": true,
+  "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BRSituacaoDispensacao",
+  "content": "complete",
+  "concept": [
+    {
+      "code": "fully-dispensing",
+      "display": "Fully Dispensing"
+    },
+    {
+      "code": "medication-return",
+      "display": "Medication Return"
+    },
+    {
+      "code": "partial-dispensing",
+      "display": "Partial Dispensing"
+    },
+    {
+      "code": "not-dispensed",
+      "display": "Not Dipensed"
+    }
+  ]
+}

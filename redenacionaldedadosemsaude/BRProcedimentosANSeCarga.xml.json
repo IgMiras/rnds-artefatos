@@ -1,0 +1,40 @@
+{
+  "resourceType": "ValueSet",
+  "id": "procedimentos-ans-carga",
+  "meta": {
+    "lastUpdated": "2024-07-17T20:00:00+00:00"
+  },
+  "language": "pt-BR",
+  "url": "http://www.saude.gov.br/fhir/r4/ValueSet/BRProcedimentosANSeCarga",
+  "version": "1.0.0",
+  "name": "Procedimento Realizado (ANS e Carga)",
+  "status": "draft",
+  "experimental": false,
+  "date": "2024-07-17T20:00:00+00:00",
+  "publisher": "Ministério da Saúde do Brasil",
+  "description": "Value Set das classificações brasileiras para procedimentos adotadas em contexto nacional, os codesystems apresentam os códigos da competência atual, para o envio de competência anterior os códigos devem ser consultados na RTS",
+  "immutable": false,
+  "compose": {
+    "include": [
+      {
+        "valueSet": [
+          "http://www.saude.gov.br/fhir/r4/ValueSet/BRProcedimentosNacionais-1.0"
+        ]
+      },
+      {
+        "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRDadoAusenteOuDesconhecido",
+        "version": "*",
+        "concept": [
+          {
+            "code": "no-procedure-info",
+            "display": "No information about past history of procedures"
+          },
+          {
+            "code": "no-known-procedures",
+            "display": "No known procedures"
+          }
+        ]
+      }
+    ]
+  }
+}
