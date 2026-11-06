@@ -1,0 +1,186 @@
+{
+    "resourceType": "Bundle",
+    "meta": {
+      "lastUpdated": "2021-09-15T11:57:05.995-02:00"
+    },
+    "identifier": {
+      "system": "http://www.saude.gov.br/fhir/r4/NamingSystem/BR999999", 
+      "value": "12345678"
+    },
+    "type": "document",
+    "timestamp": "2021-09-15T11:57:05.944-02:00",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:transient-0",
+        "resource": {
+          "resourceType": "Composition",
+          "id": "transient-0",
+          "meta": {
+            "profile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRResultadoExameLaboratorial-3.2.1"
+            ]
+          },
+          "status": "final",
+          "type": {
+            "coding": [
+              {
+                "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRTipoDocumento",
+                "code": "REL"
+              }
+            ]
+          },
+          "subject": {
+            "identifier": {
+              "system": "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0",
+              "value": "898005900000823"
+            }
+          },
+          "date": "2021-09-15T11:57:06-02:00",
+          "author": [
+            {
+              "identifier": {
+                "system": "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRPessoaJuridicaProfissionalLiberal-1.0",
+                "value": "00394544000185"
+              }
+            }
+          ],
+          "title": "Resultado de Exame Laboratorial",
+          "section": [
+            {
+              "entry": [
+                {
+                  "reference": "urn:uuid:transient-1"
+                },
+                {
+                  "reference": "urn:uuid:transient-2"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:transient-1",
+        "resource": {
+          "resourceType": "Condition",
+          "id": "transient-1",
+          "meta": {
+            "profile": [
+              "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRCondicaoSaude"
+            ]
+          },
+          "code" : { 
+            "coding": [
+              {
+                "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRTerminologiaSuspeitaDiagnostica",
+                "code": "B04",
+                "display": "Varíola dos macacos [Monkeypox]"
+              }
+            ]
+          },
+          "subject" : { 
+              "identifier": {
+                "system": "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0",
+                "value": "898005900000823"
+              }
+          },
+          "stage" : [
+            {
+              "assessment" : [
+                { "reference": "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRDiagnosticoLaboratorioClinico-3.2.1" }
+              ]
+            }
+          ]
+        }
+      },
+  
+  
+      {
+        "fullUrl": "urn:uuid:transient-2",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "transient-2",
+          "meta": {
+              "profile": [
+                  "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRDiagnosticoLaboratorioClinico-3.2.1"
+              ]
+          },
+          "extension": [
+              {
+                  "url": "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRPatogeno",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRTerminologiaPatogeno",
+                        "code": "01"
+                      }
+                    ]
+                    
+                  }
+              }
+          ],
+          "status": "final",
+          "category": [
+            { 
+              "coding": [
+                {
+                  "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRSubgrupoTabelaSUS",
+                  "code": "0202"
+                }
+              ] 
+            }
+          ],
+          "code": {
+              "coding": [
+                  {
+                      "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRNomeExameLOINC",
+                      "code": "94309-2"
+                  }
+              ]
+          },
+          "subject": {
+              "identifier": {
+                  "system": "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0",
+                  "value": "898005900000823"
+              }
+          },
+          "effectiveDateTime" : "2021-09-15T11:57:06-02:00",
+          "issued" : "2021-09-15T12:57:06-02:00",
+          "performer": [
+              {
+                  "identifier": {
+                    "system": "http://www.saude.gov.br/fhir/r4/StructureDefinition/BREstabelecimentoSaude-1.0",
+                    "value": "034544015"
+                  }
+              }, 
+              {
+                  "identifier": {
+                  "system": "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRPessoaJuridicaProfissionalLiberal-1.0",
+                  "value": "00394544000185"
+                  }
+              }
+          ],
+          "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRTipoResultadoDTNT",
+                  "code": "2"
+                }
+              ]
+          },
+          "method": {
+              "text": "Diagnóstico através de um hemograma."
+          },
+          "specimen": {
+              "reference": "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRAmostraBiologica-1.0"
+          },
+          "referenceRange": [
+              { 
+                  "text": "Escala de -1 para +1." 
+              }
+          ]
+        }
+      }
+    ]
+  }
+  
